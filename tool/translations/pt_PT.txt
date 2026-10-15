@@ -622,3 +622,40 @@ Marcar como verificado
 Compare os números de segurança com {0}
 Verificado · encriptação ponto a ponto
 Código-fonte
+Esqueceu-se do código?
+Demasiadas tentativas erradas. Tente novamente em {0}.
+Esqueceu-se do seu código?
+O MEYA não guarda email nem número de telefone, por isso ninguém pode repor o seu código por si. Use o seu código de recuperação ou apague os dados do MEYA neste telemóvel e recomece.
+Usar o meu código de recuperação
+Apagar tudo e recomeçar
+Tudo foi apagado neste telemóvel. Pode criar uma nova conta.
+Introduza o seu código de recuperação
+Código de recuperação
+Introduza o código de 24 caracteres que anotou ao configurar o MEYA. Maiúsculas e hífenes não importam.
+Esse código de recuperação não está correto.
+Não foi configurado nenhum código de recuperação neste telemóvel. Pode apagar tudo e recomeçar.
+Escolha um novo código
+Novo código
+Guardar código
+Código alterado. Introduza-o para desbloquear.
+O seu código de recuperação
+Escreva este código em papel e guarde-o num local seguro, longe do telemóvel. É a única forma de repor um código esquecido e manter a sua conta. O MEYA não o pode mostrar de novo.
+Não tire uma captura de ecrã nem o guarde no telemóvel.
+Já o anotei
+Crie um novo código. O antigo deixa de funcionar.
+Não configurado. Crie um para poder repor um código esquecido.
+Alterar código
+Altere o código que protege o MEYA.
+Código atual
+O seu código atual não está correto.
+Código alterado.
+Em breve
+Pedir o seu código ao regressar ao MEYA após 30 segundos fora.
+Criar um novo código de recuperação?
+O seu código antigo deixa de funcionar. Verá o novo apenas uma vez.
+Verá o código apenas uma vez. Escreva-o em papel.
+Configurar um código de recuperação
+Se se esquecer do seu código, um código de recuperação é a única forma de manter a sua conta. Demora um minuto.
+Mais tarde
+Configurar agora
+Confirme o seu código

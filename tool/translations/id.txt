@@ -622,3 +622,40 @@ Tandai terverifikasi
 Bandingkan nomor keamanan dengan {0}
 Terverifikasi · terenkripsi end-to-end
 Kode sumber
+Lupa kode sandi?
+Terlalu banyak percobaan salah. Coba lagi dalam {0}.
+Lupa kode sandi Anda?
+MEYA tidak menyimpan alamat email atau nomor telepon, jadi tidak ada yang bisa mengatur ulang kode Anda. Gunakan kode pemulihan, atau hapus data MEYA di ponsel ini dan mulai lagi.
+Gunakan kode pemulihan saya
+Hapus semuanya dan mulai lagi
+Semuanya di ponsel ini telah dihapus. Anda dapat membuat akun baru.
+Masukkan kode pemulihan Anda
+Kode pemulihan
+Ketik kode 24 karakter yang Anda catat saat menyiapkan MEYA. Huruf besar dan tanda hubung tidak berpengaruh.
+Kode pemulihan itu tidak benar.
+Tidak ada kode pemulihan yang disiapkan di ponsel ini. Anda dapat menghapus semuanya dan mulai lagi.
+Pilih kode sandi baru
+Kode sandi baru
+Simpan kode sandi
+Kode sandi diubah. Masukkan untuk membuka kunci.
+Kode pemulihan Anda
+Tulis kode ini di kertas dan simpan di tempat aman, jauh dari ponsel Anda. Ini satu-satunya cara mengatur ulang kode yang terlupa dan mempertahankan akun Anda. MEYA tidak dapat menampilkannya lagi.
+Jangan ambil tangkapan layar atau menyimpannya di ponsel.
+Saya sudah mencatatnya
+Buat kode baru. Kode lama berhenti berfungsi.
+Belum disiapkan. Buat satu agar Anda bisa mengatur ulang kode sandi yang terlupa.
+Ubah kode sandi
+Ubah kode sandi yang melindungi MEYA.
+Kode sandi saat ini
+Kode sandi Anda saat ini tidak benar.
+Kode sandi diubah.
+Segera hadir
+Minta kode sandi saat Anda kembali ke MEYA setelah 30 detik.
+Buat kode pemulihan baru?
+Kode lama Anda berhenti berfungsi. Kode baru hanya ditampilkan sekali.
+Kode hanya ditampilkan sekali. Catat di kertas.
+Siapkan kode pemulihan
+Jika Anda lupa kode sandi, kode pemulihan adalah satu-satunya cara mempertahankan akun Anda. Hanya butuh semenit.
+Nanti
+Siapkan sekarang
+Konfirmasi kode sandi Anda

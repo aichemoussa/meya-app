@@ -622,3 +622,40 @@ Marcar como verificado
 Compare os números de segurança com {0}
 Verificado · criptografia de ponta a ponta
 Código-fonte
+Esqueceu o código?
+Muitas tentativas erradas. Tente de novo em {0}.
+Esqueceu seu código?
+O MEYA não guarda e-mail nem número de telefone, então ninguém pode redefinir seu código por você. Use seu código de recuperação ou apague os dados do MEYA neste celular e comece de novo.
+Usar meu código de recuperação
+Apagar tudo e começar de novo
+Tudo foi apagado neste celular. Você pode criar uma nova conta.
+Digite seu código de recuperação
+Código de recuperação
+Digite o código de 24 caracteres que você anotou ao configurar o MEYA. Maiúsculas e hifens não importam.
+Esse código de recuperação não está certo.
+Nenhum código de recuperação foi configurado neste celular. Você pode apagar tudo e começar de novo.
+Escolha um novo código
+Novo código
+Salvar código
+Código alterado. Digite-o para desbloquear.
+Seu código de recuperação
+Anote este código em papel e guarde-o em um lugar seguro, longe do celular. É a única forma de redefinir um código esquecido e manter sua conta. O MEYA não pode mostrá-lo de novo.
+Não tire print nem salve no celular.
+Já anotei
+Crie um novo código. O antigo deixa de funcionar.
+Não configurado. Crie um para poder redefinir um código esquecido.
+Alterar código
+Altere o código que protege o MEYA.
+Código atual
+Seu código atual não está certo.
+Código alterado.
+Em breve
+Pedir seu código ao voltar ao MEYA depois de 30 segundos fora.
+Criar um novo código de recuperação?
+Seu código antigo deixará de funcionar. Você verá o novo só uma vez.
+Você verá o código só uma vez. Anote-o em papel.
+Configurar um código de recuperação
+Se você esquecer seu código, um código de recuperação é a única forma de manter sua conta. Leva um minuto.
+Depois
+Configurar agora
+Confirme seu código

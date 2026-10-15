@@ -622,3 +622,40 @@ Weka alama imethibitishwa
 Linganisha nambari za usalama na {0}
 Imethibitishwa · imesimbwa fiche mwanzo hadi mwisho
 Msimbo chanzo
+Umesahau nambari ya siri?
+Majaribio mengi yasiyo sahihi. Jaribu tena baada ya {0}.
+Umesahau nambari yako ya siri?
+MEYA haihifadhi barua pepe wala nambari ya simu, kwa hiyo hakuna anayeweza kuweka upya nambari yako ya siri kwa niaba yako. Tumia msimbo wako wa urejeshaji, au futa data ya MEYA kwenye simu hii uanze upya.
+Tumia msimbo wangu wa urejeshaji
+Futa kila kitu uanze upya
+Kila kitu kwenye simu hii kimefutwa. Unaweza kuunda akaunti mpya.
+Weka msimbo wako wa urejeshaji
+Msimbo wa urejeshaji
+Andika msimbo wa herufi 24 uliouandika ulipoweka MEYA. Herufi kubwa na vistari havina umuhimu.
+Msimbo huo wa urejeshaji si sahihi.
+Hakuna msimbo wa urejeshaji uliowekwa kwenye simu hii. Badala yake unaweza kufuta kila kitu uanze upya.
+Chagua nambari mpya ya siri
+Nambari mpya ya siri
+Hifadhi nambari ya siri
+Nambari ya siri imebadilishwa. Iweke ili kufungua.
+Msimbo wako wa urejeshaji
+Andika msimbo huu kwenye karatasi na uuhifadhi mahali salama, mbali na simu yako. Ndiyo njia pekee ya kuweka upya nambari ya siri uliyosahau na kuhifadhi akaunti yako. MEYA haiwezi kuuonyesha tena.
+Usipige picha ya skrini wala kuuhifadhi kwenye simu yako.
+Nimeuandika
+Unda msimbo mpya. Ule wa zamani utaacha kufanya kazi.
+Haijawekwa. Unda moja ili uweze kuweka upya nambari ya siri uliyosahau.
+Badilisha nambari ya siri
+Badilisha nambari ya siri inayolinda MEYA.
+Nambari ya siri ya sasa
+Nambari yako ya siri ya sasa si sahihi.
+Nambari ya siri imebadilishwa.
+Inakuja hivi karibuni
+Omba nambari ya siri unaporudi MEYA baada ya sekunde 30.
+Unda msimbo mpya wa urejeshaji?
+Msimbo wako wa zamani utaacha kufanya kazi. Utauona mpya mara moja tu.
+Utaona msimbo mara moja tu. Uandike kwenye karatasi.
+Weka msimbo wa urejeshaji
+Ukisahau nambari yako ya siri, msimbo wa urejeshaji ndiyo njia pekee ya kuhifadhi akaunti yako. Inachukua dakika moja.
+Baadaye
+Weka sasa
+Thibitisha nambari yako ya siri

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import '../services/account_security_service.dart';
 import '../theme/meya_theme.dart';
 import '../l10n/meya_strings.dart';
+import 'confirm_passcode.dart';
+import 'forgot_passcode_page.dart' show formatWait;
+import 'recovery_code_page.dart';
 
 class SecurityPage extends StatefulWidget {
   const SecurityPage({super.key});
@@ -11,9 +15,65 @@ class SecurityPage extends StatefulWidget {
 
 class _SecurityPageState extends State<SecurityPage> {
   bool _appLock = false;
-  bool _biometricUnlock = false;
+  bool _hasRecoveryCode = false;
   bool _screenshotProtection = true;
   bool _securityNotifications = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    final appLock = await AccountSecurityService.isAppLockEnabled();
+    final hasCode = await AccountSecurityService.hasRecoveryCode();
+    if (!mounted) return;
+    setState(() {
+      _appLock = appLock;
+      _hasRecoveryCode = hasCode;
+    });
+  }
+
+  /// Asks for the passcode, then makes a new recovery code and shows it once.
+  Future<void> _newRecoveryCode() async {
+    final go = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(context.tr('Create a new recovery code?')),
+        content: Text(
+          _hasRecoveryCode
+              ? context.tr('Your old code stops working. You will see the new code once.')
+              : context.tr('You will see the code once. Write it down on paper.'),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: Text(context.tr('Cancel')),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(dialogContext, true),
+            child: Text(context.tr('Continue')),
+          ),
+        ],
+      ),
+    );
+    if (go != true || !mounted) return;
+    if (!await confirmPasscode(context) || !mounted) return;
+
+    final code = await AccountSecurityService.createRecoveryCode();
+    if (!mounted) return;
+    await Navigator.push<void>(
+      context,
+      MaterialPageRoute(
+        builder: (_) => RecoveryCodePage(
+          code: code,
+          onDone: () => Navigator.pop(context),
+        ),
+      ),
+    );
+    await _load();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,29 +101,20 @@ class _SecurityPageState extends State<SecurityPage> {
             const SizedBox(height: 10),
             _SecuritySwitch(
               title: context.tr('App lock'),
-              subtitle: context.tr('Require a security check when opening MEYA.'),
+              subtitle: context.tr('Ask for your passcode when you come back to MEYA after 30 seconds away.'),
               value: _appLock,
               onChanged: (value) {
-                setState(() {
-                  _appLock = value;
-
-                  if (!value) {
-                    _biometricUnlock = false;
-                  }
-                });
+                setState(() => _appLock = value);
+                AccountSecurityService.setAppLockEnabled(value);
               },
             ),
             const SizedBox(height: 12),
             _SecuritySwitch(
               title: context.tr('Biometric unlock'),
-              subtitle: context.tr('Use your device biometrics to unlock MEYA.'),
-              value: _biometricUnlock,
-              enabled: _appLock,
-              onChanged: (value) {
-                setState(() {
-                  _biometricUnlock = value;
-                });
-              },
+              subtitle: context.tr('Coming soon'),
+              value: false,
+              enabled: false,
+              onChanged: (_) {},
             ),
             const SizedBox(height: 24),
             _SecuritySectionTitle(title: context.tr('Messages & screen')),
@@ -94,16 +145,25 @@ class _SecurityPageState extends State<SecurityPage> {
             const SizedBox(height: 10),
             _SecurityAction(
               icon: Icons.password_outlined,
-              title: context.tr('Change security PIN'),
-              subtitle: context.tr('Create or change the PIN used to protect MEYA.'),
+              title: context.tr('Change passcode'),
+              subtitle: context.tr('Change the passcode that protects MEYA.'),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const SecurityPinPage(),
+                    builder: (context) => const ChangePasscodePage(),
                   ),
                 );
               },
+            ),
+            const SizedBox(height: 12),
+            _SecurityAction(
+              icon: Icons.vpn_key_outlined,
+              title: context.tr('Recovery code'),
+              subtitle: _hasRecoveryCode
+                  ? context.tr('Create a new code. The old one stops working.')
+                  : context.tr('Not set up. Create one so you can reset a forgotten passcode.'),
+              onTap: _newRecoveryCode,
             ),
             const SizedBox(height: 12),
             _SecurityAction(
@@ -140,40 +200,80 @@ class _SecurityPageState extends State<SecurityPage> {
   }
 }
 
-class SecurityPinPage extends StatefulWidget {
-  const SecurityPinPage({super.key});
+/// Changes the passcode. The current passcode is required, and wrong tries
+/// count towards the same waiting time as the unlock screen.
+class ChangePasscodePage extends StatefulWidget {
+  const ChangePasscodePage({super.key});
 
   @override
-  State<SecurityPinPage> createState() => _SecurityPinPageState();
+  State<ChangePasscodePage> createState() => _ChangePasscodePageState();
 }
 
-class _SecurityPinPageState extends State<SecurityPinPage> {
-  final _pinController = TextEditingController();
+class _ChangePasscodePageState extends State<ChangePasscodePage> {
+  final _currentController = TextEditingController();
+  final _newController = TextEditingController();
   final _confirmController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
+  bool _saving = false;
+  String? _currentError;
+
   @override
   void dispose() {
-    _pinController.dispose();
+    _currentController.dispose();
+    _newController.dispose();
     _confirmController.dispose();
     super.dispose();
   }
 
-  void _savePin() {
-    if (!_formKey.currentState!.validate()) {
+  Future<void> _save() async {
+    setState(() => _currentError = null);
+    if (!_formKey.currentState!.validate()) return;
+
+    setState(() => _saving = true);
+    final result =
+        await AccountSecurityService.checkPasscode(_currentController.text);
+    if (!mounted) return;
+    if (!result.ok) {
+      _currentController.clear();
+      setState(() {
+        _saving = false;
+        _currentError = result.isLocked
+            ? context.tr('Too many wrong tries. Try again in {0}.', [formatWait(result.lockedFor!)])
+            : context.tr('Your current passcode is not right.');
+      });
       return;
     }
 
+    await AccountSecurityService.savePasscode(_newController.text);
+    if (!mounted) return;
     ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(context.tr('Security PIN saved.'))));
-
+        .showSnackBar(SnackBar(content: Text(context.tr('Passcode changed.'))));
     Navigator.pop(context);
   }
+
+  Widget _field(
+    TextEditingController controller,
+    String label,
+    String? Function(String?) validator, {
+    String? error,
+  }) =>
+      Padding(
+        padding: const EdgeInsets.only(bottom: 16),
+        child: TextFormField(
+          controller: controller,
+          keyboardType: TextInputType.number,
+          obscureText: true,
+          maxLength: 6,
+          decoration: InputDecoration(labelText: label, errorText: error),
+          validator: validator,
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.tr('Security PIN'))),
+      appBar: AppBar(title: Text(context.tr('Change passcode'))),
       body: SafeArea(
         child: Form(
           key: _formKey,
@@ -181,87 +281,41 @@ class _SecurityPinPageState extends State<SecurityPinPage> {
             padding: const EdgeInsets.fromLTRB(28, 24, 28, 32),
             children: [
               Text(
-                context.tr('Protect MEYA with a PIN'),
-                style: TextStyle(
-                  color: context.meya.text,
-                  fontSize: 26,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                context.tr('Your PIN can be used as an additional layer of protection for the app.'),
+                context.tr('Change the passcode that protects MEYA.'),
                 style: TextStyle(color: context.meya.muted, fontSize: 15, height: 1.5),
               ),
-              const SizedBox(height: 28),
-              Text(
-                context.tr('New PIN'),
-                style: TextStyle(
-                  color: context.meya.text,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
+              const SizedBox(height: 24),
+              _field(
+                _currentController,
+                context.tr('Current passcode'),
+                (value) => value == null || value.isEmpty
+                    ? context.tr('Enter your passcode.')
+                    : null,
+                error: _currentError,
               ),
-              const SizedBox(height: 8),
-              TextFormField(
-                controller: _pinController,
-                keyboardType: TextInputType.number,
-                obscureText: true,
-                maxLength: 6,
-                decoration: InputDecoration(
-                  hintText: context.tr('Enter a PIN of 4 to 6 digits'),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return context.tr('Enter a PIN');
-                  }
-
-                  if (value.length < 4 || value.length > 6) {
-                    return context.tr('Use 4 to 6 digits');
-                  }
-
-                  if (int.tryParse(value) == null) {
-                    return context.tr('Use numbers only');
-                  }
-
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              Text(
-                context.tr('Confirm PIN'),
-                style: TextStyle(
-                  color: context.meya.text,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 8),
-              TextFormField(
-                controller: _confirmController,
-                keyboardType: TextInputType.number,
-                obscureText: true,
-                maxLength: 6,
-                decoration: InputDecoration(
-                  hintText: context.tr('Enter the PIN again'),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return context.tr('Confirm your PIN');
-                  }
-
-                  if (value != _pinController.text) {
-                    return context.tr('PINs do not match');
-                  }
-
-                  return null;
-                },
-              ),
-              const SizedBox(height: 28),
+              _field(_newController, context.tr('New passcode'), (value) {
+                if (value == null || value.isEmpty) {
+                  return context.tr('Please create a passcode');
+                }
+                if (!RegExp(r'^\d{4,6}$').hasMatch(value)) {
+                  return context.tr('Use 4 to 6 digits');
+                }
+                return null;
+              }),
+              _field(_confirmController, context.tr('Confirm passcode'), (value) {
+                if (value == null || value.isEmpty) {
+                  return context.tr('Please confirm your passcode');
+                }
+                if (value != _newController.text) {
+                  return context.tr('Passcodes do not match');
+                }
+                return null;
+              }),
+              const SizedBox(height: 12),
               SizedBox(
                 height: 56,
                 child: FilledButton(
-                  onPressed: _savePin,
+                  onPressed: _saving ? null : _save,
                   style: FilledButton.styleFrom(
                     backgroundColor: context.meya.navy,
                     foregroundColor: context.meya.onNavy,
@@ -270,8 +324,8 @@ class _SecurityPinPageState extends State<SecurityPinPage> {
                     ),
                   ),
                   child: Text(
-                    context.tr('Save PIN'),
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                    context.tr('Save passcode'),
+                    style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
                   ),
                 ),
               ),

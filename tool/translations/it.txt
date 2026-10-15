@@ -622,3 +622,40 @@ Segna come verificato
 Confronta i numeri di sicurezza con {0}
 Verificato · crittografia end-to-end
 Codice sorgente
+Codice dimenticato?
+Troppi tentativi errati. Riprova tra {0}.
+Hai dimenticato il codice?
+MEYA non conserva alcun indirizzo email o numero di telefono, quindi nessuno può reimpostare il codice al posto tuo. Usa il codice di recupero oppure cancella i dati MEYA da questo telefono e ricomincia.
+Usa il mio codice di recupero
+Cancella tutto e ricomincia
+Tutto è stato cancellato su questo telefono. Puoi creare un nuovo account.
+Inserisci il codice di recupero
+Codice di recupero
+Inserisci il codice di 24 caratteri che hai annotato quando hai configurato MEYA. Maiuscole e trattini non contano.
+Quel codice di recupero non è corretto.
+Su questo telefono non è stato impostato alcun codice di recupero. Puoi cancellare tutto e ricominciare.
+Scegli un nuovo codice
+Nuovo codice
+Salva codice
+Codice modificato. Inseriscilo per sbloccare.
+Il tuo codice di recupero
+Scrivi questo codice su carta e conservalo in un posto sicuro, lontano dal telefono. È l’unico modo per reimpostare un codice dimenticato e mantenere il tuo account. MEYA non può mostrarlo di nuovo.
+Non fare screenshot e non salvarlo sul telefono.
+L’ho annotato
+Crea un nuovo codice. Quello vecchio smette di funzionare.
+Non impostato. Creane uno per poter reimpostare un codice dimenticato.
+Cambia codice
+Cambia il codice che protegge MEYA.
+Codice attuale
+Il tuo codice attuale non è corretto.
+Codice modificato.
+In arrivo
+Chiedi il codice quando torni su MEYA dopo 30 secondi di assenza.
+Creare un nuovo codice di recupero?
+Il vecchio codice smette di funzionare. Vedrai il nuovo una sola volta.
+Vedrai il codice una sola volta. Scrivilo su carta.
+Imposta un codice di recupero
+Se dimentichi il codice, un codice di recupero è l’unico modo per mantenere il tuo account. Ci vuole un minuto.
+Più tardi
+Imposta ora
+Conferma il codice

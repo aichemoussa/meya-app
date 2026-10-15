@@ -622,3 +622,40 @@ Doğrulandı olarak işaretle
 {0} ile güvenlik numaralarını karşılaştır
 Doğrulandı · uçtan uca şifreli
 Kaynak kodu
+Parolayı mı unuttunuz?
+Çok fazla yanlış deneme. {0} sonra tekrar deneyin.
+Parolanızı mı unuttunuz?
+MEYA e-posta adresi veya telefon numarası tutmaz, bu yüzden parolanızı sizin yerinize kimse sıfırlayamaz. Kurtarma kodunuzu kullanın veya bu telefondaki MEYA verilerini silip baştan başlayın.
+Kurtarma kodumu kullan
+Her şeyi sil ve baştan başla
+Bu telefondaki her şey silindi. Yeni bir hesap oluşturabilirsiniz.
+Kurtarma kodunuzu girin
+Kurtarma kodu
+MEYA'yı kurarken not ettiğiniz 24 karakterlik kodu yazın. Büyük harf ve tireler önemli değildir.
+Bu kurtarma kodu doğru değil.
+Bu telefonda kurtarma kodu ayarlanmamış. Bunun yerine her şeyi silip baştan başlayabilirsiniz.
+Yeni bir parola seçin
+Yeni parola
+Parolayı kaydet
+Parola değiştirildi. Kilidi açmak için girin.
+Kurtarma kodunuz
+Bu kodu bir kâğıda yazın ve telefonunuzdan uzakta güvenli bir yerde saklayın. Unutulan parolayı sıfırlayıp hesabınızı korumanın tek yoludur. MEYA bunu tekrar gösteremez.
+Ekran görüntüsü almayın ve telefonunuza kaydetmeyin.
+Not ettim
+Yeni bir kod oluşturun. Eskisi çalışmaz.
+Ayarlanmamış. Unutulan parolayı sıfırlayabilmek için bir tane oluşturun.
+Parolayı değiştir
+MEYA'yı koruyan parolayı değiştirin.
+Mevcut parola
+Mevcut parolanız doğru değil.
+Parola değiştirildi.
+Yakında
+MEYA'ya 30 saniyeden uzun süre ara verdikten sonra dönünce parola iste.
+Yeni bir kurtarma kodu oluşturulsun mu?
+Eski kodunuz çalışmayacak. Yeni kodu yalnızca bir kez göreceksiniz.
+Kodu yalnızca bir kez göreceksiniz. Bir kâğıda yazın.
+Kurtarma kodu ayarla
+Parolanızı unutursanız hesabınızı korumanın tek yolu kurtarma kodudur. Bir dakika sürer.
+Daha sonra
+Şimdi ayarla
+Parolanızı doğrulayın

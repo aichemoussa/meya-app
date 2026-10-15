@@ -75,6 +75,13 @@ class _LoginPageState extends State<LoginPage> {
         context,
         MaterialPageRoute(
           builder: (context) => EnterPasscodePage(
+            database: database,
+            onErased: () {
+              final messenger = ScaffoldMessenger.of(context);
+              final message = context.tr('Everything on this phone was erased. You can create a new account.');
+              Navigator.of(context).popUntil((route) => route.isFirst);
+              messenger.showSnackBar(SnackBar(content: Text(message)));
+            },
             onUnlocked: () async {
               await repository.activateAccount(account.accountId);
               await widget.onUnlocked(account);

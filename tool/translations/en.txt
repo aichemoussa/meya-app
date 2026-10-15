@@ -622,3 +622,40 @@ Mark as verified
 Compare safety numbers with {0}
 Verified · end-to-end encrypted
 Source code
+Forgot passcode?
+Too many wrong tries. Try again in {0}.
+Forgot your passcode?
+MEYA keeps no email address or phone number, so nobody can reset your passcode for you. Use your recovery code, or erase this phone's MEYA data and start again.
+Use my recovery code
+Erase everything and start over
+Everything on this phone was erased. You can create a new account.
+Enter your recovery code
+Recovery code
+Type the 24-character code you wrote down when you set up MEYA. Capitals and dashes do not matter.
+That recovery code is not right.
+No recovery code was set up on this phone. You can erase everything and start over instead.
+Choose a new passcode
+New passcode
+Save passcode
+Passcode changed. Enter it to unlock.
+Your recovery code
+Write this code on paper and keep it somewhere safe, away from your phone. It is the only way to reset a forgotten passcode and keep your account. MEYA cannot show it again.
+Do not take a screenshot or save it on your phone.
+I have written it down
+Create a new code. The old one stops working.
+Not set up. Create one so you can reset a forgotten passcode.
+Change passcode
+Change the passcode that protects MEYA.
+Current passcode
+Your current passcode is not right.
+Passcode changed.
+Coming soon
+Ask for your passcode when you come back to MEYA after 30 seconds away.
+Create a new recovery code?
+Your old code stops working. You will see the new code once.
+You will see the code once. Write it down on paper.
+Set up a recovery code
+If you forget your passcode, a recovery code is the only way to keep your account. It takes a minute.
+Later
+Set up now
+Confirm your passcode
