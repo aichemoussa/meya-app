@@ -622,3 +622,40 @@ Marquer comme vérifié
 Comparer les numéros de sécurité avec {0}
 Vérifié · chiffré de bout en bout
 Code source
+Code oublié ?
+Trop d’essais incorrects. Réessayez dans {0}.
+Passcode oublié ?
+MEYA ne conserve aucune adresse e-mail ni numéro de téléphone : personne ne peut donc réinitialiser votre code à votre place. Utilisez votre code de récupération, ou effacez les données MEYA de ce téléphone et recommencez.
+Utiliser mon code de récupération
+Tout effacer et recommencer
+Tout a été effacé sur ce téléphone. Vous pouvez créer un nouveau compte.
+Saisissez votre code de récupération
+Code de récupération
+Saisissez le code de 24 caractères que vous avez noté à la configuration de MEYA. Majuscules et tirets n’ont pas d’importance.
+Ce code de récupération n’est pas correct.
+Aucun code de récupération n’a été configuré sur ce téléphone. Vous pouvez tout effacer et recommencer.
+Choisissez un nouveau code
+Nouveau code
+Enregistrer le code
+Code modifié. Saisissez-le pour déverrouiller.
+Votre code de récupération
+Notez ce code sur papier et gardez-le en lieu sûr, loin de votre téléphone. C’est le seul moyen de réinitialiser un code oublié et de garder votre compte. MEYA ne peut pas le réafficher.
+Ne faites pas de capture d’écran et ne l’enregistrez pas sur votre téléphone.
+Je l’ai noté
+Créez un nouveau code. L’ancien cesse de fonctionner.
+Non configuré. Créez-en un pour pouvoir réinitialiser un code oublié.
+Changer le code
+Changez le code qui protège MEYA.
+Code actuel
+Votre code actuel n’est pas correct.
+Code modifié.
+Bientôt disponible
+Demander votre code quand vous revenez dans MEYA après 30 secondes d’absence.
+Créer un nouveau code de récupération ?
+Votre ancien code cessera de fonctionner. Vous verrez le nouveau code une seule fois.
+Vous verrez le code une seule fois. Notez-le sur papier.
+Configurer un code de récupération
+Si vous oubliez votre code, un code de récupération est le seul moyen de garder votre compte. Cela prend une minute.
+Plus tard
+Configurer maintenant
+Confirmez votre code

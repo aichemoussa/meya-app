@@ -18,6 +18,9 @@ import 'services/meya_connection_service.dart';
 import 'services/meya_e2ee.dart';
 import 'services/meya_message_service.dart';
 import 'screens/create_passcode_page.dart';
+import 'screens/enter_passcode_page.dart';
+import 'screens/recovery_code_page.dart';
+import 'services/account_security_service.dart';
 import 'screens/login_page.dart';
 import 'screens/privacy_page.dart';
 import 'screens/security_page.dart';
@@ -399,6 +402,10 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
               ),
             );
 
+            // MEYA cannot reset a forgotten passcode by email or SMS, so the
+            // person gets a recovery code to write down before going on.
+            final recoveryCode = await AccountSecurityService.createRecoveryCode();
+
             if (!context.mounted) {
               return;
             }
@@ -406,10 +413,18 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => SpacePage(
-                  name: account.name,
-                  username: account.username,
-                  database: widget.database,
+                builder: (context) => RecoveryCodePage(
+                  code: recoveryCode,
+                  onDone: () => Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SpacePage(
+                        name: account.name,
+                        username: account.username,
+                        database: widget.database,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             );
@@ -548,6 +563,12 @@ class _SpacePageState extends State<SpacePage>
   List<CalendarEvent> _upcoming = [];
   int _statusCount = 0;
 
+  // App lock: when the person left MEYA, and whether the lock is switched on
+  // (read when they leave, so it is ready the moment they come back).
+  DateTime? _leftAt;
+  bool _appLockOn = false;
+  bool _lockShowing = false;
+
   @override
   void initState() {
     super.initState();
@@ -606,6 +627,7 @@ class _SpacePageState extends State<SpacePage>
     unawaited(_startRelaySession());
     unawaited(MeyaMediaSettings.instance.applyKeepMedia());
     _loadOverview();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _offerRecoveryCode());
   }
 
   /// The person who scanned the QR code starts the session, then shares
@@ -692,13 +714,86 @@ class _SpacePageState extends State<SpacePage>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused) {
+      _leftAt = DateTime.now();
+      AccountSecurityService.isAppLockEnabled().then((on) => _appLockOn = on);
+    }
     if (state == AppLifecycleState.resumed) {
       unawaited(
         _relaySession.keepConnected().catchError((Object error) {
           debugPrint('MEYA relay: reconnect on resume failed ($error).');
         }),
       );
+      _lockIfAway();
     }
+  }
+
+  /// Asks for the passcode when the person comes back after a while.
+  Future<void> _lockIfAway() async {
+    final left = _leftAt;
+    _leftAt = null;
+    if (left == null || !_appLockOn || _lockShowing || !mounted) return;
+    if (DateTime.now().difference(left) < AccountSecurityService.appLockGrace) {
+      return;
+    }
+    final navigator = meyaNavigatorKey.currentState;
+    if (navigator == null) return;
+    _lockShowing = true;
+    await navigator.push(
+      MaterialPageRoute<void>(
+        fullscreenDialog: true,
+        builder: (lockContext) => PopScope(
+          canPop: false,
+          child: EnterPasscodePage(
+            database: widget.database,
+            onUnlocked: () async => Navigator.of(lockContext).pop(),
+            onErased: () => navigator.pushAndRemoveUntil(
+              MaterialPageRoute<void>(
+                builder: (_) => WelcomePage(database: widget.database),
+              ),
+              (route) => false,
+            ),
+          ),
+        ),
+      ),
+    );
+    _lockShowing = false;
+  }
+
+  /// Accounts made before recovery codes existed are asked once per session.
+  Future<void> _offerRecoveryCode() async {
+    if (await AccountSecurityService.hasRecoveryCode() || !mounted) return;
+    final setUp = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(dialogContext.tr('Set up a recovery code')),
+        content: Text(
+          dialogContext.tr('If you forget your passcode, a recovery code is the only way to keep your account. It takes a minute.'),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: Text(dialogContext.tr('Later')),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(dialogContext, true),
+            child: Text(dialogContext.tr('Set up now')),
+          ),
+        ],
+      ),
+    );
+    if (setUp != true || !mounted) return;
+    final code = await AccountSecurityService.createRecoveryCode();
+    if (!mounted) return;
+    await Navigator.push<void>(
+      context,
+      MaterialPageRoute(
+        builder: (routeContext) => RecoveryCodePage(
+          code: code,
+          onDone: () => Navigator.pop(routeContext),
+        ),
+      ),
+    );
   }
 
   /// Says once that MEYA is offline; it keeps reconnecting by itself and

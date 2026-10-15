@@ -622,3 +622,40 @@ Markeren als geverifieerd
 Veiligheidsnummers vergelijken met {0}
 Geverifieerd · end-to-end versleuteld
 Broncode
+Toegangscode vergeten?
+Te veel foute pogingen. Probeer het over {0} opnieuw.
+Toegangscode vergeten?
+MEYA bewaart geen e-mailadres of telefoonnummer, dus niemand kan je toegangscode voor je resetten. Gebruik je herstelcode, of wis de MEYA-gegevens op deze telefoon en begin opnieuw.
+Mijn herstelcode gebruiken
+Alles wissen en opnieuw beginnen
+Alles op deze telefoon is gewist. Je kunt een nieuw account maken.
+Voer je herstelcode in
+Herstelcode
+Typ de code van 24 tekens die je hebt opgeschreven toen je MEYA instelde. Hoofdletters en streepjes maken niet uit.
+Die herstelcode klopt niet.
+Er is geen herstelcode ingesteld op deze telefoon. Je kunt in plaats daarvan alles wissen en opnieuw beginnen.
+Kies een nieuwe toegangscode
+Nieuwe toegangscode
+Toegangscode opslaan
+Toegangscode gewijzigd. Voer hem in om te ontgrendelen.
+Je herstelcode
+Schrijf deze code op papier en bewaar hem veilig, uit de buurt van je telefoon. Het is de enige manier om een vergeten toegangscode te resetten en je account te behouden. MEYA kan hem niet opnieuw tonen.
+Maak geen screenshot en sla hem niet op je telefoon op.
+Ik heb hem opgeschreven
+Maak een nieuwe code. De oude werkt dan niet meer.
+Niet ingesteld. Maak er een aan om een vergeten toegangscode te kunnen resetten.
+Toegangscode wijzigen
+Wijzig de toegangscode die MEYA beschermt.
+Huidige toegangscode
+Je huidige toegangscode klopt niet.
+Toegangscode gewijzigd.
+Binnenkort
+Vraag om je toegangscode als je na 30 seconden terugkomt in MEYA.
+Nieuwe herstelcode maken?
+Je oude code werkt dan niet meer. Je ziet de nieuwe code maar één keer.
+Je ziet de code maar één keer. Schrijf hem op papier op.
+Herstelcode instellen
+Als je je toegangscode vergeet, is een herstelcode de enige manier om je account te behouden. Het kost een minuut.
+Later
+Nu instellen
+Bevestig je toegangscode

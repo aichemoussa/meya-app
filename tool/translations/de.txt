@@ -622,3 +622,40 @@ Als verifiziert markieren
 Sicherheitsnummern mit {0} vergleichen
 Verifiziert · Ende-zu-Ende-verschlüsselt
 Quellcode
+Code vergessen?
+Zu viele Fehlversuche. Versuche es in {0} erneut.
+Code vergessen?
+MEYA speichert weder E-Mail-Adresse noch Telefonnummer, deshalb kann niemand deinen Code für dich zurücksetzen. Nutze deinen Wiederherstellungscode oder lösche die MEYA-Daten auf diesem Telefon und beginne neu.
+Meinen Wiederherstellungscode verwenden
+Alles löschen und neu beginnen
+Auf diesem Telefon wurde alles gelöscht. Du kannst ein neues Konto erstellen.
+Wiederherstellungscode eingeben
+Wiederherstellungscode
+Gib den 24-stelligen Code ein, den du beim Einrichten von MEYA notiert hast. Groß-/Kleinschreibung und Bindestriche spielen keine Rolle.
+Dieser Wiederherstellungscode ist nicht richtig.
+Auf diesem Telefon wurde kein Wiederherstellungscode eingerichtet. Du kannst stattdessen alles löschen und neu beginnen.
+Neuen Code wählen
+Neuer Code
+Code speichern
+Code geändert. Gib ihn zum Entsperren ein.
+Dein Wiederherstellungscode
+Schreibe diesen Code auf Papier und bewahre ihn sicher auf, getrennt vom Telefon. Nur damit kannst du einen vergessenen Code zurücksetzen und dein Konto behalten. MEYA kann ihn nicht erneut anzeigen.
+Mache keinen Screenshot und speichere ihn nicht auf dem Telefon.
+Ich habe ihn aufgeschrieben
+Neuen Code erstellen. Der alte funktioniert dann nicht mehr.
+Nicht eingerichtet. Erstelle einen, um einen vergessenen Code zurücksetzen zu können.
+Code ändern
+Ändere den Code, der MEYA schützt.
+Aktueller Code
+Dein aktueller Code ist nicht richtig.
+Code geändert.
+Demnächst
+Code abfragen, wenn du nach 30 Sekunden Abwesenheit zu MEYA zurückkehrst.
+Neuen Wiederherstellungscode erstellen?
+Dein alter Code funktioniert dann nicht mehr. Du siehst den neuen nur einmal.
+Du siehst den Code nur einmal. Schreibe ihn auf Papier auf.
+Wiederherstellungscode einrichten
+Wenn du deinen Code vergisst, kannst du dein Konto nur mit einem Wiederherstellungscode behalten. Es dauert eine Minute.
+Später
+Jetzt einrichten
+Code bestätigen
