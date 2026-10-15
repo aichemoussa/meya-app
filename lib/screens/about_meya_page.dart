@@ -35,9 +35,9 @@ class _AboutMeyaPageState extends State<AboutMeyaPage> {
     );
   }
 
-  Future<void> _openWebsite() async {
+  Future<void> _openUrl(String url) async {
     final opened = await launchUrl(
-      Uri.parse(meyaWebsite),
+      Uri.parse(url),
       mode: LaunchMode.externalApplication,
     );
     if (!opened && mounted) {
@@ -146,7 +146,15 @@ class _AboutMeyaPageState extends State<AboutMeyaPage> {
                     title: Text(context.tr('Website')),
                     subtitle: Text(meyaWebsite.replaceFirst('https://', '').replaceFirst(RegExp(r'/$'), '')),
                     trailing: const Icon(Icons.open_in_new),
-                    onTap: _openWebsite,
+                    onTap: () => _openUrl(meyaWebsite),
+                  ),
+                  const Divider(height: 1),
+                  ListTile(
+                    leading: const Icon(Icons.code),
+                    title: Text(context.tr('Source code')),
+                    subtitle: Text(meyaSourceCode.replaceFirst('https://', '')),
+                    trailing: const Icon(Icons.open_in_new),
+                    onTap: () => _openUrl(meyaSourceCode),
                   ),
                 ],
               ),

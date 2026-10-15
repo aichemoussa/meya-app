@@ -621,3 +621,4 @@ Doğrulamayı kaldır
 Doğrulandı olarak işaretle
 {0} ile güvenlik numaralarını karşılaştır
 Doğrulandı · uçtan uca şifreli
+Kaynak kodu

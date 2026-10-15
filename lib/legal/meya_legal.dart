@@ -7,6 +7,9 @@ import 'package:flutter/foundation.dart';
 const meyaCompany = 'PRIMA ELITE FZ-LLC';
 const meyaCompanyAddress = 'Ras Al Khaimah Economic Zone (RAKEZ), United Arab Emirates';
 const meyaWebsite = 'https://meya-app.pages.dev/';
+
+/// MEYA is AGPL-3.0: where anyone can get the source of the app they run.
+const meyaSourceCode = 'https://github.com/primaelite/meya-app';
 const meyaLegalUpdated = 'October 2026';
 
 /// Where reports of abuse go. Set it when building a release:

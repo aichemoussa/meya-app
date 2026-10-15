@@ -621,3 +621,4 @@ Annuler la vérification
 Marquer comme vérifié
 Comparer les numéros de sécurité avec {0}
 Vérifié · chiffré de bout en bout
+Code source

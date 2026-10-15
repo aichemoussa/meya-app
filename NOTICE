@@ -1,0 +1,47 @@
+MEYA
+Copyright (C) 2026 PRIMA ELITE FZ-LLC, Ras Al Khaimah Economic Zone (RAKEZ),
+United Arab Emirates.
+
+MEYA is free software: you can redistribute it and/or modify it under the
+terms of the GNU Affero General Public License, version 3 only, as published
+by the Free Software Foundation. See the LICENSE file. MEYA is distributed in
+the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+----------------------------------------------------------------------------
+Why AGPL-3.0-only
+----------------------------------------------------------------------------
+MEYA's end-to-end encryption is built on Signal's libsignal and the
+SparsePostQuantumRatchet library, both licensed under AGPL-3.0-only. MEYA's
+Rust core (native/meya_crypto) links them, so MEYA as a whole is distributed
+under the same licence. Anyone who receives MEYA, including through the
+Android builds published under Releases, may obtain the corresponding source
+code from this repository at the tag of that version.
+
+----------------------------------------------------------------------------
+Main third-party components
+----------------------------------------------------------------------------
+libsignal                       AGPL-3.0-only  Signal Messenger, LLC
+                                https://github.com/signalapp/libsignal
+SparsePostQuantumRatchet (spqr) AGPL-3.0-only  Signal Messenger, LLC
+                                https://github.com/signalapp/SparsePostQuantumRatchet
+Flutter and Dart packages       Mostly MIT or BSD-3-Clause. The complete list,
+                                with licence texts, is in the app under
+                                Settings > About MEYA > Open-source licences,
+                                and in pubspec.lock.
+SQLite3 Multiple Ciphers        MIT, bundled through the sqlite3 Dart package.
+Rust crates                     See native/meya_crypto/Cargo.lock and
+                                relay/Cargo.lock; run `cargo license` for the
+                                licence of each.
+Ringtones and notification      CC0 1.0 (public domain), BigSoundBank
+sounds (assets/sounds)          https://bigsoundbank.com. See SOURCES.txt.
+
+MEYA is not affiliated with, endorsed by or sponsored by Signal.
+
+----------------------------------------------------------------------------
+Not covered by the software licence
+----------------------------------------------------------------------------
+- The names "MEYA" and the MEYA logo. See TRADEMARKS.md.
+- The illustrations in website/img/ are AI-generated images made for the MEYA
+  website. They are not part of the licensed software, and they do not depict
+  real people. Do not reuse them as photographs of real users.
