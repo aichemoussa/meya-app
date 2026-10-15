@@ -1,0 +1,623 @@
+1 maand
+1 nieuwe status van je contacten
+1 geplande oproep
+1 jaar
+24 uur
+3 maanden
+7 dagen
+Een paar woorden over jezelf
+Een eenvoudige, privé ruimte voor de mensen die belangrijk voor je zijn.
+Over
+Over MEYA
+Accepteren
+Toegankelijkheid
+Account
+Accountgegevens, uitloggen en verwijderen
+Accountnummer
+Accountbeveiliging
+Voeg een bijschrift toe
+Persoon toevoegen
+Foto of video toevoegen
+Profielfoto toevoegen
+Status toevoegen
+Persoon toevoegen
+Foto toevoegen
+Voeg tekst, een emoji, een foto of een video toe.
+Iemand nieuw toevoegen
+Voeg iemand toe die je vertrouwt door zijn of haar MEYA-QR-code te scannen. Die verschijnt hier.
+Beheer van extra apparaten volgt zodra MEYA-accounts en serversessies beschikbaar zijn.
+Al mijn contacten
+Anderen toestaan je verbindingsverzoeken te sturen.
+Je contacten toestaan je profielfoto te zien.
+Heb je al een MEYA-account? Inloggen
+App-vergrendeling
+App-beveiliging
+Weergave
+Weergave en toegankelijkheid
+Foto, video, bestand of oproep bijvoegen
+Biometrisch ontgrendelen
+Geblokkeerde personen
+Agenda
+Oproep geannuleerd
+Oproep gepland. {0} is uitgenodigd.
+Oproep met {0}
+Annuleren
+Oproep annuleren
+Deze oproep annuleren?
+Geannuleerd
+Hier geannuleerd, maar {0} kon nog niet worden ingelicht: {1}
+Foto wijzigen
+Profielfoto wijzigen
+Beveiligings-pincode wijzigen
+Chats
+Je MEYA-ID wordt gecontroleerd…
+Kies een persoon
+Kies een tijdstip in de toekomst.
+Kiezen uit galerij
+Kies iemand met wie je al verbonden bent op MEYA.
+Kies met wie de oproep is.
+Kies je MEYA-ID
+Zoekopdracht wissen
+Tijdelijke kopieën wissen
+Pincode bevestigen
+Toegangscode bevestigen
+Bevestig je pincode
+Bestaand apparaat koppelen
+Verbinden met een QR-code
+Verbinden met iemand in de buurt
+Verbind met iemand via diens MEYA-QR-code. Zonder het uitnodigingsproces wordt die persoon niet vertrouwd.
+Verbind met iemand die je vertrouwt
+Persoonlijk verbonden met een QR-code
+Verbinden met de MEYA-relay…
+Verbindingsverzoek verstuurd
+Verbindingsverzoeken
+Verbindingsverzoeken van mensen die je vertrouwt
+Verbindingsverzoeken van mensen die je vertrouwt, verschijnen hier.
+Contacten
+Doorgaan
+Bepaal hoe mensen in je privé MEYA-ruimte je kunnen vinden en met je kunnen communiceren.
+Gesprekken
+Accountnummer kopiëren
+Kan dit verzoek niet accepteren: {0}
+Kan de foto niet wijzigen: {0}
+Kan dit verzoek niet weigeren: {0}
+Kan niet openen
+Kan het bestand niet openen: {0}
+Kan dit spraakbericht niet afspelen: {0}
+Kan de QR-afbeelding niet lezen: {0}
+Kan {0} niet verwijderen: {1}
+Kan het bestand niet opslaan: {0}
+Kan het verbindingsverzoek niet versturen: {0}
+Kan de opname niet starten: {0}
+Nieuw MEYA-account maken
+Maak een toegangscode die de toegang tot je MEYA-account beschermt.
+Account maken
+Maak of wijzig de pincode die MEYA beschermt.
+Maak je MEYA-profiel
+Maak je toegangscode
+Aangemaakt
+Cryptografische sleutels moeten worden beschermd met passende beveiligingsmechanismen van het platform.
+Huidig
+Huidig apparaat
+Donker
+Datum
+Weigeren
+Deze oproep weigeren?
+Standaard
+Account van deze telefoon verwijderen
+Alles verwijderen
+Oudere media verwijderen
+Opname verwijderen
+Je MEYA-account van deze telefoon verwijderen?
+Je account wordt van deze telefoon verwijderd…
+Ontwikkeld door {0}, {1}.
+Apparaat-ID
+Verdwijnt na
+Vindbaarheid, aanwezigheid en verbindingsinstellingen
+Klaar
+Emoji
+Versleutelde gegevens
+Versleutelde berichten zijn nog niet ingesteld met deze persoon. Scan diens QR-code opnieuw.
+Versleutelde berichten nog niet ingesteld
+Versleuteling
+End-to-end versleuteld
+Voer 4–6 cijfers in
+Voer een pincode van 4–6 cijfers in
+Voer een pincode in
+Voer de pincode opnieuw in
+Voer de toegangscode opnieuw in
+Voer je MEYA-ID in
+Voer je naam in
+Voer je toegangscode in om je ruimte te openen.
+Voer je toegangscode in.
+Extra groot
+Sneller verstuurd, neemt minder ruimte in
+Bestand of document
+Afgelopen
+Volgt de instelling van je telefoon
+Altijd
+Van je contacten
+Aan de slag
+Groepen
+HD-fotokwaliteit
+Heb je je bestaande MEYA-apparaat bij de hand? Binnenkort kun je je identiteit veilig verifiëren en overzetten via QR-koppeling.
+Hoog contrast
+QR-afbeelding importeren
+Onjuiste toegangscode. Probeer het opnieuw.
+Uitnodigingen
+Zojuist
+Behouden
+Media {0} bewaren?
+Media op deze telefoon bewaren
+Media bewaren
+Taal
+Groot
+Grootst
+Lees hoe MEYA privégesprekken beschermt.
+Juridisch en over
+Duur
+Anderen laten zien wanneer je typt.
+Anderen laten zien wanneer je hun berichten hebt gelezen.
+Laat iemand die je ontmoet met je verbinden
+Je contacten laten zien wanneer je online bent.
+Licht
+Beperkte bewaring
+Inloggen
+MEYA-ID
+MEYA volgt ook de instellingen van je telefoon voor tekstgrootte, hoog contrast en animaties.
+MEYA-contact
+MEYA-versleuteling kon niet starten: {0}
+MEYA wordt ontworpen rond privacy, beperkte gegevensbewaring en veilige communicatie.
+MEYA is ontworpen om geen onnodige persoonsgegevens te bewaren.
+MEYA valt onder de licentie AGPL-3.0-only
+MEYA-berichten zijn niet ingesteld.
+MEYA heeft toegang tot de microfoon nodig om een spraakbericht op te nemen. Je kunt dit toestaan in de instellingen van je telefoon.
+MEYA op deze telefoon
+Verbindingsfout met de MEYA-relay: {0}
+MEYA-status is niet ingesteld.
+MEYA biedt pas oproepen aan als ze end-to-end versleuteld zijn en zijn toegestaan door de telecomregels waar je woont. Versleutelde berichten eerst.
+Gemaakt wanneer je een video afspeelt of een bestand in een andere app opent
+Beheer mensen die je hebt geblokkeerd.
+Bezig met meten…
+Media komt binnen met elk bericht en wordt versleuteld opgeslagen. MEYA slaat je foto's nooit op in de galerij van je telefoon, tenzij je Opslaan kiest.
+Bericht
+Bericht niet verstuurd: {0}
+Berichten en scherm
+Mijn QR
+Mijn QR-code
+Mijn status
+Naam
+Nooit
+Nieuwe chat
+Nieuwe pincode
+Nieuwe status
+Volgende maand
+Volgende: {0}
+Er is geen MEYA-QR-code gevonden in die afbeelding.
+Er is geen account ingelogd op deze telefoon.
+Geen app op deze telefoon kan dit bestand openen. Gebruik Opslaan om een kopie te bewaren.
+Geen geblokkeerde personen
+Geen browser kon de website openen.
+Geen oproepen gepland op deze dag.
+Nog geen gesprekken
+Geen overeenkomende contacten
+Nog geen berichten met {0}.
+Nog geen berichten
+Geen openstaande uitnodigingen
+Nog niemand
+Geen recente statussen.
+Nog geen vertrouwde contacten
+Nog niemand om uit te nodigen. Versleutelde berichten moeten met een contact zijn ingesteld voordat je een oproep kunt plannen.
+Niet beschikbaar
+Niet verbonden met de MEYA-relay. Verzoeken kunnen nog niet binnenkomen.
+Nog niet aangemaakt
+Niet verstuurd
+Niet verstuurd: {0}
+Notitie (optioneel)
+Waarschuwt je bij belangrijke beveiligingsgebeurtenissen.
+Onlinestatus
+Alleen ik
+Openen
+Bestand openen
+Opensourcelicenties
+Pincode, app-vergrendeling en vertrouwde apparaten
+Pincodes komen niet overeen
+Toegangscode
+Toegangscodes komen niet overeen
+Pauzeren
+Mensen
+Mensen die je blokkeert, verschijnen hier.
+Mensen met wie je verbindt op MEYA, verschijnen hier.
+Taal van de telefoon
+Foto
+Foto uit galerij
+Foto om te versturen
+Foto, naam, MEYA-ID en Over
+Foto. Opent op volledig scherm
+Foto's, video's en bestanden
+Foto's, video's en bestanden mogen tot {0} MB groot zijn. Video's mogen tot 3 minuten duren.
+Foto's, video's en bestanden ouder dan dit worden nu en voortaan van deze telefoon verwijderd. Berichten blijven; hun media worden getoond als niet meer op deze telefoon.
+Plannen en uitnodigen
+Plan oproepen met je dierbaren
+Geplande gesprekken worden end-to-end versleuteld met de andere persoon gedeeld. Tik op het afgesproken moment op Deelnemen aan gesprek om te beginnen. Je kunt ook altijd bellen vanuit een chat.
+Afspelen
+Video afspelen
+Spraakbericht afspelen
+Kies een MEYA-ID
+Bevestig je toegangscode
+Maak een toegangscode
+Voer je MEYA-ID in
+Voer je naam in
+Status plaatsen
+Geplaatst {0}
+Geplaatst {0} · verdwijnt op {1}
+Plaatsen vervangt je huidige status, inclusief de foto of video.
+Voorbeeld: zo zien berichten en menu's eruit.
+Vorige maand
+Privacy
+Privacybeleid
+Privacy, voorwaarden, toegankelijkheid en licenties
+Privé vanaf het ontwerp
+Privé verbindingen.\nGewoon van jou.
+Privé familiegroepen staan gepland. Groepsversleuteling wordt nog ontworpen, dus groepen zijn nog niet beschikbaar.
+Profiel
+Zichtbaarheid profielfoto
+Profiel opgeslagen.
+Bescherm MEYA met een pincode
+Bescherm je MEYA-account
+Bescherm je MEYA-app en bepaal hoe je privégegevens worden geopend.
+Leesbevestigingen
+Klaar om verbindingsverzoeken te ontvangen
+Bezig met ontvangen…
+Video opnemen
+Spraakbericht opnemen
+Opname {0} / {1}
+Beweging beperken
+Beperk de mogelijkheid om MEYA-schermen vast te leggen.
+Verwijderen
+Contact verwijderen
+Mijn status verwijderen
+Foto verwijderen
+Deze persoon uit je lijst Mensen verwijderen
+{0} verwijderen?
+Vereis een beveiligingscontrole bij het openen van MEYA.
+Bekijk en beheer je MEYA-verbindingen.
+Bekijk de apparaten die aan je MEYA-account zijn gekoppeld.
+Bekijk de apparaten die toegang hebben tot je MEYA-account.
+Opslaan
+Pincode opslaan
+Kopie opslaan
+Kopie op deze telefoon opslaan
+Profiel opslaan
+Opslaan op apparaat
+Opgeslagen. Deze kopie is niet versleuteld door MEYA.
+QR-code scannen
+Een MEYA-QR-code scannen
+Scan nog een MEYA-QR-code of tik bovenaan op het fotopictogram om een QR-afbeelding te importeren.
+Scan diens MEYA-QR-code persoonlijk
+Scan diens MEYA-QR-code om een veilige verbinding te starten.
+Diens QR-code scannen
+Oproep plannen
+Bescherming tegen schermafbeeldingen
+Vertrouwde contacten zoeken
+Veilige sleutels
+Beveiliging
+Beveiligings-pincode
+Beveiligings-pincode opgeslagen.
+Beveiligingsmeldingen
+Geselecteerde personen
+Geselecteerde personen ({0})
+Geselecteerde foto
+Versturen
+Bestand versturen
+Foto versturen
+Video versturen
+Spraakbericht versturen
+Versturen
+Bezig met versturen…
+Gevoelige informatie moet worden beschermd, zowel bij opslag als bij verzending.
+Verstuurd
+Versleutelde berichten instellen met {0}
+Instellingen
+Deel tekst, een foto of een video
+Scherpere foto's, grotere bestanden
+Laat deze QR-code zien aan iemand die je vertrouwt om MEYA-koppeling te starten.
+Log in op je MEYA-ruimte met je bestaande identiteit.
+Uitloggen
+Uitloggen bij MEYA?
+Klein
+Standaard fotokwaliteit
+Status
+Status geplaatst, maar nog niet verstuurd naar {0}.
+Status geplaatst.
+Statussen zijn end-to-end versleuteld en gaan alleen naar de mensen die je kiest.
+Spraakbericht stoppen
+Opslag
+Opslag en media
+Opslaggebruik, fotokwaliteit en bewaren van media
+Versleuteld opgeslagen
+Sterkere kleuren en randen voor makkelijker lezen
+Systeemstandaard
+Foto maken
+Tijdelijke kopieën
+Tijdelijke kopieën gewist.
+Gebruiksvoorwaarden
+Tekstgrootte
+Tekst, een foto of een video voor je contacten
+Tekst, foto of video voor je contacten
+Die QR-code is geen geldige MEYA-code.
+De oproep staat in je agenda, maar de uitnodiging is niet verstuurd: {0}
+Het bestand is leeg.
+Het spraakbericht is leeg.
+Thema
+Thema, taal, tekstgrootte en toegankelijkheid
+Deze persoon wordt op dit apparaat uit je lijst Mensen verwijderd. Om opnieuw te verbinden moet je diens QR-code persoonlijk scannen.
+Deze MEYA-ID wordt al gebruikt op dit apparaat
+Deze MEYA-ID is niet beschikbaar op dit apparaat. Gebruik je vertrouwde apparaat om het account te koppelen.
+Deze QR-code start een verbindingsverzoek. De ander moet accepteren voordat jullie MEYA-contacten worden.
+Deze QR-code is gemaakt met een oudere versie van MEYA. Vraag de ander om MEYA bij te werken en de QR-code opnieuw te laten zien.
+Dit contact is vertrouwd. Het instellen van veilige gesprekken is nog niet beschikbaar, dus MEYA heeft geen gesprek gemaakt en geen bericht verstuurd.
+Dit apparaat
+Dit apparaat heeft geen MEYA-apparaat-ID.
+Dit bestand kon niet worden gelezen.
+Dit bestand is nog niet volledig binnen.
+Dit bestand is te groot. MEYA kan bestanden tot {0} MB versturen.
+Hiermee worden je berichten, contacten, foto's, video's, bestanden, status, agenda en versleutelingssleutels permanent van deze telefoon verwijderd. Dit kan niet ongedaan worden gemaakt. Mensen met wie je hebt gepraat, houden wat ze al hebben ontvangen.
+Deze telefoon
+Deze foto of video is te groot voor een status.
+Deze tekst is voorlopig alleen in het Engels beschikbaar.
+Deze video is nog niet volledig binnen.
+Dit spraakbericht is te lang. Houd het korter dan {0} minuten.
+Tijd
+Titel (optioneel)
+Typ ter bevestiging je MEYA-ID: {0}
+Vertrouwde verbinding
+Vertrouwd contact
+Vertrouwde apparaten
+Opnieuw proberen
+Probeer een andere naam of ID.
+Animaties en paginaovergangen uitschakelen
+Typindicator
+Geen toegang tot je MEYA-account. Probeer het opnieuw.
+Ontgrendelen
+Status bijwerken
+Gebruik 4–6 cijfers
+Gebruik minstens 3 tekens
+Gebruik letters, cijfers, punten, streepjes of underscores
+Gebruik alleen cijfers
+Gebruik de biometrie van je apparaat om MEYA te ontgrendelen.
+Gebruik je vertrouwde MEYA-apparaat om dit apparaat veilig te koppelen. QR-koppeling met MEYA-identiteitsverificatie wordt aan deze stappen toegevoegd.
+Versie {0}
+Video
+Videogesprek
+Videogesprek gepland
+Videogesprekken zijn nog niet beschikbaar
+Video uit galerij
+Spraak
+Spraakoproep
+Spraakoproep gepland
+Spraakoproepen zijn nog niet beschikbaar
+Spraakbericht
+Spraakbericht niet verstuurd: {0}
+Spraakbericht te kort. Tik op de microfoon, spreek, en tik dan op Versturen.
+Spraakbericht · {0}
+Wil met je verbinden op MEYA.
+Website
+Welkom terug
+Wat wil je delen?
+Als je met iemand verbindt, verschijnt die hier.
+Wie kan het zien
+Wie kan het zien?
+Met
+Met {0} · {1}
+Jij
+Je kunt geen verbindingsverzoek naar dit apparaat sturen.
+Jullie waren verbonden voordat versleuteling werd toegevoegd. Spreek persoonlijk af: {0} opent Mijn QR en jij scant die. Het duurt een paar seconden en je chatgeschiedenis blijft bewaard.
+Je hebt nog geen MEYA-contacten. Scan iemands QR-code om die toe te voegen.
+Je hebt nog geen contacten.
+Jij hebt deze oproep gepland
+Jij:
+Je MEYA-ID identificeert je in je privé MEYA-ruimte.
+Je MEYA-ID identificeert je privé-identiteit. Het is geen wachtwoord.
+Je MEYA-QR-code
+Je MEYA-account is niet beschikbaar op dit apparaat.
+Je MEYA-account bestaat alleen op deze telefoon. Er is geen wachtwoordherstel en geen kopie op een server, dus bewaar je toegangscode goed. Overstappen naar een nieuwe telefoon is nog niet mogelijk.
+Je MEYA-verbindingen
+De identiteit van je MEYA-apparaat is niet beschikbaar.
+De identiteit van je MEYA-apparaat is niet beschikbaar. Start MEYA opnieuw en probeer het nog eens.
+Je MEYA-identiteit is nog niet klaar.
+Je pincode kan dienen als extra beveiligingslaag voor de app.
+Jouw ruimte
+Je account is niet gevonden op dit apparaat.
+Je account, berichten en sleutels blijven op deze telefoon. Je hebt je toegangscode nodig om weer in te loggen. Zolang je bent uitgelogd, wachten nieuwe berichten op de relay.
+Je contacten konden niet worden geladen. Probeer het opnieuw.
+Je gesprekken
+Je apparaten
+Je versleutelingssleutel
+Je naam
+Je naam, foto en Over worden end-to-end versleuteld alleen met je MEYA-contacten gedeeld.
+Je toegangscode is veilig opgeslagen op dit apparaat.
+Je dierbaren
+Je dierbaren. Je gesprekken. Je privacy.
+Je privacy
+Je privégroepen
+Je verzoek is verstuurd. Deze persoon moet het accepteren voordat die een MEYA-contact wordt.
+Je beveiliging
+Je status
+Je vertrouwde contacten
+{0} B
+{0} GB
+{0} KB
+{0} MB
+{0} gekopieerd.
+{0} d geleden
+{0} u
+{0} u geleden
+{0} u {1} min
+{0} is nu een MEYA-contact.
+{0} min
+{0} min geleden
+{0} heeft deze oproep gepland
+{0} statussen van je contacten
+{0} geplande oproepen
+{0} wil met je verbinden op MEYA.
+{0} is verwijderd.
+{0} wordt ingelicht via een versleuteld bericht.
+{0}, oproepen gepland
+© 2026 {0} · AGPL-3.0-only
+🎤 Spraakbericht
+🎬 Video
+📅 Oproep geannuleerd
+📅 Oproep gepland
+📷 Foto
+Geluiden
+Beltoon en meldingsgeluid
+Beltoon voor oproepen
+Meldingsgeluid
+Speelt af als iemand je belt.
+Speelt af als er een nieuw bericht binnenkomt.
+Geluiden van BigSoundBank, vrij te gebruiken (publiek domein, CC0).
+Stoppen
+Bellen…
+Verbinden…
+Gesprek beëindigd
+Geweigerd
+In gesprek
+Geen antwoord
+Gesprek mislukt
+Dempen
+Dempen opheffen
+Luidspreker
+Camera uit
+Camera aan
+Camera wisselen
+Ophangen
+Deelnemen aan gesprek
+Gemiste oproep van {0}
+Je bent al in gesprek.
+Toevoegen aan favorieten
+{0} ook blokkeren
+Archiveren
+Gearchiveerd
+Weer online.
+Blokkeren
+{0} blokkeren?
+Geblokkeerde mensen kunnen je geen berichten sturen of bellen. Ze krijgen geen melding. Je kunt ze deblokkeren bij Privacy.
+Chatopties
+Zoeken sluiten
+Gekopieerd.
+Tekst kopiëren
+Verwijderen
+Verwijderen voor iedereen
+Verwijderen voor mij
+"Verwijderen voor iedereen" verwijdert het ook van de telefoon van {0}.
+Bericht verwijderen?
+Afgeleverd
+Details (optioneel)
+Bewerken
+Bewerkt
+Bericht bewerken
+Favorieten
+Bestand
+Doorsturen
+Doorsturen naar
+Doorgestuurd
+Doorgestuurd naar {0}.
+Intimidatie of pesten
+Imitatie
+Hun laatste berichten toevoegen
+MEYA kan je gesprekken niet lezen. Een melding bevat alleen wat je hieronder kiest, en je verstuurt die vanuit je eigen e-mailapp.
+MEYA heeft de camera en microfoon nodig om op te nemen. Sta ze toe in de instellingen van je telefoon.
+Markeren als gelezen
+Markeren als ongelezen
+Gemarkeerd als ongelezen
+Berichtopties
+Meer opties
+Meldingen dempen
+Gedempt
+Geen gearchiveerde chats
+Geen camera gevonden op dit apparaat.
+Er is geen e-mailapp gevonden om de melding te versturen.
+Nog geen favorieten. Houd een bericht ingedrukt en kies Toevoegen aan favorieten.
+Geen berichten gevonden.
+Niet geblokkeerd: {0}
+Niet gewijzigd: {0}
+Niet verwijderd: {0}
+Niet doorgestuurd: {0}
+Niet vastgezet: {0}
+Niet opgeslagen: {0}
+Niet verzonden. Tik om het opnieuw te proberen
+Vastzetten
+Vastgezet
+Vastgezet bericht: {0}
+Vastgezet {0} van {1}
+Melding voorbereiden
+Reageren met {0}
+Reactie niet verzonden: {0}
+Gelezen
+Verwijderen uit favorieten
+Beantwoorden
+Antwoord aan {0}: {1}
+Antwoord aan {0}
+Melden
+{0} melden
+Wijziging opslaan
+Zoeken
+Berichten zoeken
+In deze chat zoeken
+Zoek naar woorden in al je chats. Zoeken gebeurt alleen op deze telefoon.
+Opnieuw verzenden
+Seksuele inhoud
+Chatopties tonen
+Berichtopties tonen
+Iets anders
+Spam of oplichting
+Opname starten
+Nog steeds niet verzonden: {0}
+Opname stoppen
+Dat bericht staat niet meer in deze chat.
+De camera kon niet starten: {0}
+Dit bericht kan niet worden doorgestuurd.
+Dit bericht is verwijderd
+Hiermee wordt het bericht alleen van deze telefoon verwijderd.
+Bedreiging of geweld
+Vandaag
+Uit archief halen
+Deblokkeren
+Losmaken
+Tot 10 berichten die {0} je stuurde. Foto's en bestanden worden niet meegestuurd.
+Tot 3 minuten
+Video om te versturen
+Video, {0}. Wordt schermvullend afgespeeld
+Wacht op verzending
+Wat is er gebeurd?
+Gisteren
+Je bent offline. Berichten worden verzonden zodra MEYA weer verbinding heeft.
+Je kunt alleen je eigen berichten voor iedereen verwijderen.
+Je kunt alleen je eigen berichten bewerken.
+Je hebt dit bericht verwijderd
+Je e-mailapp heeft de melding klaargezet. Controleer en verstuur hem.
+jou
+jezelf
+{0} is gedeblokkeerd.
+{0} reageerden met {1}. Tik om je reactie te wijzigen
+{0} ongelezen
+{0} · nog {1}
+Laat mensen weten wanneer je hun berichten hebt gelezen. Als dit uit staat, zie je ook niet wanneer zij de jouwe hebben gelezen.
+Het veiligheidsnummer kon niet worden getoond: {0}
+Geverifieerd
+De nummers komen niet overeen
+Je gesprek met {0} is end-to-end versleuteld met de juiste sleutels.
+Dat is geen MEYA-veiligheidsnummercode.
+Vertrouw dit gesprek nog niet. Controleer of je de code van {0} voor deze chat hebt gescand en probeer het dan persoonlijk opnieuw.
+OK
+Versleuteling controleren
+Je hebt {0} geverifieerd
+QR-code van het veiligheidsnummer
+Veiligheidsnummer: {0}
+Om te controleren dat niemand meekijkt, spreek je {0} of bel je en vergelijk je deze nummers, of scan je de code op diens telefoon. Komen ze overeen, dan zijn je berichten en gesprekken versleuteld met de juiste sleutels.
+Hun code scannen
+Verificatie wissen
+Markeren als geverifieerd
+Veiligheidsnummers vergelijken met {0}
+Geverifieerd · end-to-end versleuteld

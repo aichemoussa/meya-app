@@ -1,0 +1,27 @@
+# MEYA Triple Ratchet feasibility spike.
+#
+# Purpose: prove that Signal's maintained implementation of PQXDH + the
+# Triple Ratchet (Double Ratchet + SPQR) works for MEYA before any app code
+# depends on it. Nothing in the Flutter app uses this crate.
+#
+# License: AGPL-3.0-only (approved by the project owner on 2026-10-13),
+# matching libsignal.
+
+[package]
+name = "meya_signal_spike"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.93.1"
+license = "AGPL-3.0-only"
+publish = false
+
+# Standalone workspace so this spike cannot affect other MEYA crates.
+[workspace]
+
+[dependencies]
+# Pinned to an exact release tag; libsignal is not published on crates.io.
+libsignal-protocol = { git = "https://github.com/signalapp/libsignal.git", tag = "v0.105.0" }
+
+[dev-dependencies]
+futures-util = "0.3"
+rand = "0.9.4"

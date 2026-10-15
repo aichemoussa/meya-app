@@ -1,0 +1,623 @@
+1 bulan
+1 status baru dari koneksi Anda
+1 panggilan mendatang
+1 tahun
+24 jam
+3 bulan
+7 hari
+Beberapa kata tentang Anda
+Ruang sederhana dan pribadi untuk orang-orang yang berarti bagi Anda.
+Tentang
+Tentang MEYA
+Terima
+Aksesibilitas
+Akun
+Detail akun, keluar, dan penghapusan
+Nomor akun
+Keamanan akun
+Tambahkan keterangan
+Tambahkan orang
+Tambahkan foto atau video
+Tambahkan foto profil
+Tambahkan status
+Tambah orang
+Tambah foto
+Tambahkan teks, emoji, foto, atau video.
+Tambahkan orang baru
+Tambahkan orang yang Anda percaya dengan memindai kode QR MEYA miliknya. Ia akan muncul di sini.
+Pengelolaan perangkat tambahan akan tersedia setelah akun MEYA dan sesi di server diterapkan.
+Semua koneksi saya
+Izinkan orang lain mengirimi Anda permintaan koneksi.
+Izinkan koneksi Anda melihat foto profil Anda.
+Sudah punya akun MEYA? Masuk
+Kunci aplikasi
+Perlindungan aplikasi
+Tampilan
+Tampilan & Aksesibilitas
+Lampirkan foto, video, file, atau panggilan
+Buka kunci biometrik
+Orang yang diblokir
+Kalender
+Panggilan dibatalkan
+Panggilan dijadwalkan. {0} telah diundang.
+Panggilan dengan {0}
+Batal
+Batalkan panggilan
+Batalkan panggilan ini?
+Dibatalkan
+Dibatalkan di sini, tetapi {0} belum dapat diberi tahu: {1}
+Ganti foto
+Ganti foto profil
+Ganti PIN keamanan
+Chat
+Memeriksa ID MEYA Anda…
+Pilih seseorang
+Pilih waktu di masa mendatang.
+Pilih dari galeri
+Pilih seseorang yang sudah terhubung dengan Anda di MEYA.
+Pilih dengan siapa panggilan ini.
+Pilih ID MEYA Anda
+Hapus pencarian
+Hapus salinan sementara
+Konfirmasi PIN
+Konfirmasi kode sandi
+Konfirmasi PIN Anda
+Hubungkan perangkat yang ada
+Terhubung dengan kode QR
+Terhubung dengan seseorang di dekat Anda
+Terhubunglah dengan seseorang melalui kode QR MEYA miliknya. Ia tidak akan menjadi tepercaya tanpa proses undangan.
+Terhubung dengan orang yang Anda percaya
+Terhubung langsung dengan kode QR
+Menghubungkan ke relai MEYA…
+Permintaan koneksi terkirim
+Permintaan koneksi
+Permintaan koneksi dari orang yang Anda percaya
+Permintaan koneksi dari orang yang Anda percaya akan muncul di sini.
+Koneksi
+Lanjutkan
+Atur cara orang di ruang MEYA pribadi Anda dapat menemukan dan berinteraksi dengan Anda.
+Percakapan
+Salin nomor akun
+Tidak dapat menerima permintaan ini: {0}
+Tidak dapat mengganti foto: {0}
+Tidak dapat menolak permintaan ini: {0}
+Tidak dapat dibuka
+Tidak dapat membuka file: {0}
+Tidak dapat memutar pesan suara ini: {0}
+Tidak dapat membaca gambar QR: {0}
+Tidak dapat menghapus {0}: {1}
+Tidak dapat menyimpan file: {0}
+Tidak dapat mengirim permintaan koneksi: {0}
+Tidak dapat mulai merekam: {0}
+Buat akun MEYA baru
+Buat kode sandi untuk melindungi akses ke akun MEYA Anda.
+Buat akun
+Buat atau ganti PIN yang melindungi MEYA.
+Buat profil MEYA Anda
+Buat kode sandi Anda
+Dibuat
+Kunci kriptografi harus dilindungi dengan mekanisme keamanan platform yang sesuai.
+Saat ini
+Perangkat saat ini
+Gelap
+Tanggal
+Tolak
+Tolak panggilan ini?
+Bawaan
+Hapus akun dari ponsel ini
+Hapus semuanya
+Hapus media lama
+Hapus rekaman
+Hapus akun MEYA Anda dari ponsel ini?
+Menghapus akun Anda dari ponsel ini…
+Dikembangkan oleh {0}, {1}.
+ID perangkat
+Menghilang setelah
+Penemuan, kehadiran, dan kontrol koneksi
+Selesai
+Emoji
+Data terenkripsi
+Pesan terenkripsi belum diatur dengan orang ini. Pindai lagi kode QR-nya.
+Pesan terenkripsi belum diatur
+Enkripsi
+Terenkripsi end-to-end
+Masukkan 4–6 digit
+Masukkan PIN 4–6 digit
+Masukkan PIN
+Masukkan PIN lagi
+Masukkan kode sandi lagi
+Masukkan ID MEYA Anda
+Masukkan nama Anda
+Masukkan kode sandi untuk masuk ke ruang Anda.
+Masukkan kode sandi Anda.
+Sangat besar
+Lebih cepat dikirim, lebih hemat ruang
+File atau dokumen
+Selesai
+Mengikuti pengaturan ponsel Anda
+Selamanya
+Dari koneksi Anda
+Mulai
+Grup
+Kualitas foto HD
+Perangkat MEYA Anda yang lama ada di dekat Anda? Nanti Anda dapat memverifikasi dan memindahkan identitas dengan aman melalui penyandingan QR.
+Kontras tinggi
+Impor gambar QR
+Kode sandi salah. Coba lagi.
+Undangan
+Baru saja
+Biarkan
+Simpan media selama {0}?
+Simpan media di ponsel ini
+Penyimpanan media
+Bahasa
+Besar
+Terbesar
+Pelajari cara MEYA melindungi percakapan pribadi.
+Hukum & Tentang
+Durasi
+Beri tahu orang lain saat Anda mengetik.
+Beri tahu orang lain saat Anda telah membaca pesan mereka.
+Biarkan orang yang Anda temui terhubung dengan Anda
+Izinkan koneksi Anda melihat saat Anda online.
+Terang
+Penyimpanan terbatas
+Masuk
+ID MEYA
+MEYA juga mengikuti pengaturan ukuran teks, kontras tinggi, dan animasi di ponsel Anda.
+Kontak MEYA
+Enkripsi MEYA tidak dapat dimulai: {0}
+MEYA dirancang dengan fokus pada privasi, penyimpanan data terbatas, dan komunikasi yang aman.
+MEYA dirancang agar tidak menyimpan informasi pribadi yang tidak diperlukan.
+MEYA dilisensikan di bawah AGPL-3.0-only
+Pesan MEYA belum dikonfigurasi.
+MEYA memerlukan akses mikrofon untuk merekam pesan suara. Anda dapat mengizinkannya di pengaturan ponsel.
+MEYA di ponsel ini
+Kesalahan koneksi relai MEYA: {0}
+Status MEYA belum dikonfigurasi.
+MEYA hanya akan menyediakan panggilan setelah panggilan terenkripsi end-to-end dan diizinkan oleh aturan telekomunikasi di tempat Anda. Pesan terenkripsi lebih dulu.
+Dibuat saat Anda memutar video atau membuka file di aplikasi lain
+Kelola orang yang telah Anda blokir.
+Menghitung…
+Media datang bersama setiap pesan dan disimpan terenkripsi. MEYA tidak pernah menyimpan foto Anda ke galeri ponsel kecuali Anda memilih Simpan.
+Pesan
+Pesan tidak terkirim: {0}
+Pesan & layar
+QR saya
+Kode QR saya
+Status saya
+Nama
+Tidak pernah
+Chat baru
+PIN baru
+Status baru
+Bulan berikutnya
+Berikutnya: {0}
+Tidak ditemukan kode QR MEYA di gambar itu.
+Tidak ada akun yang masuk di ponsel ini.
+Tidak ada aplikasi di ponsel ini yang dapat membuka file ini. Gunakan Simpan untuk menyimpan salinan.
+Tidak ada orang yang diblokir
+Tidak ada browser yang dapat membuka situs web.
+Tidak ada panggilan terjadwal pada hari ini.
+Belum ada percakapan
+Tidak ada kontak yang cocok
+Belum ada pesan dengan {0}.
+Belum ada pesan
+Tidak ada undangan tertunda
+Belum ada orang
+Tidak ada status terbaru.
+Belum ada kontak tepercaya
+Belum ada yang bisa diundang. Pesan terenkripsi harus diatur dengan kontak sebelum Anda dapat menjadwalkan panggilan.
+Tidak tersedia
+Tidak terhubung ke relai MEYA. Permintaan belum dapat masuk.
+Belum dibuat
+Tidak terkirim
+Tidak terkirim: {0}
+Catatan (opsional)
+Beri tahu Anda saat terjadi peristiwa keamanan penting.
+Status online
+Hanya saya
+Buka
+Buka file
+Lisensi sumber terbuka
+PIN, kunci aplikasi, dan perangkat tepercaya
+PIN tidak cocok
+Kode sandi
+Kode sandi tidak cocok
+Jeda
+Orang
+Orang yang Anda blokir akan muncul di sini.
+Orang yang terhubung dengan Anda di MEYA akan muncul di sini.
+Bahasa ponsel
+Foto
+Foto dari galeri
+Foto untuk dikirim
+Foto, nama, ID MEYA, dan Tentang
+Foto. Terbuka dalam layar penuh
+Foto, video, dan file
+Foto, video, dan file dapat berukuran hingga {0} MB. Video dapat berdurasi hingga 3 menit.
+Foto, video, dan file yang lebih lama dari ini dihapus dari ponsel ini sekarang dan seterusnya. Pesan tetap ada; medianya akan ditandai tidak lagi ada di ponsel ini.
+Jadwalkan dan undang
+Jadwalkan panggilan dengan orang terdekat
+Panggilan terencana dibagikan kepada orang lain dengan enkripsi end-to-end. Saat waktunya tiba, ketuk Gabung panggilan untuk memulai. Anda juga dapat menelepon kapan saja dari obrolan.
+Putar
+Putar video
+Putar pesan suara
+Pilih ID MEYA
+Konfirmasi kode sandi Anda
+Buat kode sandi
+Masukkan ID MEYA Anda
+Masukkan nama Anda
+Posting status
+Diposting {0}
+Diposting {0} · menghilang {1}
+Memposting akan mengganti status Anda saat ini, termasuk foto atau videonya.
+Pratinjau: pesan dan menu akan terlihat seperti ini.
+Bulan sebelumnya
+Privasi
+Kebijakan privasi
+Privasi, ketentuan, aksesibilitas, dan lisensi
+Privat sejak dirancang
+Koneksi pribadi.\nHanya milik Anda.
+Grup keluarga pribadi sedang direncanakan. Enkripsi grup masih dirancang, jadi grup belum tersedia.
+Profil
+Visibilitas foto profil
+Profil disimpan.
+Lindungi MEYA dengan PIN
+Lindungi akun MEYA Anda
+Lindungi aplikasi MEYA Anda dan atur cara informasi pribadi Anda diakses.
+Tanda dibaca
+Siap menerima permintaan koneksi
+Menerima…
+Rekam video
+Rekam pesan suara
+Merekam {0} / {1}
+Kurangi gerakan
+Kurangi kemampuan untuk merekam layar MEYA.
+Hapus
+Hapus kontak
+Hapus status saya
+Hapus foto
+Hapus orang ini dari daftar Orang
+Hapus {0}?
+Wajibkan pemeriksaan keamanan saat membuka MEYA.
+Tinjau dan kelola koneksi MEYA Anda.
+Tinjau perangkat yang terkait dengan akun MEYA Anda.
+Tinjau perangkat yang diizinkan mengakses akun MEYA Anda.
+Simpan
+Simpan PIN
+Simpan salinan
+Simpan salinan ke ponsel ini
+Simpan profil
+Simpan ke perangkat
+Tersimpan. Salinan ini tidak dienkripsi oleh MEYA.
+Pindai kode QR
+Pindai kode QR MEYA
+Pindai kode QR MEYA lain, atau ketuk ikon foto di atas untuk mengimpor gambar QR.
+Pindai kode QR MEYA-nya secara langsung
+Pindai kode QR MEYA-nya untuk memulai koneksi yang aman.
+Pindai kode QR-nya
+Jadwalkan panggilan
+Perlindungan tangkapan layar
+Cari kontak tepercaya
+Kunci aman
+Keamanan
+PIN keamanan
+PIN keamanan disimpan.
+Notifikasi keamanan
+Orang terpilih
+Orang terpilih ({0})
+Foto terpilih
+Kirim
+Kirim file
+Kirim foto
+Kirim video
+Kirim pesan suara
+Pengiriman
+Mengirim…
+Informasi sensitif harus dilindungi baik saat disimpan maupun saat dikirim.
+Terkirim
+Atur pesan terenkripsi dengan {0}
+Pengaturan
+Bagikan teks, foto, atau video
+Foto lebih tajam, file lebih besar
+Tunjukkan kode QR ini kepada orang yang Anda percaya untuk memulai penyandingan MEYA.
+Masuk ke ruang MEYA Anda dengan identitas yang sudah ada.
+Keluar
+Keluar dari MEYA?
+Kecil
+Kualitas foto standar
+Status
+Status diposting, tetapi belum terkirim ke {0}.
+Status diposting.
+Status terenkripsi end-to-end dan hanya dikirim ke orang yang Anda pilih.
+Hentikan pesan suara
+Penyimpanan
+Penyimpanan & Media
+Penggunaan penyimpanan, kualitas foto, dan penyimpanan media
+Disimpan terenkripsi
+Warna dan garis tepi lebih tegas agar mudah dibaca
+Bawaan sistem
+Ambil foto
+Salinan sementara
+Salinan sementara dihapus.
+Ketentuan penggunaan
+Ukuran teks
+Teks, foto, atau video untuk koneksi Anda
+Teks, foto, atau video untuk koneksi Anda
+Kode QR itu bukan kode MEYA yang valid.
+Panggilan ada di kalender Anda, tetapi undangan tidak terkirim: {0}
+File kosong.
+Pesan suara kosong.
+Tema
+Tema, bahasa, ukuran teks, dan aksesibilitas
+Ia akan dihapus dari daftar Orang di perangkat ini. Untuk terhubung lagi, Anda perlu memindai kode QR-nya secara langsung.
+ID MEYA ini sudah digunakan di perangkat ini
+ID MEYA ini tidak tersedia di perangkat ini. Gunakan perangkat tepercaya Anda untuk menghubungkan akun.
+Kode QR ini memulai permintaan koneksi. Orang lain harus menerima sebelum Anda menjadi kontak MEYA.
+Kode QR ini dibuat oleh versi MEYA yang lebih lama. Minta orang lain memperbarui MEYA dan menunjukkan kode QR-nya lagi.
+Kontak ini tepercaya. Pengaturan percakapan aman belum tersedia, jadi MEYA belum membuat percakapan atau mengirim pesan.
+Perangkat ini
+Perangkat ini tidak memiliki ID perangkat MEYA.
+File ini tidak dapat dibaca.
+File ini belum sepenuhnya diterima.
+File ini terlalu besar. MEYA dapat mengirim file hingga {0} MB.
+Ini akan menghapus permanen pesan, kontak, foto, video, file, status, kalender, dan kunci enkripsi Anda dari ponsel ini. Tidak dapat dibatalkan. Orang yang pernah berbicara dengan Anda tetap menyimpan apa yang sudah mereka terima.
+Ponsel ini
+Foto atau video ini terlalu besar untuk status.
+Teks ini untuk sementara hanya tersedia dalam bahasa Inggris.
+Video ini belum sepenuhnya diterima.
+Pesan suara ini terlalu panjang. Buat kurang dari {0} menit.
+Waktu
+Judul (opsional)
+Untuk mengonfirmasi, ketik ID MEYA Anda: {0}
+Koneksi tepercaya
+Kontak tepercaya
+Perangkat tepercaya
+Coba lagi
+Coba nama atau ID lain.
+Matikan animasi dan transisi halaman
+Indikator mengetik
+Tidak dapat mengakses akun MEYA Anda. Coba lagi.
+Buka kunci
+Perbarui status
+Gunakan 4–6 digit
+Gunakan minimal 3 karakter
+Gunakan huruf, angka, titik, tanda hubung, atau garis bawah
+Gunakan angka saja
+Gunakan biometrik perangkat untuk membuka kunci MEYA.
+Gunakan perangkat MEYA tepercaya Anda untuk menghubungkan perangkat ini dengan aman. Penyandingan QR dengan verifikasi identitas MEYA akan ditambahkan ke alur ini.
+Versi {0}
+Video
+Panggilan video
+Panggilan video dijadwalkan
+Panggilan video belum tersedia
+Video dari galeri
+Suara
+Panggilan suara
+Panggilan suara dijadwalkan
+Panggilan suara belum tersedia
+Pesan suara
+Pesan suara tidak terkirim: {0}
+Pesan suara terlalu pendek. Ketuk mikrofon, bicara, lalu ketuk Kirim.
+Pesan suara · {0}
+Ingin terhubung dengan Anda di MEYA.
+Situs web
+Selamat datang kembali
+Apa yang ingin Anda bagikan?
+Saat Anda terhubung dengan seseorang, ia akan muncul di sini.
+Siapa yang dapat melihat
+Siapa yang dapat melihat?
+Dengan
+Dengan {0} · {1}
+Anda
+Anda tidak dapat mengirim permintaan koneksi ke perangkat ini.
+Anda terhubung sebelum enkripsi ditambahkan. Bertemulah langsung: {0} membuka QR saya, lalu Anda memindainya. Hanya beberapa detik dan riwayat chat Anda tetap ada.
+Anda belum punya kontak MEYA. Pindai kode QR seseorang untuk menambahkannya.
+Anda belum punya koneksi.
+Anda menjadwalkan panggilan ini
+Anda:
+ID MEYA mengidentifikasi Anda di ruang MEYA pribadi Anda.
+ID MEYA menunjukkan identitas pribadi Anda. Ini bukan kata sandi.
+Kode QR MEYA Anda
+Akun MEYA Anda tidak tersedia di perangkat ini.
+Akun MEYA Anda hanya ada di ponsel ini. Tidak ada reset kata sandi dan tidak ada salinan di server, jadi simpan kode sandi Anda baik-baik. Pindah ke ponsel baru belum tersedia.
+Koneksi MEYA Anda
+Identitas perangkat MEYA Anda tidak tersedia.
+Identitas perangkat MEYA Anda tidak tersedia. Mulai ulang MEYA lalu coba lagi.
+Identitas MEYA Anda belum siap.
+PIN Anda dapat digunakan sebagai lapisan perlindungan tambahan untuk aplikasi.
+Ruang Anda
+Akun Anda tidak ditemukan di perangkat ini.
+Akun, pesan, dan kunci Anda tetap di ponsel ini. Anda memerlukan kode sandi untuk masuk lagi. Selama Anda keluar, pesan baru menunggu di relai.
+Kontak Anda tidak dapat dimuat. Coba lagi.
+Percakapan Anda
+Perangkat Anda
+Kunci enkripsi Anda
+Nama Anda
+Nama, foto, dan Tentang Anda dibagikan dengan enkripsi end-to-end hanya kepada koneksi MEYA Anda.
+Kode sandi Anda disimpan dengan aman di perangkat ini.
+Orang terdekat Anda
+Orang terdekat Anda. Percakapan Anda. Privasi Anda.
+Privasi Anda
+Grup pribadi Anda
+Permintaan Anda telah dikirim. Orang ini harus menerimanya sebelum menjadi kontak MEYA.
+Keamanan Anda
+Status Anda
+Kontak tepercaya Anda
+{0} B
+{0} GB
+{0} KB
+{0} MB
+{0} disalin.
+{0} hr lalu
+{0} jam
+{0} jam lalu
+{0} jam {1} mnt
+{0} kini menjadi kontak MEYA.
+{0} mnt
+{0} mnt lalu
+{0} menjadwalkan panggilan ini
+{0} status dari koneksi Anda
+{0} panggilan mendatang
+{0} ingin terhubung dengan Anda di MEYA.
+{0} telah dihapus.
+{0} akan diberi tahu melalui pesan terenkripsi.
+{0}, ada panggilan terjadwal
+© 2026 {0} · AGPL-3.0-only
+🎤 Pesan suara
+🎬 Video
+📅 Panggilan dibatalkan
+📅 Panggilan dijadwalkan
+📷 Foto
+Suara
+Nada dering panggilan dan suara notifikasi
+Nada dering panggilan
+Suara notifikasi
+Berbunyi saat seseorang menelepon Anda.
+Berbunyi saat pesan baru masuk.
+Suara dari BigSoundBank, bebas digunakan (domain publik CC0).
+Hentikan
+Memanggil…
+Menyambungkan…
+Panggilan berakhir
+Ditolak
+Sibuk
+Tidak dijawab
+Panggilan gagal
+Bisukan
+Bunyikan
+Pengeras suara
+Matikan kamera
+Nyalakan kamera
+Ganti kamera
+Akhiri panggilan
+Gabung panggilan
+Panggilan tak terjawab dari {0}
+Anda sedang dalam panggilan.
+Tambahkan ke favorit
+Blokir {0} juga
+Arsipkan
+Diarsipkan
+Kembali online.
+Blokir
+Blokir {0}?
+Orang yang diblokir tidak dapat mengirim pesan atau menelepon Anda. Mereka tidak diberi tahu. Anda dapat membuka blokir di Privasi.
+Opsi obrolan
+Tutup pencarian
+Disalin.
+Salin teks
+Hapus
+Hapus untuk semua
+Hapus untuk saya
+"Hapus untuk semua" juga menghapusnya dari ponsel {0}.
+Hapus pesan?
+Terkirim
+Detail (opsional)
+Edit
+Diedit
+Mengedit pesan
+Favorit
+File
+Teruskan
+Teruskan ke
+Diteruskan
+Diteruskan ke {0}.
+Pelecehan atau perundungan
+Peniruan identitas
+Sertakan pesan terakhirnya
+MEYA tidak dapat membaca percakapan Anda. Laporan hanya berisi apa yang Anda pilih di bawah, dan Anda mengirimnya dari aplikasi email Anda sendiri.
+MEYA memerlukan kamera dan mikrofon untuk merekam. Izinkan di pengaturan ponsel.
+Tandai sudah dibaca
+Tandai belum dibaca
+Ditandai belum dibaca
+Opsi pesan
+Opsi lainnya
+Bisukan notifikasi
+Dibisukan
+Tidak ada obrolan yang diarsipkan
+Tidak ada kamera di perangkat ini.
+Tidak ada aplikasi email untuk mengirim laporan.
+Belum ada favorit. Tekan lama pesan lalu pilih Tambahkan ke favorit.
+Tidak ada pesan yang ditemukan.
+Tidak diblokir: {0}
+Tidak diubah: {0}
+Tidak dihapus: {0}
+Tidak diteruskan: {0}
+Tidak disematkan: {0}
+Tidak disimpan: {0}
+Tidak terkirim. Ketuk untuk mencoba lagi
+Sematkan
+Disematkan
+Pesan disematkan: {0}
+Disematkan {0} dari {1}
+Siapkan laporan
+Tanggapi dengan {0}
+Tanggapan tidak terkirim: {0}
+Dibaca
+Hapus dari favorit
+Balas
+Balasan untuk {0}: {1}
+Membalas {0}
+Laporkan
+Laporkan {0}
+Simpan perubahan
+Cari
+Cari pesan
+Cari di obrolan ini
+Cari kata di semua obrolan Anda. Pencarian hanya dilakukan di ponsel ini.
+Kirim lagi
+Konten seksual
+Tampilkan opsi obrolan
+Tampilkan opsi pesan
+Lainnya
+Spam atau penipuan
+Mulai merekam
+Masih belum terkirim: {0}
+Hentikan rekaman
+Pesan itu sudah tidak ada di obrolan ini.
+Kamera tidak dapat dimulai: {0}
+Pesan ini tidak dapat diteruskan.
+Pesan ini telah dihapus
+Ini hanya menghapus pesan dari ponsel ini.
+Ancaman atau kekerasan
+Hari ini
+Batalkan arsip
+Buka blokir
+Lepas sematan
+Hingga 10 pesan yang dikirim {0} kepada Anda. Foto dan file tidak disertakan.
+Hingga 3 menit
+Video untuk dikirim
+Video, {0}. Diputar layar penuh
+Menunggu dikirim
+Apa yang terjadi?
+Kemarin
+Anda sedang offline. Pesan akan dikirim saat MEYA terhubung kembali.
+Anda hanya dapat menghapus pesan Anda sendiri untuk semua.
+Anda hanya dapat mengedit pesan Anda sendiri.
+Anda menghapus pesan ini
+Laporan sudah siap di aplikasi email Anda. Periksa, lalu kirim.
+Anda
+diri sendiri
+{0} sudah tidak diblokir.
+{0} orang menanggapi {1}. Ketuk untuk mengubah tanggapan Anda
+{0} belum dibaca
+{0} · sisa {1}
+Beri tahu orang lain saat Anda sudah membaca pesan mereka. Jika nonaktif, Anda juga tidak akan melihat kapan mereka membaca pesan Anda.
+Nomor keamanan tidak dapat ditampilkan: {0}
+Terverifikasi
+Nomornya tidak cocok
+Percakapan Anda dengan {0} dienkripsi end-to-end dengan kunci yang benar.
+Itu bukan kode nomor keamanan MEYA.
+Jangan percayai percakapan ini dulu. Pastikan Anda memindai kode {0} untuk obrolan ini, lalu coba lagi secara langsung.
+OK
+Verifikasi enkripsi
+Anda telah memverifikasi {0}
+Kode QR nomor keamanan
+Nomor keamanan: {0}
+Untuk memastikan tidak ada orang di tengah, temui atau telepon {0} lalu bandingkan nomor ini, atau pindai kode di ponselnya. Jika cocok, pesan dan panggilan Anda dienkripsi dengan kunci yang benar.
+Pindai kodenya
+Hapus verifikasi
+Tandai terverifikasi
+Bandingkan nomor keamanan dengan {0}
+Terverifikasi · terenkripsi end-to-end

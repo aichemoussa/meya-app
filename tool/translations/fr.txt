@@ -1,0 +1,623 @@
+1 mois
+1 nouveau statut de vos contacts
+1 appel à venir
+1 an
+24 heures
+3 mois
+7 jours
+Quelques mots sur vous
+Un espace simple et privé pour les personnes qui comptent pour vous.
+À propos
+À propos de MEYA
+Accepter
+Accessibilité
+Compte
+Détails du compte, déconnexion et suppression
+Numéro de compte
+Sécurité du compte
+Ajouter une légende
+Ajouter une personne
+Ajouter une photo ou une vidéo
+Ajouter une photo de profil
+Ajouter un statut
+Ajouter une personne
+Ajouter une photo
+Ajoutez du texte, un emoji, une photo ou une vidéo.
+Ajouter quelqu’un de nouveau
+Ajoutez une personne de confiance en scannant son code QR MEYA. Elle apparaîtra ici.
+La gestion d’autres appareils sera disponible lorsque les comptes MEYA et les sessions côté serveur seront en place.
+Tous mes contacts
+Autoriser les autres à vous envoyer des demandes de connexion.
+Autoriser vos contacts à voir votre photo de profil.
+Vous avez déjà un compte MEYA ? Se connecter
+Verrouillage de l’app
+Protection de l’app
+Apparence
+Apparence et accessibilité
+Joindre une photo, une vidéo, un fichier ou un appel
+Déverrouillage biométrique
+Personnes bloquées
+Calendrier
+Appel annulé
+Appel planifié. {0} a été invité(e).
+Appel avec {0}
+Annuler
+Annuler l’appel
+Annuler cet appel ?
+Annulé
+Annulé ici, mais {0} n’a pas encore pu être prévenu(e) : {1}
+Changer la photo
+Changer la photo de profil
+Changer le code PIN de sécurité
+Discussions
+Vérification de votre identifiant MEYA…
+Choisir une personne
+Choisissez une heure dans le futur.
+Choisir dans la galerie
+Choisissez une personne avec qui vous êtes déjà connecté(e) sur MEYA.
+Choisissez avec qui est l’appel.
+Choisissez votre identifiant MEYA
+Effacer la recherche
+Effacer les copies temporaires
+Confirmer le code PIN
+Confirmer le code d’accès
+Confirmez votre code PIN
+Connecter un appareil existant
+Se connecter avec un code QR
+Se connecter avec quelqu’un à proximité
+Connectez-vous avec quelqu’un grâce à son code QR MEYA. Il ne sera pas considéré comme de confiance sans le processus d’invitation.
+Se connecter avec une personne de confiance
+Connecté(e) en personne avec un code QR
+Connexion au relais MEYA…
+Demande de connexion envoyée
+Demandes de connexion
+Demandes de connexion de personnes de confiance
+Les demandes de connexion de personnes de confiance apparaîtront ici.
+Contacts
+Continuer
+Contrôlez comment les personnes de votre espace MEYA privé peuvent vous trouver et interagir avec vous.
+Conversations
+Copier le numéro de compte
+Impossible d’accepter cette demande : {0}
+Impossible de changer la photo : {0}
+Impossible de refuser cette demande : {0}
+Impossible d’ouvrir
+Impossible d’ouvrir le fichier : {0}
+Impossible de lire ce message vocal : {0}
+Impossible de lire l’image QR : {0}
+Impossible de supprimer {0} : {1}
+Impossible d’enregistrer le fichier : {0}
+Impossible d’envoyer la demande de connexion : {0}
+Impossible de démarrer l’enregistrement : {0}
+Créer un nouveau compte MEYA
+Créez un code d’accès qui protégera l’accès à votre compte MEYA.
+Créer le compte
+Créer ou modifier le code PIN qui protège MEYA.
+Créer votre profil MEYA
+Créer votre code d’accès
+Créé le
+Les clés cryptographiques doivent être protégées par les mécanismes de sécurité adaptés de la plateforme.
+Actuel
+Appareil actuel
+Sombre
+Date
+Refuser
+Refuser cet appel ?
+Par défaut
+Supprimer le compte de ce téléphone
+Tout supprimer
+Supprimer les médias anciens
+Supprimer l’enregistrement
+Supprimer votre compte MEYA de ce téléphone ?
+Suppression de votre compte de ce téléphone…
+Développé par {0}, {1}.
+Identifiant de l’appareil
+Disparaît après
+Découverte, présence et contrôle des connexions
+Terminé
+Emoji
+Données chiffrées
+La messagerie chiffrée n’est pas encore configurée avec cette personne. Scannez à nouveau son code QR.
+Messagerie chiffrée pas encore configurée
+Chiffrement
+Chiffré de bout en bout
+Saisissez 4 à 6 chiffres
+Saisissez un code PIN de 4 à 6 chiffres
+Saisissez un code PIN
+Saisissez à nouveau le code PIN
+Saisissez à nouveau le code d’accès
+Saisissez votre identifiant MEYA
+Saisissez votre nom
+Saisissez votre code d’accès pour accéder à votre espace.
+Saisissez votre code d’accès.
+Très grand
+Plus rapide à envoyer, prend moins de place
+Fichier ou document
+Terminé
+Suit le réglage de votre téléphone
+Toujours
+De vos contacts
+Commencer
+Groupes
+Qualité photo HD
+Votre appareil MEYA existant est à proximité ? Vous pourrez bientôt vérifier et transférer votre identité en toute sécurité grâce au jumelage par QR.
+Contraste élevé
+Importer une image QR
+Code d’accès incorrect. Réessayez.
+Invitations
+À l’instant
+Conserver
+Conserver les médias pendant {0} ?
+Conserver les médias sur ce téléphone
+Conservation des médias
+Langue
+Grand
+Le plus grand
+Découvrez comment MEYA protège les conversations privées.
+Mentions légales et à propos
+Durée
+Indiquer aux autres quand vous écrivez.
+Indiquer aux autres quand vous avez lu leurs messages.
+Permettre à une personne rencontrée de se connecter avec vous
+Permettre à vos contacts de voir quand vous êtes en ligne.
+Clair
+Conservation limitée
+Se connecter
+Identifiant MEYA
+MEYA suit aussi les réglages de taille du texte, de contraste élevé et d’animations de votre téléphone.
+Contact MEYA
+Le chiffrement MEYA n’a pas pu démarrer : {0}
+MEYA est conçu autour de la confidentialité, d’une conservation limitée des données et d’une communication sécurisée.
+MEYA est conçu pour ne pas conserver d’informations personnelles inutiles.
+MEYA est sous licence AGPL-3.0-only
+La messagerie MEYA n’est pas configurée.
+MEYA a besoin d’accéder au micro pour enregistrer un message vocal. Vous pouvez l’autoriser dans les réglages de votre téléphone.
+MEYA sur ce téléphone
+Erreur de connexion au relais MEYA : {0}
+Le statut MEYA n’est pas configuré.
+MEYA ne proposera les appels qu’une fois qu’ils seront chiffrés de bout en bout et autorisés par les règles des télécommunications de votre pays. Les messages chiffrés passent d’abord.
+Créées lorsque vous lisez une vidéo ou ouvrez un fichier dans une autre app
+Gérer les personnes que vous avez bloquées.
+Calcul…
+Les médias arrivent avec chaque message et sont stockés chiffrés. MEYA n’enregistre jamais vos photos dans la galerie du téléphone, sauf si vous choisissez Enregistrer.
+Message
+Message non envoyé : {0}
+Messages et écran
+Mon QR
+Mon code QR
+Mon statut
+Nom
+Jamais
+Nouvelle discussion
+Nouveau code PIN
+Nouveau statut
+Mois suivant
+Prochain : {0}
+Aucun code QR MEYA n’a été trouvé dans cette image.
+Aucun compte n’est connecté sur ce téléphone.
+Aucune app de ce téléphone ne peut ouvrir ce fichier. Utilisez Enregistrer pour en garder une copie.
+Aucune personne bloquée
+Aucun navigateur n’a pu ouvrir le site web.
+Aucun appel prévu ce jour-là.
+Aucune conversation pour l’instant
+Aucun contact correspondant
+Aucun message avec {0} pour l’instant.
+Aucun message pour l’instant
+Aucune invitation en attente
+Personne pour l’instant
+Aucun statut récent.
+Aucun contact de confiance pour l’instant
+Personne à inviter pour l’instant. La messagerie chiffrée doit être configurée avec un contact avant de pouvoir planifier un appel.
+Non disponible
+Non connecté au relais MEYA. Les demandes ne peuvent pas encore arriver.
+Pas encore créé
+Non envoyé
+Non envoyé : {0}
+Note (facultatif)
+Vous avertir lors d’événements de sécurité importants.
+Statut en ligne
+Moi uniquement
+Ouvrir
+Ouvrir le fichier
+Licences open source
+Code PIN, verrouillage de l’app et appareils de confiance
+Les codes PIN ne correspondent pas
+Code d’accès
+Les codes d’accès ne correspondent pas
+Pause
+Personnes
+Les personnes que vous bloquez apparaîtront ici.
+Les personnes avec qui vous vous connectez sur MEYA apparaîtront ici.
+Langue du téléphone
+Photo
+Photo de la galerie
+Photo à envoyer
+Photo, nom, identifiant MEYA et À propos
+Photo. S’ouvre en plein écran
+Photos, vidéos et fichiers
+Les photos, vidéos et fichiers peuvent atteindre {0} Mo. Les vidéos peuvent durer jusqu’à 3 minutes.
+Les photos, vidéos et fichiers plus anciens sont supprimés de ce téléphone dès maintenant et à l’avenir. Les messages restent ; leurs médias apparaîtront comme n’étant plus sur ce téléphone.
+Planifier et inviter
+Planifiez des appels avec vos proches
+Les appels planifiés sont partagés avec l’autre personne, chiffrés de bout en bout. Le moment venu, touchez Rejoindre l’appel pour le lancer. Vous pouvez aussi appeler à tout moment depuis une discussion.
+Lire
+Lire la vidéo
+Écouter le message vocal
+Veuillez choisir un identifiant MEYA
+Veuillez confirmer votre code d’accès
+Veuillez créer un code d’accès
+Veuillez saisir votre identifiant MEYA
+Veuillez saisir votre nom
+Publier le statut
+Publié {0}
+Publié {0} · disparaît le {1}
+Publier remplace votre statut actuel, y compris sa photo ou sa vidéo.
+Aperçu : les messages et menus ressembleront à ceci.
+Mois précédent
+Confidentialité
+Politique de confidentialité
+Confidentialité, conditions, accessibilité et licences
+Privé par conception
+Des liens privés.\nTout simplement à vous.
+Les groupes familiaux privés sont prévus. Le chiffrement des groupes est encore en conception, les groupes ne sont donc pas encore disponibles.
+Profil
+Visibilité de la photo de profil
+Profil enregistré.
+Protéger MEYA avec un code PIN
+Protéger votre compte MEYA
+Protégez votre app MEYA et contrôlez l’accès à vos informations privées.
+Accusés de lecture
+Prêt à recevoir des demandes de connexion
+Réception…
+Enregistrer une vidéo
+Enregistrer un message vocal
+Enregistrement {0} / {1}
+Réduire les animations
+Limiter la possibilité de capturer les écrans de MEYA.
+Retirer
+Retirer le contact
+Supprimer mon statut
+Supprimer la photo
+Retirer cette personne de votre liste Personnes
+Retirer {0} ?
+Exiger une vérification de sécurité à l’ouverture de MEYA.
+Consultez et gérez vos contacts MEYA.
+Consultez les appareils associés à votre compte MEYA.
+Consultez les appareils autorisés à accéder à votre compte MEYA.
+Enregistrer
+Enregistrer le code PIN
+Enregistrer une copie
+Enregistrer une copie sur ce téléphone
+Enregistrer le profil
+Enregistrer sur l’appareil
+Enregistré. Cette copie n’est pas chiffrée par MEYA.
+Scanner un code QR
+Scanner un code QR MEYA
+Scannez un autre code QR MEYA, ou touchez l’icône photo ci-dessus pour importer une image QR.
+Scannez son code QR MEYA en personne
+Scannez son code QR MEYA pour établir une connexion sécurisée.
+Scanner son code QR
+Planifier un appel
+Protection contre les captures d’écran
+Rechercher des contacts de confiance
+Clés sécurisées
+Sécurité
+Code PIN de sécurité
+Code PIN de sécurité enregistré.
+Notifications de sécurité
+Personnes sélectionnées
+Personnes sélectionnées ({0})
+Photo sélectionnée
+Envoyer
+Envoyer le fichier
+Envoyer la photo
+Envoyer la vidéo
+Envoyer le message vocal
+Envoi
+Envoi…
+Les informations sensibles doivent être protégées aussi bien lorsqu’elles sont stockées que lorsqu’elles sont transmises.
+Envoyé
+Configurer la messagerie chiffrée avec {0}
+Réglages
+Partagez du texte, une photo ou une vidéo
+Photos plus nettes, fichiers plus lourds
+Montrez ce code QR à une personne de confiance pour commencer le jumelage MEYA.
+Connectez-vous à votre espace MEYA avec votre identité existante.
+Se déconnecter
+Se déconnecter de MEYA ?
+Petit
+Qualité photo standard
+Statut
+Statut publié, mais pas encore envoyé à {0}.
+Statut publié.
+Les statuts sont chiffrés de bout en bout et envoyés uniquement aux personnes que vous choisissez.
+Arrêter le message vocal
+Stockage
+Stockage et médias
+Espace utilisé, qualité des photos et conservation des médias
+Stocké chiffré
+Couleurs et contours plus marqués pour une lecture plus facile
+Valeur du système
+Prendre une photo
+Copies temporaires
+Copies temporaires effacées.
+Conditions d’utilisation
+Taille du texte
+Du texte, une photo ou une vidéo pour vos contacts
+Texte, photo ou vidéo pour vos contacts
+Ce code QR n’est pas un code MEYA valide.
+L’appel est dans votre calendrier, mais l’invitation n’a pas été envoyée : {0}
+Le fichier est vide.
+Le message vocal est vide.
+Thème
+Thème, langue, taille du texte et accessibilité
+Cette personne sera retirée de votre liste Personnes sur cet appareil. Pour vous reconnecter, vous devrez scanner son code QR en personne.
+Cet identifiant MEYA est déjà utilisé sur cet appareil
+Cet identifiant MEYA n’est pas disponible sur cet appareil. Utilisez votre appareil de confiance pour connecter le compte.
+Ce code QR lance une demande de connexion. L’autre personne doit accepter avant que vous deveniez contacts MEYA.
+Ce code QR a été créé par une ancienne version de MEYA. Demandez à l’autre personne de mettre MEYA à jour et de montrer à nouveau son code QR.
+Ce contact est de confiance. La configuration d’une conversation sécurisée n’est pas encore disponible, MEYA n’a donc créé aucune conversation ni envoyé de message.
+Cet appareil
+Cet appareil n’a pas d’identifiant d’appareil MEYA.
+Ce fichier n’a pas pu être lu.
+Ce fichier n’est pas encore entièrement arrivé.
+Ce fichier est trop volumineux. MEYA peut envoyer des fichiers jusqu’à {0} Mo.
+Cela supprime définitivement vos messages, contacts, photos, vidéos, fichiers, statut, calendrier et clés de chiffrement de ce téléphone. C’est irréversible. Les personnes avec qui vous avez échangé gardent ce qu’elles ont déjà reçu.
+Ce téléphone
+Cette photo ou vidéo est trop volumineuse pour un statut.
+Ce texte n’est disponible qu’en anglais pour le moment.
+Cette vidéo n’est pas encore entièrement arrivée.
+Ce message vocal est trop long. Il doit durer moins de {0} minutes.
+Heure
+Titre (facultatif)
+Pour confirmer, saisissez votre identifiant MEYA : {0}
+Contact de confiance
+Contact de confiance
+Appareils de confiance
+Réessayer
+Essayez un autre nom ou identifiant.
+Désactiver les animations et les transitions de page
+Indicateur de saisie
+Impossible d’accéder à votre compte MEYA. Veuillez réessayer.
+Déverrouiller
+Mettre à jour le statut
+Utilisez 4 à 6 chiffres
+Utilisez au moins 3 caractères
+Utilisez des lettres, chiffres, points, tirets ou traits de soulignement
+Utilisez uniquement des chiffres
+Utilisez la biométrie de votre appareil pour déverrouiller MEYA.
+Utilisez votre appareil MEYA de confiance pour connecter cet appareil en toute sécurité. Le jumelage par QR sera ajouté à ce parcours avec la vérification d’identité MEYA.
+Version {0}
+Vidéo
+Appel vidéo
+Appel vidéo planifié
+Les appels vidéo ne sont pas encore disponibles
+Vidéo de la galerie
+Voix
+Appel vocal
+Appel vocal planifié
+Les appels vocaux ne sont pas encore disponibles
+Message vocal
+Message vocal non envoyé : {0}
+Message vocal trop court. Touchez le micro, parlez, puis touchez Envoyer.
+Message vocal · {0}
+Souhaite se connecter avec vous sur MEYA.
+Site web
+Bon retour
+Que souhaitez-vous partager ?
+Lorsque vous vous connectez avec quelqu’un, il apparaît ici.
+Qui peut le voir
+Qui peut le voir ?
+Avec
+Avec {0} · {1}
+Vous
+Vous ne pouvez pas envoyer de demande de connexion à cet appareil.
+Vous vous êtes connectés avant l’ajout du chiffrement. Retrouvez-vous en personne : {0} ouvre Mon QR et vous le scannez. Cela prend quelques secondes et votre historique est conservé.
+Vous n’avez pas encore de contacts MEYA. Scannez le code QR de quelqu’un pour l’ajouter.
+Vous n’avez pas encore de contacts.
+Vous avez planifié cet appel
+Vous :
+Votre identifiant MEYA vous identifie dans votre espace MEYA privé.
+Votre identifiant MEYA identifie votre identité privée. Ce n’est pas un mot de passe.
+Votre code QR MEYA
+Votre compte MEYA n’est pas disponible sur cet appareil.
+Votre compte MEYA n’existe que sur ce téléphone. Il n’y a ni réinitialisation de mot de passe ni copie sur un serveur : gardez votre code d’accès en lieu sûr. Le transfert vers un nouveau téléphone n’est pas encore disponible.
+Vos contacts MEYA
+L’identité de votre appareil MEYA n’est pas disponible.
+L’identité de votre appareil MEYA n’est pas disponible. Redémarrez MEYA et réessayez.
+Votre identité MEYA n’est pas encore prête.
+Votre code PIN peut servir de couche de protection supplémentaire pour l’app.
+Votre espace
+Votre compte est introuvable sur cet appareil.
+Votre compte, vos messages et vos clés restent sur ce téléphone. Vous aurez besoin de votre code d’accès pour vous reconnecter. Pendant que vous êtes déconnecté(e), les nouveaux messages attendent sur le relais.
+Vos contacts n’ont pas pu être chargés. Veuillez réessayer.
+Vos conversations
+Vos appareils
+Votre clé de chiffrement
+Votre nom
+Votre nom, votre photo et votre À propos sont partagés, chiffrés de bout en bout, uniquement avec vos contacts MEYA.
+Votre code d’accès est stocké en sécurité sur cet appareil.
+Vos proches
+Vos proches. Vos conversations. Votre vie privée.
+Votre confidentialité
+Vos groupes privés
+Votre demande a été envoyée. Cette personne doit l’accepter avant de devenir un contact MEYA.
+Votre sécurité
+Votre statut
+Vos contacts de confiance
+{0} o
+{0} Go
+{0} Ko
+{0} Mo
+{0} copié.
+il y a {0} j
+{0} h
+il y a {0} h
+{0} h {1} min
+{0} est maintenant un contact MEYA.
+{0} min
+il y a {0} min
+{0} a planifié cet appel
+{0} statuts de vos contacts
+{0} appels à venir
+{0} souhaite se connecter avec vous sur MEYA.
+{0} a été retiré(e).
+{0} sera prévenu(e) par un message chiffré.
+{0}, appels planifiés
+© 2026 {0} · AGPL-3.0-only
+🎤 Message vocal
+🎬 Vidéo
+📅 Appel annulé
+📅 Appel planifié
+📷 Photo
+Sons
+Sonnerie d’appel et son de notification
+Sonnerie d’appel
+Son de notification
+Retentit quand quelqu’un vous appelle.
+Retentit à l’arrivée d’un nouveau message.
+Sons de BigSoundBank, libres d’utilisation (domaine public CC0).
+Arrêter
+Appel en cours…
+Connexion…
+Appel terminé
+Refusé
+Occupé
+Pas de réponse
+Échec de l’appel
+Couper le micro
+Réactiver le micro
+Haut-parleur
+Désactiver la caméra
+Activer la caméra
+Changer de caméra
+Raccrocher
+Rejoindre l’appel
+Appel manqué de {0}
+Vous êtes déjà en communication.
+Ajouter aux favoris
+Bloquer aussi {0}
+Archiver
+Archivées
+De nouveau en ligne.
+Bloquer
+Bloquer {0} ?
+Les personnes bloquées ne peuvent ni vous écrire ni vous appeler. Elles n’en sont pas informées. Vous pouvez les débloquer dans Confidentialité.
+Options de la discussion
+Fermer la recherche
+Copié.
+Copier le texte
+Supprimer
+Supprimer pour tout le monde
+Supprimer pour moi
+« Supprimer pour tout le monde » l’efface aussi du téléphone de {0}.
+Supprimer le message ?
+Distribué
+Détails (facultatif)
+Modifier
+Modifié
+Modification du message
+Favoris
+Fichier
+Transférer
+Transférer à
+Transféré
+Transféré à {0}.
+Harcèlement ou intimidation
+Usurpation d’identité
+Inclure ses derniers messages
+MEYA ne peut pas lire vos conversations. Un signalement contient uniquement ce que vous choisissez ci-dessous, et vous l’envoyez depuis votre propre application de messagerie.
+MEYA a besoin de la caméra et du micro pour enregistrer. Autorisez-les dans les réglages du téléphone.
+Marquer comme lu
+Marquer comme non lu
+Marqué comme non lu
+Options du message
+Plus d’options
+Désactiver les notifications
+Notifications désactivées
+Aucune discussion archivée
+Aucune caméra trouvée sur cet appareil.
+Aucune application de messagerie n’a été trouvée pour envoyer le signalement.
+Aucun favori pour l’instant. Appuyez longuement sur un message et choisissez Ajouter aux favoris.
+Aucun message trouvé.
+Non bloqué : {0}
+Non modifié : {0}
+Non supprimé : {0}
+Non transféré : {0}
+Non épinglé : {0}
+Non enregistré : {0}
+Non envoyé. Touchez pour réessayer
+Épingler
+Épinglé
+Message épinglé : {0}
+Épinglé {0} sur {1}
+Préparer le signalement
+Réagir avec {0}
+Réaction non envoyée : {0}
+Lu
+Retirer des favoris
+Répondre
+Réponse à {0} : {1}
+Réponse à {0}
+Signaler
+Signaler {0}
+Enregistrer la modification
+Rechercher
+Rechercher dans les messages
+Rechercher dans cette discussion
+Recherchez des mots dans toutes vos discussions. La recherche se fait uniquement sur ce téléphone.
+Renvoyer
+Contenu sexuel
+Afficher les options de la discussion
+Afficher les options du message
+Autre chose
+Spam ou arnaque
+Démarrer l’enregistrement
+Toujours pas envoyé : {0}
+Arrêter l’enregistrement
+Ce message n’est plus dans cette discussion.
+La caméra n’a pas pu démarrer : {0}
+Ce message ne peut pas être transféré.
+Ce message a été supprimé
+Le message sera supprimé de ce téléphone uniquement.
+Menaces ou violence
+Aujourd’hui
+Désarchiver
+Débloquer
+Désépingler
+Jusqu’à 10 messages que {0} vous a envoyés. Les photos et fichiers ne sont pas inclus.
+Jusqu’à 3 minutes
+Vidéo à envoyer
+Vidéo, {0}. Lecture en plein écran
+En attente d’envoi
+Que s’est-il passé ?
+Hier
+Vous êtes hors ligne. Les messages seront envoyés dès que MEYA se reconnectera.
+Vous ne pouvez supprimer pour tout le monde que vos propres messages.
+Vous ne pouvez modifier que vos propres messages.
+Vous avez supprimé ce message
+Votre application de messagerie a préparé le signalement. Vérifiez-le, puis envoyez-le.
+vous
+vous-même
+{0} est débloqué.
+{0} ont réagi {1}. Touchez pour changer votre réaction
+{0} non lu(s)
+{0} · encore {1}
+Indiquez quand vous avez lu les messages. Si cette option est désactivée, vous ne verrez pas non plus quand vos messages ont été lus.
+Le numéro de sécurité n’a pas pu être affiché : {0}
+Vérifié
+Les numéros ne correspondent pas
+Votre conversation avec {0} est chiffrée de bout en bout avec les bonnes clés.
+Ce n’est pas un code de numéro de sécurité MEYA.
+Ne faites pas encore confiance à cette conversation. Vérifiez que vous avez scanné le code de {0} pour cette discussion, puis réessayez en personne.
+OK
+Vérifier le chiffrement
+Vous avez vérifié {0}
+Code QR du numéro de sécurité
+Numéro de sécurité : {0}
+Pour vérifier que personne ne s’est glissé entre vous, retrouvez {0} ou appelez-le, puis comparez ces numéros ou scannez le code sur son téléphone. S’ils correspondent, vos messages et appels sont chiffrés avec les bonnes clés.
+Scanner son code
+Annuler la vérification
+Marquer comme vérifié
+Comparer les numéros de sécurité avec {0}
+Vérifié · chiffré de bout en bout

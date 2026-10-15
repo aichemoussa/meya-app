@@ -1,0 +1,7 @@
+// Cloudflare Pages project for the MEYA website (static files, no build).
+// Publish from this folder:  npx wrangler pages deploy
+{
+  "name": "meya-app",
+  "pages_build_output_dir": ".",
+  "compatibility_date": "2026-10-12"
+}

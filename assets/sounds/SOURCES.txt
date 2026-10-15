@@ -1,0 +1,29 @@
+MEYA ringtones and notification sounds
+
+All files come from BigSoundBank (https://bigsoundbank.com), sounds by
+Joseph Sardin, released under CC0 1.0 (public domain dedication): free for
+any use, including commercial, without attribution. Downloaded 2026-10-14 as
+MP3 (plays on Android, iOS, macOS, Windows and Linux), unmodified, renamed.
+
+Recordings of other companies' sounds (e.g. Apple iPhone ringtones, the SNCF
+jingle) were deliberately left out even where the site lists them as CC0.
+
+ringtones/
+  phone_ring.mp3     s0375  Phone Ring #5
+  landline.mp3       s0063  Landline Ringtone
+  retro_bell.mp3     s0252  Fixed telephone ring #3
+  socotel.mp3        s0142  Socotel ringtone #1
+  soft_ring.mp3      s3532  Discreet Socotel ringers
+  phone_booth.mp3    s3364  Telephone booth ringtone #1
+  digital_pager.mp3  s3513  Digital Pager
+  pager_beeps.mp3    s3514  Alphanumeric Pager
+  dreamcatcher.mp3   s0040  Dreamcatcher
+  butterfly.mp3      s2090  Chimes "Butterfly" #4
+
+notifications/
+  lisa_1.mp3 .. lisa_5.mp3    s2063 .. s2067  Notification "LaSoLisa" #1-#5
+  marie_1.mp3 .. marie_4.mp3  s2059 .. s2062  Notification "LaSoMarie" #1-#4
+  dream.mp3                   s2079  Chimes "Dream" #1
+
+Each sound's page is https://bigsoundbank.com/ followed by its sNNNN page,
+e.g. https://bigsoundbank.com/phone-ring-5-s0375.html

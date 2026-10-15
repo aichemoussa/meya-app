@@ -1,0 +1,623 @@
+1 month
+1 new status from your connections
+1 upcoming call
+1 year
+24 hours
+3 months
+7 days
+A few words about yourself
+A simple, private space for the people who matter to you.
+About
+About MEYA
+Accept
+Accessibility
+Account
+Account details, sign out and deletion
+Account number
+Account security
+Add a caption
+Add a person
+Add a photo or video
+Add a profile photo
+Add a status
+Add person
+Add photo
+Add some text, an emoji, a photo or a video.
+Add someone new
+Add someone you trust by scanning their MEYA QR code. They will appear here.
+Additional device management will be connected when MEYA accounts and server-side sessions are implemented.
+All my connections
+Allow people to send you connection requests.
+Allow your connections to see your profile photo.
+Already have a MEYA account? Log in
+App lock
+App protection
+Appearance
+Appearance & Accessibility
+Attach a photo, video, file or call
+Biometric unlock
+Blocked people
+Calendar
+Call cancelled
+Call planned. {0} was invited.
+Call with {0}
+Cancel
+Cancel call
+Cancel this call?
+Cancelled
+Cancelled here, but {0} could not be told yet: {1}
+Change photo
+Change profile photo
+Change security PIN
+Chats
+Checking your MEYA ID…
+Choose a person
+Choose a time in the future.
+Choose from gallery
+Choose someone you have already connected with on MEYA.
+Choose who the call is with.
+Choose your MEYA ID
+Clear search
+Clear temporary copies
+Confirm PIN
+Confirm passcode
+Confirm your PIN
+Connect an existing device
+Connect using a QR code
+Connect with someone nearby
+Connect with someone using their MEYA QR code. They will not become trusted without the invitation process.
+Connect with someone you trust
+Connected in person with a QR code
+Connecting to the MEYA relay…
+Connection request sent
+Connection requests
+Connection requests from people you trust
+Connection requests from people you trust will appear here.
+Connections
+Continue
+Control how people in your private MEYA space can find and interact with you.
+Conversations
+Copy account number
+Could not accept this request: {0}
+Could not change the photo: {0}
+Could not decline this request: {0}
+Could not open
+Could not open the file: {0}
+Could not play this voice message: {0}
+Could not read the QR image: {0}
+Could not remove {0}: {1}
+Could not save the file: {0}
+Could not send connection request: {0}
+Could not start recording: {0}
+Create a new MEYA account
+Create a passcode that will be used to protect access to your MEYA account.
+Create account
+Create or change the PIN used to protect MEYA.
+Create your MEYA profile
+Create your passcode
+Created
+Cryptographic keys should be protected using appropriate platform security mechanisms.
+Current
+Current device
+Dark
+Date
+Decline
+Decline this call?
+Default
+Delete account from this phone
+Delete everything
+Delete older media
+Delete recording
+Delete your MEYA account from this phone?
+Deleting your account from this phone…
+Developed by {0}, {1}.
+Device ID
+Disappears after
+Discovery, presence and connection controls
+Done
+Emoji
+Encrypted data
+Encrypted messaging is not set up with this person yet. Scan their QR code again.
+Encrypted messaging not set up yet
+Encryption
+End-to-end encrypted
+Enter 4–6 digits
+Enter a 4–6 digit PIN
+Enter a PIN
+Enter the PIN again
+Enter the passcode again
+Enter your MEYA ID
+Enter your name
+Enter your passcode to access your space.
+Enter your passcode.
+Extra large
+Faster to send, uses less space
+File or document
+Finished
+Follows your phone setting
+Forever
+From your connections
+Get Started
+Groups
+HD photo quality
+Have your existing MEYA device nearby? You will eventually be able to verify and transfer your identity securely using QR pairing.
+High contrast
+Import QR image
+Incorrect passcode. Try again.
+Invitations
+Just now
+Keep
+Keep media for {0}?
+Keep media on this phone
+Keeping media
+Language
+Large
+Largest
+Learn how MEYA protects private conversations.
+Legal & About
+Length
+Let people know when you are typing.
+Let people know when you have read their messages.
+Let someone you meet connect with you
+Let your connections see when you are online.
+Light
+Limited retention
+Log in
+MEYA ID
+MEYA also follows your phone's own text size, high contrast and animation settings.
+MEYA contact
+MEYA encryption could not start: {0}
+MEYA is being designed around privacy, limited data retention and secure communication.
+MEYA is designed to avoid retaining unnecessary personal information.
+MEYA is licensed under AGPL-3.0-only
+MEYA messaging is not configured.
+MEYA needs microphone access to record a voice message. You can allow it in your phone settings.
+MEYA on this phone
+MEYA relay connection error: {0}
+MEYA status is not configured.
+MEYA will only offer calls once they are end-to-end encrypted and allowed by the telecom rules where you live. Encrypted messages come first.
+Made when you play a video or open a file in another app
+Manage people you have blocked.
+Measuring…
+Media arrives with each message and is stored encrypted. MEYA never saves your photos to the phone's gallery unless you choose Save.
+Message
+Message not sent: {0}
+Messages & screen
+My QR
+My QR code
+My status
+Name
+Never
+New Chat
+New PIN
+New status
+Next month
+Next: {0}
+No MEYA QR code was found in that image.
+No account is signed in on this phone.
+No app on this phone can open this file. Use Save to keep a copy.
+No blocked people
+No browser could open the website.
+No calls planned on this day.
+No conversations yet
+No matching contacts
+No messages with {0} yet.
+No messages yet
+No pending invitations
+No people yet
+No recent statuses.
+No trusted contacts yet
+Nobody to invite yet. Encrypted messaging must be set up with a contact before you can plan a call.
+Not available
+Not connected to the MEYA relay. Requests cannot arrive yet.
+Not created yet
+Not sent
+Not sent: {0}
+Note (optional)
+Notify you when important security events occur.
+Online status
+Only me
+Open
+Open file
+Open-source licences
+PIN, app lock and trusted devices
+PINs do not match
+Passcode
+Passcodes do not match
+Pause
+People
+People you block will appear here.
+People you connect with on MEYA will appear here.
+Phone language
+Photo
+Photo from gallery
+Photo to send
+Photo, name, MEYA ID and About
+Photo. Opens full screen
+Photos, videos and files
+Photos, videos and files can be up to {0} MB. Videos can be up to 3 minutes.
+Photos, videos and files older than this are deleted from this phone now and from now on. Messages stay; their media will show as no longer on this phone.
+Plan and invite
+Plan calls with your people
+Planned calls are shared end-to-end encrypted with the other person. When it is time, tap Join call to start the call. You can also call any time from a chat.
+Play
+Play video
+Play voice message
+Please choose a MEYA ID
+Please confirm your passcode
+Please create a passcode
+Please enter your MEYA ID
+Please enter your name
+Post status
+Posted {0}
+Posted {0} · disappears {1}
+Posting replaces your current status, including its photo or video.
+Preview: messages and menus will look like this.
+Previous month
+Privacy
+Privacy policy
+Privacy, terms, accessibility and licences
+Private by design
+Private connections.\nSimply yours.
+Private family groups are planned. Group encryption is still being designed, so groups are not available yet.
+Profile
+Profile photo visibility
+Profile saved.
+Protect MEYA with a PIN
+Protect your MEYA account
+Protect your MEYA app and control how your private information is accessed.
+Read receipts
+Ready to receive connection requests
+Receiving…
+Record a video
+Record a voice message
+Recording {0} / {1}
+Reduce motion
+Reduce the ability to capture MEYA screens.
+Remove
+Remove contact
+Remove my status
+Remove photo
+Remove this person from your People list
+Remove {0}?
+Require a security check when opening MEYA.
+Review and manage your MEYA connections.
+Review devices associated with your MEYA account.
+Review devices that are authorized to access your MEYA account.
+Save
+Save PIN
+Save a copy
+Save a copy to this phone
+Save profile
+Save to device
+Saved. This copy is not encrypted by MEYA.
+Scan QR code
+Scan a MEYA QR code
+Scan another MEYA QR code, or tap the photo icon above to import a QR image.
+Scan their MEYA QR code in person
+Scan their MEYA QR code to start a secure connection.
+Scan their QR code
+Schedule a call
+Screenshot protection
+Search trusted contacts
+Secure keys
+Security
+Security PIN
+Security PIN saved.
+Security notifications
+Selected people
+Selected people ({0})
+Selected photo
+Send
+Send file
+Send photo
+Send video
+Send voice message
+Sending
+Sending…
+Sensitive information should be protected both when stored and when transmitted.
+Sent
+Set up encrypted messaging with {0}
+Settings
+Share text, a photo or a video
+Sharper photos, larger files
+Show this QR code to a person you trust to begin MEYA device pairing.
+Sign in to your MEYA space using your existing identity.
+Sign out
+Sign out of MEYA?
+Small
+Standard photo quality
+Status
+Status posted, but not yet sent to {0}.
+Status posted.
+Statuses are end-to-end encrypted and sent only to the people you choose.
+Stop voice message
+Storage
+Storage & Media
+Storage use, photo quality and keeping media
+Stored encrypted
+Stronger colours and outlines for easier reading
+System default
+Take a photo
+Temporary copies
+Temporary copies cleared.
+Terms of use
+Text size
+Text, a photo or a video for your connections
+Text, photo or video for your connections
+That QR code is not a valid MEYA code.
+The call is in your calendar, but the invitation was not sent: {0}
+The file is empty.
+The voice message is empty.
+Theme
+Theme, language, text size and accessibility
+They will be removed from your People list on this device. To connect again, you will need to scan their QR code in person.
+This MEYA ID is already used on this device
+This MEYA ID is not available on this device. Use your trusted device to connect the account.
+This QR code starts a connection request. The other person must accept before you become MEYA contacts.
+This QR code was made by an older version of MEYA. Ask the other person to update MEYA and show their QR code again.
+This contact is trusted. Secure conversation setup is not available yet, so MEYA has not created a conversation or sent a message.
+This device
+This device has no MEYA device ID.
+This file could not be read.
+This file has not fully arrived yet.
+This file is too large. MEYA can send files up to {0} MB.
+This permanently deletes your messages, contacts, photos, videos, files, status, calendar and encryption keys from this phone. It cannot be undone. People you talked to keep what they already received.
+This phone
+This photo or video is too large for a status.
+This text is available in English only for now.
+This video has not fully arrived yet.
+This voice message is too long. Keep it under {0} minutes.
+Time
+Title (optional)
+To confirm, type your MEYA ID: {0}
+Trusted connection
+Trusted contact
+Trusted devices
+Try again
+Try another name or identity ID.
+Turn off animations and page transitions
+Typing indicator
+Unable to access your MEYA account. Please try again.
+Unlock
+Update status
+Use 4–6 digits
+Use at least 3 characters
+Use letters, numbers, dots, dashes or underscores
+Use numbers only
+Use your device biometrics to unlock MEYA.
+Use your trusted MEYA device to securely connect this device. QR pairing will be added to this flow with MEYA identity verification.
+Version {0}
+Video
+Video call
+Video call planned
+Video calls are not available yet
+Video from gallery
+Voice
+Voice call
+Voice call planned
+Voice calls are not available yet
+Voice message
+Voice message not sent: {0}
+Voice message too short. Tap the microphone, speak, then tap Send.
+Voice message · {0}
+Wants to connect with you on MEYA.
+Website
+Welcome back
+What would you like to share?
+When you connect with someone, they will appear here.
+Who can see it
+Who can see it?
+With
+With {0} · {1}
+You
+You cannot send a connection request to this device.
+You connected before encryption was added. Meet in person: {0} opens My QR, and you scan it. It takes a few seconds and your chat history stays.
+You have no MEYA contacts yet. Scan someone's QR code to add them.
+You have no connections yet.
+You planned this call
+You: 
+Your MEYA ID identifies you inside your private MEYA space.
+Your MEYA ID identifies your private identity. It is not a password.
+Your MEYA QR code
+Your MEYA account is not available on this device.
+Your MEYA account lives only on this phone. There is no password reset and no copy on a server, so keep your passcode safe. Moving to a new phone is not available yet.
+Your MEYA connections
+Your MEYA device identity is not available.
+Your MEYA device identity is not available. Restart MEYA and try again.
+Your MEYA identity is not ready yet.
+Your PIN can be used as an additional layer of protection for the app.
+Your Space
+Your account could not be found on this device.
+Your account, messages and keys stay on this phone. You will need your passcode to sign in again. While signed out, new messages wait on the relay.
+Your contacts could not be loaded. Please try again.
+Your conversations
+Your devices
+Your encryption key
+Your name
+Your name, photo and About are shared, end-to-end encrypted, with your MEYA connections only.
+Your passcode is stored securely on this device.
+Your people
+Your people. Your conversations. Your privacy.
+Your privacy
+Your private groups
+Your request has been sent. This person must accept it before they become a MEYA contact.
+Your security
+Your status
+Your trusted contacts
+{0} B
+{0} GB
+{0} KB
+{0} MB
+{0} copied.
+{0} d ago
+{0} h
+{0} h ago
+{0} h {1} min
+{0} is now a MEYA contact.
+{0} min
+{0} min ago
+{0} planned this call
+{0} statuses from your connections
+{0} upcoming calls
+{0} wants to connect with you on MEYA.
+{0} was removed.
+{0} will be told in an encrypted message.
+{0}, calls planned
+© 2026 {0} · AGPL-3.0-only
+🎤 Voice message
+🎬 Video
+📅 Call cancelled
+📅 Call planned
+📷 Photo
+Sounds
+Call ringtone and notification sound
+Call ringtone
+Notification sound
+Plays when someone calls you.
+Plays when a new message arrives.
+Sounds by BigSoundBank, free to use (CC0 public domain).
+Stop
+Calling…
+Connecting…
+Call ended
+Declined
+Busy
+No answer
+Call failed
+Mute
+Unmute
+Speaker
+Camera off
+Camera on
+Switch camera
+End call
+Join call
+Missed call from {0}
+You are already in a call.
+Add to favourites
+Also block {0}
+Archive
+Archived
+Back online.
+Block
+Block {0}?
+Blocked people cannot message or call you. They are not told. You can unblock them in Privacy.
+Chat options
+Close search
+Copied.
+Copy text
+Delete
+Delete for everyone
+Delete for me
+Delete for everyone removes it from {0}'s phone too.
+Delete message?
+Delivered
+Details (optional)
+Edit
+Edited
+Editing message
+Favourites
+File
+Forward
+Forward to
+Forwarded
+Forwarded to {0}.
+Harassment or bullying
+Impersonation
+Include their last messages
+MEYA cannot read your conversations. A report contains only what you choose below, and you send it from your own email app.
+MEYA needs the camera and microphone to record. Allow them in the phone settings.
+Mark as read
+Mark as unread
+Marked as unread
+Message options
+More options
+Mute notifications
+Muted
+No archived chats
+No camera found on this device.
+No email app was found to send the report.
+No favourites yet. Long-press a message and choose Add to favourites.
+No messages found.
+Not blocked: {0}
+Not changed: {0}
+Not deleted: {0}
+Not forwarded: {0}
+Not pinned: {0}
+Not saved: {0}
+Not sent. Tap to try again
+Pin
+Pinned
+Pinned message: {0}
+Pinned {0} of {1}
+Prepare report
+React with {0}
+Reaction not sent: {0}
+Read
+Remove from favourites
+Reply
+Reply to {0}: {1}
+Replying to {0}
+Report
+Report {0}
+Save edit
+Search
+Search messages
+Search this chat
+Search words in all your chats. Searching happens on this phone only.
+Send again
+Sexual content
+Show chat options
+Show message options
+Something else
+Spam or scam
+Start recording
+Still not sent: {0}
+Stop recording
+That message is no longer in this chat.
+The camera could not start: {0}
+This message cannot be forwarded.
+This message was deleted
+This removes the message from this phone only.
+Threats or violence
+Today
+Unarchive
+Unblock
+Unpin
+Up to 10 messages {0} sent you. Photos and files are not included.
+Up to 3 minutes
+Video to send
+Video, {0}. Plays full screen
+Waiting to send
+What happened?
+Yesterday
+You are offline. Messages will be sent when MEYA reconnects.
+You can only delete your own messages for everyone.
+You can only edit your own messages.
+You deleted this message
+Your email app has the report ready. Check it, then send it.
+you
+yourself
+{0} is unblocked.
+{0} reacted {1}. Tap to change your reaction
+{0} unread
+{0} · {1} left
+Let people know when you have read their messages. When off, you will not see when they have read yours either.
+The safety number could not be shown: {0}
+Verified
+The numbers do not match
+Your conversation with {0} is end-to-end encrypted with the right keys.
+That is not a MEYA safety number code.
+Do not trust this conversation yet. Make sure you scanned {0}'s code for this chat, then try again in person.
+OK
+Verify encryption
+You have verified {0}
+Safety number QR code
+Safety number: {0}
+To check that nobody is in the middle, meet {0} or call them, and compare these numbers, or scan the code on their phone. If they match, your messages and calls are encrypted with the right keys.
+Scan their code
+Clear verification
+Mark as verified
+Compare safety numbers with {0}
+Verified · end-to-end encrypted
