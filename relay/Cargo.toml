@@ -1,0 +1,23 @@
+[package]
+name = "meya_relay"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "meya-relay"
+path = "src/main.rs"
+
+[dependencies]
+axum = { version = "0.8", features = ["ws"] }
+futures-util = "0.3"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+tokio-tungstenite = "0.29"
+rusqlite = { version = "0.37", features = ["bundled"] }
+base64 = "0.23.1"
+ed25519-dalek = "2.2.0"
+reqwest = { version = "0.13.5", default-features = false, features = ["json", "rustls"] }

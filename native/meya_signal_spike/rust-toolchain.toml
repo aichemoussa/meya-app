@@ -1,0 +1,3 @@
+[toolchain]
+# Same toolchain as native/meya_crypto, and libsignal v0.105.0's minimum.
+channel = "1.93.1"

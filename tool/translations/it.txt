@@ -1,0 +1,623 @@
+1 mese
+1 nuovo stato dai tuoi contatti
+1 chiamata in programma
+1 anno
+24 ore
+3 mesi
+7 giorni
+Qualche parola su di te
+Uno spazio semplice e privato per le persone che contano per te.
+Info
+Informazioni su MEYA
+Accetta
+Accessibilità
+Account
+Dettagli dell’account, disconnessione ed eliminazione
+Numero account
+Sicurezza dell’account
+Aggiungi una didascalia
+Aggiungi una persona
+Aggiungi una foto o un video
+Aggiungi una foto profilo
+Aggiungi uno stato
+Aggiungi persona
+Aggiungi foto
+Aggiungi del testo, un’emoji, una foto o un video.
+Aggiungi qualcuno di nuovo
+Aggiungi una persona di fiducia scansionando il suo codice QR MEYA. Comparirà qui.
+La gestione di altri dispositivi arriverà quando saranno disponibili gli account MEYA e le sessioni lato server.
+Tutti i miei contatti
+Consenti agli altri di inviarti richieste di connessione.
+Consenti ai tuoi contatti di vedere la tua foto profilo.
+Hai già un account MEYA? Accedi
+Blocco app
+Protezione app
+Aspetto
+Aspetto e accessibilità
+Allega una foto, un video, un file o una chiamata
+Sblocco biometrico
+Persone bloccate
+Calendario
+Chiamata annullata
+Chiamata programmata. {0} è stato invitato.
+Chiamata con {0}
+Annulla
+Annulla chiamata
+Annullare questa chiamata?
+Annullata
+Annullata qui, ma {0} non ha ancora potuto essere avvisato: {1}
+Cambia foto
+Cambia foto profilo
+Cambia PIN di sicurezza
+Chat
+Verifica del tuo ID MEYA…
+Scegli una persona
+Scegli un orario futuro.
+Scegli dalla galleria
+Scegli qualcuno con cui sei già connesso su MEYA.
+Scegli con chi è la chiamata.
+Scegli il tuo ID MEYA
+Cancella ricerca
+Cancella copie temporanee
+Conferma PIN
+Conferma codice di accesso
+Conferma il tuo PIN
+Collega un dispositivo esistente
+Connettiti con un codice QR
+Connettiti con qualcuno nelle vicinanze
+Connettiti con qualcuno tramite il suo codice QR MEYA. Non sarà considerato attendibile senza la procedura di invito.
+Connettiti con una persona di fiducia
+Connessi di persona con un codice QR
+Connessione al relay MEYA…
+Richiesta di connessione inviata
+Richieste di connessione
+Richieste di connessione da persone di fiducia
+Le richieste di connessione da persone di fiducia compariranno qui.
+Contatti
+Continua
+Decidi come le persone del tuo spazio privato MEYA possono trovarti e interagire con te.
+Conversazioni
+Copia numero account
+Impossibile accettare questa richiesta: {0}
+Impossibile cambiare la foto: {0}
+Impossibile rifiutare questa richiesta: {0}
+Impossibile aprire
+Impossibile aprire il file: {0}
+Impossibile riprodurre questo messaggio vocale: {0}
+Impossibile leggere l’immagine QR: {0}
+Impossibile rimuovere {0}: {1}
+Impossibile salvare il file: {0}
+Impossibile inviare la richiesta di connessione: {0}
+Impossibile avviare la registrazione: {0}
+Crea un nuovo account MEYA
+Crea un codice di accesso che proteggerà l’accesso al tuo account MEYA.
+Crea account
+Crea o modifica il PIN che protegge MEYA.
+Crea il tuo profilo MEYA
+Crea il tuo codice di accesso
+Creato il
+Le chiavi crittografiche devono essere protette con meccanismi di sicurezza adeguati della piattaforma.
+Attuale
+Dispositivo attuale
+Scuro
+Data
+Rifiuta
+Rifiutare questa chiamata?
+Predefinito
+Elimina l’account da questo telefono
+Elimina tutto
+Elimina i contenuti meno recenti
+Elimina registrazione
+Eliminare il tuo account MEYA da questo telefono?
+Eliminazione del tuo account da questo telefono…
+Sviluppato da {0}, {1}.
+ID dispositivo
+Scompare dopo
+Reperibilità, presenza e controllo delle connessioni
+Fine
+Emoji
+Dati crittografati
+La messaggistica crittografata non è ancora configurata con questa persona. Scansiona di nuovo il suo codice QR.
+Messaggistica crittografata non ancora configurata
+Crittografia
+Crittografia end-to-end
+Inserisci da 4 a 6 cifre
+Inserisci un PIN di 4–6 cifre
+Inserisci un PIN
+Inserisci di nuovo il PIN
+Inserisci di nuovo il codice di accesso
+Inserisci il tuo ID MEYA
+Inserisci il tuo nome
+Inserisci il codice di accesso per entrare nel tuo spazio.
+Inserisci il codice di accesso.
+Molto grande
+Più veloce da inviare, occupa meno spazio
+File o documento
+Conclusa
+Segue l’impostazione del telefono
+Per sempre
+Dai tuoi contatti
+Inizia
+Gruppi
+Qualità foto HD
+Hai vicino il tuo dispositivo MEYA attuale? Presto potrai verificare e trasferire la tua identità in sicurezza tramite l’abbinamento QR.
+Contrasto elevato
+Importa immagine QR
+Codice di accesso errato. Riprova.
+Inviti
+Proprio ora
+Mantieni
+Conservare i contenuti per {0}?
+Conserva i contenuti su questo telefono
+Conservazione dei contenuti
+Lingua
+Grande
+Massimo
+Scopri come MEYA protegge le conversazioni private.
+Note legali e informazioni
+Durata
+Mostra agli altri quando stai scrivendo.
+Mostra agli altri quando hai letto i loro messaggi.
+Permetti a chi incontri di connettersi con te
+Consenti ai tuoi contatti di vedere quando sei online.
+Chiaro
+Conservazione limitata
+Accedi
+ID MEYA
+MEYA segue anche le impostazioni del telefono per dimensione del testo, contrasto elevato e animazioni.
+Contatto MEYA
+Impossibile avviare la crittografia di MEYA: {0}
+MEYA è progettato attorno alla privacy, alla conservazione limitata dei dati e alla comunicazione sicura.
+MEYA è progettato per evitare di conservare informazioni personali non necessarie.
+MEYA è distribuito con licenza AGPL-3.0-only
+La messaggistica MEYA non è configurata.
+MEYA ha bisogno di accedere al microfono per registrare un messaggio vocale. Puoi consentirlo nelle impostazioni del telefono.
+MEYA su questo telefono
+Errore di connessione al relay MEYA: {0}
+Lo stato MEYA non è configurato.
+MEYA offrirà le chiamate solo quando saranno crittografate end-to-end e consentite dalle norme sulle telecomunicazioni del tuo Paese. Prima vengono i messaggi crittografati.
+Create quando riproduci un video o apri un file in un’altra app
+Gestisci le persone che hai bloccato.
+Calcolo in corso…
+I contenuti arrivano con ogni messaggio e vengono salvati crittografati. MEYA non salva mai le tue foto nella galleria del telefono, a meno che tu non scelga Salva.
+Messaggio
+Messaggio non inviato: {0}
+Messaggi e schermo
+Il mio QR
+Il mio codice QR
+Il mio stato
+Nome
+Mai
+Nuova chat
+Nuovo PIN
+Nuovo stato
+Mese successivo
+Prossima: {0}
+In questa immagine non è stato trovato alcun codice QR MEYA.
+Nessun account ha effettuato l’accesso su questo telefono.
+Nessuna app su questo telefono può aprire questo file. Usa Salva per conservarne una copia.
+Nessuna persona bloccata
+Nessun browser è riuscito ad aprire il sito web.
+Nessuna chiamata in programma in questo giorno.
+Ancora nessuna conversazione
+Nessun contatto corrispondente
+Ancora nessun messaggio con {0}.
+Ancora nessun messaggio
+Nessun invito in sospeso
+Ancora nessuna persona
+Nessuno stato recente.
+Ancora nessun contatto attendibile
+Ancora nessuno da invitare. La messaggistica crittografata deve essere configurata con un contatto prima di programmare una chiamata.
+Non disponibile
+Non connesso al relay MEYA. Le richieste non possono ancora arrivare.
+Non ancora creato
+Non inviato
+Non inviato: {0}
+Nota (facoltativa)
+Avvisarti quando si verificano eventi di sicurezza importanti.
+Stato online
+Solo io
+Apri
+Apri file
+Licenze open source
+PIN, blocco app e dispositivi attendibili
+I PIN non corrispondono
+Codice di accesso
+I codici di accesso non corrispondono
+Pausa
+Persone
+Le persone che blocchi compariranno qui.
+Le persone con cui ti connetti su MEYA compariranno qui.
+Lingua del telefono
+Foto
+Foto dalla galleria
+Foto da inviare
+Foto, nome, ID MEYA e Info
+Foto. Si apre a schermo intero
+Foto, video e file
+Foto, video e file possono arrivare a {0} MB. I video possono durare fino a 3 minuti.
+Le foto, i video e i file più vecchi vengono eliminati da questo telefono ora e d’ora in poi. I messaggi restano; i loro contenuti risulteranno non più presenti su questo telefono.
+Programma e invita
+Programma chiamate con le persone a cui tieni
+Le chiamate pianificate sono condivise con l’altra persona con crittografia end-to-end. Quando è il momento, tocca Partecipa alla chiamata per avviarla. Puoi anche chiamare in qualsiasi momento da una chat.
+Riproduci
+Riproduci video
+Riproduci messaggio vocale
+Scegli un ID MEYA
+Conferma il codice di accesso
+Crea un codice di accesso
+Inserisci il tuo ID MEYA
+Inserisci il tuo nome
+Pubblica stato
+Pubblicato {0}
+Pubblicato {0} · scompare il {1}
+La pubblicazione sostituisce il tuo stato attuale, inclusi foto o video.
+Anteprima: messaggi e menu appariranno così.
+Mese precedente
+Privacy
+Informativa sulla privacy
+Privacy, termini, accessibilità e licenze
+Privato fin dalla progettazione
+Connessioni private.\nSemplicemente tue.
+I gruppi familiari privati sono in programma. La crittografia dei gruppi è ancora in fase di progettazione, quindi i gruppi non sono ancora disponibili.
+Profilo
+Visibilità della foto profilo
+Profilo salvato.
+Proteggi MEYA con un PIN
+Proteggi il tuo account MEYA
+Proteggi l’app MEYA e decidi come si accede alle tue informazioni private.
+Conferme di lettura
+Pronto a ricevere richieste di connessione
+Ricezione…
+Registra un video
+Registra un messaggio vocale
+Registrazione {0} / {1}
+Riduci movimento
+Limita la possibilità di catturare le schermate di MEYA.
+Rimuovi
+Rimuovi contatto
+Rimuovi il mio stato
+Rimuovi foto
+Rimuovi questa persona dal tuo elenco Persone
+Rimuovere {0}?
+Richiedi una verifica di sicurezza all’apertura di MEYA.
+Controlla e gestisci le tue connessioni MEYA.
+Controlla i dispositivi associati al tuo account MEYA.
+Controlla i dispositivi autorizzati ad accedere al tuo account MEYA.
+Salva
+Salva PIN
+Salva una copia
+Salva una copia su questo telefono
+Salva profilo
+Salva sul dispositivo
+Salvato. Questa copia non è crittografata da MEYA.
+Scansiona codice QR
+Scansiona un codice QR MEYA
+Scansiona un altro codice QR MEYA oppure tocca l’icona della foto in alto per importare un’immagine QR.
+Scansiona di persona il suo codice QR MEYA
+Scansiona il suo codice QR MEYA per avviare una connessione sicura.
+Scansiona il suo codice QR
+Programma una chiamata
+Protezione dagli screenshot
+Cerca contatti attendibili
+Chiavi sicure
+Sicurezza
+PIN di sicurezza
+PIN di sicurezza salvato.
+Notifiche di sicurezza
+Persone selezionate
+Persone selezionate ({0})
+Foto selezionata
+Invia
+Invia file
+Invia foto
+Invia video
+Invia messaggio vocale
+Invio
+Invio in corso…
+Le informazioni sensibili devono essere protette sia quando sono salvate sia quando vengono trasmesse.
+Inviato
+Configura la messaggistica crittografata con {0}
+Impostazioni
+Condividi del testo, una foto o un video
+Foto più nitide, file più grandi
+Mostra questo codice QR a una persona di fiducia per avviare l’abbinamento MEYA.
+Accedi al tuo spazio MEYA con la tua identità esistente.
+Esci
+Uscire da MEYA?
+Piccolo
+Qualità foto standard
+Stato
+Stato pubblicato, ma non ancora inviato a {0}.
+Stato pubblicato.
+Gli stati sono crittografati end-to-end e inviati solo alle persone che scegli.
+Interrompi messaggio vocale
+Spazio di archiviazione
+Archiviazione e contenuti
+Uso dello spazio, qualità delle foto e conservazione dei contenuti
+Salvati crittografati
+Colori e contorni più marcati per una lettura più facile
+Predefinito di sistema
+Scatta una foto
+Copie temporanee
+Copie temporanee cancellate.
+Termini di utilizzo
+Dimensione del testo
+Testo, una foto o un video per i tuoi contatti
+Testo, foto o video per i tuoi contatti
+Questo codice QR non è un codice MEYA valido.
+La chiamata è nel tuo calendario, ma l’invito non è stato inviato: {0}
+Il file è vuoto.
+Il messaggio vocale è vuoto.
+Tema
+Tema, lingua, dimensione del testo e accessibilità
+Verrà rimosso dal tuo elenco Persone su questo dispositivo. Per riconnetterti dovrai scansionare il suo codice QR di persona.
+Questo ID MEYA è già in uso su questo dispositivo
+Questo ID MEYA non è disponibile su questo dispositivo. Usa il tuo dispositivo attendibile per collegare l’account.
+Questo codice QR avvia una richiesta di connessione. L’altra persona deve accettare prima che diventiate contatti MEYA.
+Questo codice QR è stato creato da una versione precedente di MEYA. Chiedi all’altra persona di aggiornare MEYA e di mostrare di nuovo il suo codice QR.
+Questo contatto è attendibile. La configurazione delle conversazioni sicure non è ancora disponibile, quindi MEYA non ha creato una conversazione né inviato un messaggio.
+Questo dispositivo
+Questo dispositivo non ha un ID dispositivo MEYA.
+Impossibile leggere questo file.
+Questo file non è ancora arrivato del tutto.
+Questo file è troppo grande. MEYA può inviare file fino a {0} MB.
+Questa operazione elimina in modo permanente messaggi, contatti, foto, video, file, stato, calendario e chiavi di crittografia da questo telefono. Non può essere annullata. Le persone con cui hai parlato conservano ciò che hanno già ricevuto.
+Questo telefono
+Questa foto o questo video è troppo grande per uno stato.
+Per ora questo testo è disponibile solo in inglese.
+Questo video non è ancora arrivato del tutto.
+Questo messaggio vocale è troppo lungo. Deve durare meno di {0} minuti.
+Ora
+Titolo (facoltativo)
+Per confermare, digita il tuo ID MEYA: {0}
+Connessione attendibile
+Contatto attendibile
+Dispositivi attendibili
+Riprova
+Prova con un altro nome o ID.
+Disattiva animazioni e transizioni di pagina
+Indicatore di scrittura
+Impossibile accedere al tuo account MEYA. Riprova.
+Sblocca
+Aggiorna stato
+Usa da 4 a 6 cifre
+Usa almeno 3 caratteri
+Usa lettere, numeri, punti, trattini o trattini bassi
+Usa solo numeri
+Usa la biometria del dispositivo per sbloccare MEYA.
+Usa il tuo dispositivo MEYA attendibile per collegare questo dispositivo in sicurezza. L’abbinamento QR con verifica dell’identità MEYA verrà aggiunto a questa procedura.
+Versione {0}
+Video
+Videochiamata
+Videochiamata programmata
+Le videochiamate non sono ancora disponibili
+Video dalla galleria
+Voce
+Chiamata vocale
+Chiamata vocale programmata
+Le chiamate vocali non sono ancora disponibili
+Messaggio vocale
+Messaggio vocale non inviato: {0}
+Messaggio vocale troppo breve. Tocca il microfono, parla, poi tocca Invia.
+Messaggio vocale · {0}
+Vuole connettersi con te su MEYA.
+Sito web
+Bentornato
+Cosa vuoi condividere?
+Quando ti connetti con qualcuno, comparirà qui.
+Chi può vederlo
+Chi può vederlo?
+Con
+Con {0} · {1}
+Tu
+Non puoi inviare una richiesta di connessione a questo dispositivo.
+Vi siete connessi prima che venisse aggiunta la crittografia. Incontratevi di persona: {0} apre Il mio QR e tu lo scansioni. Bastano pochi secondi e la cronologia della chat resta.
+Non hai ancora contatti MEYA. Scansiona il codice QR di qualcuno per aggiungerlo.
+Non hai ancora contatti.
+Hai programmato tu questa chiamata
+Tu:
+Il tuo ID MEYA ti identifica nel tuo spazio privato MEYA.
+Il tuo ID MEYA identifica la tua identità privata. Non è una password.
+Il tuo codice QR MEYA
+Il tuo account MEYA non è disponibile su questo dispositivo.
+Il tuo account MEYA esiste solo su questo telefono. Non c’è reimpostazione della password né copia su un server, quindi custodisci bene il tuo codice di accesso. Il passaggio a un nuovo telefono non è ancora disponibile.
+Le tue connessioni MEYA
+L’identità del tuo dispositivo MEYA non è disponibile.
+L’identità del tuo dispositivo MEYA non è disponibile. Riavvia MEYA e riprova.
+La tua identità MEYA non è ancora pronta.
+Il tuo PIN può servire come ulteriore livello di protezione per l’app.
+Il tuo spazio
+Il tuo account non è stato trovato su questo dispositivo.
+Account, messaggi e chiavi restano su questo telefono. Ti servirà il codice di accesso per accedere di nuovo. Nel frattempo i nuovi messaggi attendono sul relay.
+Impossibile caricare i tuoi contatti. Riprova.
+Le tue conversazioni
+I tuoi dispositivi
+La tua chiave di crittografia
+Il tuo nome
+Nome, foto e Info vengono condivisi, con crittografia end-to-end, solo con i tuoi contatti MEYA.
+Il tuo codice di accesso è salvato in modo sicuro su questo dispositivo.
+Le tue persone
+Le tue persone. Le tue conversazioni. La tua privacy.
+La tua privacy
+I tuoi gruppi privati
+La tua richiesta è stata inviata. Questa persona deve accettarla prima di diventare un contatto MEYA.
+La tua sicurezza
+Il tuo stato
+I tuoi contatti attendibili
+{0} B
+{0} GB
+{0} KB
+{0} MB
+{0} copiato.
+{0} g fa
+{0} h
+{0} h fa
+{0} h {1} min
+{0} ora è un contatto MEYA.
+{0} min
+{0} min fa
+{0} ha programmato questa chiamata
+{0} stati dai tuoi contatti
+{0} chiamate in programma
+{0} vuole connettersi con te su MEYA.
+{0} è stato rimosso.
+{0} sarà avvisato con un messaggio crittografato.
+{0}, chiamate in programma
+© 2026 {0} · AGPL-3.0-only
+🎤 Messaggio vocale
+🎬 Video
+📅 Chiamata annullata
+📅 Chiamata programmata
+📷 Foto
+Suoni
+Suoneria e suono di notifica
+Suoneria chiamate
+Suono di notifica
+Suona quando qualcuno ti chiama.
+Suona quando arriva un nuovo messaggio.
+Suoni di BigSoundBank, liberi da usare (pubblico dominio CC0).
+Interrompi
+Chiamata in corso…
+Connessione…
+Chiamata terminata
+Rifiutata
+Occupato
+Nessuna risposta
+Chiamata non riuscita
+Disattiva microfono
+Riattiva microfono
+Altoparlante
+Disattiva fotocamera
+Attiva fotocamera
+Cambia fotocamera
+Termina chiamata
+Partecipa alla chiamata
+Chiamata persa da {0}
+Sei già in una chiamata.
+Aggiungi ai preferiti
+Blocca anche {0}
+Archivia
+Archiviate
+Di nuovo online.
+Blocca
+Bloccare {0}?
+Le persone bloccate non possono scriverti né chiamarti. Non vengono avvisate. Puoi sbloccarle in Privacy.
+Opzioni chat
+Chiudi ricerca
+Copiato.
+Copia testo
+Elimina
+Elimina per tutti
+Elimina per me
+«Elimina per tutti» la rimuove anche dal telefono di {0}.
+Eliminare il messaggio?
+Consegnato
+Dettagli (facoltativo)
+Modifica
+Modificato
+Modifica del messaggio
+Preferiti
+File
+Inoltra
+Inoltra a
+Inoltrato
+Inoltrato a {0}.
+Molestie o bullismo
+Furto d’identità
+Includi gli ultimi messaggi
+MEYA non può leggere le tue conversazioni. Una segnalazione contiene solo ciò che scegli qui sotto e la invii dalla tua app di posta.
+MEYA ha bisogno di fotocamera e microfono per registrare. Consentili nelle impostazioni del telefono.
+Segna come letto
+Segna come da leggere
+Segnato come da leggere
+Opzioni messaggio
+Altre opzioni
+Silenzia notifiche
+Silenziato
+Nessuna chat archiviata
+Nessuna fotocamera trovata su questo dispositivo.
+Nessuna app di posta trovata per inviare la segnalazione.
+Ancora nessun preferito. Tieni premuto un messaggio e scegli Aggiungi ai preferiti.
+Nessun messaggio trovato.
+Non bloccato: {0}
+Non modificato: {0}
+Non eliminato: {0}
+Non inoltrato: {0}
+Non fissato: {0}
+Non salvato: {0}
+Non inviato. Tocca per riprovare
+Fissa
+Fissato
+Messaggio fissato: {0}
+Fissato {0} di {1}
+Prepara segnalazione
+Reagisci con {0}
+Reazione non inviata: {0}
+Letto
+Rimuovi dai preferiti
+Rispondi
+Risposta a {0}: {1}
+Rispondi a {0}
+Segnala
+Segnala {0}
+Salva modifica
+Cerca
+Cerca messaggi
+Cerca in questa chat
+Cerca parole in tutte le tue chat. La ricerca avviene solo su questo telefono.
+Invia di nuovo
+Contenuti sessuali
+Mostra opzioni chat
+Mostra opzioni messaggio
+Altro
+Spam o truffa
+Avvia registrazione
+Ancora non inviato: {0}
+Interrompi registrazione
+Quel messaggio non è più in questa chat.
+Impossibile avviare la fotocamera: {0}
+Questo messaggio non può essere inoltrato.
+Questo messaggio è stato eliminato
+Il messaggio verrà rimosso solo da questo telefono.
+Minacce o violenza
+Oggi
+Rimuovi dall’archivio
+Sblocca
+Sblocca dall’alto
+Fino a 10 messaggi che {0} ti ha inviato. Foto e file non sono inclusi.
+Fino a 3 minuti
+Video da inviare
+Video, {0}. Riproduzione a schermo intero
+In attesa di invio
+Cos’è successo?
+Ieri
+Sei offline. I messaggi verranno inviati quando MEYA si ricollega.
+Puoi eliminare per tutti solo i tuoi messaggi.
+Puoi modificare solo i tuoi messaggi.
+Hai eliminato questo messaggio
+La tua app di posta ha preparato la segnalazione. Controllala e inviala.
+te
+te stesso
+{0} è stato sbloccato.
+{0} hanno reagito con {1}. Tocca per cambiare la tua reazione
+{0} da leggere
+{0} · rimangono {1}
+Fai sapere quando hai letto i messaggi. Se disattivato, non vedrai nemmeno quando hanno letto i tuoi.
+Impossibile mostrare il numero di sicurezza: {0}
+Verificato
+I numeri non corrispondono
+La tua conversazione con {0} è crittografata end-to-end con le chiavi giuste.
+Questo non è un codice del numero di sicurezza MEYA.
+Non fidarti ancora di questa conversazione. Assicurati di aver scansionato il codice di {0} per questa chat, poi riprova di persona.
+OK
+Verifica crittografia
+Hai verificato {0}
+Codice QR del numero di sicurezza
+Numero di sicurezza: {0}
+Per verificare che nessuno sia in mezzo, incontra {0} o chiamalo e confrontate questi numeri, oppure scansiona il codice sul suo telefono. Se corrispondono, messaggi e chiamate sono crittografati con le chiavi giuste.
+Scansiona il suo codice
+Annulla verifica
+Segna come verificato
+Confronta i numeri di sicurezza con {0}
+Verificato · crittografia end-to-end

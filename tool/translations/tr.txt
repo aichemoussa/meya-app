@@ -1,0 +1,623 @@
+1 ay
+Bağlantılarınızdan 1 yeni durum
+1 yaklaşan arama
+1 yıl
+24 saat
+3 ay
+7 gün
+Kendinizden birkaç kelime
+Sizin için önemli insanlar için basit ve özel bir alan.
+Hakkında
+MEYA hakkında
+Kabul et
+Erişilebilirlik
+Hesap
+Hesap bilgileri, oturumu kapatma ve silme
+Hesap numarası
+Hesap güvenliği
+Açıklama ekleyin
+Kişi ekle
+Fotoğraf veya video ekle
+Profil fotoğrafı ekle
+Durum ekle
+Kişi ekle
+Fotoğraf ekle
+Metin, emoji, fotoğraf veya video ekleyin.
+Yeni birini ekle
+Güvendiğiniz birini MEYA QR kodunu tarayarak ekleyin. Burada görünecek.
+Ek cihaz yönetimi, MEYA hesapları ve sunucu tarafı oturumlar hazır olduğunda gelecek.
+Tüm bağlantılarım
+Başkalarının size bağlantı isteği göndermesine izin verin.
+Bağlantılarınızın profil fotoğrafınızı görmesine izin verin.
+Zaten bir MEYA hesabınız var mı? Giriş yapın
+Uygulama kilidi
+Uygulama koruması
+Görünüm
+Görünüm ve Erişilebilirlik
+Fotoğraf, video, dosya veya arama ekle
+Biyometrik kilit açma
+Engellenen kişiler
+Takvim
+Arama iptal edildi
+Arama planlandı. {0} davet edildi.
+{0} ile arama
+İptal
+Aramayı iptal et
+Bu arama iptal edilsin mi?
+İptal edildi
+Burada iptal edildi ancak {0} henüz bilgilendirilemedi: {1}
+Fotoğrafı değiştir
+Profil fotoğrafını değiştir
+Güvenlik PIN’ini değiştir
+Sohbetler
+MEYA kimliğiniz kontrol ediliyor…
+Bir kişi seçin
+Gelecekte bir zaman seçin.
+Galeriden seç
+MEYA’da zaten bağlantı kurduğunuz birini seçin.
+Aramanın kiminle olacağını seçin.
+MEYA kimliğinizi seçin
+Aramayı temizle
+Geçici kopyaları temizle
+PIN’i onayla
+Erişim kodunu onayla
+PIN’inizi onaylayın
+Mevcut bir cihazı bağla
+QR koduyla bağlan
+Yakındaki biriyle bağlan
+Biriyle MEYA QR kodu aracılığıyla bağlantı kurun. Davet süreci olmadan güvenilir olmaz.
+Güvendiğiniz biriyle bağlantı kurun
+QR koduyla yüz yüze bağlandınız
+MEYA aktarıcısına bağlanılıyor…
+Bağlantı isteği gönderildi
+Bağlantı istekleri
+Güvendiğiniz kişilerden bağlantı istekleri
+Güvendiğiniz kişilerden gelen bağlantı istekleri burada görünecek.
+Bağlantılar
+Devam
+Özel MEYA alanınızdaki kişilerin sizi nasıl bulabileceğini ve sizinle nasıl etkileşime geçebileceğini kontrol edin.
+Sohbetler
+Hesap numarasını kopyala
+Bu istek kabul edilemedi: {0}
+Fotoğraf değiştirilemedi: {0}
+Bu istek reddedilemedi: {0}
+Açılamadı
+Dosya açılamadı: {0}
+Bu sesli mesaj oynatılamadı: {0}
+QR görüntüsü okunamadı: {0}
+{0} kaldırılamadı: {1}
+Dosya kaydedilemedi: {0}
+Bağlantı isteği gönderilemedi: {0}
+Kayıt başlatılamadı: {0}
+Yeni bir MEYA hesabı oluştur
+MEYA hesabınıza erişimi koruyacak bir erişim kodu oluşturun.
+Hesap oluştur
+MEYA’yı koruyan PIN’i oluşturun veya değiştirin.
+MEYA profilinizi oluşturun
+Erişim kodunuzu oluşturun
+Oluşturulma
+Şifreleme anahtarları, platformun uygun güvenlik mekanizmalarıyla korunmalıdır.
+Geçerli
+Geçerli cihaz
+Koyu
+Tarih
+Reddet
+Bu arama reddedilsin mi?
+Varsayılan
+Hesabı bu telefondan sil
+Her şeyi sil
+Eski medyayı sil
+Kaydı sil
+MEYA hesabınız bu telefondan silinsin mi?
+Hesabınız bu telefondan siliniyor…
+Geliştiren: {0}, {1}.
+Cihaz kimliği
+Şu sürenin ardından kaybolur
+Keşfedilme, çevrimiçi durum ve bağlantı denetimleri
+Bitti
+Emoji
+Şifrelenmiş veriler
+Bu kişiyle şifreli mesajlaşma henüz kurulmadı. QR kodunu yeniden tarayın.
+Şifreli mesajlaşma henüz kurulmadı
+Şifreleme
+Uçtan uca şifreli
+4–6 rakam girin
+4–6 haneli bir PIN girin
+Bir PIN girin
+PIN’i tekrar girin
+Erişim kodunu tekrar girin
+MEYA kimliğinizi girin
+Adınızı girin
+Alanınıza erişmek için erişim kodunuzu girin.
+Erişim kodunuzu girin.
+Çok büyük
+Daha hızlı gönderilir, daha az yer kaplar
+Dosya veya belge
+Bitti
+Telefon ayarınızı izler
+Süresiz
+Bağlantılarınızdan
+Başlayın
+Gruplar
+HD fotoğraf kalitesi
+Mevcut MEYA cihazınız yakında mı? Yakında QR eşleştirmesiyle kimliğinizi güvenle doğrulayıp aktarabileceksiniz.
+Yüksek kontrast
+QR görüntüsünü içe aktar
+Yanlış erişim kodu. Tekrar deneyin.
+Davetler
+Az önce
+Sakla
+Medya {0} boyunca saklansın mı?
+Medyayı bu telefonda sakla
+Medyayı saklama
+Dil
+Büyük
+En büyük
+MEYA’nın özel sohbetleri nasıl koruduğunu öğrenin.
+Yasal ve Hakkında
+Süre
+Yazarken başkalarına bildirin.
+Mesajlarını okuduğunuzda başkalarına bildirin.
+Tanıştığınız birinin sizinle bağlantı kurmasına izin verin
+Bağlantılarınızın ne zaman çevrimiçi olduğunuzu görmesine izin verin.
+Açık
+Sınırlı saklama
+Giriş yap
+MEYA kimliği
+MEYA ayrıca telefonunuzun metin boyutu, yüksek kontrast ve animasyon ayarlarını da izler.
+MEYA kişisi
+MEYA şifrelemesi başlatılamadı: {0}
+MEYA; gizlilik, sınırlı veri saklama ve güvenli iletişim etrafında tasarlanıyor.
+MEYA, gereksiz kişisel bilgileri saklamayacak şekilde tasarlanmıştır.
+MEYA, AGPL-3.0-only lisansıyla sunulur
+MEYA mesajlaşması yapılandırılmadı.
+MEYA’nın sesli mesaj kaydetmek için mikrofona erişmesi gerekiyor. Bunu telefon ayarlarınızdan verebilirsiniz.
+Bu telefondaki MEYA
+MEYA aktarıcısı bağlantı hatası: {0}
+MEYA durumu yapılandırılmadı.
+MEYA, aramaları yalnızca uçtan uca şifrelendiklerinde ve bulunduğunuz yerdeki telekomünikasyon kurallarınca izin verildiğinde sunacak. Önce şifreli mesajlar.
+Bir video oynattığınızda veya bir dosyayı başka bir uygulamada açtığınızda oluşturulur
+Engellediğiniz kişileri yönetin.
+Hesaplanıyor…
+Medya her mesajla birlikte gelir ve şifrelenmiş olarak saklanır. Kaydet’i seçmediğiniz sürece MEYA fotoğraflarınızı asla telefon galerisine kaydetmez.
+Mesaj
+Mesaj gönderilemedi: {0}
+Mesajlar ve ekran
+QR’ım
+QR kodum
+Durumum
+Ad
+Asla
+Yeni sohbet
+Yeni PIN
+Yeni durum
+Sonraki ay
+Sıradaki: {0}
+Bu görüntüde MEYA QR kodu bulunamadı.
+Bu telefonda oturum açmış bir hesap yok.
+Bu telefondaki hiçbir uygulama bu dosyayı açamıyor. Bir kopya saklamak için Kaydet’i kullanın.
+Engellenen kişi yok
+Web sitesini açabilecek bir tarayıcı bulunamadı.
+Bu gün planlanmış arama yok.
+Henüz sohbet yok
+Eşleşen kişi yok
+{0} ile henüz mesaj yok.
+Henüz mesaj yok
+Bekleyen davet yok
+Henüz kimse yok
+Yakın tarihli durum yok.
+Henüz güvenilir kişi yok
+Henüz davet edilecek kimse yok. Arama planlayabilmek için önce bir kişiyle şifreli mesajlaşma kurulmalıdır.
+Kullanılamıyor
+MEYA aktarıcısına bağlı değil. İstekler henüz ulaşamaz.
+Henüz oluşturulmadı
+Gönderilmedi
+Gönderilmedi: {0}
+Not (isteğe bağlı)
+Önemli güvenlik olayları olduğunda sizi bilgilendirir.
+Çevrimiçi durumu
+Yalnızca ben
+Aç
+Dosyayı aç
+Açık kaynak lisansları
+PIN, uygulama kilidi ve güvenilir cihazlar
+PIN’ler eşleşmiyor
+Erişim kodu
+Erişim kodları eşleşmiyor
+Duraklat
+Kişiler
+Engellediğiniz kişiler burada görünecek.
+MEYA’da bağlantı kurduğunuz kişiler burada görünecek.
+Telefon dili
+Fotoğraf
+Galeriden fotoğraf
+Gönderilecek fotoğraf
+Fotoğraf, ad, MEYA kimliği ve Hakkında
+Fotoğraf. Tam ekran açılır
+Fotoğraflar, videolar ve dosyalar
+Fotoğraflar, videolar ve dosyalar en fazla {0} MB olabilir. Videolar en fazla 3 dakika olabilir.
+Bundan eski fotoğraflar, videolar ve dosyalar şimdi ve bundan sonra bu telefondan silinir. Mesajlar kalır; medyaları artık bu telefonda değil olarak görünür.
+Planla ve davet et
+Sevdiklerinizle aramalar planlayın
+Planlanan aramalar karşı tarafla uçtan uca şifreli olarak paylaşılır. Zamanı geldiğinde aramayı başlatmak için Aramaya katıl'a dokunun. Sohbetten de istediğiniz zaman arayabilirsiniz.
+Oynat
+Videoyu oynat
+Sesli mesajı oynat
+Lütfen bir MEYA kimliği seçin
+Lütfen erişim kodunuzu onaylayın
+Lütfen bir erişim kodu oluşturun
+Lütfen MEYA kimliğinizi girin
+Lütfen adınızı girin
+Durumu paylaş
+{0} paylaşıldı
+{0} paylaşıldı · {1} tarihinde kaybolur
+Paylaşmak, fotoğrafı veya videosu dahil mevcut durumunuzun yerini alır.
+Önizleme: mesajlar ve menüler böyle görünecek.
+Önceki ay
+Gizlilik
+Gizlilik politikası
+Gizlilik, koşullar, erişilebilirlik ve lisanslar
+Tasarımdan gelen gizlilik
+Özel bağlantılar.\nYalnızca sizin.
+Özel aile grupları planlanıyor. Grup şifrelemesi hâlâ tasarlanıyor, bu yüzden gruplar henüz kullanılamıyor.
+Profil
+Profil fotoğrafı görünürlüğü
+Profil kaydedildi.
+MEYA’yı bir PIN ile koruyun
+MEYA hesabınızı koruyun
+MEYA uygulamanızı koruyun ve özel bilgilerinize nasıl erişildiğini kontrol edin.
+Okundu bilgisi
+Bağlantı isteklerini almaya hazır
+Alınıyor…
+Video kaydet
+Sesli mesaj kaydet
+Kaydediliyor {0} / {1}
+Hareketi azalt
+MEYA ekranlarının görüntüsünün alınmasını sınırlar.
+Kaldır
+Kişiyi kaldır
+Durumumu kaldır
+Fotoğrafı kaldır
+Bu kişiyi Kişiler listenizden kaldırın
+{0} kaldırılsın mı?
+MEYA açılırken güvenlik kontrolü iste.
+MEYA bağlantılarınızı inceleyin ve yönetin.
+MEYA hesabınızla ilişkili cihazları inceleyin.
+MEYA hesabınıza erişim yetkisi olan cihazları inceleyin.
+Kaydet
+PIN’i kaydet
+Bir kopya kaydet
+Bu telefona bir kopya kaydet
+Profili kaydet
+Cihaza kaydet
+Kaydedildi. Bu kopya MEYA tarafından şifrelenmemiştir.
+QR kodu tara
+Bir MEYA QR kodu tara
+Başka bir MEYA QR kodu tarayın veya bir QR görüntüsünü içe aktarmak için yukarıdaki fotoğraf simgesine dokunun.
+MEYA QR kodunu yüz yüze tarayın
+Güvenli bir bağlantı başlatmak için MEYA QR kodunu tarayın.
+QR kodunu tara
+Arama planla
+Ekran görüntüsü koruması
+Güvenilir kişilerde ara
+Güvenli anahtarlar
+Güvenlik
+Güvenlik PIN’i
+Güvenlik PIN’i kaydedildi.
+Güvenlik bildirimleri
+Seçilen kişiler
+Seçilen kişiler ({0})
+Seçilen fotoğraf
+Gönder
+Dosya gönder
+Fotoğraf gönder
+Video gönder
+Sesli mesaj gönder
+Gönderme
+Gönderiliyor…
+Hassas bilgiler hem saklanırken hem de aktarılırken korunmalıdır.
+Gönderildi
+{0} ile şifreli mesajlaşmayı kurun
+Ayarlar
+Metin, fotoğraf veya video paylaşın
+Daha net fotoğraflar, daha büyük dosyalar
+MEYA cihaz eşleştirmesini başlatmak için bu QR kodunu güvendiğiniz birine gösterin.
+Mevcut kimliğinizle MEYA alanınıza giriş yapın.
+Oturumu kapat
+MEYA’da oturum kapatılsın mı?
+Küçük
+Standart fotoğraf kalitesi
+Durum
+Durum paylaşıldı ancak {0} kişisine henüz gönderilmedi.
+Durum paylaşıldı.
+Durumlar uçtan uca şifrelidir ve yalnızca seçtiğiniz kişilere gönderilir.
+Sesli mesajı durdur
+Depolama
+Depolama ve Medya
+Depolama kullanımı, fotoğraf kalitesi ve medya saklama
+Şifreli olarak saklanır
+Daha kolay okuma için daha güçlü renkler ve kenarlıklar
+Sistem varsayılanı
+Fotoğraf çek
+Geçici kopyalar
+Geçici kopyalar temizlendi.
+Kullanım koşulları
+Metin boyutu
+Bağlantılarınız için metin, fotoğraf veya video
+Bağlantılarınız için metin, fotoğraf veya video
+Bu QR kodu geçerli bir MEYA kodu değil.
+Arama takviminizde, ancak davet gönderilemedi: {0}
+Dosya boş.
+Sesli mesaj boş.
+Tema
+Tema, dil, metin boyutu ve erişilebilirlik
+Bu cihazdaki Kişiler listenizden kaldırılacak. Yeniden bağlanmak için QR kodunu yüz yüze taramanız gerekecek.
+Bu MEYA kimliği bu cihazda zaten kullanılıyor
+Bu MEYA kimliği bu cihazda kullanılamıyor. Hesabı bağlamak için güvenilir cihazınızı kullanın.
+Bu QR kodu bir bağlantı isteği başlatır. MEYA kişisi olmanız için diğer kişinin kabul etmesi gerekir.
+Bu QR kodu MEYA’nın eski bir sürümüyle oluşturulmuş. Diğer kişiden MEYA’yı güncelleyip QR kodunu yeniden göstermesini isteyin.
+Bu kişi güvenilir. Güvenli sohbet kurulumu henüz kullanılamadığından MEYA bir sohbet oluşturmadı ve mesaj göndermedi.
+Bu cihaz
+Bu cihazın MEYA cihaz kimliği yok.
+Bu dosya okunamadı.
+Bu dosya henüz tam olarak ulaşmadı.
+Bu dosya çok büyük. MEYA en fazla {0} MB’lık dosya gönderebilir.
+Bu işlem; mesajlarınızı, kişilerinizi, fotoğraflarınızı, videolarınızı, dosyalarınızı, durumunuzu, takviminizi ve şifreleme anahtarlarınızı bu telefondan kalıcı olarak siler. Geri alınamaz. Konuştuğunuz kişiler zaten aldıklarını saklar.
+Bu telefon
+Bu fotoğraf veya video bir durum için çok büyük.
+Bu metin şimdilik yalnızca İngilizce olarak mevcut.
+Bu video henüz tam olarak ulaşmadı.
+Bu sesli mesaj çok uzun. {0} dakikadan kısa tutun.
+Saat
+Başlık (isteğe bağlı)
+Onaylamak için MEYA kimliğinizi yazın: {0}
+Güvenilir bağlantı
+Güvenilir kişi
+Güvenilir cihazlar
+Tekrar dene
+Başka bir ad veya kimlik deneyin.
+Animasyonları ve sayfa geçişlerini kapatın
+Yazıyor göstergesi
+MEYA hesabınıza erişilemiyor. Lütfen tekrar deneyin.
+Kilidi aç
+Durumu güncelle
+4–6 rakam kullanın
+En az 3 karakter kullanın
+Harf, rakam, nokta, tire veya alt çizgi kullanın
+Yalnızca rakam kullanın
+MEYA’nın kilidini açmak için cihazınızın biyometrisini kullanın.
+Bu cihazı güvenle bağlamak için güvenilir MEYA cihazınızı kullanın. MEYA kimlik doğrulamalı QR eşleştirmesi bu akışa eklenecek.
+Sürüm {0}
+Video
+Görüntülü arama
+Görüntülü arama planlandı
+Görüntülü aramalar henüz kullanılamıyor
+Galeriden video
+Ses
+Sesli arama
+Sesli arama planlandı
+Sesli aramalar henüz kullanılamıyor
+Sesli mesaj
+Sesli mesaj gönderilemedi: {0}
+Sesli mesaj çok kısa. Mikrofona dokunun, konuşun, ardından Gönder’e dokunun.
+Sesli mesaj · {0}
+MEYA’da sizinle bağlantı kurmak istiyor.
+Web sitesi
+Tekrar hoş geldiniz
+Ne paylaşmak istersiniz?
+Biriyle bağlantı kurduğunuzda burada görünecek.
+Kimler görebilir
+Kimler görebilir?
+Kiminle
+{0} ile · {1}
+Siz
+Bu cihaza bağlantı isteği gönderemezsiniz.
+Şifreleme eklenmeden önce bağlandınız. Yüz yüze buluşun: {0} QR’ım’ı açsın, siz de tarayın. Birkaç saniye sürer ve sohbet geçmişiniz kalır.
+Henüz MEYA kişiniz yok. Eklemek için birinin QR kodunu tarayın.
+Henüz bağlantınız yok.
+Bu aramayı siz planladınız
+Siz:
+MEYA kimliğiniz, özel MEYA alanınızda sizi tanımlar.
+MEYA kimliğiniz özel kimliğinizi tanımlar. Bir parola değildir.
+MEYA QR kodunuz
+MEYA hesabınız bu cihazda kullanılamıyor.
+MEYA hesabınız yalnızca bu telefonda bulunur. Parola sıfırlama ve sunucuda kopya yoktur; erişim kodunuzu güvende tutun. Yeni bir telefona taşıma henüz mevcut değil.
+MEYA bağlantılarınız
+MEYA cihaz kimliğiniz kullanılamıyor.
+MEYA cihaz kimliğiniz kullanılamıyor. MEYA’yı yeniden başlatıp tekrar deneyin.
+MEYA kimliğiniz henüz hazır değil.
+PIN’iniz uygulama için ek bir koruma katmanı olarak kullanılabilir.
+Alanınız
+Hesabınız bu cihazda bulunamadı.
+Hesabınız, mesajlarınız ve anahtarlarınız bu telefonda kalır. Tekrar giriş yapmak için erişim kodunuza ihtiyacınız olacak. Oturum kapalıyken yeni mesajlar aktarıcıda bekler.
+Kişileriniz yüklenemedi. Lütfen tekrar deneyin.
+Sohbetleriniz
+Cihazlarınız
+Şifreleme anahtarınız
+Adınız
+Adınız, fotoğrafınız ve Hakkında bilginiz yalnızca MEYA bağlantılarınızla uçtan uca şifreli olarak paylaşılır.
+Erişim kodunuz bu cihazda güvenle saklanır.
+Sevdikleriniz
+Sevdikleriniz. Sohbetleriniz. Gizliliğiniz.
+Gizliliğiniz
+Özel gruplarınız
+İsteğiniz gönderildi. Bu kişinin MEYA kişiniz olması için isteği kabul etmesi gerekir.
+Güvenliğiniz
+Durumunuz
+Güvenilir kişileriniz
+{0} B
+{0} GB
+{0} KB
+{0} MB
+{0} kopyalandı.
+{0} gün önce
+{0} sa
+{0} sa önce
+{0} sa {1} dk
+{0} artık bir MEYA kişisi.
+{0} dk
+{0} dk önce
+Bu aramayı {0} planladı
+Bağlantılarınızdan {0} durum
+{0} yaklaşan arama
+{0} MEYA’da sizinle bağlantı kurmak istiyor.
+{0} kaldırıldı.
+{0} şifreli bir mesajla bilgilendirilecek.
+{0}, planlanmış aramalar
+© 2026 {0} · AGPL-3.0-only
+🎤 Sesli mesaj
+🎬 Video
+📅 Arama iptal edildi
+📅 Arama planlandı
+📷 Fotoğraf
+Sesler
+Arama zil sesi ve bildirim sesi
+Arama zil sesi
+Bildirim sesi
+Biri sizi aradığında çalar.
+Yeni bir mesaj geldiğinde çalar.
+Sesler BigSoundBank'ten, kullanımı serbest (CC0 kamu malı).
+Durdur
+Aranıyor…
+Bağlanıyor…
+Arama sona erdi
+Reddedildi
+Meşgul
+Yanıt yok
+Arama başarısız oldu
+Sesi kapat
+Sesi aç
+Hoparlör
+Kamerayı kapat
+Kamerayı aç
+Kamerayı değiştir
+Aramayı bitir
+Aramaya katıl
+{0} kişisinden cevapsız arama
+Zaten bir aramadasınız.
+Favorilere ekle
+{0} kişisini de engelle
+Arşivle
+Arşivlenenler
+Yeniden çevrimiçi.
+Engelle
+{0} engellensin mi?
+Engellenen kişiler size mesaj gönderemez veya sizi arayamaz. Onlara bildirilmez. Engeli Gizlilik bölümünden kaldırabilirsiniz.
+Sohbet seçenekleri
+Aramayı kapat
+Kopyalandı.
+Metni kopyala
+Sil
+Herkesten sil
+Benden sil
+"Herkesten sil", mesajı {0} kişisinin telefonundan da kaldırır.
+Mesaj silinsin mi?
+İletildi
+Ayrıntılar (isteğe bağlı)
+Düzenle
+Düzenlendi
+Mesaj düzenleniyor
+Favoriler
+Dosya
+İlet
+Şu kişiye ilet
+İletildi
+{0} kişisine iletildi.
+Taciz veya zorbalık
+Kimliğe bürünme
+Son mesajlarını ekle
+MEYA sohbetlerinizi okuyamaz. Bir şikâyet yalnızca aşağıda seçtiklerinizi içerir ve kendi e-posta uygulamanızdan gönderilir.
+MEYA'nın kayıt için kameraya ve mikrofona ihtiyacı var. Telefon ayarlarından izin verin.
+Okundu olarak işaretle
+Okunmadı olarak işaretle
+Okunmadı olarak işaretlendi
+Mesaj seçenekleri
+Diğer seçenekler
+Bildirimleri sessize al
+Sessizde
+Arşivlenmiş sohbet yok
+Bu cihazda kamera bulunamadı.
+Şikâyeti göndermek için e-posta uygulaması bulunamadı.
+Henüz favori yok. Bir mesaja uzun basıp Favorilere ekle'yi seçin.
+Mesaj bulunamadı.
+Engellenmedi: {0}
+Değiştirilmedi: {0}
+Silinmedi: {0}
+İletilmedi: {0}
+Sabitlenmedi: {0}
+Kaydedilmedi: {0}
+Gönderilmedi. Yeniden denemek için dokunun
+Sabitle
+Sabitlendi
+Sabitlenmiş mesaj: {0}
+Sabitlenmiş {0}/{1}
+Şikâyeti hazırla
+{0} ile tepki ver
+Tepki gönderilmedi: {0}
+Okundu
+Favorilerden kaldır
+Yanıtla
+{0} kişisine yanıt: {1}
+{0} kişisine yanıt veriliyor
+Şikâyet et
+{0} kişisini şikâyet et
+Düzenlemeyi kaydet
+Ara
+Mesajlarda ara
+Bu sohbette ara
+Tüm sohbetlerinizde kelime arayın. Arama yalnızca bu telefonda yapılır.
+Tekrar gönder
+Cinsel içerik
+Sohbet seçeneklerini göster
+Mesaj seçeneklerini göster
+Başka bir şey
+Spam veya dolandırıcılık
+Kaydı başlat
+Hâlâ gönderilmedi: {0}
+Kaydı durdur
+Bu mesaj artık bu sohbette değil.
+Kamera başlatılamadı: {0}
+Bu mesaj iletilemez.
+Bu mesaj silindi
+Bu, mesajı yalnızca bu telefondan kaldırır.
+Tehdit veya şiddet
+Bugün
+Arşivden çıkar
+Engeli kaldır
+Sabitlemeyi kaldır
+{0} kişisinin size gönderdiği en fazla 10 mesaj. Fotoğraflar ve dosyalar dahil edilmez.
+En fazla 3 dakika
+Gönderilecek video
+Video, {0}. Tam ekran oynatılır
+Gönderilmeyi bekliyor
+Ne oldu?
+Dün
+Çevrimdışısınız. MEYA yeniden bağlandığında mesajlar gönderilecek.
+Yalnızca kendi mesajlarınızı herkesten silebilirsiniz.
+Yalnızca kendi mesajlarınızı düzenleyebilirsiniz.
+Bu mesajı sildiniz
+Şikâyet e-posta uygulamanızda hazır. Kontrol edip gönderin.
+size
+kendinize
+{0} kişisinin engeli kaldırıldı.
+{0} kişi {1} ile tepki verdi. Tepkinizi değiştirmek için dokunun
+{0} okunmamış
+{0} · {1} kaldı
+Mesajlarını okuduğunuzu kişilere bildirin. Kapalıyken onların sizinkini okuyup okumadığını da göremezsiniz.
+Güvenlik numarası gösterilemedi: {0}
+Doğrulandı
+Numaralar eşleşmiyor
+{0} ile sohbetiniz doğru anahtarlarla uçtan uca şifreli.
+Bu bir MEYA güvenlik numarası kodu değil.
+Bu sohbete henüz güvenmeyin. Bu sohbet için {0} kişisinin kodunu taradığınızdan emin olun, ardından yüz yüze tekrar deneyin.
+Tamam
+Şifrelemeyi doğrula
+{0} kişisini doğruladınız
+Güvenlik numarası QR kodu
+Güvenlik numarası: {0}
+Arada kimse olmadığını kontrol etmek için {0} ile buluşun veya arayın ve bu numaraları karşılaştırın ya da telefonundaki kodu tarayın. Eşleşiyorsa mesajlarınız ve aramalarınız doğru anahtarlarla şifrelenmiştir.
+Kodunu tara
+Doğrulamayı kaldır
+Doğrulandı olarak işaretle
+{0} ile güvenlik numaralarını karşılaştır
+Doğrulandı · uçtan uca şifreli

@@ -1,0 +1,64 @@
+name: meya
+description: "A new Flutter project."
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.13.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  flutter_secure_storage: ^11.2.0
+  mobile_scanner: ^7.4.2
+  qr_flutter: ^4.1.0
+  image_picker: ^1.2.1
+  path_provider: ^2.1.5
+  flutter_rust_bridge: 2.13.0
+  flutter_rust_bridge_hooks: 2.13.0
+  drift: ^2.35.1
+  sqlite3: ^3.7.0
+  path: ^1.9.1
+  shared_preferences: ^2.5.5
+  web_socket_channel: ^3.0.3
+  record: ^7.1.2
+  audioplayers: ^6.8.1
+  file_picker: ^13.1.0
+  open_filex: ^4.7.0
+  video_player: ^2.14.1
+  url_launcher: ^6.3.3
+  package_info_plus: ^10.2.2
+  flutter_localizations:
+    sdk: flutter
+  flutter_webrtc: ^1.6.2+hotfix.4
+  camera: ^0.12.1
+  fc_native_video_thumbnail: ^3.0.1
+  supabase_flutter: ^2.18.3
+  crypto: ^3.0.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+  integration_test:
+    sdk: flutter
+  drift_dev: ^2.35.1
+  build_runner: ^2.16.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/sounds/ringtones/
+    - assets/sounds/notifications/
+
+# Bundle SQLite3MultipleCiphers (MIT) instead of plain SQLite, so the whole
+# MEYA database is encrypted on the phone (see lib/database/meya_database.dart).
+hooks:
+  user_defines:
+    sqlite3:
+      source: sqlite3mc

@@ -1,0 +1,623 @@
+Mwezi 1
+Hali 1 mpya kutoka kwa miunganisho yako
+Simu 1 inayokuja
+Mwaka 1
+Saa 24
+Miezi 3
+Siku 7
+Maneno machache kukuhusu
+Nafasi rahisi na ya faragha kwa watu muhimu kwako.
+Kuhusu
+Kuhusu MEYA
+Kubali
+Ufikivu
+Akaunti
+Maelezo ya akaunti, kutoka na kufuta
+Nambari ya akaunti
+Usalama wa akaunti
+Ongeza maelezo
+Ongeza mtu
+Ongeza picha au video
+Ongeza picha ya wasifu
+Ongeza hali
+Ongeza mtu
+Ongeza picha
+Ongeza maandishi, emoji, picha au video.
+Ongeza mtu mpya
+Ongeza mtu unayemwamini kwa kuchanganua msimbo wake wa QR wa MEYA. Ataonekana hapa.
+Usimamizi wa vifaa zaidi utaongezwa akaunti za MEYA na vipindi vya seva vitakapokamilika.
+Miunganisho yangu yote
+Ruhusu wengine wakutumie maombi ya kuunganishwa.
+Ruhusu miunganisho yako ione picha yako ya wasifu.
+Tayari una akaunti ya MEYA? Ingia
+Kufunga programu
+Ulinzi wa programu
+Mwonekano
+Mwonekano na Ufikivu
+Ambatisha picha, video, faili au simu
+Kufungua kwa bayometriki
+Watu waliozuiwa
+Kalenda
+Simu imeghairiwa
+Simu imepangwa. {0} amealikwa.
+Simu na {0}
+Ghairi
+Ghairi simu
+Ughairi simu hii?
+Imeghairiwa
+Imeghairiwa hapa, lakini {0} bado hajaweza kujulishwa: {1}
+Badilisha picha
+Badilisha picha ya wasifu
+Badilisha PIN ya usalama
+Gumzo
+Tunakagua kitambulisho chako cha MEYA…
+Chagua mtu
+Chagua muda ujao.
+Chagua kutoka matunzio
+Chagua mtu ambaye tayari umeunganishwa naye kwenye MEYA.
+Chagua simu ni na nani.
+Chagua kitambulisho chako cha MEYA
+Futa utafutaji
+Futa nakala za muda
+Thibitisha PIN
+Thibitisha nambari ya siri
+Thibitisha PIN yako
+Unganisha kifaa kilichopo
+Unganisha kwa msimbo wa QR
+Unganisha na mtu aliye karibu
+Unganisha na mtu kupitia msimbo wake wa QR wa MEYA. Hatakuwa wa kuaminika bila mchakato wa mwaliko.
+Unganisha na mtu unayemwamini
+Mmeunganishwa ana kwa ana kwa msimbo wa QR
+Inaunganisha kwenye relay ya MEYA…
+Ombi la kuunganishwa limetumwa
+Maombi ya kuunganishwa
+Maombi ya kuunganishwa kutoka kwa watu unaowaamini
+Maombi ya kuunganishwa kutoka kwa watu unaowaamini yataonekana hapa.
+Miunganisho
+Endelea
+Dhibiti jinsi watu walio katika nafasi yako ya faragha ya MEYA wanavyoweza kukupata na kuwasiliana nawe.
+Mazungumzo
+Nakili nambari ya akaunti
+Imeshindwa kukubali ombi hili: {0}
+Imeshindwa kubadilisha picha: {0}
+Imeshindwa kukataa ombi hili: {0}
+Imeshindwa kufungua
+Imeshindwa kufungua faili: {0}
+Imeshindwa kucheza ujumbe huu wa sauti: {0}
+Imeshindwa kusoma picha ya QR: {0}
+Imeshindwa kumwondoa {0}: {1}
+Imeshindwa kuhifadhi faili: {0}
+Imeshindwa kutuma ombi la kuunganishwa: {0}
+Imeshindwa kuanza kurekodi: {0}
+Fungua akaunti mpya ya MEYA
+Unda nambari ya siri itakayolinda ufikiaji wa akaunti yako ya MEYA.
+Fungua akaunti
+Unda au badilisha PIN inayolinda MEYA.
+Unda wasifu wako wa MEYA
+Unda nambari yako ya siri
+Iliundwa
+Funguo za usimbaji fiche zinapaswa kulindwa kwa mbinu zinazofaa za usalama za mfumo.
+Cha sasa
+Kifaa cha sasa
+Giza
+Tarehe
+Kataa
+Ukatae simu hii?
+Chaguomsingi
+Futa akaunti kwenye simu hii
+Futa kila kitu
+Futa midia ya zamani
+Futa rekodi
+Ufute akaunti yako ya MEYA kwenye simu hii?
+Tunafuta akaunti yako kwenye simu hii…
+Imetengenezwa na {0}, {1}.
+Kitambulisho cha kifaa
+Itatoweka baada ya
+Kugunduliwa, uwepo na udhibiti wa miunganisho
+Nimemaliza
+Emoji
+Data iliyosimbwa fiche
+Ujumbe uliosimbwa fiche bado haujawekwa na mtu huyu. Changanua msimbo wake wa QR tena.
+Ujumbe uliosimbwa fiche bado haujawekwa
+Usimbaji fiche
+Imesimbwa fiche mwisho hadi mwisho
+Weka tarakimu 4–6
+Weka PIN ya tarakimu 4–6
+Weka PIN
+Weka PIN tena
+Weka nambari ya siri tena
+Weka kitambulisho chako cha MEYA
+Weka jina lako
+Weka nambari yako ya siri ili kufikia nafasi yako.
+Weka nambari yako ya siri.
+Kubwa sana
+Hutumwa haraka, hutumia nafasi kidogo
+Faili au hati
+Imeisha
+Hufuata mipangilio ya simu yako
+Daima
+Kutoka kwa miunganisho yako
+Anza
+Vikundi
+Ubora wa picha HD
+Kifaa chako cha MEYA kilichopo kiko karibu? Hivi karibuni utaweza kuthibitisha na kuhamisha utambulisho wako kwa usalama kwa kuoanisha kwa QR.
+Utofautishaji wa juu
+Leta picha ya QR
+Nambari ya siri si sahihi. Jaribu tena.
+Mialiko
+Sasa hivi
+Acha
+Uhifadhi midia kwa {0}?
+Hifadhi midia kwenye simu hii
+Kuhifadhi midia
+Lugha
+Kubwa
+Kubwa zaidi
+Jifunze jinsi MEYA inavyolinda mazungumzo ya faragha.
+Kisheria na Kuhusu
+Muda
+Wajulishe wengine unapoandika.
+Wajulishe wengine umesoma ujumbe wao.
+Ruhusu mtu unayekutana naye aungane nawe
+Ruhusu miunganisho yako ione ukiwa mtandaoni.
+Mwanga
+Uhifadhi mdogo
+Ingia
+Kitambulisho cha MEYA
+MEYA pia hufuata mipangilio ya simu yako ya ukubwa wa maandishi, utofautishaji wa juu na uhuishaji.
+Mwasiliani wa MEYA
+Usimbaji fiche wa MEYA umeshindwa kuanza: {0}
+MEYA inaundwa kwa kuzingatia faragha, uhifadhi mdogo wa data na mawasiliano salama.
+MEYA imeundwa ili isihifadhi taarifa binafsi zisizohitajika.
+MEYA ina leseni ya AGPL-3.0-only
+Ujumbe wa MEYA haujasanidiwa.
+MEYA inahitaji ruhusa ya maikrofoni ili kurekodi ujumbe wa sauti. Unaweza kuiruhusu katika mipangilio ya simu yako.
+MEYA kwenye simu hii
+Hitilafu ya kuunganisha relay ya MEYA: {0}
+Hali ya MEYA haijasanidiwa.
+MEYA itatoa simu tu zitakaposimbwa fiche mwisho hadi mwisho na kuruhusiwa na kanuni za mawasiliano mahali unapoishi. Ujumbe uliosimbwa fiche kwanza.
+Huundwa unapocheza video au kufungua faili katika programu nyingine
+Dhibiti watu uliowazuia.
+Inapima…
+Midia huja pamoja na kila ujumbe na huhifadhiwa ikiwa imesimbwa fiche. MEYA haihifadhi kamwe picha zako kwenye matunzio ya simu isipokuwa uchague Hifadhi.
+Ujumbe
+Ujumbe haujatumwa: {0}
+Ujumbe na skrini
+QR yangu
+Msimbo wangu wa QR
+Hali yangu
+Jina
+Kamwe
+Gumzo jipya
+PIN mpya
+Hali mpya
+Mwezi ujao
+Inayofuata: {0}
+Hakuna msimbo wa QR wa MEYA uliopatikana kwenye picha hiyo.
+Hakuna akaunti iliyoingia kwenye simu hii.
+Hakuna programu kwenye simu hii inayoweza kufungua faili hii. Tumia Hifadhi ili kubaki na nakala.
+Hakuna watu waliozuiwa
+Hakuna kivinjari kilichoweza kufungua tovuti.
+Hakuna simu zilizopangwa siku hii.
+Bado hakuna mazungumzo
+Hakuna waasiliani wanaolingana
+Bado hakuna ujumbe na {0}.
+Bado hakuna ujumbe
+Hakuna mialiko inayosubiri
+Bado hakuna watu
+Hakuna hali za hivi karibuni.
+Bado hakuna waasiliani unaowaamini
+Bado hakuna wa kumwalika. Ujumbe uliosimbwa fiche lazima uwekwe na mwasiliani kabla ya kupanga simu.
+Haipatikani
+Haijaunganishwa na relay ya MEYA. Maombi hayawezi kufika bado.
+Bado haijaundwa
+Haijatumwa
+Haijatumwa: {0}
+Dokezo (si lazima)
+Hukujulisha matukio muhimu ya usalama yanapotokea.
+Hali ya mtandaoni
+Mimi pekee
+Fungua
+Fungua faili
+Leseni za programu huria
+PIN, kufunga programu na vifaa vinavyoaminika
+PIN hazilingani
+Nambari ya siri
+Nambari za siri hazilingani
+Sitisha
+Watu
+Watu unaowazuia wataonekana hapa.
+Watu unaounganishwa nao kwenye MEYA wataonekana hapa.
+Lugha ya simu
+Picha
+Picha kutoka matunzio
+Picha ya kutuma
+Picha, jina, kitambulisho cha MEYA na Kuhusu
+Picha. Hufunguka skrini nzima
+Picha, video na faili
+Picha, video na faili zinaweza kuwa hadi MB {0}. Video zinaweza kuwa hadi dakika 3.
+Picha, video na faili za zamani kuliko muda huu zinafutwa kwenye simu hii sasa na kuendelea. Ujumbe unabaki; midia yake itaonyeshwa kuwa haipo tena kwenye simu hii.
+Panga na alika
+Panga simu na wapendwa wako
+Simu zilizopangwa hushirikiwa na mtu mwingine zikiwa zimesimbwa fiche mwanzo hadi mwisho. Wakati ukifika, gusa Jiunge na simu ili kuanza. Unaweza pia kupiga simu wakati wowote kutoka kwenye gumzo.
+Cheza
+Cheza video
+Cheza ujumbe wa sauti
+Tafadhali chagua kitambulisho cha MEYA
+Tafadhali thibitisha nambari yako ya siri
+Tafadhali unda nambari ya siri
+Tafadhali weka kitambulisho chako cha MEYA
+Tafadhali weka jina lako
+Chapisha hali
+Imechapishwa {0}
+Imechapishwa {0} · itatoweka {1}
+Kuchapisha kutachukua nafasi ya hali yako ya sasa, ikiwemo picha au video yake.
+Onyesho la awali: ujumbe na menyu zitaonekana hivi.
+Mwezi uliopita
+Faragha
+Sera ya faragha
+Faragha, masharti, ufikivu na leseni
+Faragha tangu usanifu
+Miunganisho ya faragha.\nNi yako tu.
+Vikundi vya faragha vya familia vinapangwa. Usimbaji fiche wa vikundi bado unasanifiwa, kwa hivyo vikundi havipatikani bado.
+Wasifu
+Mwonekano wa picha ya wasifu
+Wasifu umehifadhiwa.
+Linda MEYA kwa PIN
+Linda akaunti yako ya MEYA
+Linda programu yako ya MEYA na udhibiti jinsi taarifa zako za faragha zinavyofikiwa.
+Taarifa za kusomwa
+Tayari kupokea maombi ya kuunganishwa
+Inapokea…
+Rekodi video
+Rekodi ujumbe wa sauti
+Inarekodi {0} / {1}
+Punguza mwendo
+Punguza uwezekano wa kunasa skrini za MEYA.
+Ondoa
+Ondoa mwasiliani
+Ondoa hali yangu
+Ondoa picha
+Mwondoe mtu huyu kwenye orodha yako ya Watu
+Umwondoe {0}?
+Hitaji ukaguzi wa usalama unapofungua MEYA.
+Kagua na udhibiti miunganisho yako ya MEYA.
+Kagua vifaa vinavyohusishwa na akaunti yako ya MEYA.
+Kagua vifaa vilivyoidhinishwa kufikia akaunti yako ya MEYA.
+Hifadhi
+Hifadhi PIN
+Hifadhi nakala
+Hifadhi nakala kwenye simu hii
+Hifadhi wasifu
+Hifadhi kwenye kifaa
+Imehifadhiwa. Nakala hii haijasimbwa fiche na MEYA.
+Changanua msimbo wa QR
+Changanua msimbo wa QR wa MEYA
+Changanua msimbo mwingine wa QR wa MEYA, au gusa aikoni ya picha hapo juu ili kuleta picha ya QR.
+Changanua msimbo wake wa QR wa MEYA ana kwa ana
+Changanua msimbo wake wa QR wa MEYA ili kuanzisha muunganisho salama.
+Changanua msimbo wake wa QR
+Panga simu
+Ulinzi dhidi ya picha za skrini
+Tafuta waasiliani unaowaamini
+Funguo salama
+Usalama
+PIN ya usalama
+PIN ya usalama imehifadhiwa.
+Arifa za usalama
+Watu waliochaguliwa
+Watu waliochaguliwa ({0})
+Picha iliyochaguliwa
+Tuma
+Tuma faili
+Tuma picha
+Tuma video
+Tuma ujumbe wa sauti
+Kutuma
+Inatuma…
+Taarifa nyeti zinapaswa kulindwa zinapohifadhiwa na zinapotumwa.
+Imetumwa
+Weka ujumbe uliosimbwa fiche na {0}
+Mipangilio
+Shiriki maandishi, picha au video
+Picha angavu zaidi, faili kubwa zaidi
+Mwonyeshe mtu unayemwamini msimbo huu wa QR ili kuanza kuoanisha MEYA.
+Ingia kwenye nafasi yako ya MEYA ukitumia utambulisho wako uliopo.
+Toka
+Utoke kwenye MEYA?
+Ndogo
+Ubora wa kawaida wa picha
+Hali
+Hali imechapishwa, lakini bado haijatumwa kwa {0}.
+Hali imechapishwa.
+Hali zimesimbwa fiche mwisho hadi mwisho na hutumwa tu kwa watu unaowachagua.
+Simamisha ujumbe wa sauti
+Hifadhi
+Hifadhi na Midia
+Matumizi ya hifadhi, ubora wa picha na kuhifadhi midia
+Imehifadhiwa ikiwa imesimbwa fiche
+Rangi na mipaka imara zaidi kwa usomaji rahisi
+Chaguomsingi la mfumo
+Piga picha
+Nakala za muda
+Nakala za muda zimefutwa.
+Masharti ya matumizi
+Ukubwa wa maandishi
+Maandishi, picha au video kwa miunganisho yako
+Maandishi, picha au video kwa miunganisho yako
+Msimbo huo wa QR si msimbo halali wa MEYA.
+Simu iko kwenye kalenda yako, lakini mwaliko haujatumwa: {0}
+Faili ni tupu.
+Ujumbe wa sauti ni tupu.
+Mandhari
+Mandhari, lugha, ukubwa wa maandishi na ufikivu
+Ataondolewa kwenye orodha yako ya Watu kwenye kifaa hiki. Ili kuunganishwa tena, utahitaji kuchanganua msimbo wake wa QR ana kwa ana.
+Kitambulisho hiki cha MEYA tayari kinatumika kwenye kifaa hiki
+Kitambulisho hiki cha MEYA hakipatikani kwenye kifaa hiki. Tumia kifaa chako unachokiamini kuunganisha akaunti.
+Msimbo huu wa QR huanzisha ombi la kuunganishwa. Mtu mwingine lazima akubali kabla hamjawa waasiliani wa MEYA.
+Msimbo huu wa QR uliundwa na toleo la zamani la MEYA. Mwombe mtu mwingine asasishe MEYA na aonyeshe msimbo wake wa QR tena.
+Mwasiliani huyu anaaminika. Uwekaji wa mazungumzo salama bado haupatikani, kwa hivyo MEYA haijaunda mazungumzo wala kutuma ujumbe.
+Kifaa hiki
+Kifaa hiki hakina kitambulisho cha kifaa cha MEYA.
+Faili hii haikuweza kusomwa.
+Faili hii bado haijafika yote.
+Faili hii ni kubwa mno. MEYA inaweza kutuma faili hadi MB {0}.
+Hii itafuta kabisa ujumbe, waasiliani, picha, video, faili, hali, kalenda na funguo za usimbaji fiche kwenye simu hii. Haiwezi kutenduliwa. Watu uliozungumza nao watabaki na walichokwisha kupokea.
+Simu hii
+Picha au video hii ni kubwa mno kwa hali.
+Maandishi haya yanapatikana kwa Kiingereza pekee kwa sasa.
+Video hii bado haijafika yote.
+Ujumbe huu wa sauti ni mrefu mno. Uweke chini ya dakika {0}.
+Saa
+Kichwa (si lazima)
+Ili kuthibitisha, andika kitambulisho chako cha MEYA: {0}
+Muunganisho unaoaminika
+Mwasiliani anayeaminika
+Vifaa vinavyoaminika
+Jaribu tena
+Jaribu jina au kitambulisho kingine.
+Zima uhuishaji na mipito ya kurasa
+Kiashiria cha kuandika
+Imeshindwa kufikia akaunti yako ya MEYA. Tafadhali jaribu tena.
+Fungua
+Sasisha hali
+Tumia tarakimu 4–6
+Tumia angalau herufi 3
+Tumia herufi, nambari, nukta, vistari au mistari ya chini
+Tumia nambari pekee
+Tumia bayometriki za kifaa chako kufungua MEYA.
+Tumia kifaa chako cha MEYA unachokiamini kuunganisha kifaa hiki kwa usalama. Kuoanisha kwa QR pamoja na uthibitishaji wa utambulisho wa MEYA kutaongezwa kwenye hatua hizi.
+Toleo {0}
+Video
+Simu ya video
+Simu ya video imepangwa
+Simu za video bado hazipatikani
+Video kutoka matunzio
+Sauti
+Simu ya sauti
+Simu ya sauti imepangwa
+Simu za sauti bado hazipatikani
+Ujumbe wa sauti
+Ujumbe wa sauti haujatumwa: {0}
+Ujumbe wa sauti ni mfupi mno. Gusa maikrofoni, zungumza, kisha gusa Tuma.
+Ujumbe wa sauti · {0}
+Anataka kuunganishwa nawe kwenye MEYA.
+Tovuti
+Karibu tena
+Ungependa kushiriki nini?
+Ukiunganishwa na mtu, ataonekana hapa.
+Nani anaweza kuona
+Nani anaweza kuona?
+Na
+Na {0} · {1}
+Wewe
+Huwezi kutuma ombi la kuunganishwa kwa kifaa hiki.
+Mliunganishwa kabla usimbaji fiche haujaongezwa. Kutaneni ana kwa ana: {0} afungue QR yangu nawe uichanganue. Huchukua sekunde chache na historia ya gumzo inabaki.
+Bado huna waasiliani wa MEYA. Changanua msimbo wa QR wa mtu ili umwongeze.
+Bado huna miunganisho.
+Wewe ndiye uliyepanga simu hii
+Wewe:
+Kitambulisho chako cha MEYA hukutambulisha ndani ya nafasi yako ya faragha ya MEYA.
+Kitambulisho chako cha MEYA hutambulisha utambulisho wako wa faragha. Si nenosiri.
+Msimbo wako wa QR wa MEYA
+Akaunti yako ya MEYA haipatikani kwenye kifaa hiki.
+Akaunti yako ya MEYA ipo kwenye simu hii pekee. Hakuna kuweka upya nenosiri wala nakala kwenye seva, kwa hivyo tunza nambari yako ya siri. Kuhamia simu mpya bado hakupatikani.
+Miunganisho yako ya MEYA
+Utambulisho wa kifaa chako cha MEYA haupatikani.
+Utambulisho wa kifaa chako cha MEYA haupatikani. Washa upya MEYA na ujaribu tena.
+Utambulisho wako wa MEYA bado haujawa tayari.
+PIN yako inaweza kutumika kama safu ya ziada ya ulinzi kwa programu.
+Nafasi yako
+Akaunti yako haikupatikana kwenye kifaa hiki.
+Akaunti, ujumbe na funguo zako zinabaki kwenye simu hii. Utahitaji nambari yako ya siri ili kuingia tena. Ukiwa umetoka, ujumbe mpya husubiri kwenye relay.
+Imeshindwa kupakia waasiliani wako. Tafadhali jaribu tena.
+Mazungumzo yako
+Vifaa vyako
+Ufunguo wako wa usimbaji fiche
+Jina lako
+Jina, picha na Kuhusu yako hushirikiwa, yakiwa yamesimbwa fiche mwisho hadi mwisho, na miunganisho yako ya MEYA pekee.
+Nambari yako ya siri imehifadhiwa kwa usalama kwenye kifaa hiki.
+Wapendwa wako
+Wapendwa wako. Mazungumzo yako. Faragha yako.
+Faragha yako
+Vikundi vyako vya faragha
+Ombi lako limetumwa. Mtu huyu lazima alikubali kabla ya kuwa mwasiliani wa MEYA.
+Usalama wako
+Hali yako
+Waasiliani unaowaamini
+B {0}
+GB {0}
+KB {0}
+MB {0}
+{0} imenakiliwa.
+siku {0} zilizopita
+saa {0}
+saa {0} zilizopita
+saa {0} dak {1}
+{0} sasa ni mwasiliani wa MEYA.
+dak {0}
+dak {0} zilizopita
+{0} amepanga simu hii
+Hali {0} kutoka kwa miunganisho yako
+Simu {0} zinazokuja
+{0} anataka kuunganishwa nawe kwenye MEYA.
+{0} ameondolewa.
+{0} atajulishwa kwa ujumbe uliosimbwa fiche.
+{0}, simu zimepangwa
+© 2026 {0} · AGPL-3.0-only
+🎤 Ujumbe wa sauti
+🎬 Video
+📅 Simu imeghairiwa
+📅 Simu imepangwa
+📷 Picha
+Sauti
+Mlio wa simu na sauti ya arifa
+Mlio wa simu
+Sauti ya arifa
+Hulia mtu anapokupigia simu.
+Hulia ujumbe mpya unapofika.
+Sauti kutoka BigSoundBank, huru kutumia (kikoa cha umma CC0).
+Simamisha
+Inapiga…
+Inaunganisha…
+Simu imekwisha
+Imekataliwa
+Anatumia simu
+Hakuna jibu
+Simu imeshindikana
+Zima sauti
+Washa sauti
+Spika
+Zima kamera
+Washa kamera
+Badilisha kamera
+Kata simu
+Jiunge na simu
+Simu uliyokosa kutoka kwa {0}
+Tayari uko kwenye simu.
+Ongeza kwenye vipendwa
+Mzuie {0} pia
+Hifadhi kwenye kumbukumbu
+Zilizohifadhiwa
+Mtandaoni tena.
+Zuia
+Umzuie {0}?
+Watu waliozuiwa hawawezi kukutumia ujumbe wala kukupigia simu. Hawaambiwi. Unaweza kuwaondolea kizuizi kwenye Faragha.
+Chaguo za gumzo
+Funga utafutaji
+Imenakiliwa.
+Nakili maandishi
+Futa
+Futa kwa wote
+Futa kwangu
+"Futa kwa wote" huifuta pia kwenye simu ya {0}.
+Ufute ujumbe?
+Imefika
+Maelezo (si lazima)
+Hariri
+Imehaririwa
+Inahariri ujumbe
+Vipendwa
+Faili
+Sambaza
+Sambaza kwa
+Imesambazwa
+Imesambazwa kwa {0}.
+Unyanyasaji au uonevu
+Kujifanya mtu mwingine
+Jumuisha jumbe zao za mwisho
+MEYA haiwezi kusoma mazungumzo yako. Ripoti ina tu kile unachochagua hapa chini, na unaituma kutoka kwenye programu yako ya barua pepe.
+MEYA inahitaji kamera na maikrofoni ili kurekodi. Viruhusu kwenye mipangilio ya simu.
+Weka alama imesomwa
+Weka alama haijasomwa
+Imewekwa alama haijasomwa
+Chaguo za ujumbe
+Chaguo zaidi
+Nyamazisha arifa
+Imenyamazishwa
+Hakuna gumzo zilizohifadhiwa
+Hakuna kamera iliyopatikana kwenye kifaa hiki.
+Hakuna programu ya barua pepe iliyopatikana kutuma ripoti.
+Bado hakuna vipendwa. Bonyeza ujumbe kwa muda mrefu kisha uchague Ongeza kwenye vipendwa.
+Hakuna ujumbe uliopatikana.
+Haikuzuiwa: {0}
+Haikubadilishwa: {0}
+Haikufutwa: {0}
+Haikusambazwa: {0}
+Haikubandikwa: {0}
+Haikuhifadhiwa: {0}
+Haikutumwa. Gusa kujaribu tena
+Bandika
+Imebandikwa
+Ujumbe uliobandikwa: {0}
+Imebandikwa {0} kati ya {1}
+Andaa ripoti
+Jibu kwa {0}
+Jibu halikutumwa: {0}
+Imesomwa
+Ondoa kwenye vipendwa
+Jibu
+Jibu kwa {0}: {1}
+Unamjibu {0}
+Ripoti
+Ripoti {0}
+Hifadhi uhariri
+Tafuta
+Tafuta jumbe
+Tafuta katika gumzo hili
+Tafuta maneno katika gumzo zako zote. Utafutaji unafanyika kwenye simu hii pekee.
+Tuma tena
+Maudhui ya ngono
+Onyesha chaguo za gumzo
+Onyesha chaguo za ujumbe
+Kitu kingine
+Barua taka au ulaghai
+Anza kurekodi
+Bado haijatumwa: {0}
+Acha kurekodi
+Ujumbe huo haupo tena kwenye gumzo hili.
+Kamera haikuweza kuanza: {0}
+Ujumbe huu hauwezi kusambazwa.
+Ujumbe huu ulifutwa
+Hii inaondoa ujumbe kwenye simu hii pekee.
+Vitisho au vurugu
+Leo
+Ondoa kwenye kumbukumbu
+Ondoa kizuizi
+Ondoa kibandiko
+Hadi jumbe 10 ambazo {0} alikutumia. Picha na faili hazijumuishwi.
+Hadi dakika 3
+Video ya kutuma
+Video, {0}. Inacheza skrini nzima
+Inasubiri kutumwa
+Nini kilitokea?
+Jana
+Uko nje ya mtandao. Jumbe zitatumwa MEYA ikiunganishwa tena.
+Unaweza kufuta kwa wote jumbe zako tu.
+Unaweza kuhariri jumbe zako tu.
+Ulifuta ujumbe huu
+Ripoti iko tayari kwenye programu yako ya barua pepe. Ikague, kisha uitume.
+wewe
+wewe mwenyewe
+{0} ameondolewa kizuizi.
+{0} wamejibu kwa {1}. Gusa kubadilisha jibu lako
+{0} hazijasomwa
+{0} · zimebaki {1}
+Wajulishe watu ukishasoma jumbe zao. Ukizima, hutaona pia wanaposoma zako.
+Nambari ya usalama haikuweza kuonyeshwa: {0}
+Imethibitishwa
+Nambari hazilingani
+Mazungumzo yako na {0} yamesimbwa fiche mwanzo hadi mwisho kwa funguo sahihi.
+Hii si msimbo wa nambari ya usalama ya MEYA.
+Usiamini mazungumzo haya bado. Hakikisha umeskani msimbo wa {0} wa gumzo hili, kisha jaribu tena ana kwa ana.
+Sawa
+Thibitisha usimbaji fiche
+Umemthibitisha {0}
+Msimbo wa QR wa nambari ya usalama
+Nambari ya usalama: {0}
+Kuhakikisha hakuna mtu katikati, kutana na {0} au mpigie kisha mlinganishe nambari hizi, au skani msimbo kwenye simu yake. Zikilingana, jumbe na simu zako zimesimbwa fiche kwa funguo sahihi.
+Skani msimbo wake
+Futa uthibitisho
+Weka alama imethibitishwa
+Linganisha nambari za usalama na {0}
+Imethibitishwa · imesimbwa fiche mwanzo hadi mwisho

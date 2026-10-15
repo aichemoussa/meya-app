@@ -1,0 +1,1541 @@
+import 'screens/qr_scanner_page.dart';
+import 'screens/people_page.dart';
+import 'screens/invitations_page.dart';
+
+import 'dart:async';
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'bridge/frb_generated.dart';
+import 'database/account_repository.dart';
+import 'database/meya_database.dart';
+import 'services/meya_account_service.dart';
+import 'services/meya_relay_session.dart';
+import 'services/meya_connection_service.dart';
+import 'services/meya_e2ee.dart';
+import 'services/meya_message_service.dart';
+import 'screens/create_passcode_page.dart';
+import 'screens/login_page.dart';
+import 'screens/privacy_page.dart';
+import 'screens/security_page.dart';
+import 'screens/appearance_page.dart';
+import 'screens/chat_page.dart';
+import 'screens/chats_page.dart';
+import 'database/contact_repository.dart';
+import 'theme/meya_theme.dart';
+import 'legal/meya_legal.dart';
+import 'l10n/meya_strings.dart';
+import 'services/meya_account_storage.dart';
+import 'services/meya_call_service.dart';
+import 'services/meya_calendar_service.dart';
+import 'services/meya_media_settings.dart';
+import 'services/meya_profile_service.dart';
+import 'services/meya_sound_settings.dart';
+import 'services/meya_status_service.dart';
+import 'services/profile_photo_service.dart';
+import 'services/webrtc_call_engine.dart';
+import 'screens/about_meya_page.dart';
+import 'screens/account_page.dart';
+import 'screens/call_page.dart';
+import 'screens/calendar_page.dart';
+import 'screens/profile_page.dart';
+import 'screens/sounds_page.dart';
+import 'screens/status_page.dart';
+import 'screens/storage_media_page.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await RustLib.init();
+  await MeyaSettings.instance.load();
+  await MeyaMediaSettings.instance.load();
+  await MeyaSoundSettings.instance.load();
+  await MeyaMessageService.instance.loadSettings();
+  LicenseRegistry.addLicense(meyaLicenses);
+  final database = MeyaDatabase();
+  runApp(MeyaApp(database: database));
+}
+
+final GlobalKey<ScaffoldMessengerState> meyaScaffoldMessengerKey =
+    GlobalKey<ScaffoldMessengerState>();
+final GlobalKey<NavigatorState> meyaNavigatorKey = GlobalKey<NavigatorState>();
+
+class MeyaApp extends StatelessWidget {
+  final MeyaDatabase database;
+
+  const MeyaApp({super.key, required this.database});
+
+  @override
+  Widget build(BuildContext context) {
+    final settings = MeyaSettings.instance;
+
+    // Rebuilds the whole app as soon as an appearance setting changes.
+    return ListenableBuilder(
+      listenable: settings,
+      builder: (context, _) {
+        final reduceMotion = settings.reduceMotion;
+        final highContrast = settings.highContrast;
+
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          scaffoldMessengerKey: meyaScaffoldMessengerKey,
+          navigatorKey: meyaNavigatorKey,
+          title: 'MEYA',
+          locale: settings.language.isEmpty
+              ? null
+              : meyaLanguages
+                  .firstWhere(
+                    (language) => language.tag == settings.language,
+                    orElse: () => meyaLanguages.first,
+                  )
+                  .locale,
+          supportedLocales: [for (final language in meyaLanguages) language.locale],
+          localizationsDelegates: GlobalMaterialLocalizations.delegates,
+          themeMode: settings.themeMode,
+          theme: buildMeyaTheme(
+            highContrast ? MeyaPalette.highContrastLight : MeyaPalette.light,
+            reduceMotion: reduceMotion,
+          ),
+          darkTheme: buildMeyaTheme(
+            highContrast ? MeyaPalette.highContrastDark : MeyaPalette.dark,
+            reduceMotion: reduceMotion,
+          ),
+          // Used when high contrast is switched on in the phone's own
+          // accessibility settings.
+          highContrastTheme: buildMeyaTheme(
+            MeyaPalette.highContrastLight,
+            reduceMotion: reduceMotion,
+          ),
+          highContrastDarkTheme: buildMeyaTheme(
+            MeyaPalette.highContrastDark,
+            reduceMotion: reduceMotion,
+          ),
+          themeAnimationDuration:
+              reduceMotion ? Duration.zero : kThemeAnimationDuration,
+          builder: (context, child) {
+            MeyaStrings.setCurrent(Localizations.localeOf(context));
+            final media = MediaQuery.of(context);
+            // MEYA's text size multiplies the phone's own text size.
+            final systemScale = media.textScaler.scale(16) / 16;
+            return MediaQuery(
+              data: media.copyWith(
+                textScaler: TextScaler.linear(systemScale * settings.textScale),
+                disableAnimations: media.disableAnimations || reduceMotion,
+                highContrast: media.highContrast || highContrast,
+              ),
+              child: child ?? const SizedBox.shrink(),
+            );
+          },
+          home: WelcomePage(database: database),
+        );
+      },
+    );
+  }
+}
+
+class WelcomePage extends StatefulWidget {
+  final MeyaDatabase database;
+
+  const WelcomePage({super.key, required this.database});
+
+  @override
+  State<WelcomePage> createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+  bool _loading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAccount();
+  }
+
+  Future<void> _loadAccount() async {
+    await MeyaAccountStorage.loadUser();
+
+    if (!mounted) {
+      return;
+    }
+
+    setState(() {
+      _loading = false;
+    });
+  }
+
+  void _createAccount() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ProfileSetupPage(database: widget.database),
+      ),
+    );
+  }
+
+  void _login() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoginPage(
+          database: widget.database,
+          onUnlocked: (account) async {
+            await MeyaAccountStorage.saveUser(
+              MeyaUser(
+                userId: account.accountId,
+                name: account.name,
+                username: account.username,
+              ),
+            );
+
+            if (!context.mounted) {
+              return;
+            }
+
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SpacePage(
+                  name: account.name,
+                  username: account.username,
+                  database: widget.database,
+                ),
+              ),
+              (route) => false,
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 28),
+          child: Column(
+            children: [
+              const Spacer(flex: 2),
+              Container(
+                width: 96,
+                height: 96,
+                decoration: BoxDecoration(
+                  color: context.meya.navy,
+                  borderRadius: BorderRadius.circular(28),
+                ),
+                child: Center(
+                  child: Text(
+                    'M',
+                    style: TextStyle(
+                      color: context.meya.onNavy,
+                      fontSize: 52,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 28),
+              Text(
+                'MEYA',
+                style: TextStyle(
+                  color: context.meya.navy,
+                  fontSize: 32,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 2,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                context.tr('Private connections.\nSimply yours.'),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: context.meya.text,
+                  fontSize: 22,
+                  height: 1.35,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                context.tr('A simple, private space for the people who matter to you.'),
+                textAlign: TextAlign.center,
+                style: TextStyle(color: context.meya.muted, fontSize: 16, height: 1.5),
+              ),
+              const Spacer(flex: 2),
+              SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: FilledButton(
+                  onPressed: _loading ? null : _createAccount,
+                  style: FilledButton.styleFrom(
+                    backgroundColor: context.meya.navy,
+                    foregroundColor: context.meya.onNavy,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                  child: Text(
+                    context.tr('Get Started'),
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextButton(
+                onPressed: _loading ? null : _login,
+                child: Text(
+                  context.tr('Already have a MEYA account? Log in'),
+                  style: TextStyle(
+                    color: context.meya.navy,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ProfileSetupPage extends StatefulWidget {
+  final MeyaDatabase database;
+
+  const ProfileSetupPage({super.key, required this.database});
+
+  @override
+  State<ProfileSetupPage> createState() => _ProfileSetupPageState();
+}
+
+class _ProfileSetupPageState extends State<ProfileSetupPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _usernameController = TextEditingController();
+
+  bool _checkingUsername = false;
+  bool _usernameTaken = false;
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _usernameController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _checkUsername() async {
+    final username = _usernameController.text.trim().toLowerCase();
+
+    if (username.length < 3) {
+      if (mounted) {
+        setState(() {
+          _usernameTaken = false;
+        });
+      }
+      return;
+    }
+
+    setState(() {
+      _checkingUsername = true;
+    });
+
+    final repository = AccountRepository(widget.database);
+    final existing = await repository.getAccountByUsername(username);
+
+    if (!mounted) {
+      return;
+    }
+
+    setState(() {
+      _checkingUsername = false;
+      _usernameTaken = existing != null;
+    });
+  }
+
+  Future<void> _continue() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    final username = _usernameController.text.trim().toLowerCase();
+    final repository = AccountRepository(widget.database);
+    final existing = await repository.getAccountByUsername(username);
+
+    if (!mounted) {
+      return;
+    }
+
+    if (existing != null) {
+      setState(() {
+        _usernameTaken = true;
+      });
+      return;
+    }
+
+    FocusScope.of(context).unfocus();
+    final name = _nameController.text.trim();
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CreatePasscodePage(
+          onPasscodeCreated: (_) async {
+            final accountService = MeyaAccountService(repository);
+            final account = await accountService.createAccount(
+              name: name,
+              username: username,
+            );
+
+            await MeyaAccountStorage.saveUser(
+              MeyaUser(
+                userId: account.accountId,
+                name: account.name,
+                username: account.username,
+              ),
+            );
+
+            if (!context.mounted) {
+              return;
+            }
+
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SpacePage(
+                  name: account.name,
+                  username: account.username,
+                  database: widget.database,
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(context.tr('Create your MEYA profile'))),
+      body: SafeArea(
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(28, 24, 28, 32),
+            children: [
+              Text(
+                context.tr('Your name'),
+                style: TextStyle(
+                  color: context.meya.text,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 8),
+              TextFormField(
+                controller: _nameController,
+                textInputAction: TextInputAction.next,
+                decoration: InputDecoration(hintText: context.tr('Enter your name')),
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return context.tr('Please enter your name');
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 24),
+              Text(
+                context.tr('MEYA ID'),
+                style: TextStyle(
+                  color: context.meya.text,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 8),
+              TextFormField(
+                controller: _usernameController,
+                textInputAction: TextInputAction.done,
+                autocorrect: false,
+                onChanged: (_) => _checkUsername(),
+                decoration: InputDecoration(
+                  hintText: context.tr('Choose your MEYA ID'),
+                  prefixText: '@',
+                ),
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return context.tr('Please choose a MEYA ID');
+                  }
+                  if (value.trim().length < 3) {
+                    return context.tr('Use at least 3 characters');
+                  }
+                  if (_usernameTaken) {
+                    return context.tr('This MEYA ID is already used on this device');
+                  }
+                  return null;
+                },
+              ),
+              if (_checkingUsername) ...[
+                const SizedBox(height: 8),
+                Text(
+                  context.tr('Checking your MEYA ID…'),
+                  style: TextStyle(color: context.meya.muted, fontSize: 13),
+                ),
+              ],
+              const SizedBox(height: 12),
+              Text(
+                context.tr('Your MEYA ID identifies you inside your private MEYA space.'),
+                style: TextStyle(color: context.meya.muted, fontSize: 14, height: 1.4),
+              ),
+              const SizedBox(height: 40),
+              SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: FilledButton(
+                  onPressed: _checkingUsername ? null : _continue,
+                  style: FilledButton.styleFrom(
+                    backgroundColor: context.meya.navy,
+                    foregroundColor: context.meya.onNavy,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                  child: Text(
+                    context.tr('Continue'),
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SpacePage extends StatefulWidget {
+  final String name;
+  final String username;
+  final MeyaDatabase database;
+
+  const SpacePage({
+    super.key,
+    required this.name,
+    required this.username,
+    required this.database,
+  });
+
+  @override
+  State<SpacePage> createState() => _SpacePageState();
+}
+
+class _SpacePageState extends State<SpacePage>
+    with WidgetsBindingObserver {
+  final MeyaRelaySession _relaySession = MeyaRelaySession.instance;
+  final List<StreamSubscription<void>> _subscriptions = [];
+
+  late String _name = widget.name;
+  late String _username = widget.username;
+  String? _photoPath;
+  int _photoVersion = 0;
+  List<CalendarEvent> _upcoming = [];
+  int _statusCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    final messages = MeyaMessageService.instance;
+    messages.configure(database: widget.database);
+    MeyaStatusService.instance.configure(database: widget.database);
+    MeyaProfileService.instance.configure(database: widget.database);
+
+    messages.setSilentHandler('status', MeyaStatusService.instance.handleIncoming);
+    messages.setSilentHandler(
+      'status_clear',
+      MeyaStatusService.instance.handleIncoming,
+    );
+    messages.setSilentHandler('profile', MeyaProfileService.instance.handleIncoming);
+    // The person who accepted a connection shares their profile as soon as
+    // the encrypted session is confirmed.
+    messages.setSilentHandler('session_init', (contact, _, _) async {
+      await MeyaProfileService.instance.share(only: contact);
+    });
+    messages.setCallPlanHandler(MeyaCalendarService.instance.handleIncoming);
+
+    final calls = MeyaCallService.instance;
+    calls.configure(
+      send: messages.sendSilent,
+      createEngine: WebRtcCallEngine.new,
+    );
+    calls.onIncoming = _showIncomingCall;
+    calls.onMissed = _showMissedCall;
+    for (final kind in const ['call_offer', 'call_answer', 'call_end']) {
+      messages.setSilentHandler(kind, calls.handleSignal);
+    }
+
+    MeyaConnectionService.instance.configure(
+      database: widget.database,
+      onIncomingRequest: _showIncomingRequestNotification,
+      onSecurityWarning: _showSecurityWarning,
+      onChat: messages.handleIncoming,
+      onBlob: messages.handleBlobChunk,
+      onSessionStarted: _onSessionStarted,
+    );
+    _relaySession.addMessageListener(_handleRelayMessage);
+    _relaySession.addErrorListener(_handleRelayError);
+    _relaySession.addConnectedListener(_onRelayConnected);
+    WidgetsBinding.instance.addObserver(this);
+
+    _subscriptions
+      ..add(MeyaCalendarService.instance.changes.listen((_) => _loadOverview()))
+      ..add(MeyaStatusService.instance.changes.listen((_) => _loadOverview()))
+      ..add(messages.received.listen((conversationId) async {
+        if (MeyaCallService.instance.inCall) return;
+        if (conversationId == messages.activeConversationId) return;
+        if (await messages.isMuted(conversationId)) return;
+        MeyaSoundSettings.instance.playNotification();
+      }));
+
+    unawaited(_startRelaySession());
+    unawaited(MeyaMediaSettings.instance.applyKeepMedia());
+    _loadOverview();
+  }
+
+  /// The person who scanned the QR code starts the session, then shares
+  /// their profile with the new contact.
+  Future<void> _onSessionStarted(String deviceId) async {
+    await MeyaMessageService.instance.sendSessionInit(deviceId);
+    final contact =
+        await ContactRepository(widget.database).getContactByDeviceId(deviceId);
+    if (contact != null) {
+      await MeyaProfileService.instance.share(only: contact);
+    }
+  }
+
+  Future<void> _loadOverview() async {
+    final user = await MeyaAccountStorage.loadUser();
+    final photo = await ProfilePhotoService.getPhotoPath();
+    final upcoming = await MeyaCalendarService.instance.upcoming(limit: 3);
+    final statuses = await MeyaStatusService.instance.contactStatuses();
+    if (!mounted) return;
+    if (photo != null) await FileImage(File(photo)).evict();
+    if (!mounted) return;
+    setState(() {
+      if (user != null) {
+        _name = user.name;
+        _username = user.username;
+      }
+      _photoPath = photo;
+      _photoVersion++;
+      _upcoming = upcoming;
+      _statusCount = statuses.length;
+    });
+  }
+
+  /// Relay messages are handled one at a time, in arrival order, so the
+  /// encryption sessions always advance in a consistent order.
+  Future<void> _relayQueue = Future.value();
+
+  Future<void> _startRelaySession() async {
+    // Open the encryption engine first: incoming messages need it.
+    try {
+      final identityKey = await MeyaE2ee.instance.open();
+      final accounts = AccountRepository(widget.database);
+      final account = await accounts.getActiveAccount();
+      if (account != null && account.identityPublicKey != identityKey) {
+        await accounts.updateIdentityPublicKey(
+          accountId: account.accountId,
+          identityPublicKey: identityKey,
+        );
+      }
+    } catch (error) {
+      _showSecurityWarning(context.tr('MEYA encryption could not start: {0}', [error]));
+      return;
+    }
+
+    try {
+      await _relaySession.keepConnected();
+    } catch (error) {
+      _handleRelayError(error);
+    }
+  }
+
+  void _handleRelayMessage(Map<String, dynamic> message) {
+    _relayQueue = _relayQueue.then(
+      (_) => MeyaConnectionService.instance
+          .handleRelayMessage(message)
+          .catchError((Object error) {
+        debugPrint('MEYA relay message handling failed: $error');
+      }),
+    );
+  }
+
+  /// Sends whatever waited while offline.
+  void _onRelayConnected() {
+    if (_offlineNotified) {
+      _offlineNotified = false;
+      meyaScaffoldMessengerKey.currentState
+        ?..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(tr('Back online.'))));
+    }
+    unawaited(MeyaMessageService.instance.retryPending());
+  }
+
+  bool _offlineNotified = false;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      unawaited(
+        _relaySession.keepConnected().catchError((Object error) {
+          debugPrint('MEYA relay: reconnect on resume failed ($error).');
+        }),
+      );
+    }
+  }
+
+  /// Says once that MEYA is offline; it keeps reconnecting by itself and
+  /// sends queued messages when it is back.
+  void _handleRelayError(Object error) {
+    debugPrint('MEYA relay: $error');
+    if (_offlineNotified || _relaySession.isConnected) return;
+    _offlineNotified = true;
+    meyaScaffoldMessengerKey.currentState?.showSnackBar(
+      SnackBar(
+        content: Text(
+          tr('You are offline. Messages will be sent when MEYA reconnects.'),
+        ),
+      ),
+    );
+  }
+
+  void _showIncomingCall() {
+    final navigator = meyaNavigatorKey.currentState;
+    if (navigator == null) return;
+    var showing = false;
+    navigator.popUntil((route) {
+      showing = route.settings.name == CallPage.routeName;
+      return true;
+    });
+    if (!showing) navigator.push(CallPage.route());
+  }
+
+  void _showMissedCall(Contact contact) {
+    meyaScaffoldMessengerKey.currentState?.showSnackBar(
+      SnackBar(
+        content: Text(tr('Missed call from {0}', [contact.displayName])),
+      ),
+    );
+  }
+
+  void _showSecurityWarning(String message) {
+    meyaScaffoldMessengerKey.currentState?.showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: const Duration(seconds: 8),
+      ),
+    );
+  }
+
+  void _showIncomingRequestNotification(String senderName) {
+    meyaScaffoldMessengerKey.currentState?.showSnackBar(
+      SnackBar(
+        content: Text(context.tr('{0} wants to connect with you on MEYA.', [senderName])),
+        action: SnackBarAction(
+          label: context.tr('Open'),
+          onPressed: () {
+            meyaNavigatorKey.currentState?.push(
+              MaterialPageRoute(
+                builder: (_) => InvitationsPage(database: widget.database),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    for (final subscription in _subscriptions) {
+      subscription.cancel();
+    }
+    _relaySession.removeMessageListener(_handleRelayMessage);
+    _relaySession.removeErrorListener(_handleRelayError);
+    _relaySession.removeConnectedListener(_onRelayConnected);
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  Future<void> _open(Widget page) async {
+    await Navigator.push(context, MaterialPageRoute<void>(builder: (_) => page));
+    await _loadOverview();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.meya;
+    final photoPath = _photoPath;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(context.tr('Your Space')),
+        actions: [
+          IconButton(
+            tooltip: context.tr('Settings'),
+            onPressed: () => _open(
+              SettingsPage(
+                name: _name,
+                username: _username,
+                database: widget.database,
+              ),
+            ),
+            icon: const Icon(Icons.settings_outlined),
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
+          children: [
+            Material(
+              color: colors.card,
+              borderRadius: BorderRadius.circular(20),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(20),
+                onTap: () => _open(ProfilePage(database: widget.database)),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        key: ValueKey(_photoVersion),
+                        radius: 28,
+                        backgroundColor: colors.navy,
+                        foregroundImage:
+                            photoPath == null ? null : FileImage(File(photoPath)),
+                        child: Text(
+                          _name.isNotEmpty ? _name[0].toUpperCase() : 'M',
+                          style: TextStyle(
+                            color: colors.onNavy,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              _name,
+                              style: TextStyle(
+                                color: colors.text,
+                                fontSize: 19,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              '@$_username',
+                              style: TextStyle(color: colors.muted, fontSize: 14),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Icon(Icons.chevron_right, color: colors.muted),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            if (_upcoming.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              Material(
+                color: colors.navy,
+                borderRadius: BorderRadius.circular(18),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(18),
+                  onTap: () => _open(CalendarPage(database: widget.database)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
+                      children: [
+                        Icon(Icons.event_available_outlined, color: colors.onNavy),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                context.tr('Next: {0}', [_upcoming.first.plan.title]),
+                                style: TextStyle(
+                                  color: colors.onNavy,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              Text(
+                                formatCallTime(
+                                  context,
+                                  _upcoming.first.start,
+                                  _upcoming.first.plan.durationMinutes,
+                                ),
+                                style: TextStyle(color: colors.onNavy),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+            const SizedBox(height: 28),
+            Text(
+              context.tr('Your Space'),
+              style: TextStyle(
+                color: colors.text,
+                fontSize: 28,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              context.tr('Your people. Your conversations. Your privacy.'),
+              style: TextStyle(color: colors.muted, fontSize: 15, height: 1.4),
+            ),
+            const SizedBox(height: 28),
+            _SpaceItem(
+              icon: Icons.chat_bubble_outline,
+              title: context.tr('Chats'),
+              subtitle: context.tr('Your conversations'),
+              onTap: () => _open(
+                ChatsPage(
+                  database: widget.database,
+                  onNewChat: (context) => Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (_) => NewChatPage(database: widget.database),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            _SpaceItem(
+              icon: Icons.auto_awesome_outlined,
+              title: context.tr('Status'),
+              subtitle: _statusCount == 0
+                  ? context.tr('Share text, a photo or a video')
+                  : _statusCount == 1
+                      ? context.tr('1 new status from your connections')
+                      : context.tr('{0} statuses from your connections', [_statusCount]),
+              onTap: () => _open(StatusHubPage(database: widget.database)),
+            ),
+            const SizedBox(height: 12),
+            _SpaceItem(
+              icon: Icons.calendar_month_outlined,
+              title: context.tr('Calendar'),
+              subtitle: _upcoming.isEmpty
+                  ? context.tr('Plan calls with your people')
+                  : _upcoming.length == 1
+                      ? context.tr('1 upcoming call')
+                      : context.tr('{0} upcoming calls', [_upcoming.length]),
+              onTap: () => _open(CalendarPage(database: widget.database)),
+            ),
+            const SizedBox(height: 12),
+            _SpaceItem(
+              icon: Icons.people_outline,
+              title: context.tr('People'),
+              subtitle: context.tr('Your MEYA connections'),
+              onTap: () => _open(PeoplePage(database: widget.database)),
+            ),
+            const SizedBox(height: 12),
+            _SpaceItem(
+              icon: Icons.group_outlined,
+              title: context.tr('Groups'),
+              subtitle: context.tr('Your private groups'),
+              onTap: () => _open(
+                FeaturePage(
+                  title: context.tr('Groups'),
+                  description: context.tr('Private family groups are planned. Group encryption is still being designed, so groups are not available yet.'),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            _SpaceItem(
+              icon: Icons.person_add_outlined,
+              title: context.tr('Invitations'),
+              subtitle: context.tr('Connection requests from people you trust'),
+              onTap: () => _open(InvitationsPage(database: widget.database)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SettingsPage extends StatelessWidget {
+  final String name;
+  final String username;
+  final MeyaDatabase database;
+
+  const SettingsPage({
+    super.key,
+    required this.name,
+    required this.username,
+    required this.database,
+  });
+
+  void _push(BuildContext context, Widget page) {
+    Navigator.push(context, MaterialPageRoute<void>(builder: (_) => page));
+  }
+
+  /// Signs out (or finishes deleting the account) and returns to Welcome.
+  Future<void> _signOut(BuildContext context) async {
+    try {
+      await MeyaRelaySession.instance.stop();
+    } catch (_) {
+      // Already disconnected.
+    }
+    meyaNavigatorKey.currentState?.pushAndRemoveUntil(
+      MaterialPageRoute<void>(builder: (_) => WelcomePage(database: database)),
+      (route) => false,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(context.tr('Settings'))),
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
+          children: [
+            _SettingsSection(
+              title: context.tr('Profile'),
+              items: [
+                _SettingsItem(
+                  icon: Icons.person_outline,
+                  title: context.tr('Profile'),
+                  subtitle: context.tr('Photo, name, MEYA ID and About'),
+                  onTap: () => _push(context, ProfilePage(database: database)),
+                ),
+                const SizedBox(height: 10),
+                _SettingsItem(
+                  icon: Icons.auto_awesome_outlined,
+                  title: context.tr('Status'),
+                  subtitle: context.tr('Text, photo or video for your connections'),
+                  onTap: () => _push(context, StatusHubPage(database: database)),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            _SettingsSection(
+              title: context.tr('Privacy'),
+              items: [
+                _SettingsItem(
+                  icon: Icons.lock_outline,
+                  title: context.tr('Privacy'),
+                  subtitle: context.tr('Discovery, presence and connection controls'),
+                  onTap: () => _push(context, PrivacyPage(database: database)),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            _SettingsSection(
+              title: context.tr('Security'),
+              items: [
+                _SettingsItem(
+                  icon: Icons.shield_outlined,
+                  title: context.tr('Security'),
+                  subtitle: context.tr('PIN, app lock and trusted devices'),
+                  onTap: () => _push(context, const SecurityPage()),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            _SettingsSection(
+              title: context.tr('Appearance & Accessibility'),
+              items: [
+                _SettingsItem(
+                  icon: Icons.accessibility_new_outlined,
+                  title: context.tr('Appearance & Accessibility'),
+                  subtitle: context.tr('Theme, language, text size and accessibility'),
+                  onTap: () => _push(context, const AppearancePage()),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            _SettingsSection(
+              title: context.tr('Sounds'),
+              items: [
+                _SettingsItem(
+                  icon: Icons.music_note_outlined,
+                  title: context.tr('Sounds'),
+                  subtitle: context.tr('Call ringtone and notification sound'),
+                  onTap: () => _push(context, const SoundsPage()),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            _SettingsSection(
+              title: context.tr('Storage & Media'),
+              items: [
+                _SettingsItem(
+                  icon: Icons.storage_outlined,
+                  title: context.tr('Storage & Media'),
+                  subtitle: context.tr('Storage use, photo quality and keeping media'),
+                  onTap: () => _push(context, const StorageMediaPage()),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            _SettingsSection(
+              title: context.tr('Account'),
+              items: [
+                _SettingsItem(
+                  icon: Icons.manage_accounts_outlined,
+                  title: context.tr('Account'),
+                  subtitle: context.tr('Account details, sign out and deletion'),
+                  onTap: () => _push(
+                    context,
+                    AccountPage(
+                      database: database,
+                      onSignedOut: () => _signOut(context),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            _SettingsSection(
+              title: context.tr('Legal & About'),
+              items: [
+                _SettingsItem(
+                  icon: Icons.info_outline,
+                  title: context.tr('About MEYA'),
+                  subtitle: context.tr('Privacy, terms, accessibility and licences'),
+                  onTap: () => _push(context, const AboutMeyaPage()),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class NewChatPage extends StatefulWidget {
+  final MeyaDatabase database;
+
+  const NewChatPage({super.key, required this.database});
+
+  @override
+  State<NewChatPage> createState() => _NewChatPageState();
+}
+
+class _NewChatPageState extends State<NewChatPage> {
+  List<Contact> _contacts = [];
+  bool _loading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    final contacts = await _loadTrustedContacts(widget.database);
+    if (!mounted) return;
+    setState(() {
+      _contacts = contacts;
+      _loading = false;
+    });
+  }
+
+  Future<void> _scan() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute<void>(
+        builder: (_) => MeyaQrScannerPage(database: widget.database),
+      ),
+    );
+    await _load();
+  }
+
+  void _openChat(Contact contact) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute<void>(
+        builder: (_) => ChatPage(database: widget.database, contact: contact),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Scaffold(
+      appBar: AppBar(title: Text(context.tr('New Chat'))),
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
+          children: [
+            _ContactRow(
+              icon: Icons.qr_code_scanner,
+              title: context.tr('Add someone new'),
+              subtitle: context.tr('Scan their MEYA QR code in person'),
+              onTap: _scan,
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(4, 0, 4, 8),
+              child: Text(
+                context.tr('Choose a person'),
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: colorScheme.onSurface.withValues(alpha: 0.7),
+                ),
+              ),
+            ),
+            if (_loading)
+              const Padding(
+                padding: EdgeInsets.all(24),
+                child: Center(child: CircularProgressIndicator()),
+              )
+            else if (_contacts.isEmpty)
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  context.tr('You have no MEYA contacts yet. Scan someone\'s QR code to add them.'),
+                  style: TextStyle(
+                    fontSize: 15,
+                    height: 1.45,
+                    color: colorScheme.onSurface.withValues(alpha: 0.7),
+                  ),
+                ),
+              )
+            else
+              ..._contacts.map(
+                (contact) => _ContactRow(
+                  contact: contact,
+                  subtitle: context.tr('Trusted connection'),
+                  onTap: () => _openChat(contact),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Future<List<Contact>> _loadTrustedContacts(MeyaDatabase database) async {
+  final account = await AccountRepository(database).getActiveAccount();
+  return ContactRepository(database).getTrustedContacts(
+    excludeIdentityId: account?.identityId ?? account?.accountId,
+  );
+}
+
+/// One tappable row: either a contact (initial avatar) or an action (icon).
+class _ContactRow extends StatelessWidget {
+  final Contact? contact;
+  final IconData? icon;
+  final String? title;
+  final String subtitle;
+  final VoidCallback onTap;
+
+  const _ContactRow({
+    this.contact,
+    this.icon,
+    this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final name = title ??
+        ((contact?.displayName.trim().isEmpty ?? true)
+            ? context.tr('MEYA contact')
+            : contact!.displayName.trim());
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Material(
+        color: colorScheme.surfaceContainerLowest,
+        borderRadius: BorderRadius.circular(18),
+        child: ListTile(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+          leading: CircleAvatar(
+            radius: 24,
+            backgroundColor: colorScheme.primary.withValues(alpha: 0.12),
+            child: icon != null
+                ? Icon(icon, color: colorScheme.primary)
+                : Text(
+                    name.substring(0, 1).toUpperCase(),
+                    style: TextStyle(
+                      color: colorScheme.primary,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+          ),
+          title: Text(
+            name,
+            style: const TextStyle(fontWeight: FontWeight.w700),
+          ),
+          subtitle: Text(
+            subtitle,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: onTap,
+        ),
+      ),
+    );
+  }
+}
+
+class _SettingsSection extends StatelessWidget {
+  final String title;
+  final List<Widget> items;
+
+  const _SettingsSection({required this.title, required this.items});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 4, bottom: 10),
+          child: Text(
+            title,
+            style: TextStyle(
+              color: context.meya.muted,
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        ...items,
+      ],
+    );
+  }
+}
+
+class _SettingsItem extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
+
+  const _SettingsItem({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: context.meya.card,
+      borderRadius: BorderRadius.circular(18),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(18),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(18),
+          child: Row(
+            children: [
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  color: context.meya.surface,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Icon(icon, color: context.meya.navy),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: context.meya.text,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      subtitle,
+                      style: TextStyle(
+                        color: context.meya.muted,
+                        fontSize: 14,
+                        height: 1.35,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(Icons.chevron_right, color: context.meya.muted),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SpaceItem extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
+
+  const _SpaceItem({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: context.meya.card,
+      borderRadius: BorderRadius.circular(18),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(18),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(18),
+          child: Row(
+            children: [
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  color: context.meya.surface,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Icon(icon, color: context.meya.navy),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: context.meya.text,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      subtitle,
+                      style: TextStyle(color: context.meya.muted, fontSize: 14),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(Icons.chevron_right, color: context.meya.muted),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class FeaturePage extends StatelessWidget {
+  final String title;
+  final String description;
+
+  const FeaturePage({
+    super.key,
+    required this.title,
+    required this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(title)),
+      body: SafeArea(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 84,
+                  height: 84,
+                  decoration: BoxDecoration(
+                    color: context.meya.card,
+                    borderRadius: BorderRadius.circular(26),
+                  ),
+                  child: Icon(
+                    Icons.construction_outlined,
+                    color: context.meya.navy,
+                    size: 40,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: context.meya.text,
+                    fontSize: 23,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  description,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: context.meya.muted,
+                    fontSize: 15,
+                    height: 1.5,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
