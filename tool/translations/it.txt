@@ -621,3 +621,4 @@ Annulla verifica
 Segna come verificato
 Confronta i numeri di sicurezza con {0}
 Verificato · crittografia end-to-end
+Codice sorgente
