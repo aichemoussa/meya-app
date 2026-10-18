@@ -659,3 +659,43 @@ Als je je toegangscode vergeet, is een herstelcode de enige manier om je account
 Later
 Nu instellen
 Bevestig je toegangscode
+Een groep kan maximaal {0} personen hebben.
+Leden toevoegen
+{0} toevoegen
+Beheerder
+Een ander lid wordt beheerder. Je houdt de berichten die al op deze telefoon staan.
+Bijvoegen
+Kies minstens één persoon.
+Leden kiezen
+Sluiten
+Maak een groep met je MEYA-connecties. Elk bericht wordt voor elk lid end-to-end versleuteld.
+Groep maken
+Groep van deze telefoon verwijderen
+Deze groep van je telefoon verwijderen?
+Elk bericht wordt voor elk lid apart end-to-end versleuteld. Leden die niet met elkaar verbonden zijn, worden via de beheerder voorgesteld.
+Versleutelde berichten zijn nog niet ingesteld met {0}.
+Bijvoorbeeld: Familie
+Voormalig lid
+Geef de groep een naam.
+Groep
+Groepsinfo
+Groepsnaam
+De berichten worden van deze telefoon verwijderd. Andere leden houden die van hen.
+Verlaten
+Groep verlaten
+Deze groep verlaten?
+Leden
+Berichten in deze groep zijn voor elk lid end-to-end versleuteld.
+Nieuwe groep
+Geen MEYA-account op deze telefoon.
+Nog geen groepen
+Niemand om toe te voegen. Maak eerst verbinding met mensen door hun QR-code te scannen.
+Alleen de groepsbeheerder kan de groep wijzigen.
+{0} uit de groep verwijderen?
+Groep hernoemen
+Je zit niet meer in deze groep
+Je zit niet meer in deze groep.
+Je houdt de berichten die al op deze telefoon staan.
+Jij wordt de beheerder: alleen jij kunt de groep hernoemen en mensen toevoegen of verwijderen. Leden die niet met elkaar verbonden zijn, worden via jou voorgesteld.
+{0} gekozen · wijzigen
+{0} leden

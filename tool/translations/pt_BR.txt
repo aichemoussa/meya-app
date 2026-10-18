@@ -659,3 +659,43 @@ Se você esquecer seu código, um código de recuperação é a única forma de 
 Depois
 Configurar agora
 Confirme seu código
+Um grupo pode ter até {0} pessoas.
+Adicionar membros
+Adicionar {0}
+Admin
+Outro membro passa a ser admin. Você mantém as mensagens que já estão neste celular.
+Anexar
+Escolha pelo menos uma pessoa.
+Escolher membros
+Fechar
+Crie um grupo com suas conexões do MEYA. Cada mensagem é criptografada de ponta a ponta para cada membro.
+Criar grupo
+Excluir o grupo deste celular
+Excluir este grupo do seu celular?
+Cada mensagem é criptografada de ponta a ponta separadamente para cada membro. Membros que não estão conectados entre si são apresentados pelo admin.
+As mensagens criptografadas ainda não estão configuradas com {0}.
+Por exemplo: Família
+Ex-membro
+Dê um nome ao grupo.
+Grupo
+Dados do grupo
+Nome do grupo
+As mensagens dele são excluídas deste celular. Os outros membros mantêm as suas.
+Sair
+Sair do grupo
+Sair deste grupo?
+Membros
+As mensagens deste grupo são criptografadas de ponta a ponta para cada membro.
+Novo grupo
+Nenhuma conta MEYA neste celular.
+Nenhum grupo ainda
+Ninguém para adicionar. Primeiro conecte-se com pessoas lendo o código QR delas.
+Só o admin do grupo pode alterar o grupo.
+Remover {0} do grupo?
+Renomear grupo
+Você não está mais neste grupo
+Você não está mais neste grupo.
+Você mantém as mensagens que já estão neste celular.
+Você será o admin: só você pode renomear o grupo e adicionar ou remover pessoas. Membros que não estão conectados entre si são apresentados por você.
+{0} escolhidos · alterar
+{0} membros

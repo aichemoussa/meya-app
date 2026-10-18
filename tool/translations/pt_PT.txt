@@ -659,3 +659,43 @@ Se se esquecer do seu código, um código de recuperação é a única forma de 
 Mais tarde
 Configurar agora
 Confirme o seu código
+Um grupo pode ter até {0} pessoas.
+Adicionar membros
+Adicionar {0}
+Admin
+Outro membro passa a ser admin. Mantém as mensagens que já estão neste telemóvel.
+Anexar
+Escolha pelo menos uma pessoa.
+Escolher membros
+Fechar
+Crie um grupo com as suas ligações MEYA. Cada mensagem é encriptada ponto a ponto para cada membro.
+Criar grupo
+Eliminar o grupo deste telemóvel
+Eliminar este grupo do seu telemóvel?
+Cada mensagem é encriptada ponto a ponto separadamente para cada membro. Os membros que não estão ligados entre si são apresentados através do admin.
+As mensagens encriptadas ainda não estão configuradas com {0}.
+Por exemplo: Família
+Antigo membro
+Dê um nome ao grupo.
+Grupo
+Informações do grupo
+Nome do grupo
+As mensagens dele são eliminadas deste telemóvel. Os outros membros mantêm as suas.
+Sair
+Sair do grupo
+Sair deste grupo?
+Membros
+As mensagens deste grupo são encriptadas ponto a ponto para cada membro.
+Novo grupo
+Nenhuma conta MEYA neste telemóvel.
+Ainda não há grupos
+Ninguém para adicionar. Primeiro ligue-se a pessoas lendo o código QR delas.
+Só o admin do grupo pode alterar o grupo.
+Remover {0} do grupo?
+Mudar o nome do grupo
+Já não está neste grupo
+Já não está neste grupo.
+Mantém as mensagens que já estão neste telemóvel.
+Vai ser o admin: só o próprio pode mudar o nome do grupo e adicionar ou remover pessoas. Os membros que não estão ligados entre si são apresentados através de si.
+{0} escolhidos · alterar
+{0} membros

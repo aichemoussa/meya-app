@@ -659,3 +659,43 @@ If you forget your passcode, a recovery code is the only way to keep your accoun
 Later
 Set up now
 Confirm your passcode
+A group can have up to {0} people.
+Add members
+Add {0}
+Admin
+Another member becomes the admin. You keep the messages already on this phone.
+Attach
+Choose at least one person.
+Choose members
+Close
+Create a group with your MEYA connections. Every message is end-to-end encrypted for each member.
+Create group
+Delete group from this phone
+Delete this group from your phone?
+Each message is end-to-end encrypted separately for every member. Members who are not connected with each other are introduced through the admin.
+Encrypted messaging is not set up with {0} yet.
+For example: Family
+Former member
+Give the group a name.
+Group
+Group info
+Group name
+Its messages are deleted from this phone. Other members keep theirs.
+Leave
+Leave group
+Leave this group?
+Members
+Messages in this group are end-to-end encrypted for each member.
+New group
+No MEYA account on this phone.
+No groups yet
+No one to add. Connect with people by scanning their QR code first.
+Only the group admin can change the group.
+Remove {0} from the group?
+Rename group
+You are no longer in this group
+You are no longer in this group.
+You keep the messages already on this phone.
+You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.
+{0} chosen · change
+{0} members

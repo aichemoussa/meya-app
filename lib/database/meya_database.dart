@@ -167,6 +167,38 @@ class Reactions extends Table {
   Set<Column> get primaryKey => {messageId, reactorDeviceId};
 }
 
+/// A private group. Messages are sent to every member separately over each
+/// person's own end-to-end encrypted session; only the admin (the person
+/// who created the group) changes its name and members.
+class MeyaGroups extends Table {
+  TextColumn get groupId => text()();
+  TextColumn get name => text()();
+  TextColumn get adminDeviceId => text()();
+  IntColumn get revision => integer().withDefault(const Constant(0))();
+  TextColumn get createdAt => text()();
+  TextColumn get updatedAt => text()();
+
+  /// False once this device left or was removed. History stays readable.
+  BoolColumn get isActive => boolean().withDefault(const Constant(true))();
+
+  @override
+  Set<Column> get primaryKey => {groupId};
+}
+
+/// Members of a group, as announced by its admin, with the identity key the
+/// admin verified in person. This device is listed too.
+class GroupMembers extends Table {
+  TextColumn get groupId => text().references(MeyaGroups, #groupId)();
+  TextColumn get deviceId => text()();
+  TextColumn get identityId => text()();
+  TextColumn get displayName => text()();
+  TextColumn get identityPublicKey => text()();
+  TextColumn get addedAt => text()();
+
+  @override
+  Set<Column> get primaryKey => {groupId, deviceId};
+}
+
 /// Encrypted control messages (receipts, reactions, edits, deletions, pins)
 /// waiting for the relay. The fields are sealed with the local storage key.
 class Outbox extends Table {
@@ -193,10 +225,12 @@ class Outbox extends Table {
     Attachments,
     Reactions,
     Outbox,
+    MeyaGroups,
+    GroupMembers,
   ],
 )
 class MeyaDatabase extends _$MeyaDatabase {
-  static const schemaVersionValue = 9;
+  static const schemaVersionValue = 10;
 
   MeyaDatabase() : super(_openConnection());
 
@@ -281,6 +315,11 @@ class MeyaDatabase extends _$MeyaDatabase {
         }
         await migrator.createTable(reactions);
         await migrator.createTable(outbox);
+      }
+
+      if (from < 10 && to >= 10) {
+        await migrator.createTable(meyaGroups);
+        await migrator.createTable(groupMembers);
       }
     },
     beforeOpen: (_) async {

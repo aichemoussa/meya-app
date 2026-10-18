@@ -659,3 +659,43 @@ Parolanızı unutursanız hesabınızı korumanın tek yolu kurtarma kodudur. Bi
 Daha sonra
 Şimdi ayarla
 Parolanızı doğrulayın
+Bir grupta en fazla {0} kişi olabilir.
+Üye ekle
+{0} kişi ekle
+Yönetici
+Başka bir üye yönetici olur. Bu telefondaki mesajlar sende kalır.
+Ekle
+En az bir kişi seç.
+Üyeleri seç
+Kapat
+MEYA bağlantılarınla bir grup oluştur. Her mesaj her üye için uçtan uca şifrelenir.
+Grup oluştur
+Grubu bu telefondan sil
+Bu grup telefonundan silinsin mi?
+Her mesaj her üye için ayrı ayrı uçtan uca şifrelenir. Birbirine bağlı olmayan üyeler yönetici aracılığıyla tanıştırılır.
+{0} ile şifreli mesajlaşma henüz kurulmadı.
+Örneğin: Aile
+Eski üye
+Gruba bir ad ver.
+Grup
+Grup bilgisi
+Grup adı
+Grubun mesajları bu telefondan silinir. Diğer üyeler kendi mesajlarını korur.
+Ayrıl
+Gruptan ayrıl
+Bu gruptan ayrılmak istiyor musun?
+Üyeler
+Bu gruptaki mesajlar her üye için uçtan uca şifrelidir.
+Yeni grup
+Bu telefonda MEYA hesabı yok.
+Henüz grup yok
+Eklenecek kimse yok. Önce kişilerin QR kodunu tarayarak onlarla bağlantı kur.
+Grubu yalnızca grup yöneticisi değiştirebilir.
+{0} gruptan çıkarılsın mı?
+Grubu yeniden adlandır
+Artık bu grupta değilsin
+Artık bu grupta değilsin.
+Bu telefondaki mesajlar sende kalır.
+Yönetici sen olacaksın: grubu yalnızca sen yeniden adlandırabilir, kişi ekleyip çıkarabilirsin. Birbirine bağlı olmayan üyeler senin aracılığınla tanıştırılır.
+{0} seçildi · değiştir
+{0} üye

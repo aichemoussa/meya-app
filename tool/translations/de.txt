@@ -659,3 +659,43 @@ Wenn du deinen Code vergisst, kannst du dein Konto nur mit einem Wiederherstellu
 Später
 Jetzt einrichten
 Code bestätigen
+Eine Gruppe kann bis zu {0} Personen haben.
+Mitglieder hinzufügen
+{0} hinzufügen
+Admin
+Ein anderes Mitglied wird Admin. Du behältst die Nachrichten, die schon auf diesem Telefon sind.
+Anhängen
+Wähle mindestens eine Person.
+Mitglieder wählen
+Schließen
+Erstelle eine Gruppe mit deinen MEYA-Kontakten. Jede Nachricht wird für jedes Mitglied Ende-zu-Ende-verschlüsselt.
+Gruppe erstellen
+Gruppe von diesem Telefon löschen
+Diese Gruppe von deinem Telefon löschen?
+Jede Nachricht wird für jedes Mitglied einzeln Ende-zu-Ende-verschlüsselt. Mitglieder, die nicht miteinander verbunden sind, werden über den Admin vorgestellt.
+Verschlüsselte Nachrichten sind mit {0} noch nicht eingerichtet.
+Zum Beispiel: Familie
+Ehemaliges Mitglied
+Gib der Gruppe einen Namen.
+Gruppe
+Gruppeninfo
+Gruppenname
+Ihre Nachrichten werden von diesem Telefon gelöscht. Andere Mitglieder behalten ihre.
+Verlassen
+Gruppe verlassen
+Diese Gruppe verlassen?
+Mitglieder
+Nachrichten in dieser Gruppe sind für jedes Mitglied Ende-zu-Ende-verschlüsselt.
+Neue Gruppe
+Kein MEYA-Konto auf diesem Telefon.
+Noch keine Gruppen
+Niemand zum Hinzufügen. Verbinde dich zuerst mit Personen, indem du ihren QR-Code scannst.
+Nur der Gruppenadmin kann die Gruppe ändern.
+{0} aus der Gruppe entfernen?
+Gruppe umbenennen
+Du bist nicht mehr in dieser Gruppe
+Du bist nicht mehr in dieser Gruppe.
+Du behältst die Nachrichten, die schon auf diesem Telefon sind.
+Du wirst Admin: Nur du kannst die Gruppe umbenennen und Personen hinzufügen oder entfernen. Mitglieder, die nicht miteinander verbunden sind, werden über dich vorgestellt.
+{0} gewählt · ändern
+{0} Mitglieder

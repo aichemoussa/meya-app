@@ -659,3 +659,43 @@ Si vous oubliez votre code, un code de récupération est le seul moyen de garde
 Plus tard
 Configurer maintenant
 Confirmez votre code
+Un groupe peut compter jusqu'à {0} personnes.
+Ajouter des membres
+Ajouter {0}
+Admin
+Un autre membre devient admin. Vous gardez les messages déjà présents sur ce téléphone.
+Joindre
+Choisissez au moins une personne.
+Choisir les membres
+Fermer
+Créez un groupe avec vos connexions MEYA. Chaque message est chiffré de bout en bout pour chaque membre.
+Créer le groupe
+Supprimer le groupe de ce téléphone
+Supprimer ce groupe de votre téléphone ?
+Chaque message est chiffré de bout en bout séparément pour chaque membre. Les membres qui ne sont pas connectés entre eux sont présentés par l'admin.
+La messagerie chiffrée n'est pas encore configurée avec {0}.
+Par exemple : Famille
+Ancien membre
+Donnez un nom au groupe.
+Groupe
+Infos du groupe
+Nom du groupe
+Ses messages sont supprimés de ce téléphone. Les autres membres gardent les leurs.
+Quitter
+Quitter le groupe
+Quitter ce groupe ?
+Membres
+Les messages de ce groupe sont chiffrés de bout en bout pour chaque membre.
+Nouveau groupe
+Aucun compte MEYA sur ce téléphone.
+Aucun groupe pour l'instant
+Personne à ajouter. Connectez-vous d'abord avec des personnes en scannant leur code QR.
+Seul l'admin du groupe peut modifier le groupe.
+Retirer {0} du groupe ?
+Renommer le groupe
+Vous ne faites plus partie de ce groupe
+Vous ne faites plus partie de ce groupe.
+Vous gardez les messages déjà présents sur ce téléphone.
+Vous serez l'admin : vous seul pourrez renommer le groupe et ajouter ou retirer des personnes. Les membres qui ne sont pas connectés entre eux sont présentés par vous.
+{0} choisis · modifier
+{0} membres

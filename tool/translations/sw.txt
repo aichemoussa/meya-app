@@ -659,3 +659,43 @@ Ukisahau nambari yako ya siri, msimbo wa urejeshaji ndiyo njia pekee ya kuhifadh
 Baadaye
 Weka sasa
 Thibitisha nambari yako ya siri
+Kikundi kinaweza kuwa na hadi watu {0}.
+Ongeza wanachama
+Ongeza {0}
+Msimamizi
+Mwanachama mwingine anakuwa msimamizi. Unabaki na ujumbe ulio tayari kwenye simu hii.
+Ambatisha
+Chagua angalau mtu mmoja.
+Chagua wanachama
+Funga
+Unda kikundi na miunganisho yako ya MEYA. Kila ujumbe umesimbwa kwa njia fiche ya mwisho hadi mwisho kwa kila mwanachama.
+Unda kikundi
+Futa kikundi kwenye simu hii
+Ufute kikundi hiki kwenye simu yako?
+Kila ujumbe husimbwa kwa njia fiche ya mwisho hadi mwisho kando kwa kila mwanachama. Wanachama wasiounganishwa wao kwa wao hutambulishwa kupitia msimamizi.
+Ujumbe uliosimbwa bado haujawekwa na {0}.
+Kwa mfano: Familia
+Mwanachama wa zamani
+Kipe kikundi jina.
+Kikundi
+Maelezo ya kikundi
+Jina la kikundi
+Ujumbe wake unafutwa kwenye simu hii. Wanachama wengine wanabaki na wao.
+Ondoka
+Ondoka kwenye kikundi
+Uondoke kwenye kikundi hiki?
+Wanachama
+Ujumbe katika kikundi hiki umesimbwa kwa njia fiche ya mwisho hadi mwisho kwa kila mwanachama.
+Kikundi kipya
+Hakuna akaunti ya MEYA kwenye simu hii.
+Bado hakuna vikundi
+Hakuna wa kuongeza. Kwanza ungana na watu kwa kuchanganua msimbo wao wa QR.
+Msimamizi wa kikundi pekee ndiye anayeweza kubadilisha kikundi.
+Umuondoe {0} kwenye kikundi?
+Badilisha jina la kikundi
+Wewe si mwanachama wa kikundi hiki tena
+Wewe si mwanachama wa kikundi hiki tena.
+Unabaki na ujumbe ulio tayari kwenye simu hii.
+Utakuwa msimamizi: wewe pekee ndiye unaweza kubadilisha jina la kikundi na kuongeza au kuondoa watu. Wanachama wasiounganishwa wao kwa wao hutambulishwa kupitia wewe.
+{0} wamechaguliwa · badilisha
+Wanachama {0}

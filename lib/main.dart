@@ -1,3 +1,4 @@
+import 'screens/groups_page.dart';
 import 'screens/qr_scanner_page.dart';
 import 'screens/people_page.dart';
 import 'screens/invitations_page.dart';
@@ -36,6 +37,7 @@ import 'services/meya_call_service.dart';
 import 'services/meya_calendar_service.dart';
 import 'services/meya_media_settings.dart';
 import 'services/meya_profile_service.dart';
+import 'services/meya_group_service.dart';
 import 'services/meya_sound_settings.dart';
 import 'services/meya_status_service.dart';
 import 'services/profile_photo_service.dart';
@@ -585,9 +587,17 @@ class _SpacePageState extends State<SpacePage>
     messages.setSilentHandler('profile', MeyaProfileService.instance.handleIncoming);
     // The person who accepted a connection shares their profile as soon as
     // the encrypted session is confirmed.
-    messages.setSilentHandler('session_init', (contact, _, _) async {
-      await MeyaProfileService.instance.share(only: contact);
+    messages.setSilentHandler('session_init', (contact, deviceId, _) async {
+      // People met through a group get no profile, only group messages.
+      if (contact.trustState == 'trusted') {
+        await MeyaProfileService.instance.share(only: contact);
+      }
+      await MeyaGroupService.instance.sessionStarted(deviceId);
     });
+    final groups = MeyaGroupService.instance..configure(database: widget.database);
+    for (final kind in MeyaGroupService.kinds) {
+      messages.setSilentHandler(kind, groups.handleIncoming);
+    }
     messages.setCallPlanHandler(MeyaCalendarService.instance.handleIncoming);
 
     final calls = MeyaCallService.instance;
@@ -1059,12 +1069,7 @@ class _SpacePageState extends State<SpacePage>
               icon: Icons.group_outlined,
               title: context.tr('Groups'),
               subtitle: context.tr('Your private groups'),
-              onTap: () => _open(
-                FeaturePage(
-                  title: context.tr('Groups'),
-                  description: context.tr('Private family groups are planned. Group encryption is still being designed, so groups are not available yet.'),
-                ),
-              ),
+              onTap: () => _open(GroupsPage(database: widget.database)),
             ),
             const SizedBox(height: 12),
             _SpaceItem(

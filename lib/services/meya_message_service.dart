@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../database/contact_repository.dart';
+import '../database/group_repository.dart';
 import '../database/meya_database.dart';
 import '../database/message_repository.dart';
 import 'device_identity_service.dart';
@@ -215,7 +216,11 @@ class ChatMessageView {
     this.pinned = false,
     this.reactions = const {},
     this.myReaction,
+    this.senderDeviceId,
   });
+
+  /// Who sent it; shown with the name in group conversations.
+  final String? senderDeviceId;
 
   bool get isDeleted => kind == 'deleted';
 
@@ -340,6 +345,9 @@ class MeyaMessageService {
 
   /// Emits a blob ID when an attachment has fully arrived.
   Stream<String> get mediaArrived => _mediaArrived.stream;
+
+  /// This phone's MEYA device ID.
+  Future<String?> localDeviceId() => _localDeviceId();
 
   void configure({required MeyaDatabase database}) {
     _database = database;
@@ -646,6 +654,242 @@ class MeyaMessageService {
     _changes.add(conversationId);
   }
 
+  // ---------------------------------------------------------------- groups
+
+  /// Sends a message to a group: it is stored once here and sent to every
+  /// other member separately, encrypted over that member's own session.
+  /// Members whose session is not ready yet get it on the next retry.
+  Future<void> sendGroupMessage(
+    String groupId,
+    Map<String, Object> fields,
+  ) async {
+    final localDeviceId = await _localDeviceId();
+    if (localDeviceId == null || localDeviceId.isEmpty) {
+      throw StateError(tr('This device has no MEYA device ID.'));
+    }
+    final groups = GroupRepository(_db);
+    final group = await groups.group(groupId);
+    if (group == null || !group.isActive) {
+      throw StateError(tr('You are no longer in this group.'));
+    }
+
+    final messageId = newId();
+    final now = DateTime.now().toUtc().toIso8601String();
+    final content = Uint8List.fromList(
+      utf8.encode(
+        jsonEncode({
+          'v': 1,
+          ...fields,
+          'group': groupId,
+          'id': messageId,
+          'sent_at': now,
+        }),
+      ),
+    );
+    final sealed = await _e2ee.sealLocal(content, messageId);
+    final conversationId = await groups.ensureConversation(groupId);
+    await MessageRepository(_db).insert(
+      messageId: messageId,
+      conversationId: conversationId,
+      senderDeviceId: localDeviceId,
+      createdAt: now,
+      wireCiphertext: Uint8List(0),
+      localSealed: sealed,
+      deliveryState: 'sending',
+    );
+    _changes.add(conversationId);
+
+    final sent = await _fanOut(groupId, messageId, content, localDeviceId);
+    await MessageRepository(_db)
+        .updateDeliveryState(messageId, sent ? 'sent' : 'queued');
+    _changes.add(conversationId);
+  }
+
+  Future<void> sendGroupText(String groupId, String text) async {
+    final trimmed = text.trim();
+    if (trimmed.isEmpty) return;
+    await sendGroupMessage(groupId, {'kind': 'text', 'text': trimmed});
+  }
+
+  Future<void> sendGroupVoice(
+    String groupId,
+    Uint8List audio, {
+    required int durationMs,
+    String mime = 'audio/mp4',
+  }) async {
+    if (audio.isEmpty) throw StateError(tr('The voice message is empty.'));
+    if (audio.length > maxVoiceBytes) {
+      throw StateError(
+        tr('This voice message is too long. Keep it under {0} minutes.', [maxVoiceDuration.inMinutes]),
+      );
+    }
+    await sendGroupMessage(groupId, {
+      'kind': 'voice',
+      'audio': base64Encode(audio),
+      'mime': mime,
+      'duration_ms': durationMs,
+    });
+  }
+
+  Future<void> sendGroupAttachment(
+    String groupId, {
+    required String kind,
+    required Uint8List bytes,
+    required String mime,
+    required String name,
+    String caption = '',
+    Uint8List? thumbnail,
+  }) async {
+    if (kind != 'image' && kind != 'video' && kind != 'file') {
+      throw ArgumentError.value(kind, 'kind');
+    }
+    if (bytes.isEmpty) throw StateError(tr('The file is empty.'));
+    if (bytes.length > maxAttachmentBytes) {
+      throw StateError(
+        tr('This file is too large. MEYA can send files up to {0} MB.', [maxAttachmentBytes ~/ (1024 * 1024)]),
+      );
+    }
+    final attachment = await _encryptToStore(bytes, mime: mime, name: name);
+    await sendGroupMessage(groupId, {
+      'kind': kind,
+      ...attachment.toContent(),
+      if (thumbnail != null && thumbnail.length <= AttachmentRef.maxThumbnailBytes)
+        'thumb': base64Encode(thumbnail),
+      if (caption.trim().isNotEmpty) 'text': caption.trim(),
+    });
+  }
+
+  /// Sends [content] to every other member of the group. True when it
+  /// reached every member (members without a session yet count as missed).
+  Future<bool> _fanOut(
+    String groupId,
+    String messageId,
+    Uint8List content,
+    String localDeviceId, {
+    String? onlyDeviceId,
+  }) async {
+    AttachmentRef? attachment;
+    final decoded = jsonDecode(utf8.decode(content));
+    if (decoded is Map<String, dynamic>) {
+      attachment = AttachmentRef.fromContent(decoded, 'local');
+    }
+    var all = true;
+    for (final member in await GroupRepository(_db).members(groupId)) {
+      final deviceId = member.deviceId;
+      if (deviceId == localDeviceId) continue;
+      if (onlyDeviceId != null && deviceId != onlyDeviceId) continue;
+      try {
+        if (!await _e2ee.hasSession(deviceId)) {
+          all = false;
+          continue;
+        }
+        if (attachment != null &&
+            await MeyaBlobStore.instance.exists('local', attachment.blobId)) {
+          await sendBlob(
+            from: localDeviceId,
+            to: deviceId,
+            blobId: attachment.blobId,
+            ciphertext:
+                await MeyaBlobStore.instance.read('local', attachment.blobId),
+          );
+        }
+        final ciphertext = await _e2ee.encrypt(deviceId, content);
+        await _send(_envelope(messageId, localDeviceId, deviceId, ciphertext));
+      } catch (error) {
+        debugPrint('MEYA group: not sent to one member yet ($error).');
+        all = false;
+      }
+    }
+    return all;
+  }
+
+  /// A session with a group member just started: send them this device's
+  /// group messages written since they joined, which could not reach them.
+  Future<void> catchUpGroupMember(String deviceId) async {
+    final localDeviceId = await _localDeviceId();
+    if (localDeviceId == null || localDeviceId.isEmpty) return;
+    final groups = GroupRepository(_db);
+    for (final group in await groups.activeGroupsWith(deviceId)) {
+      final member = await groups.member(group.groupId, deviceId);
+      if (member == null) continue;
+      final conversationId = GroupRepository.conversationIdFor(group.groupId);
+      final rows = await (_db.select(_db.messages)
+            ..where((m) =>
+                m.conversationId.equals(conversationId) &
+                m.senderDeviceId.equals(localDeviceId) &
+                m.isDeleted.equals(false) &
+                m.createdAt.isBiggerOrEqualValue(member.addedAt))
+            ..orderBy([(m) => OrderingTerm(expression: m.createdAt)]))
+          .get();
+      final recent = rows.length > 100 ? rows.sublist(rows.length - 100) : rows;
+      for (final row in recent) {
+        final sealed = row.localDisplayCiphertext;
+        if (sealed == null) continue;
+        await _fanOut(
+          group.groupId,
+          row.messageId,
+          await _e2ee.openLocal(sealed, row.messageId),
+          localDeviceId,
+          onlyDeviceId: deviceId,
+        );
+      }
+    }
+  }
+
+  /// Stores a message written in a group, if the sender is a member of a
+  /// group this device is still in.
+  Future<void> _handleGroupMessage(
+    String senderDeviceId,
+    String groupId,
+    Map<String, dynamic> content,
+    Uint8List plaintext,
+    Uint8List wireBody,
+  ) async {
+    final groups = GroupRepository(_db);
+    final group = await groups.group(groupId);
+    if (group == null || !group.isActive) return;
+    if (await groups.member(groupId, senderDeviceId) == null) {
+      debugPrint('MEYA group: message from someone outside the group was dropped.');
+      return;
+    }
+    final kind = content['kind'];
+    // Calls are not available in groups yet.
+    if (kind == 'call_invite' || kind == 'call_cancel') return;
+    final id = content['id'];
+    if (id is! String || id.isEmpty || id.length > 64) return;
+    if (!_isValidShownContent(kind, content, senderDeviceId)) return;
+
+    final messages = MessageRepository(_db);
+    if (await messages.exists(id)) return;
+    final conversationId = await groups.ensureConversation(groupId);
+    final sealed = await _e2ee.sealLocal(plaintext, id);
+    await messages.insert(
+      messageId: id,
+      conversationId: conversationId,
+      senderDeviceId: senderDeviceId,
+      createdAt: DateTime.now().toUtc().toIso8601String(),
+      wireCiphertext: wireBody,
+      localSealed: sealed,
+      deliveryState: 'received',
+    );
+    if (activeConversationId == conversationId) {
+      await messages.markRead(conversationId, await _localDeviceId() ?? '');
+    } else {
+      await messages.incrementUnread(conversationId);
+    }
+    _changes.add(conversationId);
+    _received.add(conversationId);
+  }
+
+  /// Marks a group conversation read on this device (groups send no read
+  /// receipts).
+  Future<void> markGroupRead(String groupId) async {
+    final conversationId = GroupRepository.conversationIdFor(groupId);
+    await MessageRepository(_db)
+        .markRead(conversationId, await _localDeviceId() ?? '');
+    _changes.add(conversationId);
+  }
+
   /// Sends a control message (receipt, reaction, edit, deletion or pin).
   /// While offline it waits in the encrypted outbox for [retryPending].
   Future<void> _sendControl(Contact contact, Map<String, Object> fields) async {
@@ -719,6 +963,18 @@ class MeyaMessageService {
             ..orderBy([(m) => OrderingTerm(expression: m.createdAt)]))
           .get();
       for (final row in pending) {
+        if (row.conversationId.startsWith('group_')) {
+          if (row.localDisplayCiphertext == null) continue;
+          final content =
+              await _e2ee.openLocal(row.localDisplayCiphertext!, row.messageId);
+          final groupId = row.conversationId.substring('group_'.length);
+          if (await _fanOut(groupId, row.messageId, content, row.senderDeviceId)) {
+            await MessageRepository(database).advanceDeliveryState(row.messageId, 'sent');
+            sentCount++;
+            _changes.add(row.conversationId);
+          }
+          continue;
+        }
         final contactId = row.conversationId.replaceFirst('direct_', '');
         final contact = await contacts.getContactById(contactId);
         if (contact == null || row.localDisplayCiphertext == null) continue;
@@ -889,6 +1145,25 @@ class MeyaMessageService {
     final kind = content['kind'];
     final conversationId =
         MessageRepository.conversationIdFor(contact.contactId);
+    final groupId = content['group'];
+    if (groupId is String && shownKinds.contains(kind)) {
+      await _handleGroupMessage(
+        senderDeviceId,
+        groupId,
+        content,
+        plaintext,
+        base64Decode(body),
+      );
+      return;
+    }
+    // Someone met only through a group can write in that group and set up
+    // the session, nothing else.
+    if (contact.trustState != 'trusted' &&
+        kind != 'session_init' &&
+        !(kind is String && kind.startsWith('group_'))) {
+      debugPrint('MEYA chat: message outside a group from a group member was dropped.');
+      return;
+    }
     if (kind == 'session_init') {
       // The session now exists on this side too: let open screens refresh.
       _changes.add(conversationId);
@@ -1103,13 +1378,14 @@ class MeyaMessageService {
     }
   }
 
-  Future<List<ChatMessageView>> history(Contact contact) async {
+  Future<List<ChatMessageView>> history(Contact contact) =>
+      historyFor(MessageRepository.conversationIdFor(contact.contactId));
+
+  Future<List<ChatMessageView>> historyFor(String conversationId) async {
     final database = _db;
     final localDeviceId = await _localDeviceId();
     final repository = MessageRepository(database);
-    final rows = await repository.listMessages(
-      MessageRepository.conversationIdFor(contact.contactId),
-    );
+    final rows = await repository.listMessages(conversationId);
 
     final reactionsByMessage = <String, List<Reaction>>{};
     for (final reaction
@@ -1181,6 +1457,7 @@ class MeyaMessageService {
               pinned: row.isPinned,
               reactions: counts,
               myReaction: mine,
+              senderDeviceId: row.senderDeviceId,
             );
 
         switch (kind) {

@@ -659,3 +659,43 @@ Si olvidas tu código, un código de recuperación es la única forma de conserv
 Más tarde
 Configurar ahora
 Confirma tu código
+Un grupo puede tener hasta {0} personas.
+Añadir miembros
+Añadir {0}
+Admin
+Otro miembro pasa a ser admin. Conservas los mensajes que ya están en este teléfono.
+Adjuntar
+Elige al menos a una persona.
+Elegir miembros
+Cerrar
+Crea un grupo con tus conexiones de MEYA. Cada mensaje se cifra de extremo a extremo para cada miembro.
+Crear grupo
+Eliminar el grupo de este teléfono
+¿Eliminar este grupo de tu teléfono?
+Cada mensaje se cifra de extremo a extremo por separado para cada miembro. Los miembros que no están conectados entre sí se presentan a través del admin.
+La mensajería cifrada aún no está configurada con {0}.
+Por ejemplo: Familia
+Antiguo miembro
+Ponle un nombre al grupo.
+Grupo
+Información del grupo
+Nombre del grupo
+Sus mensajes se eliminan de este teléfono. Los demás miembros conservan los suyos.
+Salir
+Salir del grupo
+¿Salir de este grupo?
+Miembros
+Los mensajes de este grupo están cifrados de extremo a extremo para cada miembro.
+Nuevo grupo
+No hay ninguna cuenta de MEYA en este teléfono.
+Aún no hay grupos
+No hay nadie para añadir. Primero conéctate con personas escaneando su código QR.
+Solo el admin del grupo puede cambiar el grupo.
+¿Quitar a {0} del grupo?
+Cambiar nombre del grupo
+Ya no estás en este grupo
+Ya no estás en este grupo.
+Conservas los mensajes que ya están en este teléfono.
+Serás el admin: solo tú puedes cambiar el nombre del grupo y añadir o quitar personas. Los miembros que no están conectados entre sí se presentan a través de ti.
+{0} elegidos · cambiar
+{0} miembros

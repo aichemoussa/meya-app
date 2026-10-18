@@ -211,7 +211,9 @@ class _ContactPageState extends State<ContactPage> {
                     context,
                     MaterialPageRoute<void>(
                       builder: (_) =>
-                          StatusViewerPage(status: _status!, mine: false),
+                          StatusViewerPage(
+                            stories: [StatusStory(status: _status!, name: _name, mine: false)],
+                          ),
                     ),
                   ),
                 ),

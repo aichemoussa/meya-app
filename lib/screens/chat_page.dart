@@ -1161,7 +1161,7 @@ class _ChatPageState extends State<ChatPage> {
                                   crossAxisAlignment: CrossAxisAlignment.stretch,
                                   children: [
                                     if (newDay) _DayLabel(_day(message.createdAt)),
-                                    _Bubble(
+                                    ChatBubble(
                                       message: message,
                                       contactName: _name,
                                       time: _time(message.createdAt),
@@ -1427,7 +1427,8 @@ class _ComposerContext extends StatelessWidget {
   }
 }
 
-class _Bubble extends StatelessWidget {
+/// One message in a conversation (direct or group).
+class ChatBubble extends StatelessWidget {
   final ChatMessageView message;
   final String contactName;
   final String time;
@@ -1442,7 +1443,12 @@ class _Bubble extends StatelessWidget {
   final VoidCallback? onQuoteTap;
   final VoidCallback onRetry;
 
-  const _Bubble({
+  /// The author's name, shown on others' messages in group conversations.
+  final String? senderName;
+
+  const ChatBubble({
+    super.key,
+    this.senderName,
     required this.message,
     required this.contactName,
     required this.time,
@@ -1685,6 +1691,21 @@ class _Bubble extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
+          if (senderName != null && !mine)
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 4),
+                child: Text(
+                  senderName!,
+                  style: TextStyle(
+                    color: colorScheme.primary,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ),
           if (message.forwarded)
             Align(
               alignment: AlignmentDirectional.centerStart,

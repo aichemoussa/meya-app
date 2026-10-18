@@ -5919,6 +5919,916 @@ class OutboxCompanion extends UpdateCompanion<OutboxData> {
   }
 }
 
+class $MeyaGroupsTable extends MeyaGroups
+    with TableInfo<$MeyaGroupsTable, MeyaGroup> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $MeyaGroupsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _groupIdMeta = const VerificationMeta(
+    'groupId',
+  );
+  @override
+  late final GeneratedColumn<String> groupId = GeneratedColumn<String>(
+    'group_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _adminDeviceIdMeta = const VerificationMeta(
+    'adminDeviceId',
+  );
+  @override
+  late final GeneratedColumn<String> adminDeviceId = GeneratedColumn<String>(
+    'admin_device_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _revisionMeta = const VerificationMeta(
+    'revision',
+  );
+  @override
+  late final GeneratedColumn<int> revision = GeneratedColumn<int>(
+    'revision',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<String> createdAt = GeneratedColumn<String>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<String> updatedAt = GeneratedColumn<String>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _isActiveMeta = const VerificationMeta(
+    'isActive',
+  );
+  @override
+  late final GeneratedColumn<bool> isActive = GeneratedColumn<bool>(
+    'is_active',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("is_active" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    groupId,
+    name,
+    adminDeviceId,
+    revision,
+    createdAt,
+    updatedAt,
+    isActive,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'meya_groups';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<MeyaGroup> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('group_id')) {
+      context.handle(
+        _groupIdMeta,
+        groupId.isAcceptableOrUnknown(data['group_id']!, _groupIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_groupIdMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('admin_device_id')) {
+      context.handle(
+        _adminDeviceIdMeta,
+        adminDeviceId.isAcceptableOrUnknown(
+          data['admin_device_id']!,
+          _adminDeviceIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_adminDeviceIdMeta);
+    }
+    if (data.containsKey('revision')) {
+      context.handle(
+        _revisionMeta,
+        revision.isAcceptableOrUnknown(data['revision']!, _revisionMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_updatedAtMeta);
+    }
+    if (data.containsKey('is_active')) {
+      context.handle(
+        _isActiveMeta,
+        isActive.isAcceptableOrUnknown(data['is_active']!, _isActiveMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {groupId};
+  @override
+  MeyaGroup map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return MeyaGroup(
+      groupId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}group_id'],
+      )!,
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
+      adminDeviceId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}admin_device_id'],
+      )!,
+      revision: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}revision'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      isActive: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}is_active'],
+      )!,
+    );
+  }
+
+  @override
+  $MeyaGroupsTable createAlias(String alias) {
+    return $MeyaGroupsTable(attachedDatabase, alias);
+  }
+}
+
+class MeyaGroup extends DataClass implements Insertable<MeyaGroup> {
+  final String groupId;
+  final String name;
+  final String adminDeviceId;
+  final int revision;
+  final String createdAt;
+  final String updatedAt;
+
+  /// False once this device left or was removed. History stays readable.
+  final bool isActive;
+  const MeyaGroup({
+    required this.groupId,
+    required this.name,
+    required this.adminDeviceId,
+    required this.revision,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.isActive,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['group_id'] = Variable<String>(groupId);
+    map['name'] = Variable<String>(name);
+    map['admin_device_id'] = Variable<String>(adminDeviceId);
+    map['revision'] = Variable<int>(revision);
+    map['created_at'] = Variable<String>(createdAt);
+    map['updated_at'] = Variable<String>(updatedAt);
+    map['is_active'] = Variable<bool>(isActive);
+    return map;
+  }
+
+  MeyaGroupsCompanion toCompanion(bool nullToAbsent) {
+    return MeyaGroupsCompanion(
+      groupId: Value(groupId),
+      name: Value(name),
+      adminDeviceId: Value(adminDeviceId),
+      revision: Value(revision),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      isActive: Value(isActive),
+    );
+  }
+
+  factory MeyaGroup.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return MeyaGroup(
+      groupId: serializer.fromJson<String>(json['groupId']),
+      name: serializer.fromJson<String>(json['name']),
+      adminDeviceId: serializer.fromJson<String>(json['adminDeviceId']),
+      revision: serializer.fromJson<int>(json['revision']),
+      createdAt: serializer.fromJson<String>(json['createdAt']),
+      updatedAt: serializer.fromJson<String>(json['updatedAt']),
+      isActive: serializer.fromJson<bool>(json['isActive']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'groupId': serializer.toJson<String>(groupId),
+      'name': serializer.toJson<String>(name),
+      'adminDeviceId': serializer.toJson<String>(adminDeviceId),
+      'revision': serializer.toJson<int>(revision),
+      'createdAt': serializer.toJson<String>(createdAt),
+      'updatedAt': serializer.toJson<String>(updatedAt),
+      'isActive': serializer.toJson<bool>(isActive),
+    };
+  }
+
+  MeyaGroup copyWith({
+    String? groupId,
+    String? name,
+    String? adminDeviceId,
+    int? revision,
+    String? createdAt,
+    String? updatedAt,
+    bool? isActive,
+  }) => MeyaGroup(
+    groupId: groupId ?? this.groupId,
+    name: name ?? this.name,
+    adminDeviceId: adminDeviceId ?? this.adminDeviceId,
+    revision: revision ?? this.revision,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    isActive: isActive ?? this.isActive,
+  );
+  MeyaGroup copyWithCompanion(MeyaGroupsCompanion data) {
+    return MeyaGroup(
+      groupId: data.groupId.present ? data.groupId.value : this.groupId,
+      name: data.name.present ? data.name.value : this.name,
+      adminDeviceId: data.adminDeviceId.present
+          ? data.adminDeviceId.value
+          : this.adminDeviceId,
+      revision: data.revision.present ? data.revision.value : this.revision,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      isActive: data.isActive.present ? data.isActive.value : this.isActive,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MeyaGroup(')
+          ..write('groupId: $groupId, ')
+          ..write('name: $name, ')
+          ..write('adminDeviceId: $adminDeviceId, ')
+          ..write('revision: $revision, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('isActive: $isActive')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    groupId,
+    name,
+    adminDeviceId,
+    revision,
+    createdAt,
+    updatedAt,
+    isActive,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is MeyaGroup &&
+          other.groupId == this.groupId &&
+          other.name == this.name &&
+          other.adminDeviceId == this.adminDeviceId &&
+          other.revision == this.revision &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.isActive == this.isActive);
+}
+
+class MeyaGroupsCompanion extends UpdateCompanion<MeyaGroup> {
+  final Value<String> groupId;
+  final Value<String> name;
+  final Value<String> adminDeviceId;
+  final Value<int> revision;
+  final Value<String> createdAt;
+  final Value<String> updatedAt;
+  final Value<bool> isActive;
+  final Value<int> rowid;
+  const MeyaGroupsCompanion({
+    this.groupId = const Value.absent(),
+    this.name = const Value.absent(),
+    this.adminDeviceId = const Value.absent(),
+    this.revision = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.isActive = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  MeyaGroupsCompanion.insert({
+    required String groupId,
+    required String name,
+    required String adminDeviceId,
+    this.revision = const Value.absent(),
+    required String createdAt,
+    required String updatedAt,
+    this.isActive = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : groupId = Value(groupId),
+       name = Value(name),
+       adminDeviceId = Value(adminDeviceId),
+       createdAt = Value(createdAt),
+       updatedAt = Value(updatedAt);
+  static Insertable<MeyaGroup> custom({
+    Expression<String>? groupId,
+    Expression<String>? name,
+    Expression<String>? adminDeviceId,
+    Expression<int>? revision,
+    Expression<String>? createdAt,
+    Expression<String>? updatedAt,
+    Expression<bool>? isActive,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (groupId != null) 'group_id': groupId,
+      if (name != null) 'name': name,
+      if (adminDeviceId != null) 'admin_device_id': adminDeviceId,
+      if (revision != null) 'revision': revision,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (isActive != null) 'is_active': isActive,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  MeyaGroupsCompanion copyWith({
+    Value<String>? groupId,
+    Value<String>? name,
+    Value<String>? adminDeviceId,
+    Value<int>? revision,
+    Value<String>? createdAt,
+    Value<String>? updatedAt,
+    Value<bool>? isActive,
+    Value<int>? rowid,
+  }) {
+    return MeyaGroupsCompanion(
+      groupId: groupId ?? this.groupId,
+      name: name ?? this.name,
+      adminDeviceId: adminDeviceId ?? this.adminDeviceId,
+      revision: revision ?? this.revision,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      isActive: isActive ?? this.isActive,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (groupId.present) {
+      map['group_id'] = Variable<String>(groupId.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (adminDeviceId.present) {
+      map['admin_device_id'] = Variable<String>(adminDeviceId.value);
+    }
+    if (revision.present) {
+      map['revision'] = Variable<int>(revision.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<String>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<String>(updatedAt.value);
+    }
+    if (isActive.present) {
+      map['is_active'] = Variable<bool>(isActive.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MeyaGroupsCompanion(')
+          ..write('groupId: $groupId, ')
+          ..write('name: $name, ')
+          ..write('adminDeviceId: $adminDeviceId, ')
+          ..write('revision: $revision, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('isActive: $isActive, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $GroupMembersTable extends GroupMembers
+    with TableInfo<$GroupMembersTable, GroupMember> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $GroupMembersTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _groupIdMeta = const VerificationMeta(
+    'groupId',
+  );
+  @override
+  late final GeneratedColumn<String> groupId = GeneratedColumn<String>(
+    'group_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES meya_groups (group_id)',
+    ),
+  );
+  static const VerificationMeta _deviceIdMeta = const VerificationMeta(
+    'deviceId',
+  );
+  @override
+  late final GeneratedColumn<String> deviceId = GeneratedColumn<String>(
+    'device_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _identityIdMeta = const VerificationMeta(
+    'identityId',
+  );
+  @override
+  late final GeneratedColumn<String> identityId = GeneratedColumn<String>(
+    'identity_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _displayNameMeta = const VerificationMeta(
+    'displayName',
+  );
+  @override
+  late final GeneratedColumn<String> displayName = GeneratedColumn<String>(
+    'display_name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _identityPublicKeyMeta = const VerificationMeta(
+    'identityPublicKey',
+  );
+  @override
+  late final GeneratedColumn<String> identityPublicKey =
+      GeneratedColumn<String>(
+        'identity_public_key',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      );
+  static const VerificationMeta _addedAtMeta = const VerificationMeta(
+    'addedAt',
+  );
+  @override
+  late final GeneratedColumn<String> addedAt = GeneratedColumn<String>(
+    'added_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    groupId,
+    deviceId,
+    identityId,
+    displayName,
+    identityPublicKey,
+    addedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'group_members';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<GroupMember> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('group_id')) {
+      context.handle(
+        _groupIdMeta,
+        groupId.isAcceptableOrUnknown(data['group_id']!, _groupIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_groupIdMeta);
+    }
+    if (data.containsKey('device_id')) {
+      context.handle(
+        _deviceIdMeta,
+        deviceId.isAcceptableOrUnknown(data['device_id']!, _deviceIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_deviceIdMeta);
+    }
+    if (data.containsKey('identity_id')) {
+      context.handle(
+        _identityIdMeta,
+        identityId.isAcceptableOrUnknown(data['identity_id']!, _identityIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_identityIdMeta);
+    }
+    if (data.containsKey('display_name')) {
+      context.handle(
+        _displayNameMeta,
+        displayName.isAcceptableOrUnknown(
+          data['display_name']!,
+          _displayNameMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_displayNameMeta);
+    }
+    if (data.containsKey('identity_public_key')) {
+      context.handle(
+        _identityPublicKeyMeta,
+        identityPublicKey.isAcceptableOrUnknown(
+          data['identity_public_key']!,
+          _identityPublicKeyMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_identityPublicKeyMeta);
+    }
+    if (data.containsKey('added_at')) {
+      context.handle(
+        _addedAtMeta,
+        addedAt.isAcceptableOrUnknown(data['added_at']!, _addedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_addedAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {groupId, deviceId};
+  @override
+  GroupMember map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return GroupMember(
+      groupId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}group_id'],
+      )!,
+      deviceId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}device_id'],
+      )!,
+      identityId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}identity_id'],
+      )!,
+      displayName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}display_name'],
+      )!,
+      identityPublicKey: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}identity_public_key'],
+      )!,
+      addedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}added_at'],
+      )!,
+    );
+  }
+
+  @override
+  $GroupMembersTable createAlias(String alias) {
+    return $GroupMembersTable(attachedDatabase, alias);
+  }
+}
+
+class GroupMember extends DataClass implements Insertable<GroupMember> {
+  final String groupId;
+  final String deviceId;
+  final String identityId;
+  final String displayName;
+  final String identityPublicKey;
+  final String addedAt;
+  const GroupMember({
+    required this.groupId,
+    required this.deviceId,
+    required this.identityId,
+    required this.displayName,
+    required this.identityPublicKey,
+    required this.addedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['group_id'] = Variable<String>(groupId);
+    map['device_id'] = Variable<String>(deviceId);
+    map['identity_id'] = Variable<String>(identityId);
+    map['display_name'] = Variable<String>(displayName);
+    map['identity_public_key'] = Variable<String>(identityPublicKey);
+    map['added_at'] = Variable<String>(addedAt);
+    return map;
+  }
+
+  GroupMembersCompanion toCompanion(bool nullToAbsent) {
+    return GroupMembersCompanion(
+      groupId: Value(groupId),
+      deviceId: Value(deviceId),
+      identityId: Value(identityId),
+      displayName: Value(displayName),
+      identityPublicKey: Value(identityPublicKey),
+      addedAt: Value(addedAt),
+    );
+  }
+
+  factory GroupMember.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return GroupMember(
+      groupId: serializer.fromJson<String>(json['groupId']),
+      deviceId: serializer.fromJson<String>(json['deviceId']),
+      identityId: serializer.fromJson<String>(json['identityId']),
+      displayName: serializer.fromJson<String>(json['displayName']),
+      identityPublicKey: serializer.fromJson<String>(json['identityPublicKey']),
+      addedAt: serializer.fromJson<String>(json['addedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'groupId': serializer.toJson<String>(groupId),
+      'deviceId': serializer.toJson<String>(deviceId),
+      'identityId': serializer.toJson<String>(identityId),
+      'displayName': serializer.toJson<String>(displayName),
+      'identityPublicKey': serializer.toJson<String>(identityPublicKey),
+      'addedAt': serializer.toJson<String>(addedAt),
+    };
+  }
+
+  GroupMember copyWith({
+    String? groupId,
+    String? deviceId,
+    String? identityId,
+    String? displayName,
+    String? identityPublicKey,
+    String? addedAt,
+  }) => GroupMember(
+    groupId: groupId ?? this.groupId,
+    deviceId: deviceId ?? this.deviceId,
+    identityId: identityId ?? this.identityId,
+    displayName: displayName ?? this.displayName,
+    identityPublicKey: identityPublicKey ?? this.identityPublicKey,
+    addedAt: addedAt ?? this.addedAt,
+  );
+  GroupMember copyWithCompanion(GroupMembersCompanion data) {
+    return GroupMember(
+      groupId: data.groupId.present ? data.groupId.value : this.groupId,
+      deviceId: data.deviceId.present ? data.deviceId.value : this.deviceId,
+      identityId: data.identityId.present
+          ? data.identityId.value
+          : this.identityId,
+      displayName: data.displayName.present
+          ? data.displayName.value
+          : this.displayName,
+      identityPublicKey: data.identityPublicKey.present
+          ? data.identityPublicKey.value
+          : this.identityPublicKey,
+      addedAt: data.addedAt.present ? data.addedAt.value : this.addedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('GroupMember(')
+          ..write('groupId: $groupId, ')
+          ..write('deviceId: $deviceId, ')
+          ..write('identityId: $identityId, ')
+          ..write('displayName: $displayName, ')
+          ..write('identityPublicKey: $identityPublicKey, ')
+          ..write('addedAt: $addedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    groupId,
+    deviceId,
+    identityId,
+    displayName,
+    identityPublicKey,
+    addedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is GroupMember &&
+          other.groupId == this.groupId &&
+          other.deviceId == this.deviceId &&
+          other.identityId == this.identityId &&
+          other.displayName == this.displayName &&
+          other.identityPublicKey == this.identityPublicKey &&
+          other.addedAt == this.addedAt);
+}
+
+class GroupMembersCompanion extends UpdateCompanion<GroupMember> {
+  final Value<String> groupId;
+  final Value<String> deviceId;
+  final Value<String> identityId;
+  final Value<String> displayName;
+  final Value<String> identityPublicKey;
+  final Value<String> addedAt;
+  final Value<int> rowid;
+  const GroupMembersCompanion({
+    this.groupId = const Value.absent(),
+    this.deviceId = const Value.absent(),
+    this.identityId = const Value.absent(),
+    this.displayName = const Value.absent(),
+    this.identityPublicKey = const Value.absent(),
+    this.addedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  GroupMembersCompanion.insert({
+    required String groupId,
+    required String deviceId,
+    required String identityId,
+    required String displayName,
+    required String identityPublicKey,
+    required String addedAt,
+    this.rowid = const Value.absent(),
+  }) : groupId = Value(groupId),
+       deviceId = Value(deviceId),
+       identityId = Value(identityId),
+       displayName = Value(displayName),
+       identityPublicKey = Value(identityPublicKey),
+       addedAt = Value(addedAt);
+  static Insertable<GroupMember> custom({
+    Expression<String>? groupId,
+    Expression<String>? deviceId,
+    Expression<String>? identityId,
+    Expression<String>? displayName,
+    Expression<String>? identityPublicKey,
+    Expression<String>? addedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (groupId != null) 'group_id': groupId,
+      if (deviceId != null) 'device_id': deviceId,
+      if (identityId != null) 'identity_id': identityId,
+      if (displayName != null) 'display_name': displayName,
+      if (identityPublicKey != null) 'identity_public_key': identityPublicKey,
+      if (addedAt != null) 'added_at': addedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  GroupMembersCompanion copyWith({
+    Value<String>? groupId,
+    Value<String>? deviceId,
+    Value<String>? identityId,
+    Value<String>? displayName,
+    Value<String>? identityPublicKey,
+    Value<String>? addedAt,
+    Value<int>? rowid,
+  }) {
+    return GroupMembersCompanion(
+      groupId: groupId ?? this.groupId,
+      deviceId: deviceId ?? this.deviceId,
+      identityId: identityId ?? this.identityId,
+      displayName: displayName ?? this.displayName,
+      identityPublicKey: identityPublicKey ?? this.identityPublicKey,
+      addedAt: addedAt ?? this.addedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (groupId.present) {
+      map['group_id'] = Variable<String>(groupId.value);
+    }
+    if (deviceId.present) {
+      map['device_id'] = Variable<String>(deviceId.value);
+    }
+    if (identityId.present) {
+      map['identity_id'] = Variable<String>(identityId.value);
+    }
+    if (displayName.present) {
+      map['display_name'] = Variable<String>(displayName.value);
+    }
+    if (identityPublicKey.present) {
+      map['identity_public_key'] = Variable<String>(identityPublicKey.value);
+    }
+    if (addedAt.present) {
+      map['added_at'] = Variable<String>(addedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('GroupMembersCompanion(')
+          ..write('groupId: $groupId, ')
+          ..write('deviceId: $deviceId, ')
+          ..write('identityId: $identityId, ')
+          ..write('displayName: $displayName, ')
+          ..write('identityPublicKey: $identityPublicKey, ')
+          ..write('addedAt: $addedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$MeyaDatabase extends GeneratedDatabase {
   _$MeyaDatabase(QueryExecutor e) : super(e);
   $MeyaDatabaseManager get managers => $MeyaDatabaseManager(this);
@@ -5935,6 +6845,8 @@ abstract class _$MeyaDatabase extends GeneratedDatabase {
   late final $AttachmentsTable attachments = $AttachmentsTable(this);
   late final $ReactionsTable reactions = $ReactionsTable(this);
   late final $OutboxTable outbox = $OutboxTable(this);
+  late final $MeyaGroupsTable meyaGroups = $MeyaGroupsTable(this);
+  late final $GroupMembersTable groupMembers = $GroupMembersTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -5951,6 +6863,8 @@ abstract class _$MeyaDatabase extends GeneratedDatabase {
     attachments,
     reactions,
     outbox,
+    meyaGroups,
+    groupMembers,
   ];
 }
 
@@ -10198,6 +11112,687 @@ typedef $$OutboxTableProcessedTableManager =
       OutboxData,
       PrefetchHooks Function()
     >;
+typedef $$MeyaGroupsTableCreateCompanionBuilder = MeyaGroupsCompanion Function({
+  required String groupId,
+  required String name,
+  required String adminDeviceId,
+  Value<int> revision,
+  required String createdAt,
+  required String updatedAt,
+  Value<bool> isActive,
+  Value<int> rowid,
+});
+typedef $$MeyaGroupsTableUpdateCompanionBuilder = MeyaGroupsCompanion Function({
+  Value<String> groupId,
+  Value<String> name,
+  Value<String> adminDeviceId,
+  Value<int> revision,
+  Value<String> createdAt,
+  Value<String> updatedAt,
+  Value<bool> isActive,
+  Value<int> rowid,
+});
+
+final class $$MeyaGroupsTableReferences
+    extends BaseReferences<_$MeyaDatabase, $MeyaGroupsTable, MeyaGroup> {
+  $$MeyaGroupsTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static MultiTypedResultKey<$GroupMembersTable, List<GroupMember>>
+  _groupMembersRefsTable(_$MeyaDatabase db) => MultiTypedResultKey.fromTable(
+    db.groupMembers,
+    aliasName: 'meya_groups__group_id__group_members__group_id',
+  );
+
+  $$GroupMembersTableProcessedTableManager get groupMembersRefs {
+    final manager = $$GroupMembersTableTableManager($_db, $_db.groupMembers)
+        .filter(
+          (f) => f.groupId.groupId.sqlEquals($_itemColumn<String>('group_id')!),
+        );
+
+    final cache = $_typedResult.readTableOrNull(_groupMembersRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+}
+
+class $$MeyaGroupsTableFilterComposer
+    extends Composer<_$MeyaDatabase, $MeyaGroupsTable> {
+  $$MeyaGroupsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get groupId => $composableBuilder(
+    column: $table.groupId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get adminDeviceId => $composableBuilder(
+    column: $table.adminDeviceId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get revision => $composableBuilder(
+    column: $table.revision,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get isActive => $composableBuilder(
+    column: $table.isActive,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  Expression<bool> groupMembersRefs(
+    Expression<bool> Function($$GroupMembersTableFilterComposer f) f,
+  ) {
+    final $$GroupMembersTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.groupId,
+      referencedTable: $db.groupMembers,
+      getReferencedColumn: (t) => t.groupId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GroupMembersTableFilterComposer(
+            $db: $db,
+            $table: $db.groupMembers,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$MeyaGroupsTableOrderingComposer
+    extends Composer<_$MeyaDatabase, $MeyaGroupsTable> {
+  $$MeyaGroupsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get groupId => $composableBuilder(
+    column: $table.groupId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get adminDeviceId => $composableBuilder(
+    column: $table.adminDeviceId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get revision => $composableBuilder(
+    column: $table.revision,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get isActive => $composableBuilder(
+    column: $table.isActive,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$MeyaGroupsTableAnnotationComposer
+    extends Composer<_$MeyaDatabase, $MeyaGroupsTable> {
+  $$MeyaGroupsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get groupId =>
+      $composableBuilder(column: $table.groupId, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get adminDeviceId => $composableBuilder(
+    column: $table.adminDeviceId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get revision =>
+      $composableBuilder(column: $table.revision, builder: (column) => column);
+
+  GeneratedColumn<String> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<String> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<bool> get isActive =>
+      $composableBuilder(column: $table.isActive, builder: (column) => column);
+
+  Expression<T> groupMembersRefs<T extends Object>(
+    Expression<T> Function($$GroupMembersTableAnnotationComposer a) f,
+  ) {
+    final $$GroupMembersTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.groupId,
+      referencedTable: $db.groupMembers,
+      getReferencedColumn: (t) => t.groupId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GroupMembersTableAnnotationComposer(
+            $db: $db,
+            $table: $db.groupMembers,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$MeyaGroupsTableTableManager
+    extends
+        RootTableManager<
+          _$MeyaDatabase,
+          $MeyaGroupsTable,
+          MeyaGroup,
+          $$MeyaGroupsTableFilterComposer,
+          $$MeyaGroupsTableOrderingComposer,
+          $$MeyaGroupsTableAnnotationComposer,
+          $$MeyaGroupsTableCreateCompanionBuilder,
+          $$MeyaGroupsTableUpdateCompanionBuilder,
+          (MeyaGroup, $$MeyaGroupsTableReferences),
+          MeyaGroup,
+          PrefetchHooks Function({bool groupMembersRefs})
+        > {
+  $$MeyaGroupsTableTableManager(_$MeyaDatabase db, $MeyaGroupsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$MeyaGroupsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$MeyaGroupsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$MeyaGroupsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> groupId = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<String> adminDeviceId = const Value.absent(),
+                Value<int> revision = const Value.absent(),
+                Value<String> createdAt = const Value.absent(),
+                Value<String> updatedAt = const Value.absent(),
+                Value<bool> isActive = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MeyaGroupsCompanion(
+                groupId: groupId,
+                name: name,
+                adminDeviceId: adminDeviceId,
+                revision: revision,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                isActive: isActive,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String groupId,
+                required String name,
+                required String adminDeviceId,
+                Value<int> revision = const Value.absent(),
+                required String createdAt,
+                required String updatedAt,
+                Value<bool> isActive = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MeyaGroupsCompanion.insert(
+                groupId: groupId,
+                name: name,
+                adminDeviceId: adminDeviceId,
+                revision: revision,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                isActive: isActive,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$MeyaGroupsTable, MeyaGroup>(table),
+                  $$MeyaGroupsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({groupMembersRefs = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [if (groupMembersRefs) db.groupMembers],
+              addJoins: null,
+              getPrefetchedDataCallback: (items) async {
+                return [
+                  if (groupMembersRefs)
+                    await $_getPrefetchedData<
+                      MeyaGroup,
+                      $MeyaGroupsTable,
+                      GroupMember
+                    >(
+                      currentTable: table,
+                      referencedTable: $$MeyaGroupsTableReferences
+                          ._groupMembersRefsTable(db),
+                      managerFromTypedResult: (p0) =>
+                          $$MeyaGroupsTableReferences(
+                            db,
+                            table,
+                            p0,
+                          ).groupMembersRefs,
+                      referencedItemsForCurrentItem: (item, referencedItems) =>
+                          referencedItems.where(
+                            (e) => e.groupId == item.groupId,
+                          ),
+                      typedResults: items,
+                    ),
+                ];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$MeyaGroupsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$MeyaDatabase,
+      $MeyaGroupsTable,
+      MeyaGroup,
+      $$MeyaGroupsTableFilterComposer,
+      $$MeyaGroupsTableOrderingComposer,
+      $$MeyaGroupsTableAnnotationComposer,
+      $$MeyaGroupsTableCreateCompanionBuilder,
+      $$MeyaGroupsTableUpdateCompanionBuilder,
+      (MeyaGroup, $$MeyaGroupsTableReferences),
+      MeyaGroup,
+      PrefetchHooks Function({bool groupMembersRefs})
+    >;
+typedef $$GroupMembersTableCreateCompanionBuilder =
+    GroupMembersCompanion Function({
+      required String groupId,
+      required String deviceId,
+      required String identityId,
+      required String displayName,
+      required String identityPublicKey,
+      required String addedAt,
+      Value<int> rowid,
+    });
+typedef $$GroupMembersTableUpdateCompanionBuilder =
+    GroupMembersCompanion Function({
+      Value<String> groupId,
+      Value<String> deviceId,
+      Value<String> identityId,
+      Value<String> displayName,
+      Value<String> identityPublicKey,
+      Value<String> addedAt,
+      Value<int> rowid,
+    });
+
+final class $$GroupMembersTableReferences
+    extends BaseReferences<_$MeyaDatabase, $GroupMembersTable, GroupMember> {
+  $$GroupMembersTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $MeyaGroupsTable _groupIdTable(_$MeyaDatabase db) => db.meyaGroups
+      .createAlias('group_members__group_id__meya_groups__group_id');
+
+  $$MeyaGroupsTableProcessedTableManager get groupId {
+    final $_column = $_itemColumn<String>('group_id')!;
+
+    final manager = $$MeyaGroupsTableTableManager(
+      $_db,
+      $_db.meyaGroups,
+    ).filter((f) => f.groupId.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_groupIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$GroupMembersTableFilterComposer
+    extends Composer<_$MeyaDatabase, $GroupMembersTable> {
+  $$GroupMembersTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get deviceId => $composableBuilder(
+    column: $table.deviceId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get identityId => $composableBuilder(
+    column: $table.identityId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get displayName => $composableBuilder(
+    column: $table.displayName,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get identityPublicKey => $composableBuilder(
+    column: $table.identityPublicKey,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get addedAt => $composableBuilder(
+    column: $table.addedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$MeyaGroupsTableFilterComposer get groupId {
+    final $$MeyaGroupsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.groupId,
+      referencedTable: $db.meyaGroups,
+      getReferencedColumn: (t) => t.groupId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$MeyaGroupsTableFilterComposer(
+            $db: $db,
+            $table: $db.meyaGroups,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$GroupMembersTableOrderingComposer
+    extends Composer<_$MeyaDatabase, $GroupMembersTable> {
+  $$GroupMembersTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get deviceId => $composableBuilder(
+    column: $table.deviceId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get identityId => $composableBuilder(
+    column: $table.identityId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get displayName => $composableBuilder(
+    column: $table.displayName,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get identityPublicKey => $composableBuilder(
+    column: $table.identityPublicKey,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get addedAt => $composableBuilder(
+    column: $table.addedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$MeyaGroupsTableOrderingComposer get groupId {
+    final $$MeyaGroupsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.groupId,
+      referencedTable: $db.meyaGroups,
+      getReferencedColumn: (t) => t.groupId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$MeyaGroupsTableOrderingComposer(
+            $db: $db,
+            $table: $db.meyaGroups,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$GroupMembersTableAnnotationComposer
+    extends Composer<_$MeyaDatabase, $GroupMembersTable> {
+  $$GroupMembersTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get deviceId =>
+      $composableBuilder(column: $table.deviceId, builder: (column) => column);
+
+  GeneratedColumn<String> get identityId => $composableBuilder(
+    column: $table.identityId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get displayName => $composableBuilder(
+    column: $table.displayName,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get identityPublicKey => $composableBuilder(
+    column: $table.identityPublicKey,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get addedAt =>
+      $composableBuilder(column: $table.addedAt, builder: (column) => column);
+
+  $$MeyaGroupsTableAnnotationComposer get groupId {
+    final $$MeyaGroupsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.groupId,
+      referencedTable: $db.meyaGroups,
+      getReferencedColumn: (t) => t.groupId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$MeyaGroupsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.meyaGroups,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$GroupMembersTableTableManager
+    extends
+        RootTableManager<
+          _$MeyaDatabase,
+          $GroupMembersTable,
+          GroupMember,
+          $$GroupMembersTableFilterComposer,
+          $$GroupMembersTableOrderingComposer,
+          $$GroupMembersTableAnnotationComposer,
+          $$GroupMembersTableCreateCompanionBuilder,
+          $$GroupMembersTableUpdateCompanionBuilder,
+          (GroupMember, $$GroupMembersTableReferences),
+          GroupMember,
+          PrefetchHooks Function({bool groupId})
+        > {
+  $$GroupMembersTableTableManager(_$MeyaDatabase db, $GroupMembersTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$GroupMembersTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$GroupMembersTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$GroupMembersTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> groupId = const Value.absent(),
+                Value<String> deviceId = const Value.absent(),
+                Value<String> identityId = const Value.absent(),
+                Value<String> displayName = const Value.absent(),
+                Value<String> identityPublicKey = const Value.absent(),
+                Value<String> addedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => GroupMembersCompanion(
+                groupId: groupId,
+                deviceId: deviceId,
+                identityId: identityId,
+                displayName: displayName,
+                identityPublicKey: identityPublicKey,
+                addedAt: addedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String groupId,
+                required String deviceId,
+                required String identityId,
+                required String displayName,
+                required String identityPublicKey,
+                required String addedAt,
+                Value<int> rowid = const Value.absent(),
+              }) => GroupMembersCompanion.insert(
+                groupId: groupId,
+                deviceId: deviceId,
+                identityId: identityId,
+                displayName: displayName,
+                identityPublicKey: identityPublicKey,
+                addedAt: addedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$GroupMembersTable, GroupMember>(table),
+                  $$GroupMembersTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({groupId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (groupId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.groupId,
+                        referencedTable: $$GroupMembersTableReferences
+                            ._groupIdTable(db),
+                        referencedColumn: $$GroupMembersTableReferences
+                            ._groupIdTable(db)
+                            .groupId,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$GroupMembersTableProcessedTableManager =
+    ProcessedTableManager<
+      _$MeyaDatabase,
+      $GroupMembersTable,
+      GroupMember,
+      $$GroupMembersTableFilterComposer,
+      $$GroupMembersTableOrderingComposer,
+      $$GroupMembersTableAnnotationComposer,
+      $$GroupMembersTableCreateCompanionBuilder,
+      $$GroupMembersTableUpdateCompanionBuilder,
+      (GroupMember, $$GroupMembersTableReferences),
+      GroupMember,
+      PrefetchHooks Function({bool groupId})
+    >;
 
 class $MeyaDatabaseManager {
   final _$MeyaDatabase _db;
@@ -10227,4 +11822,8 @@ class $MeyaDatabaseManager {
       $$ReactionsTableTableManager(_db, _db.reactions);
   $$OutboxTableTableManager get outbox =>
       $$OutboxTableTableManager(_db, _db.outbox);
+  $$MeyaGroupsTableTableManager get meyaGroups =>
+      $$MeyaGroupsTableTableManager(_db, _db.meyaGroups);
+  $$GroupMembersTableTableManager get groupMembers =>
+      $$GroupMembersTableTableManager(_db, _db.groupMembers);
 }

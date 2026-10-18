@@ -659,3 +659,43 @@ Jika Anda lupa kode sandi, kode pemulihan adalah satu-satunya cara mempertahanka
 Nanti
 Siapkan sekarang
 Konfirmasi kode sandi Anda
+Sebuah grup dapat berisi hingga {0} orang.
+Tambah anggota
+Tambah {0}
+Admin
+Anggota lain menjadi admin. Pesan yang sudah ada di ponsel ini tetap tersimpan.
+Lampirkan
+Pilih setidaknya satu orang.
+Pilih anggota
+Tutup
+Buat grup dengan koneksi MEYA Anda. Setiap pesan dienkripsi end-to-end untuk setiap anggota.
+Buat grup
+Hapus grup dari ponsel ini
+Hapus grup ini dari ponsel Anda?
+Setiap pesan dienkripsi end-to-end secara terpisah untuk setiap anggota. Anggota yang belum terhubung satu sama lain diperkenalkan melalui admin.
+Pesan terenkripsi belum disiapkan dengan {0}.
+Contoh: Keluarga
+Mantan anggota
+Beri nama grup.
+Grup
+Info grup
+Nama grup
+Pesannya dihapus dari ponsel ini. Anggota lain tetap menyimpan pesan mereka.
+Keluar
+Keluar dari grup
+Keluar dari grup ini?
+Anggota
+Pesan di grup ini dienkripsi end-to-end untuk setiap anggota.
+Grup baru
+Tidak ada akun MEYA di ponsel ini.
+Belum ada grup
+Tidak ada yang bisa ditambahkan. Hubungkan diri dengan orang lain dulu dengan memindai kode QR mereka.
+Hanya admin grup yang dapat mengubah grup.
+Keluarkan {0} dari grup?
+Ganti nama grup
+Anda tidak lagi berada di grup ini
+Anda tidak lagi berada di grup ini.
+Pesan yang sudah ada di ponsel ini tetap tersimpan.
+Anda akan menjadi admin: hanya Anda yang dapat mengganti nama grup serta menambah atau mengeluarkan orang. Anggota yang belum terhubung satu sama lain diperkenalkan melalui Anda.
+{0} dipilih · ubah
+{0} anggota

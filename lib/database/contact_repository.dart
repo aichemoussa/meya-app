@@ -91,7 +91,10 @@ class ContactRepository {
         .getSingleOrNull();
     if (device == null) return null;
     final contact = await getContactById(device.contactId);
-    if (contact == null || contact.isRevoked || contact.trustState != 'trusted') {
+    // 'group': someone met through a group, reachable only inside it.
+    if (contact == null ||
+        contact.isRevoked ||
+        (contact.trustState != 'trusted' && contact.trustState != 'group')) {
       return null;
     }
     return contact;

@@ -1,10 +1,15 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:video_player/video_player.dart';
 
 import '../database/contact_repository.dart';
 import '../database/meya_database.dart';
+import '../services/meya_blob_store.dart';
+import '../services/meya_message_service.dart';
 import '../services/meya_status_service.dart';
 import '../theme/meya_theme.dart';
 import 'media_widgets.dart';
@@ -79,10 +84,28 @@ class _StatusHubPageState extends State<StatusHubPage> {
   }
 
   void _view(MeyaStatus status, {required bool mine}) {
+    final stories = mine
+        ? [StatusStory(status: status, name: tr('My status'), mine: true)]
+        : [
+            for (final other in _others)
+              StatusStory(
+                status: other,
+                name: other.contactName ?? tr('MEYA contact'),
+                mine: false,
+              ),
+          ];
+    final start = mine ? 0 : _others.indexOf(status);
     Navigator.push(
       context,
-      MaterialPageRoute<void>(
-        builder: (_) => StatusViewerPage(status: status, mine: mine),
+      PageRouteBuilder<void>(
+        opaque: false,
+        transitionDuration: const Duration(milliseconds: 200),
+        pageBuilder: (_, _, _) => StatusViewerPage(
+          stories: stories,
+          initialIndex: start < 0 ? 0 : start,
+        ),
+        transitionsBuilder: (_, animation, _, child) =>
+            FadeTransition(opacity: animation, child: child),
       ),
     );
   }
@@ -223,85 +246,389 @@ class _StatusTile extends StatelessWidget {
   }
 }
 
-/// Shows one status full screen.
-class StatusViewerPage extends StatelessWidget {
+/// One entry in the full-screen status viewer.
+class StatusStory {
   final MeyaStatus status;
+  final String name;
   final bool mine;
 
-  const StatusViewerPage({super.key, required this.status, required this.mine});
+  const StatusStory({required this.status, required this.name, required this.mine});
+}
+
+/// Shows statuses full screen, one after another, like stories: tap the
+/// right side for the next one, the left side for the previous one, hold to
+/// pause, swipe down to close.
+class StatusViewerPage extends StatefulWidget {
+  final List<StatusStory> stories;
+  final int initialIndex;
+
+  const StatusViewerPage({super.key, required this.stories, this.initialIndex = 0});
+
+  @override
+  State<StatusViewerPage> createState() => _StatusViewerPageState();
+}
+
+class _StatusViewerPageState extends State<StatusViewerPage>
+    with SingleTickerProviderStateMixin {
+  static const Duration _photoDuration = Duration(seconds: 6);
+
+  late final AnimationController _progress;
+  late int _index;
+  VideoPlayerController? _video;
+  File? _videoFile;
+  bool _videoFailed = false;
+  bool _paused = false;
+  double _dragOffset = 0;
+
+  StatusStory get _story => widget.stories[_index];
+
+  @override
+  void initState() {
+    super.initState();
+    _index = widget.initialIndex.clamp(0, widget.stories.length - 1);
+    _progress = AnimationController(vsync: this)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) _next();
+      });
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    _show();
+  }
+
+  @override
+  void dispose() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    _progress.dispose();
+    _disposeVideo();
+    super.dispose();
+  }
+
+  void _disposeVideo() {
+    _video?.dispose();
+    _video = null;
+    final file = _videoFile;
+    _videoFile = null;
+    if (file != null) file.delete().catchError((_) => file);
+  }
+
+  Future<void> _show() async {
+    _progress.stop();
+    _progress.value = 0;
+    _disposeVideo();
+    _videoFailed = false;
+    final status = _story.status;
+    final media = status.media;
+    if (media == null || !status.isVideo) {
+      _progress.duration = _photoDuration;
+      if (!_paused) _progress.forward();
+      setState(() {});
+      return;
+    }
+
+    setState(() {});
+    final index = _index;
+    try {
+      final service = MeyaMessageService.instance;
+      if (!await service.hasAttachment(media)) {
+        throw StateError('not arrived');
+      }
+      final bytes = await service.openAttachment(media);
+      final file = await MeyaTempFiles.write('${media.blobId}_${media.name}', bytes);
+      final controller = VideoPlayerController.file(file);
+      await controller.initialize();
+      if (!mounted || index != _index) {
+        await controller.dispose();
+        await file.delete();
+        return;
+      }
+      _video = controller;
+      _videoFile = file;
+      final length = controller.value.duration;
+      _progress.duration = length > Duration.zero ? length : _photoDuration;
+      if (!_paused) {
+        await controller.play();
+        _progress.forward();
+      }
+      setState(() {});
+    } catch (_) {
+      if (!mounted || index != _index) return;
+      _videoFailed = true;
+      _progress.duration = _photoDuration;
+      if (!_paused) _progress.forward();
+      setState(() {});
+    }
+  }
+
+  void _next() {
+    if (_index < widget.stories.length - 1) {
+      _index++;
+      _show();
+    } else {
+      Navigator.maybePop(context);
+    }
+  }
+
+  void _previous() {
+    if (_index > 0) {
+      _index--;
+    }
+    _show();
+  }
+
+  void _pause() {
+    _paused = true;
+    _progress.stop();
+    _video?.pause();
+    setState(() {});
+  }
+
+  void _resume() {
+    _paused = false;
+    _progress.forward();
+    _video?.play();
+    setState(() {});
+  }
+
+  Widget _media(BuildContext context) {
+    final status = _story.status;
+    final media = status.media;
+    final text = [status.emoji, status.text].where((s) => s.isNotEmpty).join(' ');
+
+    if (media == null) {
+      // Text status: big centred text on a colour picked from the status ID,
+      // so each one keeps its own colour.
+      const palettes = [
+        [Color(0xFF0F2A4A), Color(0xFF2E5C8A)],
+        [Color(0xFF5B2A86), Color(0xFFB0458C)],
+        [Color(0xFF0E6B5C), Color(0xFF2FA58C)],
+        [Color(0xFF8A3B12), Color(0xFFD9822B)],
+        [Color(0xFF263238), Color(0xFF546E7A)],
+      ];
+      final colors = palettes[status.statusId.hashCode.abs() % palettes.length];
+      return DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: colors,
+          ),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(32),
+            child: Text(
+              text,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: text.characters.length < 40 ? 36 : 26,
+                fontWeight: FontWeight.w600,
+                height: 1.3,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    if (!status.isVideo) {
+      return SizedBox.expand(
+        child: EncryptedImage(attachment: media, fit: BoxFit.contain),
+      );
+    }
+
+    final video = _video;
+    if (video != null) {
+      return Center(
+        child: AspectRatio(
+          aspectRatio: video.value.aspectRatio,
+          child: VideoPlayer(video),
+        ),
+      );
+    }
+    return Center(
+      child: _videoFailed
+          ? Text(
+              context.tr('This video has not fully arrived yet.'),
+              style: const TextStyle(color: Colors.white),
+            )
+          : const CircularProgressIndicator(color: Colors.white),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    final media = status.media;
-    final text = [status.emoji, status.text].where((s) => s.isNotEmpty).join(' ');
+    final story = _story;
+    final status = story.status;
+    final caption = status.media == null
+        ? ''
+        : [status.emoji, status.text].where((s) => s.isNotEmpty).join(' ');
     final expires = status.expiresAt;
+    final width = MediaQuery.sizeOf(context).width;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(mine ? context.tr('My status') : status.contactName ?? context.tr('Status')),
-      ),
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(20),
-          children: [
-            if (media != null)
-              ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: status.isVideo
-                    ? AspectRatio(
-                        aspectRatio: 16 / 9,
-                        child: Material(
-                          color: context.meya.navy,
-                          child: InkWell(
-                            onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute<void>(
-                                builder: (_) => VideoPlayerPage(
-                                  attachment: media,
-                                  caption: text,
+      backgroundColor: Colors.black,
+      body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTapUp: (details) {
+          if (details.globalPosition.dx < width / 3) {
+            _previous();
+          } else {
+            _next();
+          }
+        },
+        onLongPressStart: (_) => _pause(),
+        onLongPressEnd: (_) => _resume(),
+        onVerticalDragUpdate: (details) {
+          setState(() => _dragOffset = (_dragOffset + details.delta.dy).clamp(0, 400));
+        },
+        onVerticalDragEnd: (details) {
+          if (_dragOffset > 120 || (details.primaryVelocity ?? 0) > 700) {
+            Navigator.maybePop(context);
+          } else {
+            setState(() => _dragOffset = 0);
+          }
+        },
+        child: Transform.translate(
+          offset: Offset(0, _dragOffset),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Semantics(
+                label: status.media == null
+                    ? null
+                    : status.isVideo
+                        ? context.tr('Video')
+                        : context.tr('Photo'),
+                child: _media(context),
+              ),
+              // Shade so the header and caption stay readable.
+              const Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                height: 140,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Color(0x99000000), Color(0x00000000)],
+                    ),
+                  ),
+                ),
+              ),
+              SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                  child: Column(
+                    children: [
+                      AnimatedBuilder(
+                        animation: _progress,
+                        builder: (context, _) => Row(
+                          children: [
+                            for (var i = 0; i < widget.stories.length; i++)
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 2),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(2),
+                                    child: LinearProgressIndicator(
+                                      minHeight: 3,
+                                      value: i < _index
+                                          ? 1
+                                          : i == _index
+                                              ? _progress.value
+                                              : 0,
+                                      backgroundColor: Colors.white24,
+                                      valueColor: const AlwaysStoppedAnimation(Colors.white),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                            child: Center(
-                              child: Icon(
-                                Icons.play_circle_fill,
-                                size: 64,
-                                color: context.meya.onNavy,
-                                semanticLabel: context.tr('Play video'),
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    : GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (_) => PhotoViewerPage(
-                              attachment: media,
-                              caption: text,
-                            ),
-                          ),
-                        ),
-                        child: EncryptedImage(
-                          attachment: media,
-                          fit: BoxFit.cover,
-                          height: 320,
+                          ],
                         ),
                       ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          const SizedBox(width: 4),
+                          CircleAvatar(
+                            radius: 18,
+                            backgroundColor: Colors.white24,
+                            foregroundColor: Colors.white,
+                            child: Text(
+                              story.name.trim().isEmpty
+                                  ? '?'
+                                  : story.name.trim().characters.first.toUpperCase(),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  story.name,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                Text(
+                                  expires == null || !story.mine
+                                      ? _ago(status.postedAt)
+                                      : context.tr('Posted {0} · disappears {1}', [_ago(status.postedAt), _when(context, expires)]),
+                                  style: const TextStyle(color: Colors.white70, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                          if (_paused)
+                            const Padding(
+                              padding: EdgeInsets.only(right: 4),
+                              child: Icon(Icons.pause, color: Colors.white),
+                            ),
+                          IconButton(
+                            tooltip: context.tr('Close'),
+                            color: Colors.white,
+                            icon: const Icon(Icons.close),
+                            onPressed: () => Navigator.maybePop(context),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            if (text.isNotEmpty) ...[
-              const SizedBox(height: 20),
-              Text(text, style: const TextStyle(fontSize: 22, height: 1.35)),
+              if (caption.isNotEmpty)
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: DecoratedBox(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [Color(0xB3000000), Color(0x00000000)],
+                      ),
+                    ),
+                    child: SafeArea(
+                      top: false,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 32, 20, 24),
+                        child: Text(
+                          caption,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(color: Colors.white, fontSize: 17, height: 1.4),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
             ],
-            const SizedBox(height: 16),
-            Text(
-              expires == null
-                  ? context.tr('Posted {0}', [_ago(status.postedAt)])
-                  : context.tr('Posted {0} · disappears {1}', [_ago(status.postedAt), _when(context, expires)]),
-              style: TextStyle(color: context.meya.muted),
-            ),
-          ],
+          ),
         ),
       ),
     );
