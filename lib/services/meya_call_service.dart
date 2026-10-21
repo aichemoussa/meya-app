@@ -37,6 +37,29 @@ typedef CallSignalSender = Future<void> Function(
   Map<String, Object> fields,
 );
 
+/// A finished (or missed) call, for the call log.
+class CallRecord {
+  final String callId;
+  final Contact contact;
+  final bool outgoing;
+  final bool video;
+  final DateTime startedAt;
+  final Duration duration;
+
+  /// 'answered', 'missed', 'declined', 'cancelled', 'busy' or 'failed'.
+  final String outcome;
+
+  const CallRecord({
+    required this.callId,
+    required this.contact,
+    required this.outgoing,
+    required this.video,
+    required this.startedAt,
+    required this.duration,
+    required this.outcome,
+  });
+}
+
 /// Live voice and video calls with one contact at a time.
 ///
 /// Signalling (`call_offer`, `call_answer`, `call_end`) travels as silent,
@@ -65,12 +88,17 @@ class MeyaCallService extends ChangeNotifier {
   /// Tells the person they missed a call.
   void Function(Contact contact)? onMissed;
 
+  /// Called once for every call when it ends, for the call log.
+  void Function(CallRecord record)? onRecord;
+
   CallPhase _phase = CallPhase.idle;
   Contact? _contact;
   String? _callId;
   bool _video = false;
   String? _remoteOffer;
   CallEngine? _engine;
+  DateTime? _startedAt;
+  bool _outgoing = false;
   DateTime? _connectedAt;
   CallEndReason? _endReason;
   bool _muted = false;
@@ -235,11 +263,25 @@ class MeyaCallService extends ChangeNotifier {
   ) async {
     // An offer that waited in the relay longer than a ring is a missed call.
     final sent = sentAt is String ? DateTime.tryParse(sentAt) : null;
+    void logMissed() => _logRecord(CallRecord(
+          callId: callId,
+          contact: contact,
+          outgoing: false,
+          video: video,
+          startedAt: sent?.toLocal() ?? DateTime.now(),
+          duration: Duration.zero,
+          outcome: 'missed',
+        ));
     if (sent != null && DateTime.now().toUtc().difference(sent) > ringTimeout) {
+      logMissed();
       onMissed?.call(contact);
       return;
     }
+    // The same offer delivered twice.
+    if (_callId == callId) return;
     if (inCall) {
+      // Already on another call.
+      logMissed();
       await _sendQuietly(contact, {
         'kind': 'call_end',
         'call_id': callId,
@@ -269,6 +311,8 @@ class MeyaCallService extends ChangeNotifier {
     _contact = contact;
     _callId = callId;
     _video = video;
+    _outgoing = phase == CallPhase.outgoing;
+    _startedAt = DateTime.now();
     _remoteOffer = null;
     _connectedAt = null;
     _endReason = null;
@@ -320,6 +364,7 @@ class MeyaCallService extends ChangeNotifier {
 
   Future<void> _finish(CallEndReason reason) async {
     if (!inCall) return;
+    _record(reason);
     _timer?.cancel();
     final engine = _engine;
     _engine = null;
@@ -340,6 +385,47 @@ class MeyaCallService extends ChangeNotifier {
         notifyListeners();
       }
     });
+  }
+
+  /// Logs the call that is ending.
+  void _record(CallEndReason reason) {
+    final contact = _contact;
+    final callId = _callId;
+    if (contact == null || callId == null) return;
+    final connectedAt = _connectedAt;
+    final String outcome;
+    if (connectedAt != null) {
+      outcome = 'answered';
+    } else if (_outgoing) {
+      outcome = reason.name;
+    } else {
+      outcome = switch (reason) {
+        CallEndReason.declined => 'declined',
+        // Answered here, but it never connected.
+        CallEndReason.failed => 'failed',
+        // Rang out, or the caller hung up first.
+        _ => _phase == CallPhase.incoming ? 'missed' : 'failed',
+      };
+    }
+    _logRecord(CallRecord(
+      callId: callId,
+      contact: contact,
+      outgoing: _outgoing,
+      video: _video,
+      startedAt: _startedAt ?? DateTime.now(),
+      duration: connectedAt == null
+          ? Duration.zero
+          : DateTime.now().difference(connectedAt),
+      outcome: outcome,
+    ));
+  }
+
+  void _logRecord(CallRecord record) {
+    try {
+      onRecord?.call(record);
+    } catch (error) {
+      debugPrint('MEYA call: not logged ($error).');
+    }
   }
 
   Future<void> _sendQuietly(Contact contact, Map<String, Object> fields) async {
@@ -373,5 +459,6 @@ class MeyaCallService extends ChangeNotifier {
     _engine = null;
     onIncoming = null;
     onMissed = null;
+    onRecord = null;
   }
 }

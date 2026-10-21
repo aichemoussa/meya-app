@@ -47,6 +47,8 @@ import 'screens/about_meya_page.dart';
 import 'screens/account_page.dart';
 import 'screens/call_page.dart';
 import 'screens/calendar_page.dart';
+import 'screens/calls_page.dart';
+import 'database/call_log_repository.dart';
 import 'screens/profile_page.dart';
 import 'screens/sounds_page.dart';
 import 'screens/status_page.dart';
@@ -638,6 +640,21 @@ class _SpacePageState extends State<SpacePage>
     );
     calls.onIncoming = _showIncomingCall;
     calls.onMissed = _showMissedCall;
+    calls.onRecord = (record) => unawaited(
+          CallLogRepository(widget.database)
+              .add(
+                callId: record.callId,
+                contactId: record.contact.contactId,
+                outgoing: record.outgoing,
+                video: record.video,
+                startedAt: record.startedAt,
+                durationSeconds: record.duration.inSeconds,
+                outcome: record.outcome,
+              )
+              .catchError((Object error) {
+            debugPrint('MEYA call log: not saved ($error).');
+          }),
+        );
     for (final kind in const ['call_offer', 'call_answer', 'call_end']) {
       messages.setSilentHandler(kind, calls.handleSignal);
     }
@@ -925,8 +942,76 @@ class _SpacePageState extends State<SpacePage>
     await _loadOverview();
   }
 
+  /// The bottom bar's tab: Chats, News, Groups, Calls, Your Space.
+  int _tab = 0;
+
+  void _selectTab(int tab) {
+    setState(() => _tab = tab);
+    if (tab == 4) _loadOverview();
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Each tab opens fresh, so it always shows the latest.
+    final page = switch (_tab) {
+      0 => ChatsPage(
+          database: widget.database,
+          onNewChat: (context) => Navigator.push(
+            context,
+            MaterialPageRoute<void>(
+              builder: (_) => NewChatPage(database: widget.database),
+            ),
+          ),
+        ),
+      1 => StatusHubPage(database: widget.database),
+      2 => GroupsPage(database: widget.database),
+      3 => CallsPage(database: widget.database),
+      _ => _space(context),
+    };
+    return PopScope(
+      // Back goes to Chats first, then leaves MEYA.
+      canPop: _tab == 0,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) _selectTab(0);
+      },
+      child: Scaffold(
+        body: KeyedSubtree(key: ValueKey(_tab), child: page),
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: _tab,
+          onDestinationSelected: _selectTab,
+          destinations: [
+            NavigationDestination(
+              icon: const Icon(Icons.chat_bubble_outline),
+              selectedIcon: const Icon(Icons.chat_bubble),
+              label: context.tr('Chats'),
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.dynamic_feed_outlined),
+              selectedIcon: const Icon(Icons.dynamic_feed),
+              label: context.tr('News'),
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.group_outlined),
+              selectedIcon: const Icon(Icons.group),
+              label: context.tr('Groups'),
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.call_outlined),
+              selectedIcon: const Icon(Icons.call),
+              label: context.tr('Calls'),
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.home_outlined),
+              selectedIcon: const Icon(Icons.home),
+              label: context.tr('Your Space'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _space(BuildContext context) {
     final colors = context.meya;
     final photoPath = _photoPath;
 

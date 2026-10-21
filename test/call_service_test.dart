@@ -220,6 +220,78 @@ void main() {
     expect(lastSent()['reason'], 'failed');
   });
 
+  group('call log', () {
+    late List<CallRecord> log;
+    setUp(() {
+      log = [];
+      calls.onRecord = log.add;
+    });
+
+    test('an answered call is logged once with its length', () async {
+      await calls.startCall(ana, video: true);
+      final callId = lastSent()['call_id'] as String;
+      await receive(ana, {'kind': 'call_answer', 'call_id': callId, 'sdp': 'A'});
+      engines.single.onConnection!(true);
+      await calls.hangUp();
+      expect(log, hasLength(1));
+      expect(log.single.outgoing, isTrue);
+      expect(log.single.video, isTrue);
+      expect(log.single.outcome, 'answered');
+      expect(log.single.contact, ana);
+    });
+
+    test('a call that rang out here is missed', () async {
+      await receive(ana, {
+        'kind': 'call_offer',
+        'call_id': 'abc',
+        'video': false,
+        'sdp': 'OFFER-SDP',
+      });
+      await receive(ana, {'kind': 'call_end', 'call_id': 'abc', 'reason': 'cancelled'});
+      expect(log.single.outgoing, isFalse);
+      expect(log.single.outcome, 'missed');
+    });
+
+    test('declining is logged as declined, not missed', () async {
+      await receive(ana, {
+        'kind': 'call_offer',
+        'call_id': 'abc',
+        'video': false,
+        'sdp': 'OFFER-SDP',
+      });
+      await calls.decline();
+      expect(log.single.outcome, 'declined');
+    });
+
+    test('a call while busy and a stale offer are missed calls', () async {
+      await calls.startCall(ana, video: false);
+      await receive(bob, {
+        'kind': 'call_offer',
+        'call_id': 'other',
+        'video': false,
+        'sdp': 'OFFER-SDP',
+      });
+      await calls.handleSignal(bob, 'device-2', {
+        'kind': 'call_offer',
+        'call_id': 'old',
+        'video': true,
+        'sdp': 'OFFER-SDP',
+        'sent_at': DateTime.now()
+            .toUtc()
+            .subtract(const Duration(minutes: 5))
+            .toIso8601String(),
+      });
+      expect(log.map((r) => (r.contact, r.outcome)), [(bob, 'missed'), (bob, 'missed')]);
+    });
+
+    test('nobody answering the caller logs a missed outgoing call', () async {
+      await calls.startCall(ana, video: false);
+      await calls.hangUp();
+      expect(log.single.outgoing, isTrue);
+      expect(log.single.outcome, 'cancelled');
+    });
+  });
+
   test('mute, camera and speaker reach the engine', () async {
     await calls.startCall(ana, video: true);
     expect(calls.speakerOn, isTrue, reason: 'video calls start on speaker');

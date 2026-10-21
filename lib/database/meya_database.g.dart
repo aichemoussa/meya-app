@@ -6881,6 +6881,483 @@ class GroupMembersCompanion extends UpdateCompanion<GroupMember> {
   }
 }
 
+class $CallLogsTable extends CallLogs with TableInfo<$CallLogsTable, CallLog> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $CallLogsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _callIdMeta = const VerificationMeta('callId');
+  @override
+  late final GeneratedColumn<String> callId = GeneratedColumn<String>(
+    'call_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _contactIdMeta = const VerificationMeta(
+    'contactId',
+  );
+  @override
+  late final GeneratedColumn<String> contactId = GeneratedColumn<String>(
+    'contact_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _outgoingMeta = const VerificationMeta(
+    'outgoing',
+  );
+  @override
+  late final GeneratedColumn<bool> outgoing = GeneratedColumn<bool>(
+    'outgoing',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("outgoing" IN (0, 1))',
+    ),
+  );
+  static const VerificationMeta _videoMeta = const VerificationMeta('video');
+  @override
+  late final GeneratedColumn<bool> video = GeneratedColumn<bool>(
+    'video',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("video" IN (0, 1))',
+    ),
+  );
+  static const VerificationMeta _startedAtMeta = const VerificationMeta(
+    'startedAt',
+  );
+  @override
+  late final GeneratedColumn<String> startedAt = GeneratedColumn<String>(
+    'started_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _durationSecondsMeta = const VerificationMeta(
+    'durationSeconds',
+  );
+  @override
+  late final GeneratedColumn<int> durationSeconds = GeneratedColumn<int>(
+    'duration_seconds',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _outcomeMeta = const VerificationMeta(
+    'outcome',
+  );
+  @override
+  late final GeneratedColumn<String> outcome = GeneratedColumn<String>(
+    'outcome',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    callId,
+    contactId,
+    outgoing,
+    video,
+    startedAt,
+    durationSeconds,
+    outcome,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'call_logs';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<CallLog> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('call_id')) {
+      context.handle(
+        _callIdMeta,
+        callId.isAcceptableOrUnknown(data['call_id']!, _callIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_callIdMeta);
+    }
+    if (data.containsKey('contact_id')) {
+      context.handle(
+        _contactIdMeta,
+        contactId.isAcceptableOrUnknown(data['contact_id']!, _contactIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_contactIdMeta);
+    }
+    if (data.containsKey('outgoing')) {
+      context.handle(
+        _outgoingMeta,
+        outgoing.isAcceptableOrUnknown(data['outgoing']!, _outgoingMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_outgoingMeta);
+    }
+    if (data.containsKey('video')) {
+      context.handle(
+        _videoMeta,
+        video.isAcceptableOrUnknown(data['video']!, _videoMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_videoMeta);
+    }
+    if (data.containsKey('started_at')) {
+      context.handle(
+        _startedAtMeta,
+        startedAt.isAcceptableOrUnknown(data['started_at']!, _startedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_startedAtMeta);
+    }
+    if (data.containsKey('duration_seconds')) {
+      context.handle(
+        _durationSecondsMeta,
+        durationSeconds.isAcceptableOrUnknown(
+          data['duration_seconds']!,
+          _durationSecondsMeta,
+        ),
+      );
+    }
+    if (data.containsKey('outcome')) {
+      context.handle(
+        _outcomeMeta,
+        outcome.isAcceptableOrUnknown(data['outcome']!, _outcomeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_outcomeMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {callId};
+  @override
+  CallLog map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return CallLog(
+      callId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}call_id'],
+      )!,
+      contactId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}contact_id'],
+      )!,
+      outgoing: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}outgoing'],
+      )!,
+      video: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}video'],
+      )!,
+      startedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}started_at'],
+      )!,
+      durationSeconds: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}duration_seconds'],
+      )!,
+      outcome: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}outcome'],
+      )!,
+    );
+  }
+
+  @override
+  $CallLogsTable createAlias(String alias) {
+    return $CallLogsTable(attachedDatabase, alias);
+  }
+}
+
+class CallLog extends DataClass implements Insertable<CallLog> {
+  final String callId;
+  final String contactId;
+  final bool outgoing;
+  final bool video;
+  final String startedAt;
+
+  /// Zero when the call never connected.
+  final int durationSeconds;
+
+  /// 'answered', 'missed', 'declined', 'cancelled', 'busy' or 'failed'.
+  final String outcome;
+  const CallLog({
+    required this.callId,
+    required this.contactId,
+    required this.outgoing,
+    required this.video,
+    required this.startedAt,
+    required this.durationSeconds,
+    required this.outcome,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['call_id'] = Variable<String>(callId);
+    map['contact_id'] = Variable<String>(contactId);
+    map['outgoing'] = Variable<bool>(outgoing);
+    map['video'] = Variable<bool>(video);
+    map['started_at'] = Variable<String>(startedAt);
+    map['duration_seconds'] = Variable<int>(durationSeconds);
+    map['outcome'] = Variable<String>(outcome);
+    return map;
+  }
+
+  CallLogsCompanion toCompanion(bool nullToAbsent) {
+    return CallLogsCompanion(
+      callId: Value(callId),
+      contactId: Value(contactId),
+      outgoing: Value(outgoing),
+      video: Value(video),
+      startedAt: Value(startedAt),
+      durationSeconds: Value(durationSeconds),
+      outcome: Value(outcome),
+    );
+  }
+
+  factory CallLog.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return CallLog(
+      callId: serializer.fromJson<String>(json['callId']),
+      contactId: serializer.fromJson<String>(json['contactId']),
+      outgoing: serializer.fromJson<bool>(json['outgoing']),
+      video: serializer.fromJson<bool>(json['video']),
+      startedAt: serializer.fromJson<String>(json['startedAt']),
+      durationSeconds: serializer.fromJson<int>(json['durationSeconds']),
+      outcome: serializer.fromJson<String>(json['outcome']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'callId': serializer.toJson<String>(callId),
+      'contactId': serializer.toJson<String>(contactId),
+      'outgoing': serializer.toJson<bool>(outgoing),
+      'video': serializer.toJson<bool>(video),
+      'startedAt': serializer.toJson<String>(startedAt),
+      'durationSeconds': serializer.toJson<int>(durationSeconds),
+      'outcome': serializer.toJson<String>(outcome),
+    };
+  }
+
+  CallLog copyWith({
+    String? callId,
+    String? contactId,
+    bool? outgoing,
+    bool? video,
+    String? startedAt,
+    int? durationSeconds,
+    String? outcome,
+  }) => CallLog(
+    callId: callId ?? this.callId,
+    contactId: contactId ?? this.contactId,
+    outgoing: outgoing ?? this.outgoing,
+    video: video ?? this.video,
+    startedAt: startedAt ?? this.startedAt,
+    durationSeconds: durationSeconds ?? this.durationSeconds,
+    outcome: outcome ?? this.outcome,
+  );
+  CallLog copyWithCompanion(CallLogsCompanion data) {
+    return CallLog(
+      callId: data.callId.present ? data.callId.value : this.callId,
+      contactId: data.contactId.present ? data.contactId.value : this.contactId,
+      outgoing: data.outgoing.present ? data.outgoing.value : this.outgoing,
+      video: data.video.present ? data.video.value : this.video,
+      startedAt: data.startedAt.present ? data.startedAt.value : this.startedAt,
+      durationSeconds: data.durationSeconds.present
+          ? data.durationSeconds.value
+          : this.durationSeconds,
+      outcome: data.outcome.present ? data.outcome.value : this.outcome,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CallLog(')
+          ..write('callId: $callId, ')
+          ..write('contactId: $contactId, ')
+          ..write('outgoing: $outgoing, ')
+          ..write('video: $video, ')
+          ..write('startedAt: $startedAt, ')
+          ..write('durationSeconds: $durationSeconds, ')
+          ..write('outcome: $outcome')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    callId,
+    contactId,
+    outgoing,
+    video,
+    startedAt,
+    durationSeconds,
+    outcome,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is CallLog &&
+          other.callId == this.callId &&
+          other.contactId == this.contactId &&
+          other.outgoing == this.outgoing &&
+          other.video == this.video &&
+          other.startedAt == this.startedAt &&
+          other.durationSeconds == this.durationSeconds &&
+          other.outcome == this.outcome);
+}
+
+class CallLogsCompanion extends UpdateCompanion<CallLog> {
+  final Value<String> callId;
+  final Value<String> contactId;
+  final Value<bool> outgoing;
+  final Value<bool> video;
+  final Value<String> startedAt;
+  final Value<int> durationSeconds;
+  final Value<String> outcome;
+  final Value<int> rowid;
+  const CallLogsCompanion({
+    this.callId = const Value.absent(),
+    this.contactId = const Value.absent(),
+    this.outgoing = const Value.absent(),
+    this.video = const Value.absent(),
+    this.startedAt = const Value.absent(),
+    this.durationSeconds = const Value.absent(),
+    this.outcome = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  CallLogsCompanion.insert({
+    required String callId,
+    required String contactId,
+    required bool outgoing,
+    required bool video,
+    required String startedAt,
+    this.durationSeconds = const Value.absent(),
+    required String outcome,
+    this.rowid = const Value.absent(),
+  }) : callId = Value(callId),
+       contactId = Value(contactId),
+       outgoing = Value(outgoing),
+       video = Value(video),
+       startedAt = Value(startedAt),
+       outcome = Value(outcome);
+  static Insertable<CallLog> custom({
+    Expression<String>? callId,
+    Expression<String>? contactId,
+    Expression<bool>? outgoing,
+    Expression<bool>? video,
+    Expression<String>? startedAt,
+    Expression<int>? durationSeconds,
+    Expression<String>? outcome,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (callId != null) 'call_id': callId,
+      if (contactId != null) 'contact_id': contactId,
+      if (outgoing != null) 'outgoing': outgoing,
+      if (video != null) 'video': video,
+      if (startedAt != null) 'started_at': startedAt,
+      if (durationSeconds != null) 'duration_seconds': durationSeconds,
+      if (outcome != null) 'outcome': outcome,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  CallLogsCompanion copyWith({
+    Value<String>? callId,
+    Value<String>? contactId,
+    Value<bool>? outgoing,
+    Value<bool>? video,
+    Value<String>? startedAt,
+    Value<int>? durationSeconds,
+    Value<String>? outcome,
+    Value<int>? rowid,
+  }) {
+    return CallLogsCompanion(
+      callId: callId ?? this.callId,
+      contactId: contactId ?? this.contactId,
+      outgoing: outgoing ?? this.outgoing,
+      video: video ?? this.video,
+      startedAt: startedAt ?? this.startedAt,
+      durationSeconds: durationSeconds ?? this.durationSeconds,
+      outcome: outcome ?? this.outcome,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (callId.present) {
+      map['call_id'] = Variable<String>(callId.value);
+    }
+    if (contactId.present) {
+      map['contact_id'] = Variable<String>(contactId.value);
+    }
+    if (outgoing.present) {
+      map['outgoing'] = Variable<bool>(outgoing.value);
+    }
+    if (video.present) {
+      map['video'] = Variable<bool>(video.value);
+    }
+    if (startedAt.present) {
+      map['started_at'] = Variable<String>(startedAt.value);
+    }
+    if (durationSeconds.present) {
+      map['duration_seconds'] = Variable<int>(durationSeconds.value);
+    }
+    if (outcome.present) {
+      map['outcome'] = Variable<String>(outcome.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CallLogsCompanion(')
+          ..write('callId: $callId, ')
+          ..write('contactId: $contactId, ')
+          ..write('outgoing: $outgoing, ')
+          ..write('video: $video, ')
+          ..write('startedAt: $startedAt, ')
+          ..write('durationSeconds: $durationSeconds, ')
+          ..write('outcome: $outcome, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$MeyaDatabase extends GeneratedDatabase {
   _$MeyaDatabase(QueryExecutor e) : super(e);
   $MeyaDatabaseManager get managers => $MeyaDatabaseManager(this);
@@ -6899,6 +7376,7 @@ abstract class _$MeyaDatabase extends GeneratedDatabase {
   late final $OutboxTable outbox = $OutboxTable(this);
   late final $MeyaGroupsTable meyaGroups = $MeyaGroupsTable(this);
   late final $GroupMembersTable groupMembers = $GroupMembersTable(this);
+  late final $CallLogsTable callLogs = $CallLogsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -6917,6 +7395,7 @@ abstract class _$MeyaDatabase extends GeneratedDatabase {
     outbox,
     meyaGroups,
     groupMembers,
+    callLogs,
   ];
 }
 
@@ -11864,6 +12343,247 @@ typedef $$GroupMembersTableProcessedTableManager =
       GroupMember,
       PrefetchHooks Function({bool groupId})
     >;
+typedef $$CallLogsTableCreateCompanionBuilder = CallLogsCompanion Function({
+  required String callId,
+  required String contactId,
+  required bool outgoing,
+  required bool video,
+  required String startedAt,
+  Value<int> durationSeconds,
+  required String outcome,
+  Value<int> rowid,
+});
+typedef $$CallLogsTableUpdateCompanionBuilder = CallLogsCompanion Function({
+  Value<String> callId,
+  Value<String> contactId,
+  Value<bool> outgoing,
+  Value<bool> video,
+  Value<String> startedAt,
+  Value<int> durationSeconds,
+  Value<String> outcome,
+  Value<int> rowid,
+});
+
+class $$CallLogsTableFilterComposer
+    extends Composer<_$MeyaDatabase, $CallLogsTable> {
+  $$CallLogsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get callId => $composableBuilder(
+    column: $table.callId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get contactId => $composableBuilder(
+    column: $table.contactId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get outgoing => $composableBuilder(
+    column: $table.outgoing,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get video => $composableBuilder(
+    column: $table.video,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get startedAt => $composableBuilder(
+    column: $table.startedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get durationSeconds => $composableBuilder(
+    column: $table.durationSeconds,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get outcome => $composableBuilder(
+    column: $table.outcome,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$CallLogsTableOrderingComposer
+    extends Composer<_$MeyaDatabase, $CallLogsTable> {
+  $$CallLogsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get callId => $composableBuilder(
+    column: $table.callId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get contactId => $composableBuilder(
+    column: $table.contactId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get outgoing => $composableBuilder(
+    column: $table.outgoing,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get video => $composableBuilder(
+    column: $table.video,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get startedAt => $composableBuilder(
+    column: $table.startedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get durationSeconds => $composableBuilder(
+    column: $table.durationSeconds,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get outcome => $composableBuilder(
+    column: $table.outcome,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$CallLogsTableAnnotationComposer
+    extends Composer<_$MeyaDatabase, $CallLogsTable> {
+  $$CallLogsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get callId =>
+      $composableBuilder(column: $table.callId, builder: (column) => column);
+
+  GeneratedColumn<String> get contactId =>
+      $composableBuilder(column: $table.contactId, builder: (column) => column);
+
+  GeneratedColumn<bool> get outgoing =>
+      $composableBuilder(column: $table.outgoing, builder: (column) => column);
+
+  GeneratedColumn<bool> get video =>
+      $composableBuilder(column: $table.video, builder: (column) => column);
+
+  GeneratedColumn<String> get startedAt =>
+      $composableBuilder(column: $table.startedAt, builder: (column) => column);
+
+  GeneratedColumn<int> get durationSeconds => $composableBuilder(
+    column: $table.durationSeconds,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get outcome =>
+      $composableBuilder(column: $table.outcome, builder: (column) => column);
+}
+
+class $$CallLogsTableTableManager
+    extends
+        RootTableManager<
+          _$MeyaDatabase,
+          $CallLogsTable,
+          CallLog,
+          $$CallLogsTableFilterComposer,
+          $$CallLogsTableOrderingComposer,
+          $$CallLogsTableAnnotationComposer,
+          $$CallLogsTableCreateCompanionBuilder,
+          $$CallLogsTableUpdateCompanionBuilder,
+          (CallLog, BaseReferences<_$MeyaDatabase, $CallLogsTable, CallLog>),
+          CallLog,
+          PrefetchHooks Function()
+        > {
+  $$CallLogsTableTableManager(_$MeyaDatabase db, $CallLogsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$CallLogsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$CallLogsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$CallLogsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> callId = const Value.absent(),
+                Value<String> contactId = const Value.absent(),
+                Value<bool> outgoing = const Value.absent(),
+                Value<bool> video = const Value.absent(),
+                Value<String> startedAt = const Value.absent(),
+                Value<int> durationSeconds = const Value.absent(),
+                Value<String> outcome = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CallLogsCompanion(
+                callId: callId,
+                contactId: contactId,
+                outgoing: outgoing,
+                video: video,
+                startedAt: startedAt,
+                durationSeconds: durationSeconds,
+                outcome: outcome,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String callId,
+                required String contactId,
+                required bool outgoing,
+                required bool video,
+                required String startedAt,
+                Value<int> durationSeconds = const Value.absent(),
+                required String outcome,
+                Value<int> rowid = const Value.absent(),
+              }) => CallLogsCompanion.insert(
+                callId: callId,
+                contactId: contactId,
+                outgoing: outgoing,
+                video: video,
+                startedAt: startedAt,
+                durationSeconds: durationSeconds,
+                outcome: outcome,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$CallLogsTable, CallLog>(table),
+                  BaseReferences<_$MeyaDatabase, $CallLogsTable, CallLog>(
+                    db,
+                    table,
+                    e,
+                  ),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$CallLogsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$MeyaDatabase,
+      $CallLogsTable,
+      CallLog,
+      $$CallLogsTableFilterComposer,
+      $$CallLogsTableOrderingComposer,
+      $$CallLogsTableAnnotationComposer,
+      $$CallLogsTableCreateCompanionBuilder,
+      $$CallLogsTableUpdateCompanionBuilder,
+      (CallLog, BaseReferences<_$MeyaDatabase, $CallLogsTable, CallLog>),
+      CallLog,
+      PrefetchHooks Function()
+    >;
 
 class $MeyaDatabaseManager {
   final _$MeyaDatabase _db;
@@ -11897,4 +12617,6 @@ class $MeyaDatabaseManager {
       $$MeyaGroupsTableTableManager(_db, _db.meyaGroups);
   $$GroupMembersTableTableManager get groupMembers =>
       $$GroupMembersTableTableManager(_db, _db.groupMembers);
+  $$CallLogsTableTableManager get callLogs =>
+      $$CallLogsTableTableManager(_db, _db.callLogs);
 }

@@ -6,6 +6,7 @@ import 'package:meya/l10n/meya_strings.dart';
 import 'package:meya/main.dart';
 import 'package:meya/screens/appearance_page.dart';
 import 'package:meya/screens/calendar_page.dart';
+import 'package:meya/screens/calls_page.dart';
 import 'package:meya/screens/chats_page.dart';
 import 'package:meya/screens/invitations_page.dart';
 import 'package:meya/screens/people_page.dart';
@@ -77,6 +78,31 @@ void main() {
     await switchThroughAllLanguages(tester, ProfilePage(database: database));
     await switchThroughAllLanguages(tester, StatusHubPage(database: database));
     await switchThroughAllLanguages(tester, InvitationsPage(database: database));
+  });
+
+  testWidgets('every tab of the bottom bar opens in every language',
+      (tester) async {
+    await switchThroughAllLanguages(tester, CallsPage(database: database));
+    await tester.pumpWidget(MeyaApp(database: database));
+    await tester.pump();
+    meyaNavigatorKey.currentState!.push(MaterialPageRoute<void>(
+      builder: (_) => SpacePage(name: 'Ana', username: 'ana', database: database),
+    ));
+    await tester.pump(const Duration(milliseconds: 500));
+    for (final language in meyaLanguages) {
+      await MeyaSettings.instance.setLanguage(language.tag);
+      await tester.pump(const Duration(milliseconds: 300));
+      final tabs = find.byType(NavigationDestination);
+      expect(tabs, findsNWidgets(5), reason: language.tag);
+      for (var i = 0; i < 5; i++) {
+        await tester.tap(tabs.at(i));
+        await tester.pump(const Duration(milliseconds: 300));
+        expect(tester.takeException(), isNull, reason: '${language.tag} tab $i');
+      }
+    }
+    // Lets the call list's database query close.
+    await tester.pumpWidget(const SizedBox());
+    await tester.pump(Duration.zero);
   });
 
   testWidgets('security and sounds pages survive every language',

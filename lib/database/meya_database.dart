@@ -204,6 +204,24 @@ class GroupMembers extends Table {
   Set<Column> get primaryKey => {groupId, deviceId};
 }
 
+/// Calls made, received and missed on this phone, for the Calls tab.
+class CallLogs extends Table {
+  TextColumn get callId => text()();
+  TextColumn get contactId => text()();
+  BoolColumn get outgoing => boolean()();
+  BoolColumn get video => boolean()();
+  TextColumn get startedAt => text()();
+
+  /// Zero when the call never connected.
+  IntColumn get durationSeconds => integer().withDefault(const Constant(0))();
+
+  /// 'answered', 'missed', 'declined', 'cancelled', 'busy' or 'failed'.
+  TextColumn get outcome => text()();
+
+  @override
+  Set<Column> get primaryKey => {callId};
+}
+
 /// Encrypted control messages (receipts, reactions, edits, deletions, pins)
 /// waiting for the relay. The fields are sealed with the local storage key.
 class Outbox extends Table {
@@ -232,10 +250,11 @@ class Outbox extends Table {
     Outbox,
     MeyaGroups,
     GroupMembers,
+    CallLogs,
   ],
 )
 class MeyaDatabase extends _$MeyaDatabase {
-  static const schemaVersionValue = 11;
+  static const schemaVersionValue = 12;
 
   MeyaDatabase() : super(_openConnection());
 
@@ -335,6 +354,10 @@ class MeyaDatabase extends _$MeyaDatabase {
         )) {
           await migrator.addColumn(groupMembers, groupMembers.isAdmin);
         }
+      }
+
+      if (from < 12 && to >= 12) {
+        await migrator.createTable(callLogs);
       }
     },
     beforeOpen: (_) async {

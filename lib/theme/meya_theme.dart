@@ -199,6 +199,25 @@ ThemeData buildMeyaTheme(MeyaPalette p, {bool reduceMotion = false}) {
       backgroundColor: p.brightness == Brightness.light ? p.surface : p.card,
       surfaceTintColor: Colors.transparent,
     ),
+    navigationBarTheme: NavigationBarThemeData(
+      backgroundColor: p.surface,
+      surfaceTintColor: Colors.transparent,
+      indicatorColor: p.navy.withValues(alpha: highContrast ? 0.3 : 0.14),
+      iconTheme: WidgetStateProperty.resolveWith(
+        (states) => IconThemeData(
+          color: states.contains(WidgetState.selected) ? p.navy : p.muted,
+        ),
+      ),
+      labelTextStyle: WidgetStateProperty.resolveWith(
+        (states) => TextStyle(
+          fontSize: 12,
+          fontWeight: states.contains(WidgetState.selected)
+              ? FontWeight.w700
+              : FontWeight.w500,
+          color: states.contains(WidgetState.selected) ? p.navy : p.muted,
+        ),
+      ),
+    ),
     popupMenuTheme: PopupMenuThemeData(
       color: p.brightness == Brightness.light ? p.surface : p.card,
       surfaceTintColor: Colors.transparent,
