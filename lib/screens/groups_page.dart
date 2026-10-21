@@ -120,12 +120,6 @@ class _GroupsPageState extends State<GroupsPage> {
                             textAlign: TextAlign.center,
                             style: TextStyle(color: colors.muted, height: 1.4),
                           ),
-                          const SizedBox(height: 24),
-                          FilledButton.icon(
-                            onPressed: _newGroup,
-                            icon: const Icon(Icons.group_add_outlined),
-                            label: Text(context.tr('New group')),
-                          ),
                         ],
                       ),
                     ),
