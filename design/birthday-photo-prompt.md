@@ -3,8 +3,8 @@
 These replace the last two stock photos on the website, so every person shown
 is AI generated and nobody can recognise themselves.
 
-Save the results as JPG or PNG, at least 1200 px on the long side, and add
-them to the website. They will be resized into `website/img/ai/`.
+Save the results as JPG or PNG, at least 1200 px on the long side, and hand
+them to Claude. Claude will resize them into `website/img/ai/`.
 
 Use the same style block as the other photos so they match:
 

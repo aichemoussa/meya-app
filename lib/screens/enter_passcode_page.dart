@@ -135,7 +135,7 @@ class _EnterPasscodePageState extends State<EnterPasscodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.meya.card,
+      backgroundColor: context.meya.surface,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 28),
@@ -191,7 +191,7 @@ class _EnterPasscodePageState extends State<EnterPasscodePage> {
                   hintText: '••••',
                   counterText: '',
                   filled: true,
-                  fillColor: context.meya.surface,
+                  fillColor: context.meya.card,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: BorderSide.none,
@@ -276,4 +276,4 @@ class _EnterPasscodePageState extends State<EnterPasscodePage> {
       ),
     );
   }
-}
+}

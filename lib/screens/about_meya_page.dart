@@ -3,6 +3,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../legal/meya_legal.dart';
+import '../theme/meya_logo.dart';
 import '../theme/meya_theme.dart';
 import '../l10n/meya_strings.dart';
 
@@ -57,27 +58,7 @@ class _AboutMeyaPageState extends State<AboutMeyaPage> {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(20, 24, 20, 32),
           children: [
-            Center(
-              child: Container(
-                width: 84,
-                height: 84,
-                decoration: BoxDecoration(
-                  color: colors.navy,
-                  borderRadius: BorderRadius.circular(26),
-                ),
-                alignment: Alignment.center,
-                child: ExcludeSemantics(
-                  child: Text(
-                    'M',
-                    style: TextStyle(
-                      color: colors.onNavy,
-                      fontSize: 44,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            const Center(child: ExcludeSemantics(child: MeyaLogo(size: 84))),
             const SizedBox(height: 14),
             const Center(
               child: Text(

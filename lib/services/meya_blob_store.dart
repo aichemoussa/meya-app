@@ -125,6 +125,18 @@ class MeyaBlobStore {
     if (await file.exists()) await file.delete();
   }
 
+  /// Files kept under this owner prefix (contacts' profile photos) are not
+  /// removed by the Keep media clean-up.
+  static const keptOwnerPrefix = 'profile-';
+
+  /// Moves a stored file to another owner. False when it is not here.
+  Future<bool> move(String fromOwner, String toOwner, String blobId) async {
+    final source = await _file(fromOwner, blobId);
+    if (!await source.exists()) return false;
+    await source.rename((await _file(toOwner, blobId)).path);
+    return true;
+  }
+
   /// Splits [ciphertext] into the pieces sent through the relay.
   static List<Uint8List> split(Uint8List ciphertext) {
     final chunks = <Uint8List>[];
@@ -193,7 +205,9 @@ class MeyaBlobStore {
     final cutoff = DateTime.now().subtract(age);
     var deleted = 0;
     await for (final entity in directory.list(recursive: true)) {
-      if (entity is File && (await entity.lastModified()).isBefore(cutoff)) {
+      if (entity is File &&
+          !p.basename(entity.path).startsWith(keptOwnerPrefix) &&
+          (await entity.lastModified()).isBefore(cutoff)) {
         await entity.delete();
         deleted++;
       }

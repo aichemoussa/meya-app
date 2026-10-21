@@ -70,7 +70,15 @@ class WebRtcCallEngine extends CallEngine {
     };
   }
 
-  static const _gatherTimeout = Duration(seconds: 4);
+  /// Longest wait for network candidates before the offer or answer goes.
+  static const _gatherTimeout = Duration(milliseconds: 2500);
+
+  /// Once a TURN (relay) candidate is found the call can always connect,
+  /// so only this much longer is spent collecting better ones.
+  static const _afterRelayGrace = Duration(milliseconds: 300);
+
+  /// Without TURN, the wait after the first public (STUN) candidate.
+  static const _afterPublicGrace = Duration(milliseconds: 700);
   static const _disconnectGrace = Duration(seconds: 10);
 
   final RTCVideoRenderer localRenderer = RTCVideoRenderer();
@@ -83,6 +91,7 @@ class WebRtcCallEngine extends CallEngine {
   MediaStream? _local;
   Timer? _disconnectTimer;
   bool _closed = false;
+  bool _turnAvailable = false;
 
 
   @override
@@ -107,8 +116,9 @@ class WebRtcCallEngine extends CallEngine {
   }
 
   Future<RTCPeerConnection> _open({required bool video}) async {
-    await localRenderer.initialize();
-    await remoteRenderer.initialize();
+    // Call servers are fetched while the microphone and camera open.
+    final configuration = _configuration();
+    await Future.wait([localRenderer.initialize(), remoteRenderer.initialize()]);
 
     final local = await navigator.mediaDevices.getUserMedia({
       'audio': true,
@@ -123,7 +133,13 @@ class WebRtcCallEngine extends CallEngine {
     _local = local;
     if (video) localRenderer.srcObject = local;
 
-    final connection = await createPeerConnection(await _configuration());
+    final config = await configuration;
+    _turnAvailable = (config['iceServers'] as List).any(
+      (server) => [
+        if (server['urls'] is List) ...server['urls'] as List else server['urls'],
+      ].any((url) => url is String && url.startsWith('turn')),
+    );
+    final connection = await createPeerConnection(config);
     _connection = connection;
     for (final track in local.getTracks()) {
       await connection.addTrack(track, local);
@@ -143,16 +159,35 @@ class WebRtcCallEngine extends CallEngine {
     RTCSessionDescription description,
   ) async {
     final gathered = Completer<void>();
+    Timer? grace;
+    void finishAfter(Duration wait) {
+      if (gathered.isCompleted || (grace?.isActive ?? false)) return;
+      grace = Timer(wait, () {
+        if (!gathered.isCompleted) gathered.complete();
+      });
+    }
+
     connection.onIceGatheringState = (state) {
       if (state == RTCIceGatheringState.RTCIceGatheringStateComplete &&
           !gathered.isCompleted) {
         gathered.complete();
       }
     };
+    connection.onIceCandidate = (candidate) {
+      final line = candidate.candidate ?? '';
+      if (line.contains(' typ relay')) {
+        grace?.cancel();
+        grace = null;
+        finishAfter(_afterRelayGrace);
+      } else if (!_turnAvailable && line.contains(' typ srflx')) {
+        finishAfter(_afterPublicGrace);
+      }
+    };
     await connection.setLocalDescription(description);
-    // Send whatever has been found after a few seconds rather than wait
-    // for slow or unreachable STUN servers.
+    // Send what has been found as soon as it is enough to connect, rather
+    // than wait for every network interface and server to answer.
     await gathered.future.timeout(_gatherTimeout, onTimeout: () {});
+    grace?.cancel();
     final complete = await connection.getLocalDescription();
     return (complete ?? description).sdp!;
   }

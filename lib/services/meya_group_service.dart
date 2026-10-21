@@ -16,20 +16,27 @@ import 'meya_message_service.dart';
 ///
 /// There is no group key and no server-side group: every message is sent to
 /// each member separately over that member's own end-to-end encrypted
-/// session (pairwise fan-out). The admin, the person who created the group,
-/// announces its name and members, and only from people they verified in
-/// person (their own MEYA connections), with each member's identity key.
+/// session (pairwise fan-out). Admins announce its name and members, and add
+/// only people they verified in person (their own MEYA connections), with
+/// each member's identity key.
+///
+/// The owner (the person who created the group) is always an admin and can
+/// make other members admins. Any admin can rename the group, add and remove
+/// people and make others admins; nobody but the owner can remove the owner
+/// or hand the group over.
 ///
 /// Members who are not connected with each other are introduced through the
-/// admin: one of them sends a one-time pre-key bundle to the admin, who
-/// forwards it. libsignal only accepts the bundle if it is signed by the
-/// identity key the admin announced, so the admin vouches for who is who,
-/// and nobody else (the relay included) can read or change the messages.
+/// admin who announced the change: one of them sends a one-time pre-key
+/// bundle to that admin, who forwards it. libsignal only accepts the bundle
+/// if it is signed by the identity key the admin announced, so admins vouch
+/// for who is who, and nobody else (the relay included) can read or change
+/// the messages.
 ///
 /// Silent messages (sent over existing sessions, never shown):
-///   group_update  admin -> each member: name, admin, revision, members
+///   group_update  admin -> each member: name, admin (owner), admins,
+///                 revision, members
 ///   group_intro   member -> admin {to, bundle}; admin -> member {from, bundle}
-///   group_leave   member -> admin: please remove me
+///   group_leave   member -> admins: please remove me
 class MeyaGroupService {
   MeyaGroupService._();
 
@@ -118,6 +125,7 @@ class MeyaGroupService {
             identityId: row.identityId,
             name: row.displayName,
             identityPublicKey: row.identityPublicKey,
+            isAdmin: row.isAdmin,
           ),
       ];
 
@@ -137,7 +145,17 @@ class MeyaGroupService {
 
   Future<List<GroupMember>> members(String groupId) => _groups.members(groupId);
 
+  /// The devices allowed to change [group]: the owner and every admin.
+  Future<Set<String>> admins(MeyaGroup group) async => {
+        group.adminDeviceId,
+        for (final member in await _groups.members(group.groupId))
+          if (member.isAdmin) member.deviceId,
+      };
+
   Future<bool> isAdmin(MeyaGroup group) async =>
+      (await admins(group)).contains(await _localDeviceId());
+
+  Future<bool> isOwner(MeyaGroup group) async =>
       group.adminDeviceId == await _localDeviceId();
 
   /// The display names of a group's members by device, for message bubbles.
@@ -148,7 +166,7 @@ class MeyaGroupService {
 
   // ------------------------------------------------------- admin actions
 
-  /// Creates a group with some of your connections. You are its admin.
+  /// Creates a group with some of your connections. You are its owner.
   Future<String> create(String name, List<Contact> contacts) async {
     final cleanName = _cleanName(name);
     if (contacts.isEmpty) throw StateError(tr('Choose at least one person.'));
@@ -199,10 +217,28 @@ class MeyaGroupService {
   }
 
   Future<void> removeMember(String groupId, String deviceId) async {
+    final group = await _groups.group(groupId);
+    if (group != null && group.adminDeviceId == deviceId) {
+      throw StateError(tr('Only the group admin can change the group.'));
+    }
     final before = _infos(await _groups.members(groupId));
     final removed = before.where((m) => m.deviceId == deviceId).toList();
     final after = before.where((m) => m.deviceId != deviceId).toList();
     await _change(groupId, members: after, alsoTell: removed);
+  }
+
+  /// Makes a member an admin, or an admin a member again. The owner always
+  /// stays an admin.
+  Future<void> setAdmin(String groupId, String deviceId, bool admin) async {
+    final group = await _groups.group(groupId);
+    if (group != null && group.adminDeviceId == deviceId) {
+      throw StateError(tr('Only the group admin can change the group.'));
+    }
+    final members = [
+      for (final member in _infos(await _groups.members(groupId)))
+        member.deviceId == deviceId ? member.withAdmin(admin) : member,
+    ];
+    await _change(groupId, members: members);
   }
 
   Future<void> _change(
@@ -230,8 +266,8 @@ class MeyaGroupService {
     await _announce(groupId, alsoTell: alsoTell);
   }
 
-  /// Leaves the group. If you are the admin, the next member (the earliest
-  /// to join) becomes admin first.
+  /// Leaves the group. If you are the owner, the group is handed to the
+  /// earliest admin to join (or, with no other admin, the earliest member).
   Future<void> leave(String groupId) async {
     final group = await _groups.group(groupId);
     if (group == null) return;
@@ -243,10 +279,11 @@ class MeyaGroupService {
         ..sort((a, b) => a.addedAt.compareTo(b.addedAt));
       if (group.adminDeviceId == me) {
         if (rest.isNotEmpty) {
+          final next = rest.firstWhere((m) => m.isAdmin, orElse: () => rest.first);
           await _groups.save(
             groupId: groupId,
             name: group.name,
-            adminDeviceId: rest.first.deviceId,
+            adminDeviceId: next.deviceId,
             revision: group.revision + 1,
             members: _infos(rest),
             isActive: false,
@@ -254,7 +291,15 @@ class MeyaGroupService {
           await _announce(groupId, from: me);
         }
       } else {
-        await _sendTo(group.adminDeviceId, {'kind': 'group_leave', 'group': groupId});
+        // Any admin can remove you; ask them all in case some are offline.
+        for (final admin in await admins(group)) {
+          if (admin == me) continue;
+          try {
+            await _sendTo(admin, {'kind': 'group_leave', 'group': groupId});
+          } catch (error) {
+            debugPrint('MEYA group: leave not sent to one admin ($error).');
+          }
+        }
       }
     }
     await _groups.setActive(groupId, false);
@@ -284,6 +329,10 @@ class MeyaGroupService {
       'group': groupId,
       'name': group.name,
       'admin': group.adminDeviceId,
+      'admins': [
+        for (final m in members)
+          if (m.isAdmin || m.deviceId == group.adminDeviceId) m.deviceId,
+      ],
       'revision': group.revision,
       'members': [for (final m in members) m.toContent()],
     };
@@ -340,26 +389,40 @@ class MeyaGroupService {
     if (name is! String || admin is! String || revision is! int || list is! List) {
       return;
     }
+    // Older versions send only the owner.
+    final listed = content['admins'];
+    final announcedAdmins = <String>{
+      admin,
+      if (listed is List) ...listed.whereType<String>(),
+    };
     final existing = await _groups.group(groupId);
     if (existing == null) {
       // A new group: only from someone you verified in person, who must be
-      // its admin.
-      if (contact.trustState != 'trusted' || admin != senderDeviceId) return;
+      // one of its admins.
+      if (contact.trustState != 'trusted' ||
+          !announcedAdmins.contains(senderDeviceId)) {
+        return;
+      }
     } else {
-      // Changes come from the current admin (who may hand over to another).
-      if (senderDeviceId != existing.adminDeviceId) return;
+      // Changes come from a current admin; only the owner hands over.
+      if (!(await admins(existing)).contains(senderDeviceId)) return;
       if (revision <= existing.revision) return;
+      if (admin != existing.adminDeviceId &&
+          senderDeviceId != existing.adminDeviceId) {
+        return;
+      }
     }
 
     final members = <GroupMemberInfo>[];
     for (final item in list.take(maxMembers)) {
       final info = GroupMemberInfo.fromContent(item);
       if (info != null && members.every((m) => m.deviceId != info.deviceId)) {
-        members.add(info);
+        members.add(info.withAdmin(announcedAdmins.contains(info.deviceId)));
       }
     }
     final me = await _myDevice();
     final stillIn = members.any((m) => m.deviceId == me);
+    // The owner stays in the group unless they hand it over themselves.
     if (!members.any((m) => m.deviceId == admin) && admin != senderDeviceId) {
       return;
     }
@@ -375,7 +438,7 @@ class MeyaGroupService {
     );
     await _groups.ensureConversation(groupId);
     _changes.add(groupId);
-    if (stillIn) await _introduce(groupId);
+    if (stillIn) await _introduce(groupId, via: senderDeviceId);
   }
 
   String _cleanNameOr(String name, String fallback) {
@@ -387,30 +450,31 @@ class MeyaGroupService {
   }
 
   /// For each member this device has no session with, the one of the pair
-  /// with the smaller device ID sends a pre-key bundle through the admin.
-  Future<void> _introduce(String groupId) async {
+  /// with the smaller device ID sends a pre-key bundle through [via], the
+  /// admin who announced the change (they have a session with everyone).
+  Future<void> _introduce(String groupId, {required String via}) async {
     final group = await _groups.group(groupId);
     if (group == null || !group.isActive) return;
     final me = await _myDevice();
-    if (group.adminDeviceId == me) return; // The admin knows everyone.
+    if (via == me) return;
     for (final member in await _groups.members(groupId)) {
       final other = member.deviceId;
-      if (other == me || other == group.adminDeviceId) continue;
+      if (other == me || other == via) continue;
       if (await _hasSession(other)) continue;
       if (me.compareTo(other) > 0) continue; // They introduce themselves.
-      if (!_introduced.add('$groupId|$other')) continue;
+      if (!_introduced.add('$groupId|$me|$other')) continue;
       try {
         await _e2ee.pinIdentity(other, member.identityPublicKey);
         await _rememberMember(member);
         final bundle = await _e2ee.createPreKeyBundle();
-        await _sendTo(group.adminDeviceId, {
+        await _sendTo(via, {
           'kind': 'group_intro',
           'group': groupId,
           'to': other,
           'bundle': bundle,
         });
       } catch (error) {
-        _introduced.remove('$groupId|$other');
+        _introduced.remove('$groupId|$me|$other');
         debugPrint('MEYA group: introduction not sent ($error).');
       }
     }
@@ -476,9 +540,10 @@ class MeyaGroupService {
     final bundle = content['bundle'];
     if (bundle is! String || bundle.isEmpty || bundle.length > 16384) return;
     final me = await _myDevice();
+    final groupAdmins = await admins(group);
 
     final to = content['to'];
-    if (to is String && group.adminDeviceId == me) {
+    if (to is String && groupAdmins.contains(me)) {
       // As admin: pass it on, between two members of this group only.
       if (await _groups.member(groupId, senderDeviceId) == null) return;
       if (await _groups.member(groupId, to) == null) return;
@@ -492,11 +557,11 @@ class MeyaGroupService {
     }
 
     final from = content['from'];
-    if (from is! String || senderDeviceId != group.adminDeviceId) return;
+    if (from is! String || !groupAdmins.contains(senderDeviceId)) return;
     final member = await _groups.member(groupId, from);
     if (member == null || from == me) return;
     // libsignal accepts the bundle only if it is signed by the identity key
-    // the admin announced for this member.
+    // the admins announced for this member.
     await _e2ee.pinIdentity(from, member.identityPublicKey);
     await _rememberMember(member);
     await _e2ee.startSession(from, bundle);

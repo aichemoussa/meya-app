@@ -176,7 +176,7 @@ class _TrustedContactPickerPageState
                                         icon: const Icon(Icons.clear),
                                       ),
                                 filled: true,
-                                fillColor: context.meya.surface,
+                                fillColor: context.meya.card,
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(16),
                                   borderSide: BorderSide.none,

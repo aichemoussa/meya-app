@@ -4,6 +4,7 @@ import '../database/account_repository.dart';
 import '../database/meya_database.dart';
 import 'enter_passcode_page.dart';
 import 'qr_scanner_page.dart';
+import '../theme/meya_logo.dart';
 import '../theme/meya_theme.dart';
 import '../l10n/meya_strings.dart';
 
@@ -115,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
   void _connectExistingDevice() {
     showModalBottomSheet<void>(
       context: context,
-      backgroundColor: context.meya.card,
+      backgroundColor: context.meya.surface,
       showDragHandle: true,
       builder: (sheetContext) {
         return SafeArea(
@@ -200,9 +201,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.meya.card,
+      backgroundColor: context.meya.surface,
       appBar: AppBar(
-        backgroundColor: context.meya.card,
+        backgroundColor: context.meya.surface,
         foregroundColor: context.meya.navy,
         elevation: 0,
         title: Text(
@@ -217,30 +218,7 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.fromLTRB(28, 20, 28, 36),
             children: [
               const SizedBox(height: 18),
-              Center(
-                child: Semantics(
-                  label: 'MEYA',
-                  image: true,
-                  child: Container(
-                    width: 78,
-                    height: 78,
-                    decoration: BoxDecoration(
-                      color: context.meya.navy,
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'M',
-                        style: TextStyle(
-                          color: context.meya.onNavy,
-                          fontSize: 42,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              const Center(child: MeyaLogo(size: 78)),
               const SizedBox(height: 26),
               Text(
                 context.tr('Welcome back'),
@@ -272,7 +250,7 @@ class _LoginPageState extends State<LoginPage> {
                   hintText: 'yourname',
                   prefixText: '@',
                   filled: true,
-                  fillColor: context.meya.surface,
+                  fillColor: context.meya.card,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: BorderSide.none,

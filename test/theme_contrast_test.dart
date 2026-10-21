@@ -52,7 +52,9 @@ void main() {
     const p = MeyaPalette.light;
     expect(p.navy, const Color(0xFF044D8C));
     expect(p.blue, const Color(0xFF49B1F2));
-    expect(p.surface, const Color(0xFFEBF2F2));
+    expect(p.card, const Color(0xFFEBF2F2));
+    // White pages.
+    expect(p.surface, const Color(0xFFFFFFFF));
     expect(p.text, const Color(0xFF0D0D0D));
     expect(p.muted, const Color(0xFF424D8C));
   });

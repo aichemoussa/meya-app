@@ -6468,6 +6468,21 @@ class $GroupMembersTable extends GroupMembers
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _isAdminMeta = const VerificationMeta(
+    'isAdmin',
+  );
+  @override
+  late final GeneratedColumn<bool> isAdmin = GeneratedColumn<bool>(
+    'is_admin',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("is_admin" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     groupId,
@@ -6476,6 +6491,7 @@ class $GroupMembersTable extends GroupMembers
     displayName,
     identityPublicKey,
     addedAt,
+    isAdmin,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -6543,6 +6559,12 @@ class $GroupMembersTable extends GroupMembers
     } else if (isInserting) {
       context.missing(_addedAtMeta);
     }
+    if (data.containsKey('is_admin')) {
+      context.handle(
+        _isAdminMeta,
+        isAdmin.isAcceptableOrUnknown(data['is_admin']!, _isAdminMeta),
+      );
+    }
     return context;
   }
 
@@ -6576,6 +6598,10 @@ class $GroupMembersTable extends GroupMembers
         DriftSqlType.string,
         data['${effectivePrefix}added_at'],
       )!,
+      isAdmin: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}is_admin'],
+      )!,
     );
   }
 
@@ -6592,6 +6618,10 @@ class GroupMember extends DataClass implements Insertable<GroupMember> {
   final String displayName;
   final String identityPublicKey;
   final String addedAt;
+
+  /// An admin besides the owner: may rename the group, add and remove
+  /// people, and make others admins.
+  final bool isAdmin;
   const GroupMember({
     required this.groupId,
     required this.deviceId,
@@ -6599,6 +6629,7 @@ class GroupMember extends DataClass implements Insertable<GroupMember> {
     required this.displayName,
     required this.identityPublicKey,
     required this.addedAt,
+    required this.isAdmin,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -6609,6 +6640,7 @@ class GroupMember extends DataClass implements Insertable<GroupMember> {
     map['display_name'] = Variable<String>(displayName);
     map['identity_public_key'] = Variable<String>(identityPublicKey);
     map['added_at'] = Variable<String>(addedAt);
+    map['is_admin'] = Variable<bool>(isAdmin);
     return map;
   }
 
@@ -6620,6 +6652,7 @@ class GroupMember extends DataClass implements Insertable<GroupMember> {
       displayName: Value(displayName),
       identityPublicKey: Value(identityPublicKey),
       addedAt: Value(addedAt),
+      isAdmin: Value(isAdmin),
     );
   }
 
@@ -6635,6 +6668,7 @@ class GroupMember extends DataClass implements Insertable<GroupMember> {
       displayName: serializer.fromJson<String>(json['displayName']),
       identityPublicKey: serializer.fromJson<String>(json['identityPublicKey']),
       addedAt: serializer.fromJson<String>(json['addedAt']),
+      isAdmin: serializer.fromJson<bool>(json['isAdmin']),
     );
   }
   @override
@@ -6647,6 +6681,7 @@ class GroupMember extends DataClass implements Insertable<GroupMember> {
       'displayName': serializer.toJson<String>(displayName),
       'identityPublicKey': serializer.toJson<String>(identityPublicKey),
       'addedAt': serializer.toJson<String>(addedAt),
+      'isAdmin': serializer.toJson<bool>(isAdmin),
     };
   }
 
@@ -6657,6 +6692,7 @@ class GroupMember extends DataClass implements Insertable<GroupMember> {
     String? displayName,
     String? identityPublicKey,
     String? addedAt,
+    bool? isAdmin,
   }) => GroupMember(
     groupId: groupId ?? this.groupId,
     deviceId: deviceId ?? this.deviceId,
@@ -6664,6 +6700,7 @@ class GroupMember extends DataClass implements Insertable<GroupMember> {
     displayName: displayName ?? this.displayName,
     identityPublicKey: identityPublicKey ?? this.identityPublicKey,
     addedAt: addedAt ?? this.addedAt,
+    isAdmin: isAdmin ?? this.isAdmin,
   );
   GroupMember copyWithCompanion(GroupMembersCompanion data) {
     return GroupMember(
@@ -6679,6 +6716,7 @@ class GroupMember extends DataClass implements Insertable<GroupMember> {
           ? data.identityPublicKey.value
           : this.identityPublicKey,
       addedAt: data.addedAt.present ? data.addedAt.value : this.addedAt,
+      isAdmin: data.isAdmin.present ? data.isAdmin.value : this.isAdmin,
     );
   }
 
@@ -6690,7 +6728,8 @@ class GroupMember extends DataClass implements Insertable<GroupMember> {
           ..write('identityId: $identityId, ')
           ..write('displayName: $displayName, ')
           ..write('identityPublicKey: $identityPublicKey, ')
-          ..write('addedAt: $addedAt')
+          ..write('addedAt: $addedAt, ')
+          ..write('isAdmin: $isAdmin')
           ..write(')'))
         .toString();
   }
@@ -6703,6 +6742,7 @@ class GroupMember extends DataClass implements Insertable<GroupMember> {
     displayName,
     identityPublicKey,
     addedAt,
+    isAdmin,
   );
   @override
   bool operator ==(Object other) =>
@@ -6713,7 +6753,8 @@ class GroupMember extends DataClass implements Insertable<GroupMember> {
           other.identityId == this.identityId &&
           other.displayName == this.displayName &&
           other.identityPublicKey == this.identityPublicKey &&
-          other.addedAt == this.addedAt);
+          other.addedAt == this.addedAt &&
+          other.isAdmin == this.isAdmin);
 }
 
 class GroupMembersCompanion extends UpdateCompanion<GroupMember> {
@@ -6723,6 +6764,7 @@ class GroupMembersCompanion extends UpdateCompanion<GroupMember> {
   final Value<String> displayName;
   final Value<String> identityPublicKey;
   final Value<String> addedAt;
+  final Value<bool> isAdmin;
   final Value<int> rowid;
   const GroupMembersCompanion({
     this.groupId = const Value.absent(),
@@ -6731,6 +6773,7 @@ class GroupMembersCompanion extends UpdateCompanion<GroupMember> {
     this.displayName = const Value.absent(),
     this.identityPublicKey = const Value.absent(),
     this.addedAt = const Value.absent(),
+    this.isAdmin = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   GroupMembersCompanion.insert({
@@ -6740,6 +6783,7 @@ class GroupMembersCompanion extends UpdateCompanion<GroupMember> {
     required String displayName,
     required String identityPublicKey,
     required String addedAt,
+    this.isAdmin = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : groupId = Value(groupId),
        deviceId = Value(deviceId),
@@ -6754,6 +6798,7 @@ class GroupMembersCompanion extends UpdateCompanion<GroupMember> {
     Expression<String>? displayName,
     Expression<String>? identityPublicKey,
     Expression<String>? addedAt,
+    Expression<bool>? isAdmin,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -6763,6 +6808,7 @@ class GroupMembersCompanion extends UpdateCompanion<GroupMember> {
       if (displayName != null) 'display_name': displayName,
       if (identityPublicKey != null) 'identity_public_key': identityPublicKey,
       if (addedAt != null) 'added_at': addedAt,
+      if (isAdmin != null) 'is_admin': isAdmin,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -6774,6 +6820,7 @@ class GroupMembersCompanion extends UpdateCompanion<GroupMember> {
     Value<String>? displayName,
     Value<String>? identityPublicKey,
     Value<String>? addedAt,
+    Value<bool>? isAdmin,
     Value<int>? rowid,
   }) {
     return GroupMembersCompanion(
@@ -6783,6 +6830,7 @@ class GroupMembersCompanion extends UpdateCompanion<GroupMember> {
       displayName: displayName ?? this.displayName,
       identityPublicKey: identityPublicKey ?? this.identityPublicKey,
       addedAt: addedAt ?? this.addedAt,
+      isAdmin: isAdmin ?? this.isAdmin,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -6808,6 +6856,9 @@ class GroupMembersCompanion extends UpdateCompanion<GroupMember> {
     if (addedAt.present) {
       map['added_at'] = Variable<String>(addedAt.value);
     }
+    if (isAdmin.present) {
+      map['is_admin'] = Variable<bool>(isAdmin.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -6823,6 +6874,7 @@ class GroupMembersCompanion extends UpdateCompanion<GroupMember> {
           ..write('displayName: $displayName, ')
           ..write('identityPublicKey: $identityPublicKey, ')
           ..write('addedAt: $addedAt, ')
+          ..write('isAdmin: $isAdmin, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -11461,6 +11513,7 @@ typedef $$GroupMembersTableCreateCompanionBuilder =
       required String displayName,
       required String identityPublicKey,
       required String addedAt,
+      Value<bool> isAdmin,
       Value<int> rowid,
     });
 typedef $$GroupMembersTableUpdateCompanionBuilder =
@@ -11471,6 +11524,7 @@ typedef $$GroupMembersTableUpdateCompanionBuilder =
       Value<String> displayName,
       Value<String> identityPublicKey,
       Value<String> addedAt,
+      Value<bool> isAdmin,
       Value<int> rowid,
     });
 
@@ -11527,6 +11581,11 @@ class $$GroupMembersTableFilterComposer
 
   ColumnFilters<String> get addedAt => $composableBuilder(
     column: $table.addedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get isAdmin => $composableBuilder(
+    column: $table.isAdmin,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -11588,6 +11647,11 @@ class $$GroupMembersTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<bool> get isAdmin => $composableBuilder(
+    column: $table.isAdmin,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   $$MeyaGroupsTableOrderingComposer get groupId {
     final $$MeyaGroupsTableOrderingComposer composer = $composerBuilder(
       composer: this,
@@ -11641,6 +11705,9 @@ class $$GroupMembersTableAnnotationComposer
 
   GeneratedColumn<String> get addedAt =>
       $composableBuilder(column: $table.addedAt, builder: (column) => column);
+
+  GeneratedColumn<bool> get isAdmin =>
+      $composableBuilder(column: $table.isAdmin, builder: (column) => column);
 
   $$MeyaGroupsTableAnnotationComposer get groupId {
     final $$MeyaGroupsTableAnnotationComposer composer = $composerBuilder(
@@ -11700,6 +11767,7 @@ class $$GroupMembersTableTableManager
                 Value<String> displayName = const Value.absent(),
                 Value<String> identityPublicKey = const Value.absent(),
                 Value<String> addedAt = const Value.absent(),
+                Value<bool> isAdmin = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => GroupMembersCompanion(
                 groupId: groupId,
@@ -11708,6 +11776,7 @@ class $$GroupMembersTableTableManager
                 displayName: displayName,
                 identityPublicKey: identityPublicKey,
                 addedAt: addedAt,
+                isAdmin: isAdmin,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -11718,6 +11787,7 @@ class $$GroupMembersTableTableManager
                 required String displayName,
                 required String identityPublicKey,
                 required String addedAt,
+                Value<bool> isAdmin = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => GroupMembersCompanion.insert(
                 groupId: groupId,
@@ -11726,6 +11796,7 @@ class $$GroupMembersTableTableManager
                 displayName: displayName,
                 identityPublicKey: identityPublicKey,
                 addedAt: addedAt,
+                isAdmin: isAdmin,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

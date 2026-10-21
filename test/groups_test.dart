@@ -118,8 +118,10 @@ void main() {
     });
   }
 
+  final extraPhones = <Phone>[];
+
   Phone byDevice(String device) =>
-      [amina, bilal, chloe].firstWhere((p) => p.device == device);
+      [amina, bilal, chloe, ...extraPhones].firstWhere((p) => p.device == device);
 
   /// Delivers everything in flight, including whatever that triggers.
   Future<void> deliverAll() async {
@@ -161,6 +163,7 @@ void main() {
 
   setUp(() async {
     network = [];
+    extraPhones.clear();
     amina = Phone('Amina', 'device-aaaa');
     bilal = Phone('Bilal', 'device-bbbb');
     chloe = Phone('Chloe', 'device-cccc');
@@ -353,5 +356,152 @@ void main() {
       expect(await GroupRepository(phone.db).members(groupId), hasLength(2));
     }
     expect((await GroupRepository(amina.db).group(groupId))?.isActive, isFalse);
+  });
+
+  Future<Set<String>> adminsOn(Phone phone, String groupId) async {
+    await use(phone);
+    final group = await GroupRepository(phone.db).group(groupId);
+    return MeyaGroupService.instance.admins(group!);
+  }
+
+  test('the owner can make another member admin, who can then change the '
+      'group', () async {
+    final groupId = await createFamily();
+
+    await use(amina);
+    await MeyaGroupService.instance.setAdmin(groupId, bilal.device, true);
+    await deliverAll();
+    for (final phone in [amina, bilal, chloe]) {
+      expect(
+        await adminsOn(phone, groupId),
+        {amina.device, bilal.device},
+        reason: phone.name,
+      );
+    }
+
+    await use(bilal);
+    await MeyaGroupService.instance.rename(groupId, 'Family & friends');
+    await deliverAll();
+    for (final phone in [amina, bilal, chloe]) {
+      final group = await GroupRepository(phone.db).group(groupId);
+      expect(group?.name, 'Family & friends', reason: phone.name);
+      // The owner stays the owner.
+      expect(group?.adminDeviceId, amina.device);
+    }
+
+    // Chloe is still not an admin.
+    await use(chloe);
+    expect(
+      () => MeyaGroupService.instance.rename(groupId, 'Chloe was here'),
+      throwsStateError,
+    );
+  });
+
+  test('a second admin adds their own connection, who is introduced to '
+      'everyone through them', () async {
+    final groupId = await createFamily();
+    final dan = Phone('Dan', 'device-dddd');
+    extraPhones.add(dan);
+    addTearDown(dan.db.close);
+    await dan.db.into(dan.db.accounts).insert(
+          AccountsCompanion.insert(
+            accountId: dan.identity,
+            meyaId: 'meya-Dan',
+            name: 'Dan',
+            username: 'dan',
+            createdAt: 't',
+            identityPublicKey: dan.e2ee.key,
+          ),
+        );
+    // Only Bilal knows Dan.
+    final bilalKnowsDan = await connect(bilal, dan);
+    await connect(dan, bilal);
+
+    await use(amina);
+    await MeyaGroupService.instance.setAdmin(groupId, bilal.device, true);
+    await deliverAll();
+
+    await use(bilal);
+    await MeyaGroupService.instance.addMembers(groupId, [bilalKnowsDan]);
+    await deliverAll();
+
+    for (final phone in [amina, bilal, chloe, dan]) {
+      final group = await GroupRepository(phone.db).group(groupId);
+      expect(group?.isActive, isTrue, reason: phone.name);
+      expect(await GroupRepository(phone.db).members(groupId), hasLength(4),
+          reason: phone.name);
+    }
+    expect(dan.e2ee.sessions, containsAll([amina.device, chloe.device]));
+    expect(amina.e2ee.sessions, contains(dan.device));
+    expect(chloe.e2ee.sessions, contains(dan.device));
+
+    await use(dan);
+    await MeyaMessageService.instance.sendGroupText(groupId, 'Hello all');
+    await deliverAll();
+    for (final phone in [amina, bilal, chloe]) {
+      expect((await historyOn(phone, groupId)).single.text, 'Hello all',
+          reason: phone.name);
+    }
+  });
+
+  test('an admin cannot remove the owner or take over the group', () async {
+    final groupId = await createFamily();
+    await use(amina);
+    await MeyaGroupService.instance.setAdmin(groupId, bilal.device, true);
+    await deliverAll();
+
+    await use(bilal);
+    expect(
+      () => MeyaGroupService.instance.removeMember(groupId, amina.device),
+      throwsStateError,
+    );
+    expect(
+      () => MeyaGroupService.instance.setAdmin(groupId, amina.device, false),
+      throwsStateError,
+    );
+
+    // A forged update from Bilal naming himself owner is refused.
+    await use(chloe);
+    final chloeKnowsBilal =
+        await ContactRepository(chloe.db).getContactByDeviceId(bilal.device);
+    final current = await GroupRepository(chloe.db).group(groupId);
+    await MeyaGroupService.instance.handleIncoming(chloeKnowsBilal!, bilal.device, {
+      'kind': 'group_update',
+      'group': groupId,
+      'name': 'Family',
+      'admin': bilal.device,
+      'admins': [bilal.device],
+      'revision': current!.revision + 1,
+      'members': [
+        for (final m in await GroupRepository(chloe.db).members(groupId))
+          if (m.deviceId != amina.device)
+            {
+              'device': m.deviceId,
+              'identity': m.identityId,
+              'name': m.displayName,
+              'key': m.identityPublicKey,
+            },
+      ],
+    });
+    expect((await GroupRepository(chloe.db).group(groupId))?.adminDeviceId,
+        amina.device);
+    expect(await GroupRepository(chloe.db).members(groupId), hasLength(3));
+  });
+
+  test('when the owner leaves, an admin takes over before other members',
+      () async {
+    final groupId = await createFamily();
+    await use(amina);
+    await MeyaGroupService.instance.setAdmin(groupId, chloe.device, true);
+    await deliverAll();
+
+    await use(amina);
+    await MeyaGroupService.instance.leave(groupId);
+    await deliverAll();
+
+    for (final phone in [bilal, chloe]) {
+      final group = await GroupRepository(phone.db).group(groupId);
+      expect(group?.adminDeviceId, chloe.device, reason: phone.name);
+    }
   });
 }

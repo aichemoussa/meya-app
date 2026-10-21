@@ -704,6 +704,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'Vous serez l\'admin : vous seul pourrez renommer le groupe et ajouter ou retirer des personnes. Les membres qui ne sont pas connectés entre eux sont présentés par vous.',
     '{0} chosen · change': '{0} choisis · modifier',
     '{0} members': '{0} membres',
+    'Make admin': 'Nommer admin',
+    'Remove as admin': 'Retirer le rôle d\'admin',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'Vous serez l\'admin. Vous pourrez aussi nommer d\'autres membres admins : les admins peuvent renommer le groupe, ajouter ou retirer des personnes et présenter entre eux les membres qui ne sont pas connectés.',
   },
   'ar': {
     '1 month': 'شهر واحد',
@@ -1407,6 +1410,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'ستكون المشرف: وحدك يمكنك إعادة تسمية المجموعة وإضافة الأشخاص أو إزالتهم. يتم تعريف الأعضاء غير المتصلين ببعضهم عن طريقك.',
     '{0} chosen · change': 'تم اختيار {0} · تغيير',
     '{0} members': '{0} أعضاء',
+    'Make admin': 'تعيين كمشرف',
+    'Remove as admin': 'إزالة صلاحية المشرف',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'ستكون المشرف. يمكنك أيضًا تعيين أعضاء آخرين كمشرفين: يمكن للمشرفين إعادة تسمية المجموعة وإضافة الأشخاص أو إزالتهم وتعريف الأعضاء غير المتصلين ببعضهم.',
   },
   'es': {
     '1 month': '1 mes',
@@ -2110,6 +2116,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'Serás el admin: solo tú puedes cambiar el nombre del grupo y añadir o quitar personas. Los miembros que no están conectados entre sí se presentan a través de ti.',
     '{0} chosen · change': '{0} elegidos · cambiar',
     '{0} members': '{0} miembros',
+    'Make admin': 'Hacer admin',
+    'Remove as admin': 'Quitar como admin',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'Serás el admin. También puedes hacer admins a otros miembros: los admins pueden cambiar el nombre del grupo, añadir o quitar personas y presentar a los miembros que no están conectados entre sí.',
   },
   'de': {
     '1 month': '1 Monat',
@@ -2813,6 +2822,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'Du wirst Admin: Nur du kannst die Gruppe umbenennen und Personen hinzufügen oder entfernen. Mitglieder, die nicht miteinander verbunden sind, werden über dich vorgestellt.',
     '{0} chosen · change': '{0} gewählt · ändern',
     '{0} members': '{0} Mitglieder',
+    'Make admin': 'Zum Admin machen',
+    'Remove as admin': 'Als Admin entfernen',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'Du wirst Admin. Du kannst auch andere Mitglieder zu Admins machen: Admins können die Gruppe umbenennen, Personen hinzufügen oder entfernen und Mitglieder vorstellen, die nicht miteinander verbunden sind.',
   },
   'pt_BR': {
     '1 month': '1 mês',
@@ -3516,6 +3528,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'Você será o admin: só você pode renomear o grupo e adicionar ou remover pessoas. Membros que não estão conectados entre si são apresentados por você.',
     '{0} chosen · change': '{0} escolhidos · alterar',
     '{0} members': '{0} membros',
+    'Make admin': 'Tornar admin',
+    'Remove as admin': 'Remover como admin',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'Você será o admin. Também pode tornar outros membros admins: os admins podem renomear o grupo, adicionar ou remover pessoas e apresentar membros que não estão conectados entre si.',
   },
   'pt_PT': {
     '1 month': '1 mês',
@@ -4219,6 +4234,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'Vai ser o admin: só o próprio pode mudar o nome do grupo e adicionar ou remover pessoas. Os membros que não estão ligados entre si são apresentados através de si.',
     '{0} chosen · change': '{0} escolhidos · alterar',
     '{0} members': '{0} membros',
+    'Make admin': 'Tornar admin',
+    'Remove as admin': 'Remover como admin',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'Vai ser o admin. Também pode tornar outros membros admins: os admins podem mudar o nome do grupo, adicionar ou remover pessoas e apresentar membros que não estão ligados entre si.',
   },
   'it': {
     '1 month': '1 mese',
@@ -4922,6 +4940,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'Sarai l\'admin: solo tu potrai rinominare il gruppo e aggiungere o rimuovere persone. I membri che non sono collegati tra loro vengono presentati tramite te.',
     '{0} chosen · change': '{0} scelti · cambia',
     '{0} members': '{0} membri',
+    'Make admin': 'Rendi admin',
+    'Remove as admin': 'Rimuovi da admin',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'Sarai l\'admin. Puoi rendere admin anche altri membri: gli admin possono rinominare il gruppo, aggiungere o rimuovere persone e presentare i membri che non sono collegati tra loro.',
   },
   'zh_Hans': {
     '1 month': '1 个月',
@@ -5625,6 +5646,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': '你将成为管理员：只有你可以重命名群组、添加或移除成员。彼此未连接的成员将通过你介绍认识。',
     '{0} chosen · change': '已选 {0} 人 · 更改',
     '{0} members': '{0} 位成员',
+    'Make admin': '设为管理员',
+    'Remove as admin': '取消管理员',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': '你将成为管理员。你也可以把其他成员设为管理员：管理员可以重命名群组、添加或移除成员，并介绍彼此未连接的成员认识。',
   },
   'ru': {
     '1 month': '1 месяц',
@@ -6328,6 +6352,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'Вы будете админом: только вы сможете переименовывать группу, добавлять и удалять людей. Участников, не связанных друг с другом, будете знакомить вы.',
     '{0} chosen · change': 'Выбрано: {0} · изменить',
     '{0} members': 'Участников: {0}',
+    'Make admin': 'Сделать админом',
+    'Remove as admin': 'Снять права админа',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'Вы будете админом. Вы можете назначить админами и других участников: админы могут переименовывать группу, добавлять и удалять людей и знакомить участников, не связанных друг с другом.',
   },
   'ja': {
     '1 month': '1か月',
@@ -7031,6 +7058,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'あなたが管理者になります。グループ名の変更やメンバーの追加・削除ができるのはあなただけです。互いにつながっていないメンバーはあなたを通じて紹介されます。',
     '{0} chosen · change': '{0} 人を選択済み · 変更',
     '{0} members': 'メンバー {0} 人',
+    'Make admin': '管理者にする',
+    'Remove as admin': '管理者から外す',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'あなたが管理者になります。ほかのメンバーを管理者にすることもできます。管理者はグループ名の変更、メンバーの追加・削除、互いにつながっていないメンバーの紹介ができます。',
   },
   'tr': {
     '1 month': '1 ay',
@@ -7734,6 +7764,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'Yönetici sen olacaksın: grubu yalnızca sen yeniden adlandırabilir, kişi ekleyip çıkarabilirsin. Birbirine bağlı olmayan üyeler senin aracılığınla tanıştırılır.',
     '{0} chosen · change': '{0} seçildi · değiştir',
     '{0} members': '{0} üye',
+    'Make admin': 'Yönetici yap',
+    'Remove as admin': 'Yöneticilikten çıkar',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'Yönetici sen olacaksın. Diğer üyeleri de yönetici yapabilirsin: yöneticiler grubu yeniden adlandırabilir, kişi ekleyip çıkarabilir ve birbirine bağlı olmayan üyeleri tanıştırabilir.',
   },
   'fa': {
     '1 month': '۱ ماه',
@@ -8437,6 +8470,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'شما مدیر خواهید بود: فقط شما می‌توانید نام گروه را تغییر دهید و افراد را اضافه یا حذف کنید. اعضایی که با هم ارتباط ندارند از طریق شما به هم معرفی می‌شوند.',
     '{0} chosen · change': '{0} انتخاب شد · تغییر',
     '{0} members': '{0} عضو',
+    'Make admin': 'مدیر کردن',
+    'Remove as admin': 'برداشتن نقش مدیر',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'شما مدیر خواهید بود. می‌توانید اعضای دیگر را هم مدیر کنید: مدیران می‌توانند نام گروه را تغییر دهند، افراد را اضافه یا حذف کنند و اعضایی را که با هم ارتباط ندارند به هم معرفی کنند.',
   },
   'hi': {
     '1 month': '1 महीना',
@@ -9140,6 +9176,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'आप एडमिन होंगे: केवल आप समूह का नाम बदल सकते हैं और लोगों को जोड़ या हटा सकते हैं। जो सदस्य आपस में जुड़े नहीं हैं, उनका परिचय आपके ज़रिए होगा।',
     '{0} chosen · change': '{0} चुने गए · बदलें',
     '{0} members': '{0} सदस्य',
+    'Make admin': 'एडमिन बनाएँ',
+    'Remove as admin': 'एडमिन से हटाएँ',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'आप एडमिन होंगे। आप दूसरे सदस्यों को भी एडमिन बना सकते हैं: एडमिन समूह का नाम बदल सकते हैं, लोगों को जोड़ या हटा सकते हैं और आपस में न जुड़े सदस्यों का परिचय करा सकते हैं।',
   },
   'ur': {
     '1 month': '1 مہینہ',
@@ -9843,6 +9882,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'آپ ایڈمن ہوں گے: صرف آپ گروپ کا نام بدل سکتے ہیں اور لوگوں کو شامل یا ہٹا سکتے ہیں۔ جو اراکین آپس میں منسلک نہیں، ان کا تعارف آپ کے ذریعے ہوگا۔',
     '{0} chosen · change': '{0} منتخب · تبدیل کریں',
     '{0} members': '{0} اراکین',
+    'Make admin': 'ایڈمن بنائیں',
+    'Remove as admin': 'ایڈمن سے ہٹائیں',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'آپ ایڈمن ہوں گے۔ آپ دوسرے اراکین کو بھی ایڈمن بنا سکتے ہیں: ایڈمن گروپ کا نام بدل سکتے ہیں، لوگوں کو شامل یا ہٹا سکتے ہیں اور آپس میں غیر منسلک اراکین کا تعارف کرا سکتے ہیں۔',
   },
   'id': {
     '1 month': '1 bulan',
@@ -10546,6 +10588,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'Anda akan menjadi admin: hanya Anda yang dapat mengganti nama grup serta menambah atau mengeluarkan orang. Anggota yang belum terhubung satu sama lain diperkenalkan melalui Anda.',
     '{0} chosen · change': '{0} dipilih · ubah',
     '{0} members': '{0} anggota',
+    'Make admin': 'Jadikan admin',
+    'Remove as admin': 'Hapus sebagai admin',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'Anda akan menjadi admin. Anda juga dapat menjadikan anggota lain admin: admin dapat mengganti nama grup, menambah atau mengeluarkan orang, dan memperkenalkan anggota yang belum terhubung satu sama lain.',
   },
   'ko': {
     '1 month': '1개월',
@@ -11249,6 +11294,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': '내가 관리자가 됩니다. 그룹 이름 변경과 멤버 추가·삭제는 나만 할 수 있습니다. 서로 연결되지 않은 멤버는 나를 통해 소개됩니다.',
     '{0} chosen · change': '{0}명 선택됨 · 변경',
     '{0} members': '멤버 {0}명',
+    'Make admin': '관리자로 지정',
+    'Remove as admin': '관리자 해제',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': '내가 관리자가 됩니다. 다른 멤버도 관리자로 지정할 수 있습니다. 관리자는 그룹 이름 변경, 멤버 추가·삭제, 서로 연결되지 않은 멤버 소개를 할 수 있습니다.',
   },
   'nl': {
     '1 month': '1 maand',
@@ -11952,6 +12000,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'Jij wordt de beheerder: alleen jij kunt de groep hernoemen en mensen toevoegen of verwijderen. Leden die niet met elkaar verbonden zijn, worden via jou voorgesteld.',
     '{0} chosen · change': '{0} gekozen · wijzigen',
     '{0} members': '{0} leden',
+    'Make admin': 'Beheerder maken',
+    'Remove as admin': 'Als beheerder verwijderen',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'Jij wordt de beheerder. Je kunt ook andere leden beheerder maken: beheerders kunnen de groep hernoemen, mensen toevoegen of verwijderen en leden voorstellen die niet met elkaar verbonden zijn.',
   },
   'bn': {
     '1 month': '১ মাস',
@@ -12655,6 +12706,9 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'আপনি অ্যাডমিন হবেন: শুধু আপনিই গ্রুপের নাম বদলাতে এবং মানুষ যোগ বা সরাতে পারবেন। যে সদস্যরা একে অপরের সাথে সংযুক্ত নন, আপনার মাধ্যমে তাঁদের পরিচয় করানো হবে।',
     '{0} chosen · change': '{0} জন বেছে নেওয়া হয়েছে · বদলান',
     '{0} members': '{0} জন সদস্য',
+    'Make admin': 'অ্যাডমিন করুন',
+    'Remove as admin': 'অ্যাডমিন থেকে সরান',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'আপনি অ্যাডমিন হবেন। আপনি অন্য সদস্যদেরও অ্যাডমিন করতে পারেন: অ্যাডমিনরা গ্রুপের নাম বদলাতে, মানুষ যোগ বা সরাতে এবং একে অপরের সাথে সংযুক্ত নন এমন সদস্যদের পরিচয় করাতে পারেন।',
   },
   'sw': {
     '1 month': 'Mwezi 1',
@@ -13358,5 +13412,8 @@ const Map<String, Map<String, String>> meyaTranslations = {
     'You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.': 'Utakuwa msimamizi: wewe pekee ndiye unaweza kubadilisha jina la kikundi na kuongeza au kuondoa watu. Wanachama wasiounganishwa wao kwa wao hutambulishwa kupitia wewe.',
     '{0} chosen · change': '{0} wamechaguliwa · badilisha',
     '{0} members': 'Wanachama {0}',
+    'Make admin': 'Fanya msimamizi',
+    'Remove as admin': 'Ondoa kama msimamizi',
+    'You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.': 'Utakuwa msimamizi. Unaweza pia kuwafanya wanachama wengine wasimamizi: wasimamizi wanaweza kubadilisha jina la kikundi, kuongeza au kuondoa watu na kuwatambulisha wanachama wasiounganishwa.',
   },
 };

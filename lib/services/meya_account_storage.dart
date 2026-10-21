@@ -34,6 +34,8 @@ class MeyaAccountStorage {
     await _storage.write(key: _userIdKey, value: user.userId);
     await _storage.write(key: _userNameKey, value: user.name);
     await _storage.write(key: _usernameKey, value: user.username);
+    // Saved when signing in or creating the account.
+    await setSignedOut(false);
   }
 
   static Future<MeyaUser?> loadUser() async {
@@ -56,7 +58,19 @@ class MeyaAccountStorage {
     return await _storage.read(key: _aboutKey) ?? '';
   }
 
+  /// Set by Sign out; cleared when the person signs in again. Without it,
+  /// MEYA opens straight into the account after the phone closed the app.
+  static const _signedOutKey = 'meya_signed_out';
+
+  static Future<void> setSignedOut(bool signedOut) => signedOut
+      ? _storage.write(key: _signedOutKey, value: '1')
+      : _storage.delete(key: _signedOutKey);
+
+  static Future<bool> isSignedOut() async =>
+      await _storage.read(key: _signedOutKey) == '1';
+
   static Future<void> clearUser() async {
+    await _storage.delete(key: _signedOutKey);
     await _storage.delete(key: _userIdKey);
     await _storage.delete(key: _userNameKey);
     await _storage.delete(key: _usernameKey);

@@ -16,6 +16,7 @@ import '../services/meya_message_service.dart';
 import '../services/safety_number.dart';
 import 'calendar_page.dart';
 import 'call_page.dart';
+import 'contact_avatar.dart';
 import 'media_widgets.dart';
 import 'qr_scanner_page.dart';
 import 'report_page.dart';
@@ -730,12 +731,10 @@ class _ChatPageState extends State<ChatPage> {
               ),
               for (final contact in contacts)
                 ListTile(
-                  leading: CircleAvatar(
-                    child: Text(
-                      contact.displayName.isEmpty
-                          ? '?'
-                          : contact.displayName.substring(0, 1).toUpperCase(),
-                    ),
+                  leading: ContactAvatar(
+                    contactId: contact.contactId,
+                    name: contact.displayName,
+                    radius: 20,
                   ),
                   title: Text(contact.displayName),
                   onTap: () => Navigator.pop(sheetContext, contact),
@@ -908,16 +907,10 @@ class _ChatPageState extends State<ChatPage> {
               titleSpacing: 0,
               title: Row(
                 children: [
-                  CircleAvatar(
+                  ContactAvatar(
+                    contactId: widget.contact.contactId,
+                    name: _name,
                     radius: 18,
-                    backgroundColor: colorScheme.primary.withValues(alpha: 0.12),
-                    child: Text(
-                      _name.substring(0, 1).toUpperCase(),
-                      style: TextStyle(
-                        color: colorScheme.primary,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
                   ),
                   const SizedBox(width: 12),
                   Expanded(

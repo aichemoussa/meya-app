@@ -7,6 +7,7 @@ import '../database/meya_database.dart';
 import '../l10n/meya_strings.dart';
 import '../services/meya_call_service.dart';
 import '../services/webrtc_call_engine.dart';
+import 'contact_avatar.dart';
 
 /// Starts a call with [contact] and shows the call screen. Shows a message
 /// instead if a call is already going on.
@@ -134,18 +135,12 @@ class _CallPageState extends State<CallPage> {
                 children: [
                   const SizedBox(height: 32),
                   if (!showVideo || _calls.phase != CallPhase.active) ...[
-                    CircleAvatar(
-                      radius: 48,
-                      backgroundColor: Colors.white24,
-                      child: Text(
-                        name.isEmpty ? '?' : name.substring(0, 1).toUpperCase(),
-                        style: const TextStyle(
-                          fontSize: 40,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                        ),
+                    if (contact != null)
+                      ContactAvatar(
+                        contactId: contact.contactId,
+                        name: name,
+                        radius: 48,
                       ),
-                    ),
                     const SizedBox(height: 16),
                   ],
                   Text(

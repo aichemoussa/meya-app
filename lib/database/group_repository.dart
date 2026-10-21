@@ -2,19 +2,32 @@ import 'package:drift/drift.dart';
 
 import 'meya_database.dart';
 
-/// One member of a group, as announced by the group's admin.
+/// One member of a group, as announced by one of the group's admins.
 class GroupMemberInfo {
   final String deviceId;
   final String identityId;
   final String name;
   final String identityPublicKey;
 
+  /// An admin besides the owner. Travels in the update's `admins` list, not
+  /// in [toContent], so older versions still read the member list.
+  final bool isAdmin;
+
   const GroupMemberInfo({
     required this.deviceId,
     required this.identityId,
     required this.name,
     required this.identityPublicKey,
+    this.isAdmin = false,
   });
+
+  GroupMemberInfo withAdmin(bool admin) => GroupMemberInfo(
+        deviceId: deviceId,
+        identityId: identityId,
+        name: name,
+        identityPublicKey: identityPublicKey,
+        isAdmin: admin,
+      );
 
   Map<String, Object> toContent() => {
         'device': deviceId,
@@ -136,6 +149,7 @@ class GroupRepository {
                 displayName: member.name,
                 identityPublicKey: member.identityPublicKey,
                 addedAt: joined[member.deviceId] ?? now,
+                isAdmin: Value(member.isAdmin || member.deviceId == adminDeviceId),
               ),
             );
       }

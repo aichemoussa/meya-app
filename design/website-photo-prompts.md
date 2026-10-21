@@ -1,8 +1,8 @@
 # AI image prompts for the MEYA website
 
 Generate each image, then save it in this folder (`website/img/ai/`) with the
-file name shown. JPG or PNG, at least 1200 px on the long side. They will be
-cropped, compressed and placed in the app showcase on the home page.
+file name shown. JPG or PNG, at least 1200 px on the long side. Claude will
+crop, compress and place them in the app showcase on the home page.
 
 Use the same **style block** at the end of every prompt so all images look
 like one photo shoot.

@@ -8,7 +8,7 @@ import '../services/meya_status_service.dart';
 import 'calendar_page.dart';
 import 'call_page.dart';
 import 'chat_page.dart';
-import 'media_widgets.dart';
+import 'contact_avatar.dart';
 import 'safety_number_page.dart';
 import 'status_page.dart';
 import '../l10n/meya_strings.dart';
@@ -137,29 +137,10 @@ class _ContactPageState extends State<ContactPage> {
           padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
           children: [
             Center(
-              child: SizedBox(
-                width: 88,
-                height: 88,
-                child: ClipOval(
-                  child: _profile?.photo != null
-                      ? EncryptedImage(
-                          attachment: _profile!.photo!,
-                          width: 88,
-                          height: 88,
-                        )
-                      : Container(
-                          color: colorScheme.primary.withValues(alpha: 0.12),
-                          alignment: Alignment.center,
-                          child: Text(
-                            _name.substring(0, 1).toUpperCase(),
-                            style: TextStyle(
-                              color: colorScheme.primary,
-                              fontSize: 34,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                ),
+              child: ContactAvatar(
+                contactId: contact.contactId,
+                name: _name,
+                radius: 44,
               ),
             ),
             const SizedBox(height: 16),

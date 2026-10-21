@@ -246,19 +246,59 @@ class MeyaRelaySession {
 
   Completer<List<Map<String, dynamic>>>? _iceWaiter;
 
+  /// The last call servers and until when they may be reused. TURN
+  /// credentials last four hours; STUN-only answers (no TURN configured, or
+  /// asked too often) are kept briefly so a later call can still get TURN.
+  List<Map<String, dynamic>>? _iceCache;
+  DateTime _iceCacheUntil = DateTime.fromMillisecondsSinceEpoch(0);
+  Future<List<Map<String, dynamic>>>? _iceFetch;
+
+  static bool _hasTurn(List<Map<String, dynamic>> servers) => servers.any(
+        (server) => [
+          if (server['urls'] is List) ...server['urls'] as List else server['urls'],
+        ].any((url) => url is String && url.startsWith('turn')),
+      );
+
+  /// Fetches call servers ahead of time so a call does not wait for them.
+  Future<void> prefetchIceServers() async {
+    try {
+      await requestIceServers();
+    } catch (_) {}
+  }
+
   /// STUN and TURN servers for a call. The relay asks Cloudflare for
   /// short-lived TURN credentials; empty when offline or not answered.
   Future<List<Map<String, dynamic>>> requestIceServers({
     Duration timeout = const Duration(seconds: 5),
-  }) async {
-    if (!_relay.isConnected) return const [];
+  }) {
+    final cached = _iceCache;
+    if (cached != null && DateTime.now().isBefore(_iceCacheUntil)) {
+      return Future.value(cached);
+    }
+    return _iceFetch ??= _fetchIceServers(timeout).whenComplete(() {
+      _iceFetch = null;
+    });
+  }
+
+  Future<List<Map<String, dynamic>>> _fetchIceServers(Duration timeout) async {
+    if (!_relay.isConnected) return _iceCache ?? const [];
     final waiter = _iceWaiter ??= Completer<List<Map<String, dynamic>>>();
     try {
       await _relay.send({'type': 'TurnRequest'});
-      return await waiter.future.timeout(timeout, onTimeout: () => const []);
+      final servers =
+          await waiter.future.timeout(timeout, onTimeout: () => const []);
+      if (servers.isNotEmpty) {
+        _iceCache = servers;
+        _iceCacheUntil = DateTime.now().add(
+          _hasTurn(servers)
+              ? const Duration(hours: 3, minutes: 30)
+              : const Duration(minutes: 1),
+        );
+      }
+      return servers.isNotEmpty ? servers : _iceCache ?? const [];
     } catch (error) {
       debugPrint('MEYA relay: no ICE servers ($error).');
-      return const [];
+      return _iceCache ?? const [];
     } finally {
       if (identical(_iceWaiter, waiter)) _iceWaiter = null;
     }

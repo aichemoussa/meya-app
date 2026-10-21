@@ -168,8 +168,9 @@ class Reactions extends Table {
 }
 
 /// A private group. Messages are sent to every member separately over each
-/// person's own end-to-end encrypted session; only the admin (the person
-/// who created the group) changes its name and members.
+/// person's own end-to-end encrypted session; only admins change its name
+/// and members. [adminDeviceId] is the owner (the person who created the
+/// group, or whoever it was handed to): always an admin, never removable.
 class MeyaGroups extends Table {
   TextColumn get groupId => text()();
   TextColumn get name => text()();
@@ -194,6 +195,10 @@ class GroupMembers extends Table {
   TextColumn get displayName => text()();
   TextColumn get identityPublicKey => text()();
   TextColumn get addedAt => text()();
+
+  /// An admin besides the owner: may rename the group, add and remove
+  /// people, and make others admins.
+  BoolColumn get isAdmin => boolean().withDefault(const Constant(false))();
 
   @override
   Set<Column> get primaryKey => {groupId, deviceId};
@@ -230,7 +235,7 @@ class Outbox extends Table {
   ],
 )
 class MeyaDatabase extends _$MeyaDatabase {
-  static const schemaVersionValue = 10;
+  static const schemaVersionValue = 11;
 
   MeyaDatabase() : super(_openConnection());
 
@@ -320,6 +325,16 @@ class MeyaDatabase extends _$MeyaDatabase {
       if (from < 10 && to >= 10) {
         await migrator.createTable(meyaGroups);
         await migrator.createTable(groupMembers);
+      }
+
+      if (from < 11 && to >= 11) {
+        // Upgrades from before 10 have just created the table with it.
+        if (!await _hasColumn(
+          groupMembers.actualTableName,
+          groupMembers.isAdmin.name,
+        )) {
+          await migrator.addColumn(groupMembers, groupMembers.isAdmin);
+        }
       }
     },
     beforeOpen: (_) async {

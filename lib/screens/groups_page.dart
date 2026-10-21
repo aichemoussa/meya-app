@@ -348,7 +348,7 @@ class _NewGroupPageState extends State<NewGroupPage> {
               ),
             const SizedBox(height: 16),
             Text(
-              context.tr('You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.'),
+              context.tr('You will be the admin. You can make other members admins too: admins can rename the group, add or remove people and introduce members who are not connected with each other.'),
               style: TextStyle(color: context.meya.muted, height: 1.4),
             ),
           ],
@@ -887,6 +887,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
   StreamSubscription<String>? _subscription;
   MeyaGroup? _group;
   List<GroupMember> _members = [];
+  Set<String> _admins = {};
   bool _isAdmin = false;
   String? _me;
 
@@ -909,13 +910,26 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
     final group = await _groups.group(widget.groupId);
     final members = await _groups.members(widget.groupId);
     final me = await MeyaMessageService.instance.localDeviceId();
+    final admins = group == null ? <String>{} : await _groups.admins(group);
     if (!mounted) return;
     setState(() {
       _group = group;
       _members = members;
       _me = me;
-      _isAdmin = group != null && group.isActive && group.adminDeviceId == me;
+      _admins = admins;
+      _isAdmin = group != null && group.isActive && admins.contains(me);
     });
+  }
+
+  Future<void> _memberAction(GroupMember member, String action) async {
+    switch (action) {
+      case 'admin':
+        await _run(() => _groups.setAdmin(widget.groupId, member.deviceId, true));
+      case 'member':
+        await _run(() => _groups.setAdmin(widget.groupId, member.deviceId, false));
+      case 'remove':
+        await _remove(member);
+    }
   }
 
   Future<void> _run(Future<void> Function() action) async {
@@ -1000,7 +1014,7 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
     final confirmed = await _confirm(
       context.tr('Leave this group?'),
       context.tr('Leave'),
-      body: _isAdmin
+      body: _group?.adminDeviceId == _me
           ? context.tr('Another member becomes the admin. You keep the messages already on this phone.')
           : context.tr('You keep the messages already on this phone.'),
     );
@@ -1076,14 +1090,30 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
                   ),
                 ),
                 title: Text(member.deviceId == _me ? context.tr('You') : member.displayName),
-                subtitle: member.deviceId == group.adminDeviceId
+                subtitle: _admins.contains(member.deviceId)
                     ? Text(context.tr('Admin'))
                     : null,
-                trailing: _isAdmin && member.deviceId != _me
-                    ? IconButton(
-                        tooltip: context.tr('Remove'),
-                        icon: const Icon(Icons.person_remove_outlined),
-                        onPressed: () => _remove(member),
+                // Nobody but the owner can remove the owner or take away
+                // their admin role (the owner hands over by leaving).
+                trailing: _isAdmin &&
+                        member.deviceId != _me &&
+                        member.deviceId != group.adminDeviceId
+                    ? PopupMenuButton<String>(
+                        onSelected: (action) => _memberAction(member, action),
+                        itemBuilder: (_) => [
+                          PopupMenuItem(
+                            value: _admins.contains(member.deviceId) ? 'member' : 'admin',
+                            child: Text(
+                              _admins.contains(member.deviceId)
+                                  ? context.tr('Remove as admin')
+                                  : context.tr('Make admin'),
+                            ),
+                          ),
+                          PopupMenuItem(
+                            value: 'remove',
+                            child: Text(context.tr('Remove')),
+                          ),
+                        ],
                       )
                     : null,
               ),

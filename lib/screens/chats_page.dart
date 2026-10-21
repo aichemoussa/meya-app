@@ -10,6 +10,7 @@ import '../database/message_repository.dart';
 import '../l10n/meya_strings.dart';
 import '../services/meya_message_service.dart';
 import 'chat_page.dart';
+import 'contact_avatar.dart';
 
 /// One row of the chats list.
 class _ChatSummary {
@@ -364,17 +365,9 @@ class _ChatRow extends StatelessWidget {
             ),
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-            leading: CircleAvatar(
-              radius: 24,
-              backgroundColor: colorScheme.primary.withValues(alpha: 0.12),
-              child: Text(
-                name.substring(0, 1).toUpperCase(),
-                style: TextStyle(
-                  color: colorScheme.primary,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
+            leading: ContactAvatar(
+              contactId: chat.contact.contactId,
+              name: name,
             ),
             title: Row(
               children: [

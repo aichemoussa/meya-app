@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../database/account_repository.dart';
 import '../database/contact_repository.dart';
 import '../database/meya_database.dart';
+import 'contact_avatar.dart';
 import 'contact_page.dart';
 import 'qr_scanner_page.dart';
 import '../l10n/meya_strings.dart';
@@ -293,17 +294,10 @@ class _PersonTile extends StatelessWidget {
         ),
         child: Row(
           children: [
-            CircleAvatar(
+            ContactAvatar(
+              contactId: contact.contactId,
+              name: displayName,
               radius: 25,
-              backgroundColor: colorScheme.primary.withValues(alpha: 0.10),
-              child: Text(
-                displayName.substring(0, 1).toUpperCase(),
-                style: TextStyle(
-                  color: colorScheme.primary,
-                  fontSize: 19,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
             ),
             const SizedBox(width: 14),
             Expanded(

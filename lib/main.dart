@@ -29,6 +29,7 @@ import 'screens/appearance_page.dart';
 import 'screens/chat_page.dart';
 import 'screens/chats_page.dart';
 import 'database/contact_repository.dart';
+import 'theme/meya_logo.dart';
 import 'theme/meya_theme.dart';
 import 'legal/meya_legal.dart';
 import 'l10n/meya_strings.dart';
@@ -158,8 +159,51 @@ class _WelcomePageState extends State<WelcomePage> {
     _loadAccount();
   }
 
+  /// Opens the account straight away when the person did not sign out:
+  /// the phone closing MEYA in the background is not signing out. With the
+  /// app lock on, the passcode is asked first.
   Future<void> _loadAccount() async {
-    await MeyaAccountStorage.loadUser();
+    try {
+      final user = await MeyaAccountStorage.loadUser();
+      final account = await AccountRepository(widget.database).getActiveAccount();
+      if (user != null &&
+          account != null &&
+          !await MeyaAccountStorage.isSignedOut() &&
+          mounted) {
+        final space = MaterialPageRoute<void>(
+          builder: (_) => SpacePage(
+            name: account.name,
+            username: account.username,
+            database: widget.database,
+          ),
+        );
+        if (!await AccountSecurityService.isAppLockEnabled()) {
+          if (mounted) Navigator.pushReplacement(context, space);
+          return;
+        }
+        if (!mounted) return;
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute<void>(
+            builder: (lockContext) => EnterPasscodePage(
+              database: widget.database,
+              onUnlocked: () async =>
+                  Navigator.pushReplacement(lockContext, space),
+              onErased: () => Navigator.pushAndRemoveUntil(
+                lockContext,
+                MaterialPageRoute<void>(
+                  builder: (_) => WelcomePage(database: widget.database),
+                ),
+                (route) => false,
+              ),
+            ),
+          ),
+        );
+        return;
+      }
+    } catch (error) {
+      debugPrint('MEYA: could not reopen the account ($error).');
+    }
 
     if (!mounted) {
       return;
@@ -217,6 +261,10 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Usually only for a moment, while the account is reopened.
+    if (_loading) {
+      return const Scaffold(body: Center(child: MeyaLogo(size: 96)));
+    }
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -224,24 +272,7 @@ class _WelcomePageState extends State<WelcomePage> {
           child: Column(
             children: [
               const Spacer(flex: 2),
-              Container(
-                width: 96,
-                height: 96,
-                decoration: BoxDecoration(
-                  color: context.meya.navy,
-                  borderRadius: BorderRadius.circular(28),
-                ),
-                child: Center(
-                  child: Text(
-                    'M',
-                    style: TextStyle(
-                      color: context.meya.onNavy,
-                      fontSize: 52,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-              ),
+              const MeyaLogo(size: 96),
               const SizedBox(height: 28),
               Text(
                 'MEYA',
@@ -718,6 +749,14 @@ class _SpacePageState extends State<SpacePage>
         ..showSnackBar(SnackBar(content: Text(tr('Back online.'))));
     }
     unawaited(MeyaMessageService.instance.retryPending());
+    // A photo or name changed while offline, or sharing it failed.
+    unawaited(
+      MeyaProfileService.instance.shareIfChanged().catchError((Object error) {
+        debugPrint('MEYA profile: sharing failed ($error).');
+      }),
+    );
+    // Call servers ready before the first call, so it starts sooner.
+    unawaited(_relaySession.prefetchIceServers());
   }
 
   bool _offlineNotified = false;
@@ -822,6 +861,8 @@ class _SpacePageState extends State<SpacePage>
   }
 
   void _showIncomingCall() {
+    // Ready by the time the call is answered.
+    unawaited(_relaySession.prefetchIceServers());
     final navigator = meyaNavigatorKey.currentState;
     if (navigator == null) return;
     var showing = false;
@@ -1103,6 +1144,7 @@ class SettingsPage extends StatelessWidget {
 
   /// Signs out (or finishes deleting the account) and returns to Welcome.
   Future<void> _signOut(BuildContext context) async {
+    await MeyaAccountStorage.setSignedOut(true);
     try {
       await MeyaRelaySession.instance.stop();
     } catch (_) {

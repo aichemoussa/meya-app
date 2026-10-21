@@ -48,11 +48,13 @@ class MeyaPalette {
   });
 
   /// The MEYA brand palette: #044D8C, #49B1F2, #EBF2F2, #0D0D0D, #424D8C.
+  /// Pages are white, restful to the eyes; the brand's light grey sets
+  /// cards, fields and message bubbles apart from them.
   static const light = MeyaPalette(
     navy: Color(0xFF044D8C),
     blue: Color(0xFF49B1F2),
-    surface: Color(0xFFEBF2F2),
-    card: Color(0xFFFFFFFF),
+    surface: Color(0xFFFFFFFF),
+    card: Color(0xFFEBF2F2),
     text: Color(0xFF0D0D0D),
     muted: Color(0xFF424D8C),
     onNavy: Color(0xFFFFFFFF),
@@ -147,7 +149,10 @@ ThemeData buildMeyaTheme(MeyaPalette p, {bool reduceMotion = false}) {
     surface: p.surface,
     onSurface: p.text,
     onSurfaceVariant: p.muted,
-    surfaceContainerLowest: p.card,
+    // Lists such as Chats stay white like the page; cards and fields use
+    // the light grey.
+    surfaceContainerLowest:
+        p.brightness == Brightness.light ? p.surface : p.card,
     surfaceContainerLow: p.card,
     surfaceContainer: p.card,
     surfaceContainerHigh: Color.alphaBlend(p.navy.withValues(alpha: 0.08), p.card),
@@ -187,11 +192,15 @@ ThemeData buildMeyaTheme(MeyaPalette p, {bool reduceMotion = false}) {
       ),
     ),
     bottomSheetTheme: BottomSheetThemeData(
-      backgroundColor: p.card,
+      backgroundColor: p.brightness == Brightness.light ? p.surface : p.card,
       surfaceTintColor: Colors.transparent,
     ),
     dialogTheme: DialogThemeData(
-      backgroundColor: p.card,
+      backgroundColor: p.brightness == Brightness.light ? p.surface : p.card,
+      surfaceTintColor: Colors.transparent,
+    ),
+    popupMenuTheme: PopupMenuThemeData(
+      color: p.brightness == Brightness.light ? p.surface : p.card,
       surfaceTintColor: Colors.transparent,
     ),
     snackBarTheme: SnackBarThemeData(

@@ -279,7 +279,7 @@ class _MeyaQrScannerPageState extends State<MeyaQrScannerPage> {
       context: context,
       isDismissible: false,
       enableDrag: false,
-      backgroundColor: context.meya.card,
+      backgroundColor: context.meya.surface,
       builder: (sheetContext) {
         return SafeArea(
           child: Padding(
