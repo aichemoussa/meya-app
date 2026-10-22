@@ -699,3 +699,29 @@ Du behältst die Nachrichten, die schon auf diesem Telefon sind.
 Du wirst Admin: Nur du kannst die Gruppe umbenennen und Personen hinzufügen oder entfernen. Mitglieder, die nicht miteinander verbunden sind, werden über dich vorgestellt.
 {0} gewählt · ändern
 {0} Mitglieder
+Neuer Kontakt
+Jemand, der deinen QR-Code gescannt hat
+Jemand, der deinen QR-Code gescannt hat, möchte sich auf MEYA mit dir verbinden.
+Verbunden. Der Name erscheint, sobald das Profil eintrifft.
+Nachrichten und Einladungen
+Neue Nachricht
+Jemand möchte sich auf MEYA mit dir verbinden. Öffne MEYA, um fortzufahren.
+Jemand hat sich über deinen Einladungslink verbunden. Vergleiche die Sicherheitsnummern, um die Person zu verifizieren.
+Eingehender Videoanruf
+Tippe, um MEYA zu öffnen.
+Geplanter Anruf
+Einladungslink teilen
+Verbinde dich mit mir auf MEYA, einem privaten Messenger. Öffne diesen Link auf deinem Handy. Er funktioniert einmal und läuft in 7 Tagen ab: {0}
+Der Link konnte nicht geteilt werden: {0}
+Auf MEYA verbinden?
+Du hast einen Einladungslink geöffnet. Mit der Person verbinden, die ihn gesendet hat? Dein verschlüsselter Chat öffnet sich, sobald ihr Handy deine Anfrage erhält.
+Verbinden
+Anfrage gesendet. Dein Chat erscheint, sobald ihr Handy sie erhält.
+Über Link verbunden. Noch nicht persönlich verifiziert.
+Hat mit {0} auf deine Nachricht reagiert
+Hat einen neuen Status gepostet
+Neue Aktivität
+Nachrichten weiter empfangen
+Damit Nachrichten und Anrufe dich erreichen, während MEYA im Hintergrund läuft oder dein Handy gesperrt ist, erlaube MEYA, ohne Akku-Einschränkungen zu laufen.
+Nicht jetzt
+Erlauben

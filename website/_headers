@@ -5,3 +5,10 @@
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# The invite page runs one small script of its own (i.js), which reads the
+# invitation after "#" to build the "Open in MEYA" button. Every other page
+# still runs no scripts at all.
+/i
+  ! Content-Security-Policy
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'

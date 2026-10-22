@@ -51,9 +51,12 @@ test/                Flutter tests
 **Security design, in short**
 
 - Messages, media, statuses, profiles, call invitations and calls are
-  end-to-end encrypted. MEYA does not invent its own cryptography: it uses
-  Signal's open-source [libsignal](https://github.com/signalapp/libsignal), and
-  WebRTC's built-in encryption for calls.
+  end-to-end encrypted. MEYA does not invent new cryptographic algorithms or
+  protocols: it uses Signal's open-source
+  [libsignal](https://github.com/signalapp/libsignal) for messages, and
+  WebRTC's built-in encryption for calls. MEYA's own code around them (key
+  storage, pairing, attachments, groups, safety numbers) has not yet had an
+  independent security review.
 - The relay (Supabase, or the self-hostable relay) only forwards sealed
   envelopes. It sees which device sends to which, when, and the size, but never
   the content. Row-level security lets each phone read only what is addressed

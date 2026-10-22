@@ -21,6 +21,8 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        // Required by flutter_local_notifications.
+        isCoreLibraryDesugaringEnabled = true
     }
 
     defaultConfig {
@@ -50,10 +52,24 @@ android {
 
     buildTypes {
         release {
-            // Without key.properties, fall back to the debug key so
-            // `flutter run --release` still works. Never publish such a build.
+            // The release key (see the check below); the debug key only
+            // keeps Gradle configurable on machines without it.
             signingConfig = signingConfigs.findByName("release") ?: signingConfigs.getByName("debug")
         }
+    }
+}
+
+// A release build signed with any other key cannot update MEYA on a phone:
+// Android refuses it, and uninstalling to get around that erases the
+// person's account, contacts and messages. So without key.properties a
+// release build stops here instead of silently using the debug key. Debug
+// builds are unaffected.
+gradle.taskGraph.whenReady {
+    if (keyProperties.isEmpty() && allTasks.any { it.name.contains("Release") }) {
+        throw GradleException(
+            "android/key.properties is missing: release builds must be signed " +
+                "with MEYA's release key (tool/create-signing-key.ps1).",
+        )
     }
 }
 
@@ -65,4 +81,8 @@ kotlin {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }

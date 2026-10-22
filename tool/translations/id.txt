@@ -699,3 +699,29 @@ Pesan yang sudah ada di ponsel ini tetap tersimpan.
 Anda akan menjadi admin: hanya Anda yang dapat mengganti nama grup serta menambah atau mengeluarkan orang. Anggota yang belum terhubung satu sama lain diperkenalkan melalui Anda.
 {0} dipilih · ubah
 {0} anggota
+Kontak baru
+Seseorang yang memindai kode QR Anda
+Seseorang yang memindai kode QR Anda ingin terhubung dengan Anda di MEYA.
+Terhubung. Namanya akan muncul begitu profilnya tiba.
+Pesan dan undangan
+Pesan baru
+Seseorang ingin terhubung dengan Anda di MEYA. Buka MEYA untuk melanjutkan.
+Seseorang terhubung melalui tautan undangan Anda. Bandingkan nomor keamanan untuk memverifikasinya.
+Panggilan video masuk
+Ketuk untuk membuka MEYA.
+Panggilan terjadwal
+Bagikan tautan undangan
+Terhubunglah dengan saya di MEYA, aplikasi pesan pribadi. Buka tautan ini di ponsel Anda. Hanya berlaku sekali dan kedaluwarsa dalam 7 hari: {0}
+Tidak dapat membagikan tautan: {0}
+Terhubung di MEYA?
+Anda membuka tautan undangan. Terhubung dengan orang yang mengirimnya? Obrolan terenkripsi Anda terbuka begitu ponselnya menerima permintaan Anda.
+Hubungkan
+Permintaan terkirim. Obrolan Anda muncul begitu ponselnya menerimanya.
+Terhubung lewat tautan. Belum diverifikasi secara langsung.
+Bereaksi {0} pada pesan Anda
+Memposting status baru
+Aktivitas baru
+Tetap terima pesan
+Agar pesan dan panggilan tetap sampai saat MEYA berjalan di latar belakang atau ponsel Anda terkunci, izinkan MEYA berjalan tanpa batasan baterai.
+Nanti saja
+Izinkan

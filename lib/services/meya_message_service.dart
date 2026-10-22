@@ -235,6 +235,23 @@ class ChatMessageView {
       };
 }
 
+/// A newly received message, for a phone notification.
+class IncomingMessage {
+  final String conversationId;
+
+  /// The contact's or the group's name.
+  final String title;
+
+  /// A short preview, empty when there is nothing to show.
+  final String body;
+
+  const IncomingMessage({
+    required this.conversationId,
+    required this.title,
+    required this.body,
+  });
+}
+
 /// Handles content that is not shown in a conversation (status updates,
 /// profile updates).
 typedef SilentHandler = Future<void> Function(
@@ -301,6 +318,8 @@ class MeyaMessageService {
   final StreamController<String> _changes = StreamController.broadcast();
   final StreamController<String> _mediaArrived = StreamController.broadcast();
   final StreamController<String> _received = StreamController.broadcast();
+  final StreamController<IncomingMessage> _incoming =
+      StreamController.broadcast();
   final Map<String, Uint8List> _plainCache = {};
 
   /// Control messages: not shown, they change messages already shown.
@@ -342,6 +361,30 @@ class MeyaMessageService {
 
   /// Emits a conversation ID when a new message from a contact is saved.
   Stream<String> get received => _received.stream;
+
+  /// Emits who wrote and a short preview when a new message is saved, for
+  /// phone notifications.
+  Stream<IncomingMessage> get incoming => _incoming.stream;
+
+  /// A short, plain-text preview of shown [content] of [kind].
+  static String previewOf(Object? kind, Map<String, dynamic> content) {
+    final text = content['text'];
+    final caption = text is String ? text.trim() : '';
+    final media = content['media'];
+    final fileName = media is Map<String, dynamic> && media['name'] is String
+        ? media['name'] as String
+        : '';
+    return switch (kind) {
+      'text' => caption,
+      'voice' => tr('Voice message'),
+      'image' => caption.isEmpty ? tr('Photo') : caption,
+      'video' => caption.isEmpty ? tr('Video') : caption,
+      'file' => fileName.isEmpty ? tr('File') : fileName,
+      'call_invite' => tr('Planned call'),
+      'call_cancel' => tr('Call cancelled'),
+      _ => '',
+    };
+  }
 
   /// Emits a blob ID when an attachment has fully arrived.
   Stream<String> get mediaArrived => _mediaArrived.stream;
@@ -600,8 +643,20 @@ class MeyaMessageService {
       ),
     );
     final ciphertext = await _e2ee.encrypt(deviceId, content);
-    await _send(_envelope(id, localDeviceId, deviceId, ciphertext));
+    await _send(_envelope(id, localDeviceId, deviceId, ciphertext,
+        notify: _notifyFor(fields)));
   }
+
+  /// Which silent updates wake the other phone: a call, a new reaction or
+  /// a new status. Receipts, edits, profile changes and the like never do.
+  static String? _notifyFor(Map<String, Object> fields) => switch (fields['kind']) {
+        'call_offer' => 'call',
+        'reaction' when fields['emoji'] is String &&
+            (fields['emoji'] as String).isNotEmpty =>
+          'activity',
+        'status' => 'activity',
+        _ => null,
+      };
 
   Future<void> _sendContent(
     Contact contact,
@@ -642,7 +697,8 @@ class MeyaMessageService {
 
     try {
       await beforeSend?.call(localDeviceId, deviceId);
-      await _send(_envelope(messageId, localDeviceId, deviceId, ciphertext));
+      await _send(_envelope(messageId, localDeviceId, deviceId, ciphertext,
+          notify: 'message'));
       await MessageRepository(database).advanceDeliveryState(messageId, 'sent');
     } catch (error) {
       // Offline or the relay dropped: [retryPending] sends it again when the
@@ -794,7 +850,8 @@ class MeyaMessageService {
           );
         }
         final ciphertext = await _e2ee.encrypt(deviceId, content);
-        await _send(_envelope(messageId, localDeviceId, deviceId, ciphertext));
+        await _send(_envelope(messageId, localDeviceId, deviceId, ciphertext,
+          notify: 'message'));
       } catch (error) {
         debugPrint('MEYA group: not sent to one member yet ($error).');
         all = false;
@@ -879,6 +936,15 @@ class MeyaMessageService {
     }
     _changes.add(conversationId);
     _received.add(conversationId);
+    final sender = await groups.member(groupId, senderDeviceId);
+    final preview = previewOf(kind, content);
+    _incoming.add(IncomingMessage(
+      conversationId: conversationId,
+      title: group.name,
+      body: sender == null || preview.isEmpty
+          ? preview
+          : '${sender.displayName}: $preview',
+    ));
   }
 
   /// Marks a group conversation read on this device (groups send no read
@@ -1021,7 +1087,8 @@ class MeyaMessageService {
       }
     }
     final ciphertext = await _e2ee.encrypt(deviceId, content);
-    await _send(_envelope(row.messageId, localDeviceId, deviceId, ciphertext));
+    await _send(_envelope(row.messageId, localDeviceId, deviceId, ciphertext,
+        notify: 'message'));
     await MessageRepository(_db).advanceDeliveryState(row.messageId, 'sent');
     _changes.add(row.conversationId);
   }
@@ -1055,12 +1122,17 @@ class MeyaMessageService {
     await _send(_envelope(id, localDeviceId, deviceId, ciphertext));
   }
 
+  /// [notify] ('message' or 'call') asks the server to wake the recipient's
+  /// phone with an empty push. It is not encrypted: the server learns only
+  /// that this envelope is something the person sees, not what it is.
+  /// Receipts, typing and other silent updates never wake a phone.
   Map<String, dynamic> _envelope(
     String id,
     String from,
     String to,
-    E2eeCiphertext ciphertext,
-  ) {
+    E2eeCiphertext ciphertext, {
+    String? notify,
+  }) {
     final payload = jsonEncode({
       'type': 'chat',
       'v': 1,
@@ -1074,6 +1146,7 @@ class MeyaMessageService {
         'sender_device_id': from,
         'recipient_device_id': to,
         'payload': base64Encode(utf8.encode(payload)),
+        'notify': ?notify,
       },
     };
   }
@@ -1222,6 +1295,11 @@ class MeyaMessageService {
     }));
     _changes.add(conversationId);
     _received.add(conversationId);
+    _incoming.add(IncomingMessage(
+      conversationId: conversationId,
+      title: contact.displayName,
+      body: previewOf(kind, content),
+    ));
   }
 
   /// Applies a receipt, reaction, edit, deletion or pin from [contact].
@@ -1271,6 +1349,14 @@ class MeyaMessageService {
         if (row == null || emoji is! String || emoji.length > 16) return;
         await repository.setReaction(row.messageId, senderDeviceId, emoji);
         _changes.add(conversationId);
+        // A new reaction to one of this person's own messages.
+        if (emoji.isNotEmpty && row.senderDeviceId == localDeviceId) {
+          _incoming.add(IncomingMessage(
+            conversationId: conversationId,
+            title: contact.displayName,
+            body: tr('Reacted {0} to your message', [emoji]),
+          ));
+        }
       case 'pin':
         final row = await target();
         final pinned = content['pinned'];

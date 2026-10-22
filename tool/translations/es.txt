@@ -699,3 +699,29 @@ Conservas los mensajes que ya están en este teléfono.
 Serás el admin: solo tú puedes cambiar el nombre del grupo y añadir o quitar personas. Los miembros que no están conectados entre sí se presentan a través de ti.
 {0} elegidos · cambiar
 {0} miembros
+Nuevo contacto
+Alguien que escaneó tu código QR
+Alguien que escaneó tu código QR quiere conectar contigo en MEYA.
+Conectado. Su nombre aparecerá en cuanto llegue su perfil.
+Mensajes e invitaciones
+Nuevo mensaje
+Alguien quiere conectar contigo en MEYA. Abre MEYA para continuar.
+Alguien se conectó con tu enlace de invitación. Compara los números de seguridad para verificarlo.
+Videollamada entrante
+Toca para abrir MEYA.
+Llamada planificada
+Compartir un enlace de invitación
+Conecta conmigo en MEYA, una mensajería privada. Abre este enlace en tu teléfono. Funciona una vez y caduca en 7 días: {0}
+No se pudo compartir el enlace: {0}
+¿Conectar en MEYA?
+Abriste un enlace de invitación. ¿Conectar con la persona que lo envió? Tu chat cifrado se abre en cuanto su teléfono reciba tu solicitud.
+Conectar
+Solicitud enviada. Tu chat aparecerá en cuanto su teléfono la reciba.
+Conectado por enlace. Aún no verificado en persona.
+Reaccionó {0} a tu mensaje
+Publicó un estado nuevo
+Nueva actividad
+Sigue recibiendo mensajes
+Para que los mensajes y las llamadas te lleguen cuando MEYA está en segundo plano o tu teléfono está bloqueado, permite que MEYA funcione sin restricciones de batería.
+Ahora no
+Permitir

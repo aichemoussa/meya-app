@@ -12,6 +12,9 @@ const meyaWebsite = 'https://meya-app.pages.dev/';
 const meyaSourceCode = 'https://github.com/primaelite/meya-app';
 const meyaLegalUpdated = 'October 2026';
 
+/// Where data protection requests go (shown in the privacy policy).
+const meyaPrivacyEmail = 'app4meya@gmail.com';
+
 /// Where reports of abuse go. Set it when building a release:
 /// --dart-define=MEYA_REPORT_EMAIL=safety@your-domain
 const meyaReportEmail = String.fromEnvironment('MEYA_REPORT_EMAIL');
@@ -54,9 +57,52 @@ const privacyPolicy = [
         'size of each envelope, and the network (IP) address your phone '
         'connects from. Envelope contents are end-to-end encrypted: the relay '
         'cannot read messages, media, status, profiles or calls. Envelopes '
-        'are deleted once the receiving phone confirms delivery. When a call '
-        'cannot connect directly, Cloudflare relays the encrypted call and '
-        'sees the network addresses of both phones, but not the call itself.',
+        'are deleted once the receiving phone confirms delivery.\n\n'
+        'When two phones connect, the connection request and its reply pass '
+        'through the relay before end-to-end encryption starts. They contain '
+        'a random account ID, the phone\'s device ID and its public encryption '
+        'keys, but no name or username. MEYA 1.0.6 and earlier also included '
+        'the name and username you chose, which the relay could see.',
+  ),
+  LegalSection(
+    'Notifications',
+    'To alert you when MEYA is closed, MEYA uses Firebase Cloud Messaging, '
+        'a Google service. When a message, a connection request, a call, a '
+        'reaction or a new status is waiting for you, the sender\'s phone '
+        'marks the envelope with which of these it is (but not what it says), '
+        'and our server asks Google to '
+        'wake your phone with an empty notice that names no one and contains '
+        'nothing. MEYA then shows the notification itself, on your phone. '
+        'For this, our server keeps your phone\'s push token, and Google sees '
+        'that token and when your phone is woken. On a locked phone, the text '
+        'of notifications is hidden unless you allow it in your phone\'s '
+        'settings.',
+  ),
+  LegalSection(
+    'Invite links',
+    'An invite link lets someone who is not with you connect with you. It '
+        'contains your random account ID, your device ID, your public '
+        'encryption key and a one-time code, but not your name. It travels '
+        'through whichever app you use to send it, so that app\'s provider '
+        'can see the link. It works once, expires after 7 days, and connects '
+        'you as soon as it is opened. Someone who connected with a link was '
+        'not met in person: compare safety numbers to verify them.',
+  ),
+  LegalSection(
+    'Calls',
+    'To set up a call, each phone asks a Cloudflare server for its own '
+        'network (IP) address. When the two phones connect directly, each '
+        'phone sees the other\'s network address. When they cannot, '
+        'Cloudflare relays the encrypted call and sees the network addresses '
+        'of both phones, but not the call itself.',
+  ),
+  LegalSection(
+    'Reporting someone',
+    'If you report someone, MEYA prepares an email in your own email app. '
+        'It contains that person\'s name and MEYA ID, the reason and any '
+        'details you add and, only if you choose, their last messages to you. '
+        'Nothing is sent until you send the email yourself, and it is then '
+        'handled by your email provider and ours like any other email.',
   ),
   LegalSection(
     'What MEYA never collects',
@@ -83,7 +129,7 @@ const privacyPolicy = [
     'MEYA is operated from the United Arab Emirates. Where the UAE Personal '
         'Data Protection Law (Federal Decree-Law No. 45 of 2021) or other laws '
         'apply, you can ask $meyaCompany about the limited information the '
-        'relay handles. Because messages are end-to-end encrypted, we cannot '
+        'relay handles by writing to $meyaPrivacyEmail. Because messages are end-to-end encrypted, we cannot '
         'access or disclose their contents.',
   ),
   LegalSection(
@@ -103,14 +149,17 @@ const termsOfUse = [
   LegalSection(
     'Your account',
     'Your account exists only on your phone and is protected by your '
-        'passcode. There is no password recovery: if you lose your phone or '
-        'passcode, your account and messages cannot be restored.',
+        'passcode. If you forget your passcode, you can reset it on the same '
+        'phone with the recovery code MEYA gave you. If you lose your phone, '
+        'or lose both your passcode and your recovery code, your account and '
+        'messages cannot be restored, because MEYA keeps no copy of them.',
   ),
   LegalSection(
     'What is available',
-    'MEYA is in development, and some features may change. Voice and video '
-        'calls may not be available where local telecom rules do not allow '
-        'them.',
+    'MEYA is in development, and some features may change. Notifications '
+        'while MEYA is closed depend on Google\'s push service and your '
+        'phone\'s settings, and may be delayed or missed. Voice and video calls may not be available where local telecom '
+        'rules do not allow them.',
   ),
   LegalSection(
     'Open source',

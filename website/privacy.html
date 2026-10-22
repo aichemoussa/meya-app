@@ -7,13 +7,13 @@
 <meta name="description" content="What information MEYA handles and why.">
 <meta name="theme-color" content="#044d8c">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site.css?v=2">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="/" aria-label="MEYA home"><span class="logo" aria-hidden="true">M</span>MEYA</a>
+    <a class="brand" href="/" aria-label="MEYA home"><svg class="logo" viewBox="70 70 372 372" aria-hidden="true" focusable="false"><path d="M110.5 401.5L110.5 110.5L206.24 250.62A64.96 64.96 0 1 0 305.76 250.62L401.5 110.5L401.5 401.5" fill="none" stroke="currentColor" stroke-width="57.16" stroke-linecap="round" stroke-linejoin="round"/><circle class="logo-dot" cx="256" cy="292.37" r="19.75"/></svg>MEYA</a>
     <nav aria-label="Main"><a href="/">Home</a><a href="terms.html">Terms</a></nav>
   </div>
 </header>
@@ -30,7 +30,20 @@
     <p>Your name, MEYA ID, About, profile photo, contacts, messages, voice messages, photos, videos, files, status and calendar are stored on your phone. Everything MEYA stores there is encrypted with keys kept in your phone's secure key storage, and it is left out of cloud backups. MEYA has no copy of it.</p>
 
     <h2>What our service providers handle</h2>
-    <p>Messages travel through a relay run on Supabase (our hosting provider). To deliver them it sees a random device ID for each phone, an anonymous sign-in for that phone, the public key that phone signs in with, which device sent an envelope to which device and when, the size of each envelope, and the network (IP) address your phone connects from. Envelope contents are end-to-end encrypted: the relay cannot read messages, media, status, profiles or calls. Envelopes are deleted once the receiving phone confirms delivery. When a call cannot connect directly, Cloudflare relays the encrypted call and sees the network addresses of both phones, but not the call itself.</p>
+    <p>Messages travel through a relay run on Supabase (our hosting provider). To deliver them it sees a random device ID for each phone, an anonymous sign-in for that phone, the public key that phone signs in with, which device sent an envelope to which device and when, the size of each envelope, and the network (IP) address your phone connects from. Envelope contents are end-to-end encrypted: the relay cannot read messages, media, status, profiles or calls. Envelopes are deleted once the receiving phone confirms delivery.</p>
+    <p>When two phones connect, the connection request and its reply pass through the relay before end-to-end encryption starts. They contain a random account ID, the phone's device ID and its public encryption keys, but no name or username. MEYA 1.0.6 and earlier also included the name and username you chose, which the relay could see.</p>
+
+    <h2>Notifications</h2>
+    <p>To alert you when MEYA is closed, MEYA uses Firebase Cloud Messaging, a Google service. When a message, a connection request, a call, a reaction or a new status is waiting for you, the sender's phone marks the envelope with which of these it is (but not what it says), and our server asks Google to wake your phone with an empty notice that names no one and contains nothing. MEYA then shows the notification itself, on your phone. For this, our server keeps your phone's push token, and Google sees that token and when your phone is woken. On a locked phone, the text of notifications is hidden unless you allow it in your phone's settings.</p>
+
+    <h2>Invite links</h2>
+    <p>An invite link lets someone who is not with you connect with you. It contains your random account ID, your device ID, your public encryption key and a one-time code, but not your name. It travels through whichever app you use to send it, so that app's provider can see the link. It works once, expires after 7 days, and connects you as soon as it is opened. Someone who connected with a link was not met in person: compare safety numbers to verify them.</p>
+
+    <h2>Calls</h2>
+    <p>To set up a call, each phone asks a Cloudflare server for its own network (IP) address. When the two phones connect directly, each phone sees the other's network address. When they cannot, Cloudflare relays the encrypted call and sees the network addresses of both phones, but not the call itself.</p>
+
+    <h2>Reporting someone</h2>
+    <p>If you report someone, MEYA prepares an email in your own email app. It contains that person's name and MEYA ID, the reason and any details you add and, only if you choose, their last messages to you. Nothing is sent until you send the email yourself, and it is then handled by your email provider and ours like any other email.</p>
 
     <h2>What MEYA never collects</h2>
     <p>MEYA does not read your address book, has no public directory, shows no advertising, contains no analytics or tracking libraries, and does not sell or share data.</p>
@@ -42,7 +55,7 @@
     <p>You can change your profile at any time, remove a contact, limit how long media is kept, and delete your account from your phone in Settings › Account. Deleting removes everything MEYA stored on that phone. Messages you already sent remain on the phones of the people who received them.</p>
 
     <h2>Data protection law</h2>
-    <p>MEYA is operated from the United Arab Emirates. Where the UAE Personal Data Protection Law (Federal Decree-Law No. 45 of 2021) or other laws apply, you can ask PRIMA ELITE FZ-LLC about the limited information the relay handles. Because messages are end-to-end encrypted, we cannot access or disclose their contents.</p>
+    <p>MEYA is operated from the United Arab Emirates. Where the UAE Personal Data Protection Law (Federal Decree-Law No. 45 of 2021) or other laws apply, you can ask PRIMA ELITE FZ-LLC about the limited information the relay handles by writing to <a href="mailto:app4meya@gmail.com">app4meya@gmail.com</a>. Because messages are end-to-end encrypted, we cannot access or disclose their contents.</p>
 
     <h2>This website</h2>
     <p>This website uses no cookies, no analytics and no third-party fonts or scripts. Our host, Cloudflare, processes your network address to deliver the pages.</p>

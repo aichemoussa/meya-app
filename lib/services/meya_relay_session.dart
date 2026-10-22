@@ -13,9 +13,13 @@ class MeyaRelaySession {
   static final MeyaRelaySession instance = MeyaRelaySession._();
 
   /// Supabase when configured at build time, otherwise the self-hosted relay.
-  final RelayTransport _relay = SupabaseRelayTransport.configured
+  RelayTransport _relay = SupabaseRelayTransport.configured
       ? SupabaseRelayTransport()
       : MeyaRelayService();
+
+  /// Replaces the connection with a stand-in (tests only).
+  @visibleForTesting
+  set transportForTesting(RelayTransport transport) => _relay = transport;
   final Set<void Function(Map<String, dynamic>)> _messageListeners = {};
   final Set<void Function(Object)> _errorListeners = {};
   final Set<void Function()> _doneListeners = {};
@@ -69,6 +73,28 @@ class MeyaRelaySession {
   Future<void> keepConnected() async {
     _keepConnected = true;
     _retryTimer?.cancel();
+    try {
+      await start();
+    } catch (error) {
+      _scheduleReconnect();
+      rethrow;
+    }
+  }
+
+  /// Something is waiting on the relay (a push arrived, or MEYA came back
+  /// to the screen): reconnect and fetch it now. A connection kept open in
+  /// the background can be dead without anything noticing, in which case
+  /// [keepConnected] alone would do nothing, so the connection is renewed.
+  Future<void> wake() async {
+    _keepConnected = true;
+    _retryTimer?.cancel();
+    if (_startFuture == null) {
+      try {
+        await _relay.disconnect();
+      } catch (error) {
+        debugPrint('MEYA relay: closing the old connection failed ($error).');
+      }
+    }
     try {
       await start();
     } catch (error) {

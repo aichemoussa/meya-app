@@ -421,3 +421,7 @@ verify_jwt = false
 
 [functions.turn-credentials]
 verify_jwt = false
+
+# Called only by the database, with a shared secret (see functions/push).
+[functions.push]
+verify_jwt = false

@@ -457,9 +457,7 @@ void main() {
         requestId: exchangeId,
         senderDeviceId: phoneAId,
         identityId: 'identity-local',
-        username: 'local',
         identityPublicKey: 'local-public-key',
-        name: 'Local',
       );
 
       // Phone B receives the request.
@@ -507,8 +505,132 @@ void main() {
       final contact = await contacts.getContactByIdentityId('identity-peer');
       expect(contact, isNotNull);
       expect(contact!.identityPublicKey, 'peer-public-key');
+      // The name only arrives later, inside the encrypted profile.
+      expect(contact.displayName, 'New contact');
       expect((await requests.getRequestById(exchangeId))!.status, 'accepted');
       expect(warnings, isEmpty);
+    });
+  });
+
+  group('no names through the relay', () {
+    const account = Account(
+      accountId: 'identity-peer',
+      identityId: 'identity-peer',
+      meyaId: 'MEYA-2',
+      name: 'Secret Name',
+      username: 'secret-username',
+      createdAt: 't',
+      identityPublicKey: 'peer-public-key',
+      isActive: true,
+    );
+
+    test('a connection request carries no name or username', () {
+      final payload = MeyaPairingService.buildConnectionRequest(
+        requestId: 'req_1',
+        senderDeviceId: localDeviceId,
+        identityId: 'identity-local',
+        identityPublicKey: 'local-public-key',
+      );
+
+      expect(payload.containsKey('sender_name'), isFalse);
+      expect(
+        payload['sender_username'],
+        MeyaPairingService.legacyUsernamePlaceholder,
+      );
+    });
+
+    test('a connection response carries no name or username', () {
+      for (final status in ['accepted', 'declined']) {
+        final payload = MeyaConnectionService.buildConnectionResponse(
+          requestId: 'req_1',
+          status: status,
+          account: account,
+          deviceId: peerDeviceId,
+          preKeyBundle: status == 'accepted' ? 'bundle' : null,
+        );
+        final json = jsonEncode(payload);
+
+        expect(json, isNot(contains('Secret Name')), reason: status);
+        expect(json, isNot(contains('secret-username')), reason: status);
+        expect(payload['name'], '', reason: status);
+        expect(
+          payload['username'],
+          MeyaPairingService.legacyUsernamePlaceholder,
+          reason: status,
+        );
+      }
+    });
+
+    test('older versions still accept the new request and response', () {
+      // MEYA 1.0.6 drops a request without a non-empty sender_username, and
+      // a response without a non-empty username and a string name.
+      final request = MeyaPairingService.buildConnectionRequest(
+        requestId: 'req_1',
+        senderDeviceId: localDeviceId,
+        identityId: 'identity-local',
+        identityPublicKey: 'local-public-key',
+      );
+      expect(request['sender_username'], isNotEmpty);
+
+      final response = MeyaConnectionService.buildConnectionResponse(
+        requestId: 'req_1',
+        status: 'accepted',
+        account: account,
+        deviceId: peerDeviceId,
+        preKeyBundle: 'bundle',
+      );
+      expect(response['username'], isNotEmpty);
+      expect(response['name'], isA<String>());
+    });
+
+    test('names in a response from an older version are ignored', () async {
+      await createOutgoingRequest();
+
+      // acceptedResponse() carries a username and name, as 1.0.6 sends them.
+      await MeyaConnectionService.instance.handleRelayMessage(
+        envelope(senderDeviceId: peerDeviceId, payload: acceptedResponse()),
+      );
+
+      final contact = await contacts.getContactByIdentityId('identity-peer');
+      expect(contact!.displayName, 'New contact');
+    });
+
+    test('reconnecting keeps the name already known for a contact', () async {
+      await contacts.upsertTrustedContact(
+        contactId: 'contact_identity-peer',
+        identityId: 'identity-peer',
+        displayName: 'Grandma',
+        identityPublicKey: 'peer-public-key',
+        updatedAt: 't',
+      );
+      await createOutgoingRequest();
+
+      await MeyaConnectionService.instance.handleRelayMessage(
+        envelope(senderDeviceId: peerDeviceId, payload: acceptedResponse()),
+      );
+
+      final contact = await contacts.getContactByIdentityId('identity-peer');
+      expect(contact!.displayName, 'Grandma');
+    });
+
+    test('names in a request from an older version are not stored', () async {
+      await MeyaConnectionService.instance.handleRelayMessage(
+        envelope(
+          senderDeviceId: peerDeviceId,
+          payload: {
+            'type': 'connection_request',
+            'request_id': 'req_old',
+            'sender_device_id': peerDeviceId,
+            'sender_identity_id': 'identity-peer',
+            'sender_username': 'peer',
+            'sender_name': 'Peer',
+            'sender_identity_public_key': 'peer-public-key',
+          },
+        ),
+      );
+
+      final pending = await requests.getIncomingPendingRequests(localDeviceId);
+      expect(pending.single.senderUsername, isEmpty);
     });
   });
 
@@ -561,7 +683,7 @@ void main() {
         e2ee: e2ee,
         acknowledge: acknowledged.add,
         onSecurityWarning: warnings.add,
-        onIncomingRequest: announced.add,
+        onIncomingRequest: () => announced.add('request'),
       );
 
       final first = request(senderDeviceId: peerDeviceId);

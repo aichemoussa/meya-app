@@ -3,6 +3,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 
 import '../services/device_identity_service.dart';
 import '../services/meya_e2ee.dart';
+import 'invite_share.dart';
 import '../services/meya_relay_session.dart';
 import '../theme/meya_theme.dart';
 import '../l10n/meya_strings.dart';
@@ -56,6 +57,23 @@ class _MeyaQrPageState extends State<MeyaQrPage> {
 
     return 'MEYA|5|${clean(widget.identityId)}|${clean(widget.username)}|'
         '${clean(widget.name)}|${clean(identityKey)}|$deviceId';
+  }
+
+  bool _sharing = false;
+
+  /// Makes a one-time invite link and opens the phone's share sheet.
+  Future<void> _shareInvite() async {
+    setState(() => _sharing = true);
+    try {
+      await shareInviteLinkFor(widget.identityId);
+    } catch (error) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(context.tr('Could not share the link: {0}', [error]))),
+      );
+    } finally {
+      if (mounted) setState(() => _sharing = false);
+    }
   }
 
   Future<void> _connectRelay() async {
@@ -141,6 +159,13 @@ class _MeyaQrPageState extends State<MeyaQrPage> {
                       );
                     },
                   ),
+                ),
+                const SizedBox(height: 18),
+                // Right under the code, so it is seen without scrolling.
+                FilledButton.icon(
+                  onPressed: _sharing ? null : _shareInvite,
+                  icon: const Icon(Icons.share_outlined),
+                  label: Text(context.tr('Share an invite link')),
                 ),
                 const SizedBox(height: 18),
                 _RelayStatus(

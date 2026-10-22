@@ -10,3 +10,11 @@ $MeyaReportEmail = 'reports@example.com'
 
 # Your Supabase project reference, used by tool\set-turn-secrets.ps1.
 $MeyaSupabaseProjectRef = '<project-ref>'
+
+# Wake-up pushes: the Firebase project's Android app values (Firebase console >
+# Project settings > Your apps). They are public identifiers, not secrets.
+# Leave them empty to build without pushes.
+$MeyaFirebaseApiKey = ''
+$MeyaFirebaseAppId = ''
+$MeyaFirebaseSenderId = ''
+$MeyaFirebaseProjectId = ''

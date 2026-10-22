@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.meya.messenger",
+      "sha256_cert_fingerprints": ["2C:C7:95:4E:B7:B3:5E:E2:46:7D:41:E1:54:D5:68:C2:70:2A:0D:C5:E5:B0:4A:65:1A:1B:7E:D6:AC:05:EA:DC"]
+    }
+  }
+]

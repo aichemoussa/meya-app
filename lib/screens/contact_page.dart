@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../database/contact_repository.dart';
 import '../database/meya_database.dart';
 import '../services/meya_e2ee.dart';
+import '../services/meya_invite_service.dart';
 import '../services/meya_profile_service.dart';
+import '../services/safety_number.dart';
 import '../services/meya_status_service.dart';
 import 'calendar_page.dart';
 import 'call_page.dart';
@@ -28,6 +30,9 @@ class _ContactPageState extends State<ContactPage> {
   ContactProfile? _profile;
   MeyaStatus? _status;
 
+  /// Connected by invite link and not yet verified with a safety number.
+  bool _unverifiedLink = false;
+
   MeyaDatabase get database => widget.database;
   Contact get contact => widget.contact;
 
@@ -48,10 +53,14 @@ class _ContactPageState extends State<ContactPage> {
   Future<void> _load() async {
     final profile = await MeyaProfileService.instance.profileOf(contact.contactId);
     final status = await MeyaStatusService.instance.statusOf(contact.contactId);
+    final byLink =
+        await MeyaInviteService.instance.connectedByLink(contact.identityId);
+    final verified = byLink && await SafetyNumber.isVerified(contact);
     if (!mounted) return;
     setState(() {
       _profile = profile;
       _status = status;
+      _unverifiedLink = byLink && !verified;
     });
   }
 
@@ -153,14 +162,23 @@ class _ContactPageState extends State<ContactPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.verified_user_outlined,
-                    size: 18, color: colorScheme.primary),
+                Icon(
+                    _unverifiedLink
+                        ? Icons.link
+                        : Icons.verified_user_outlined,
+                    size: 18,
+                    color: colorScheme.primary),
                 const SizedBox(width: 6),
-                Text(
-                  context.tr('Connected in person with a QR code'),
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: colorScheme.onSurface.withValues(alpha: 0.7),
+                Flexible(
+                  child: Text(
+                    _unverifiedLink
+                        ? context.tr('Connected by link. Not verified in person yet.')
+                        : context.tr('Connected in person with a QR code'),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: colorScheme.onSurface.withValues(alpha: 0.7),
+                    ),
                   ),
                 ),
               ],

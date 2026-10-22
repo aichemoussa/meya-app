@@ -699,3 +699,29 @@ Unabaki na ujumbe ulio tayari kwenye simu hii.
 Utakuwa msimamizi: wewe pekee ndiye unaweza kubadilisha jina la kikundi na kuongeza au kuondoa watu. Wanachama wasiounganishwa wao kwa wao hutambulishwa kupitia wewe.
 {0} wamechaguliwa · badilisha
 Wanachama {0}
+Mwasiliani mpya
+Mtu aliyechanganua msimbo wako wa QR
+Mtu aliyechanganua msimbo wako wa QR anataka kuungana nawe kwenye MEYA.
+Mmeunganishwa. Jina litaonekana mara wasifu utakapofika.
+Ujumbe na mialiko
+Ujumbe mpya
+Mtu anataka kuungana nawe kwenye MEYA. Fungua MEYA ili kuendelea.
+Mtu ameungana nawe kupitia kiungo chako cha mwaliko. Linganisha nambari za usalama ili kumthibitisha.
+Simu ya video inayoingia
+Gusa ili kufungua MEYA.
+Simu iliyopangwa
+Shiriki kiungo cha mwaliko
+Ungana nami kwenye MEYA, programu ya ujumbe ya faragha. Fungua kiungo hiki kwenye simu yako. Kinafanya kazi mara moja tu na kinaisha ndani ya siku 7: {0}
+Imeshindwa kushiriki kiungo: {0}
+Kuungana kwenye MEYA?
+Umefungua kiungo cha mwaliko. Ungana na mtu aliyekituma? Mazungumzo yako yaliyosimbwa yatafunguka mara tu simu yake itakapopokea ombi lako.
+Ungana
+Ombi limetumwa. Mazungumzo yako yataonekana mara tu simu yake itakapolipokea.
+Mmeunganishwa kwa kiungo. Bado hamjathibitishwa ana kwa ana.
+Ameitikia ujumbe wako kwa {0}
+Amechapisha hali mpya
+Shughuli mpya
+Endelea kupokea ujumbe
+Ili ujumbe na simu zikufikie MEYA ikiwa chinichini au simu yako imefungwa, ruhusu MEYA ifanye kazi bila vikwazo vya betri.
+Si sasa
+Ruhusu

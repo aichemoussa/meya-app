@@ -6,8 +6,11 @@ import '../database/account_repository.dart';
 import '../database/connection_request_repository.dart';
 import '../database/contact_repository.dart';
 import '../database/meya_database.dart';
+import '../l10n/meya_strings.dart';
 import 'device_identity_service.dart';
 import 'meya_e2ee.dart';
+import 'meya_invite_service.dart';
+import 'meya_pairing_service.dart';
 import 'meya_relay_service.dart';
 import 'meya_relay_session.dart';
 
@@ -23,13 +26,18 @@ import 'meya_relay_session.dart';
 ///    session from the bundle (libsignal verifies the bundle signatures and
 ///    that its identity equals the pinned one), then sends a first encrypted
 ///    message so B also has the session.
+/// 5. Both share their profile (name, username, photo) over that session.
+///
+/// Requests and responses are not end-to-end encrypted, so they carry no
+/// names: until the profile arrives, the new contact is called "New contact".
+/// Names in requests or responses from older versions are ignored.
 class MeyaConnectionService {
   MeyaConnectionService._();
 
   static final MeyaConnectionService instance = MeyaConnectionService._();
 
   MeyaDatabase? _database;
-  void Function(String username)? _onIncomingRequest;
+  void Function()? _onIncomingRequest;
   void Function(String message)? _onSecurityWarning;
   Future<void> Function(String senderDeviceId, Map<String, dynamic> payload)?
       _onChat;
@@ -41,10 +49,18 @@ class MeyaConnectionService {
       DeviceIdentityService.getDeviceId;
   void Function(String envelopeId) _acknowledge =
       MeyaRelaySession.instance.acknowledge;
+  Future<void> Function(Map<String, dynamic> message) _send =
+      (message) => MeyaRelaySession.instance.sendWhenConnected(message: message);
+  Future<bool> Function(String token) _consumeInvite =
+      MeyaInviteService.instance.consume;
+  Future<void> Function(String identityId) _markConnectedByLink =
+      MeyaInviteService.instance.markConnectedByLink;
+  void Function()? _onConnectedByLink;
 
   void configure({
     required MeyaDatabase database,
-    void Function(String username)? onIncomingRequest,
+    void Function()? onIncomingRequest,
+    void Function()? onConnectedByLink,
     void Function(String message)? onSecurityWarning,
     Future<void> Function(String senderDeviceId, Map<String, dynamic> payload)?
         onChat,
@@ -54,6 +70,7 @@ class MeyaConnectionService {
   }) {
     _database = database;
     _onIncomingRequest = onIncomingRequest;
+    _onConnectedByLink = onConnectedByLink;
     _onSecurityWarning = onSecurityWarning;
     _onChat = onChat;
     _onBlob = onBlob;
@@ -68,16 +85,24 @@ class MeyaConnectionService {
     required Future<String?> Function() localDeviceIdProvider,
     required E2eeOperations e2ee,
     void Function(String envelopeId)? acknowledge,
-    void Function(String username)? onIncomingRequest,
+    void Function()? onIncomingRequest,
+    void Function()? onConnectedByLink,
     void Function(String message)? onSecurityWarning,
     Future<void> Function(String senderDeviceId, Map<String, dynamic> payload)?
         onChat,
     Future<void> Function(String deviceId)? onSessionStarted,
+    Future<void> Function(Map<String, dynamic> message)? send,
+    Future<bool> Function(String token)? consumeInvite,
+    Future<void> Function(String identityId)? markConnectedByLink,
   }) {
     _database = database;
     _localDeviceIdProvider = localDeviceIdProvider;
     _e2ee = e2ee;
     _acknowledge = acknowledge ?? (_) {};
+    _send = send ?? (_) async {};
+    _consumeInvite = consumeInvite ?? (_) async => false;
+    _markConnectedByLink = markConnectedByLink ?? (_) async {};
+    _onConnectedByLink = onConnectedByLink;
     _onIncomingRequest = onIncomingRequest;
     _onSecurityWarning = onSecurityWarning;
     _onChat = onChat;
@@ -144,18 +169,14 @@ class MeyaConnectionService {
     final requestId = payload['request_id'];
     final senderIdentityId = payload['sender_identity_id'];
     final senderDeviceId = payload['sender_device_id'];
-    final senderUsername = payload['sender_username'];
-    final senderName = payload['sender_name'];
     final senderIdentityPublicKey = payload['sender_identity_public_key'];
 
     if (requestId is! String ||
         senderIdentityId is! String ||
         senderDeviceId is! String ||
-        senderUsername is! String ||
         senderIdentityPublicKey is! String ||
         requestId.isEmpty ||
         senderIdentityId.isEmpty ||
-        senderUsername.isEmpty ||
         senderIdentityPublicKey.isEmpty) {
       return;
     }
@@ -176,7 +197,8 @@ class MeyaConnectionService {
       requestId: requestId,
       senderIdentityId: senderIdentityId,
       senderDeviceId: senderDeviceId,
-      senderUsername: senderUsername,
+      // Unknown until their encrypted profile arrives.
+      senderUsername: '',
       senderIdentityPublicKey: senderIdentityPublicKey,
       recipientDeviceId: localDeviceId,
       createdAt: DateTime.now().toUtc().toIso8601String(),
@@ -188,11 +210,22 @@ class MeyaConnectionService {
       return;
     }
 
-    _onIncomingRequest?.call(
-      senderName is String && senderName.trim().isNotEmpty
-          ? senderName.trim()
-          : '@$senderUsername',
-    );
+    // Someone used one of this phone's invite links: the person who made
+    // the link already agreed, so accept at once. An unknown, used or
+    // expired token leaves a normal invitation to accept by hand.
+    final inviteToken = payload['invite_token'];
+    if (inviteToken is String && await _consumeInvite(inviteToken)) {
+      try {
+        await acceptRequest(requestId);
+        await _markConnectedByLink(senderIdentityId);
+        _onConnectedByLink?.call();
+        return;
+      } catch (error) {
+        debugPrint('MEYA connection: invite could not be accepted ($error).');
+      }
+    }
+
+    _onIncomingRequest?.call();
   }
 
   Future<void> _handleConnectionResponse(
@@ -233,17 +266,12 @@ class MeyaConnectionService {
     }
 
     final identityId = payload['identity_id'];
-    final username = payload['username'];
-    final name = payload['name'];
     final publicKey = payload['identity_public_key'];
     final bundle = payload['pre_key_bundle'];
 
     if (identityId is! String ||
-        username is! String ||
-        name is! String ||
         publicKey is! String ||
         identityId.isEmpty ||
-        username.isEmpty ||
         publicKey.isEmpty) {
       return;
     }
@@ -260,14 +288,14 @@ class MeyaConnectionService {
         expectedPublicKey.isEmpty) {
       _warn(
         'This connection request was created by an older version of MEYA. '
-        'Scan the QR code of @$username again.',
+        'Scan the QR code again.',
       );
       return;
     }
 
     if (identityId != expectedIdentityId || publicKey != expectedPublicKey) {
       _warn(
-        'The reply from @$username does not match the QR code you scanned. '
+        'The reply does not match the QR code you scanned. '
         'The connection was not trusted.',
       );
       return;
@@ -275,7 +303,7 @@ class MeyaConnectionService {
 
     if (bundle is! String || bundle.isEmpty) {
       _warn(
-        '@$username uses an older version of MEYA without encrypted messaging. '
+        'This person uses an older version of MEYA without encrypted messaging. '
         'Ask them to update MEYA, then connect again.',
       );
       return;
@@ -287,7 +315,7 @@ class MeyaConnectionService {
       await _e2ee.startSession(envelopeSenderDeviceId, bundle);
     } catch (error) {
       _warn(
-        'A secure session with @$username could not be established. '
+        'A secure session could not be established. '
         'The connection was not trusted.',
       );
       debugPrint('MEYA connection: session setup failed ($error).');
@@ -301,7 +329,7 @@ class MeyaConnectionService {
         await contacts.upsertTrustedContact(
           contactId: contactId,
           identityId: identityId,
-          displayName: name.trim().isEmpty ? '@$username' : name.trim(),
+          displayName: await _displayNameFor(contacts, identityId),
           identityPublicKey: publicKey,
           updatedAt: DateTime.now().toUtc().toIso8601String(),
         );
@@ -314,7 +342,7 @@ class MeyaConnectionService {
       });
     } on IdentityKeyChangedException {
       _warn(
-        'The identity key of @$username has changed. The connection was not '
+        'The identity key of this contact has changed. The connection was not '
         'trusted. Verify this person again in person.',
       );
       return;
@@ -325,6 +353,17 @@ class MeyaConnectionService {
     } catch (error) {
       debugPrint('MEYA connection: first encrypted message failed ($error).');
     }
+  }
+
+  /// The name to keep for a contact being (re)connected: the one already
+  /// known, or "New contact" until their encrypted profile arrives.
+  Future<String> _displayNameFor(
+    ContactRepository contacts,
+    String identityId,
+  ) async {
+    final existing = await contacts.getContactByIdentityId(identityId);
+    final known = existing?.displayName.trim() ?? '';
+    return known.isNotEmpty ? known : tr('New contact');
   }
 
   void _warn(String message) {
@@ -372,7 +411,7 @@ class MeyaConnectionService {
       await contacts.upsertTrustedContact(
         contactId: contactId,
         identityId: request.senderIdentityId,
-        displayName: request.senderUsername,
+        displayName: await _displayNameFor(contacts, request.senderIdentityId),
         identityPublicKey: request.senderIdentityPublicKey,
         updatedAt: now,
       );
@@ -443,17 +482,15 @@ class MeyaConnectionService {
     final bytes = utf8.encode(jsonEncode(payload));
     final envelopeId = '${deviceId}_${requestId}_${payload['status']}';
 
-    await MeyaRelaySession.instance.sendWhenConnected(
-      message: {
-        'type': 'Send',
-        'envelope': {
-          'id': envelopeId,
-          'sender_device_id': deviceId,
-          'recipient_device_id': recipientDeviceId,
-          'payload': base64Encode(bytes),
-        },
+    await _send({
+      'type': 'Send',
+      'envelope': {
+        'id': envelopeId,
+        'sender_device_id': deviceId,
+        'recipient_device_id': recipientDeviceId,
+        'payload': base64Encode(bytes),
       },
-    );
+    });
   }
 
   @visibleForTesting
@@ -470,8 +507,9 @@ class MeyaConnectionService {
       'request_id': requestId,
       'status': status,
       'identity_id': account.identityId ?? account.accountId,
-      'username': account.username,
-      'name': account.name,
+      // No name or username: see MeyaPairingService.legacyUsernamePlaceholder.
+      'username': MeyaPairingService.legacyUsernamePlaceholder,
+      'name': '',
       'identity_public_key': identityPublicKey ?? account.identityPublicKey,
       'device_id': deviceId,
       'pre_key_bundle': ?preKeyBundle,

@@ -13,6 +13,7 @@ import '../database/meya_database.dart';
 import '../l10n/meya_strings.dart';
 import '../services/meya_group_service.dart';
 import '../services/meya_message_service.dart';
+import '../services/meya_notifications.dart';
 import '../theme/meya_theme.dart';
 import 'chat_page.dart';
 import 'media_widgets.dart';
@@ -404,6 +405,7 @@ class _GroupChatPageState extends State<GroupChatPage> {
   void initState() {
     super.initState();
     _service.activeConversationId = _conversationId;
+    unawaited(MeyaNotifications.instance.clearConversation(_conversationId));
     _subscriptions
       ..add(_service.changes.listen((id) {
         if (id == _conversationId) _reload();

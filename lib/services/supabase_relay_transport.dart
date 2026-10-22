@@ -26,6 +26,9 @@ class SupabaseRelayTransport implements RelayTransport {
 
   static bool _initialized = false;
 
+  /// Set once the server turns out not to have the `notify` column yet.
+  static bool _noNotifyColumn = false;
+
   RealtimeChannel? _channel;
   String? _deviceId;
   bool _connected = false;
@@ -44,6 +47,44 @@ class SupabaseRelayTransport implements RelayTransport {
   @override
   bool get isConnected => _connected;
 
+  /// Saves this phone's push token, so the server can wake it with an empty
+  /// push when something it should see arrives.
+  static Future<void> registerPushToken(String deviceId, String token) async {
+    await _ensureInitialized();
+    if (Supabase.instance.client.auth.currentSession == null) return;
+    await Supabase.instance.client.from('push_tokens').upsert({
+      'device_id': deviceId,
+      'token': token,
+      'updated_at': DateTime.now().toUtc().toIso8601String(),
+    });
+  }
+
+  /// For a push received while MEYA is closed: the waiting envelopes that
+  /// should alert, as (envelope ID, sender device ID, 'message' | 'invite' |
+  /// 'call'). Nothing is decrypted, handled or deleted here; MEYA does that
+  /// when it opens.
+  static Future<List<(String, String, String)>> pendingAlerts(
+    String deviceId,
+  ) async {
+    await _ensureInitialized();
+    if (Supabase.instance.client.auth.currentSession == null) return const [];
+    final rows = await Supabase.instance.client
+        .from('envelopes')
+        .select('id, sender_device_id, notify')
+        .eq('recipient_device_id', deviceId)
+        .not('notify', 'is', null)
+        .order('created_at')
+        .limit(50);
+    return [
+      for (final row in rows)
+        (
+          row['id'] as String,
+          row['sender_device_id'] as String,
+          row['notify'] as String,
+        ),
+    ];
+  }
+
   static Future<void> _ensureInitialized() async {
     if (_initialized) return;
     await Supabase.initialize(
@@ -52,6 +93,11 @@ class SupabaseRelayTransport implements RelayTransport {
       authOptions: const FlutterAuthClientOptions(
         localStorage: _SecureSessionStorage(),
       ),
+      // By default Supabase closes the live connection as soon as MEYA goes
+      // to the background, so nothing arrives (and nothing can be notified)
+      // until it is opened again. Keep it open until the phone itself
+      // closes it; MeyaRelaySession reconnects when MEYA resumes.
+      realtimeLifecycleOptions: const RealtimeLifecycleOptions.manual(),
     );
     _initialized = true;
   }
@@ -197,12 +243,25 @@ class SupabaseRelayTransport implements RelayTransport {
       case 'Send':
         final envelope = message['envelope'] as Map<String, dynamic>;
         try {
-          await _client.from('envelopes').insert({
+          final notify = envelope['notify'];
+          final row = {
             'id': envelope['id'],
             'sender_device_id': envelope['sender_device_id'],
             'recipient_device_id': envelope['recipient_device_id'],
             'payload': envelope['payload'],
-          });
+          };
+          try {
+            await _client.from('envelopes').insert({
+              ...row,
+              if (notify is String && !_noNotifyColumn) 'notify': notify,
+            });
+          } on PostgrestException catch (error) {
+            // A server without wake-up pushes yet has no `notify` column:
+            // send without it rather than failing the message.
+            if (error.code != 'PGRST204') rethrow;
+            _noNotifyColumn = true;
+            await _client.from('envelopes').insert(row);
+          }
         } on PostgrestException catch (error) {
           // Already waiting for the recipient (a retry): nothing to do.
           if (error.code != '23505') rethrow;

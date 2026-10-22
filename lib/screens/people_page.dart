@@ -5,6 +5,7 @@ import '../database/contact_repository.dart';
 import '../database/meya_database.dart';
 import 'contact_avatar.dart';
 import 'contact_page.dart';
+import 'invite_share.dart';
 import 'qr_scanner_page.dart';
 import '../l10n/meya_strings.dart';
 
@@ -166,6 +167,16 @@ class _PeoplePageState extends State<PeoplePage> {
                     );
 
                     await _loadContacts();
+                  },
+                ),
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: const Icon(Icons.share_outlined),
+                  title: Text(context.tr('Share an invite link')),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () {
+                    Navigator.pop(sheetContext);
+                    shareInviteLink(context, widget.database);
                   },
                 ),
               ],

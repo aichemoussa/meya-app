@@ -13,6 +13,7 @@ import '../database/contact_repository.dart';
 import '../database/meya_database.dart';
 import '../database/message_repository.dart';
 import '../services/meya_message_service.dart';
+import '../services/meya_notifications.dart';
 import '../services/safety_number.dart';
 import 'calendar_page.dart';
 import 'call_page.dart';
@@ -84,6 +85,7 @@ class _ChatPageState extends State<ChatPage> {
   void initState() {
     super.initState();
     _service.activeConversationId = _conversationId;
+    unawaited(MeyaNotifications.instance.clearConversation(_conversationId));
     _subscription = _service.changes.listen((conversationId) {
       if (conversationId == _conversationId) _reload();
     });

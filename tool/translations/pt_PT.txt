@@ -699,3 +699,29 @@ Mantém as mensagens que já estão neste telemóvel.
 Vai ser o admin: só o próprio pode mudar o nome do grupo e adicionar ou remover pessoas. Os membros que não estão ligados entre si são apresentados através de si.
 {0} escolhidos · alterar
 {0} membros
+Novo contacto
+Alguém que leu o seu código QR
+Alguém que leu o seu código QR quer ligar-se a si no MEYA.
+Ligado. O nome aparece assim que o perfil chegar.
+Mensagens e convites
+Nova mensagem
+Alguém quer ligar-se a si no MEYA. Abra o MEYA para continuar.
+Alguém se ligou com o seu link de convite. Compare os números de segurança para o verificar.
+Videochamada recebida
+Toque para abrir o MEYA.
+Chamada agendada
+Partilhar um link de convite
+Ligue-se a mim no MEYA, um serviço de mensagens privado. Abra este link no seu telemóvel. Funciona uma vez e expira dentro de 7 dias: {0}
+Não foi possível partilhar o link: {0}
+Ligar-se no MEYA?
+Abriu um link de convite. Ligar-se à pessoa que o enviou? A sua conversa encriptada abre assim que o telemóvel dela receber o seu pedido.
+Ligar
+Pedido enviado. A sua conversa aparece assim que o telemóvel da pessoa o receber.
+Ligado por link. Ainda não verificado pessoalmente.
+Reagiu {0} à sua mensagem
+Publicou um novo estado
+Nova atividade
+Continue a receber mensagens
+Para que as mensagens e chamadas lhe cheguem quando o MEYA estiver em segundo plano ou o telemóvel bloqueado, permita que o MEYA funcione sem restrições de bateria.
+Agora não
+Permitir

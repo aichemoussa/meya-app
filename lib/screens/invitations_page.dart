@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../database/connection_request_repository.dart';
 import '../database/meya_database.dart';
 import '../services/meya_connection_service.dart';
+import '../services/meya_pairing_service.dart';
 import '../services/device_identity_service.dart';
 import '../l10n/meya_strings.dart';
 
@@ -57,7 +58,7 @@ class _InvitationsPageState extends State<InvitationsPage> {
       });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(context.tr('{0} is now a MEYA contact.', [request.senderUsername])),
+          content: Text(context.tr('Connected. Their name appears as soon as their profile arrives.')),
         ),
       );
     } catch (error) {
@@ -129,7 +130,14 @@ class _InvitationsPageState extends State<InvitationsPage> {
                   itemBuilder: (context, index) {
                     final request = _requests[index];
                     final busy = _busy.contains(request.requestId);
-                    final displayName = request.senderUsername;
+                    // Requests carry no name (they are not end-to-end
+                    // encrypted). Only requests saved by older versions
+                    // may still have one.
+                    final stored = request.senderUsername.trim();
+                    final displayName = stored.isEmpty ||
+                            stored == MeyaPairingService.legacyUsernamePlaceholder
+                        ? context.tr('Someone who scanned your QR code')
+                        : stored;
 
                     return Card(
                       child: Padding(

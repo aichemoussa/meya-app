@@ -36,10 +36,12 @@ iPhone builds. These are planned, and will be listed here when they are ready.
 - **End-to-end encrypted.** Messages, voice messages, media, statuses, profiles,
   calendar invitations and calls are encrypted on your phone and opened only on
   the recipient's phone. MEYA's servers cannot read them.
-- **Proven building blocks.** MEYA does not invent its own cryptography. It is
-  built on the open-source [libsignal](https://github.com/signalapp/libsignal)
-  library from the Signal project, and on the encryption built into WebRTC for
-  calls. MEYA is not affiliated with or endorsed by Signal.
+- **Proven building blocks.** MEYA does not invent new cryptographic
+  algorithms or protocols. Messages use the open-source
+  [libsignal](https://github.com/signalapp/libsignal) library from the Signal
+  project, and calls use the encryption built into WebRTC. MEYA's own code
+  around them has not yet had an independent security review. MEYA is not
+  affiliated with or endorsed by Signal.
 - **Encrypted on the phone.** The app's database, messages and media are
   encrypted with keys kept in the phone's secure key storage, and MEYA's data is
   left out of cloud backups.

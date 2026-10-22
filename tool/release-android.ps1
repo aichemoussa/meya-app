@@ -59,7 +59,11 @@ if ($LASTEXITCODE -ne 0) {
 flutter build apk --release --target-platform android-arm,android-arm64 `
   "--dart-define=MEYA_SUPABASE_URL=$MeyaSupabaseUrl" `
   "--dart-define=MEYA_SUPABASE_KEY=$MeyaSupabaseKey" `
-  "--dart-define=MEYA_REPORT_EMAIL=$MeyaReportEmail"
+  "--dart-define=MEYA_REPORT_EMAIL=$MeyaReportEmail" `
+  "--dart-define=MEYA_FIREBASE_API_KEY=$MeyaFirebaseApiKey" `
+  "--dart-define=MEYA_FIREBASE_APP_ID=$MeyaFirebaseAppId" `
+  "--dart-define=MEYA_FIREBASE_SENDER_ID=$MeyaFirebaseSenderId" `
+  "--dart-define=MEYA_FIREBASE_PROJECT_ID=$MeyaFirebaseProjectId"
 if ($LASTEXITCODE -ne 0) { Write-Host 'The build failed. Nothing was published.'; exit 1 }
 
 New-Item -ItemType Directory -Force 'build\release' | Out-Null

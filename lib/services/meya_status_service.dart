@@ -119,6 +119,13 @@ class MeyaStatusService {
 
   Stream<void> get changes => _changes.stream;
 
+  final StreamController<Contact> _posted = StreamController.broadcast();
+  final Set<String> _announced = {};
+
+  /// Emits the contact once for each new status they share, for phone
+  /// notifications.
+  Stream<Contact> get posted => _posted.stream;
+
   void configure({required MeyaDatabase database}) {
     _database = database;
   }
@@ -337,6 +344,9 @@ class MeyaStatusService {
     );
     await _writeSealed(file, stored.toJson(), 'status-${contact.contactId}');
     _changes.add(null);
+    if (_announced.add('${contact.contactId}/${status.statusId}')) {
+      _posted.add(contact);
+    }
   }
 
   /// Current statuses from contacts, newest first.

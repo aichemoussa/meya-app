@@ -1,13 +1,9 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
-import '../database/connection_request_repository.dart';
 import '../database/meya_database.dart';
-import '../services/device_identity_service.dart';
-import '../services/meya_e2ee.dart';
 import '../services/meya_pairing_service.dart';
 import '../theme/meya_theme.dart';
 import '../l10n/meya_strings.dart';
@@ -28,13 +24,6 @@ class _MeyaQrScannerPageState extends State<MeyaQrScannerPage> {
 
   bool _handled = false;
   bool _importingImage = false;
-
-  Future<Account?> _getLocalAccount() async {
-    return (widget.database.select(widget.database.accounts)
-          ..where((account) => account.isActive.equals(true))
-          ..limit(1))
-        .getSingleOrNull();
-  }
 
   Future<void> _importQrImage() async {
     if (_handled || _importingImage) {
@@ -146,118 +135,16 @@ class _MeyaQrScannerPageState extends State<MeyaQrScannerPage> {
       return;
     }
 
-    final localAccount = await _getLocalAccount();
-
-    if (localAccount == null) {
-      if (!mounted) {
-        return;
-      }
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(context.tr('Your MEYA account is not available on this device.')),
-        ),
-      );
-
-      return;
-    }
-
-    final localIdentityId = localAccount.identityId;
-    final localUsername = localAccount.username;
-    final String localIdentityPublicKey;
-    try {
-      localIdentityPublicKey = await MeyaE2ee.instance.open();
-    } catch (error) {
-      if (!mounted) {
-        return;
-      }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.tr('MEYA encryption could not start: {0}', [error]))),
-      );
-      return;
-    }
-
-    if (localIdentityId == null ||
-        localIdentityId.isEmpty ||
-        localUsername.isEmpty ||
-        localIdentityPublicKey.isEmpty) {
-      if (!mounted) {
-        return;
-      }
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.tr('Your MEYA identity is not ready yet.'))),
-      );
-
-      return;
-    }
-
-    final senderDeviceId = await DeviceIdentityService.getDeviceId();
-
-    if (senderDeviceId == null || senderDeviceId.isEmpty) {
-      if (!mounted) {
-        return;
-      }
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(context.tr('Your MEYA device identity is not available.')),
-        ),
-      );
-
-      return;
-    }
-
-    if (senderDeviceId == recipientDeviceId) {
-      if (!mounted) {
-        return;
-      }
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(context.tr('You cannot send a connection request to this device.')),
-        ),
-      );
-
-      return;
-    }
-
     _handled = true;
 
-    // A fresh ID for every scan. A fixed ID (device + identity) collided with
-    // the earlier, already accepted connection between the same two people,
-    // so a new scan was silently ignored by the other phone and the relay.
-    final random = Random.secure();
-    final requestId = 'req_${List<int>.generate(16, (_) => random.nextInt(256)).map((b) => b.toRadixString(16).padLeft(2, '0')).join()}';
-
-    final repository = ConnectionRequestRepository(widget.database);
-
     try {
-      // Trust exactly the identity key shown in this QR code for that device.
-      // Fails if a different key was trusted for it before.
-      await MeyaE2ee.instance.pinIdentity(recipientDeviceId, identityPublicKey);
-
-      await repository.createOutgoingRequest(
-        requestId: requestId,
-        senderIdentityId: localIdentityId,
-        senderDeviceId: senderDeviceId,
-        senderUsername: localUsername,
-        senderIdentityPublicKey: localIdentityPublicKey,
-        recipientDeviceId: recipientDeviceId,
+      await MeyaPairingService.instance.startConnection(
+        database: widget.database,
         recipientIdentityId: identityId,
         recipientIdentityPublicKey: identityPublicKey,
-        createdAt: DateTime.now().toUtc().toIso8601String(),
-      );
-
-      await MeyaPairingService.instance.sendConnectionRequest(
-        requestId: requestId,
         recipientDeviceId: recipientDeviceId,
-        identityId: localIdentityId,
-        username: localUsername,
-        identityPublicKey: localIdentityPublicKey,
-        name: localAccount.name,
       );
-    } catch (error) {
+    } on PairingException catch (error) {
       _handled = false;
 
       if (!mounted) {
@@ -265,7 +152,9 @@ class _MeyaQrScannerPageState extends State<MeyaQrScannerPage> {
       }
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.tr('Could not send connection request: {0}', [error]))),
+        SnackBar(
+          content: Text(context.tr(error.message, [?error.detail])),
+        ),
       );
 
       return;

@@ -699,3 +699,29 @@ Vous gardez les messages déjà présents sur ce téléphone.
 Vous serez l'admin : vous seul pourrez renommer le groupe et ajouter ou retirer des personnes. Les membres qui ne sont pas connectés entre eux sont présentés par vous.
 {0} choisis · modifier
 {0} membres
+Nouveau contact
+Une personne qui a scanné votre code QR
+Une personne qui a scanné votre code QR souhaite se connecter avec vous sur MEYA.
+Connecté. Son nom apparaîtra dès que son profil arrivera.
+Messages et invitations
+Nouveau message
+Quelqu’un souhaite se connecter avec vous sur MEYA. Ouvrez MEYA pour continuer.
+Quelqu’un s’est connecté avec votre lien d’invitation. Comparez les numéros de sécurité pour le vérifier.
+Appel vidéo entrant
+Touchez pour ouvrir MEYA.
+Appel planifié
+Partager un lien d’invitation
+Connectez-vous avec moi sur MEYA, une messagerie privée. Ouvrez ce lien sur votre téléphone. Il ne fonctionne qu’une fois et expire dans 7 jours : {0}
+Impossible de partager le lien : {0}
+Se connecter sur MEYA ?
+Vous avez ouvert un lien d’invitation. Se connecter avec la personne qui l’a envoyé ? Votre discussion chiffrée s’ouvre dès que son téléphone reçoit votre demande.
+Se connecter
+Demande envoyée. Votre discussion apparaît dès que son téléphone la reçoit.
+Connecté par lien. Pas encore vérifié en personne.
+A réagi {0} à votre message
+A publié un nouveau statut
+Nouvelle activité
+Continuer à recevoir les messages
+Pour que les messages et les appels vous parviennent quand MEYA est en arrière-plan ou que votre téléphone est verrouillé, autorisez MEYA à fonctionner sans restriction de batterie.
+Pas maintenant
+Autoriser

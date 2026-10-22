@@ -699,3 +699,29 @@ Você mantém as mensagens que já estão neste celular.
 Você será o admin: só você pode renomear o grupo e adicionar ou remover pessoas. Membros que não estão conectados entre si são apresentados por você.
 {0} escolhidos · alterar
 {0} membros
+Novo contato
+Alguém que escaneou seu código QR
+Alguém que escaneou seu código QR quer se conectar com você no MEYA.
+Conectado. O nome aparece assim que o perfil chegar.
+Mensagens e convites
+Nova mensagem
+Alguém quer se conectar com você no MEYA. Abra o MEYA para continuar.
+Alguém se conectou pelo seu link de convite. Compare os números de segurança para verificar.
+Chamada de vídeo recebida
+Toque para abrir o MEYA.
+Chamada agendada
+Compartilhar um link de convite
+Conecte-se comigo no MEYA, um mensageiro privado. Abra este link no seu celular. Ele funciona uma vez e expira em 7 dias: {0}
+Não foi possível compartilhar o link: {0}
+Conectar no MEYA?
+Você abriu um link de convite. Conectar com a pessoa que o enviou? Sua conversa criptografada abre assim que o celular dela receber seu pedido.
+Conectar
+Pedido enviado. Sua conversa aparece assim que o celular da pessoa recebê-lo.
+Conectado por link. Ainda não verificado pessoalmente.
+Reagiu {0} à sua mensagem
+Publicou um novo status
+Nova atividade
+Continue recebendo mensagens
+Para que mensagens e chamadas cheguem até você quando o MEYA estiver em segundo plano ou o celular estiver bloqueado, permita que o MEYA funcione sem restrições de bateria.
+Agora não
+Permitir

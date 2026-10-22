@@ -2,13 +2,17 @@ import 'screens/groups_page.dart';
 import 'screens/qr_scanner_page.dart';
 import 'screens/people_page.dart';
 import 'screens/invitations_page.dart';
+import 'screens/invite_share.dart';
 
 import 'dart:async';
 import 'dart:io';
 
+import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'bridge/frb_generated.dart';
 import 'database/account_repository.dart';
@@ -36,7 +40,11 @@ import 'l10n/meya_strings.dart';
 import 'services/meya_account_storage.dart';
 import 'services/meya_call_service.dart';
 import 'services/meya_calendar_service.dart';
+import 'services/meya_invite_service.dart';
 import 'services/meya_media_settings.dart';
+import 'services/meya_notifications.dart';
+import 'services/meya_pairing_service.dart';
+import 'services/meya_push_service.dart';
 import 'services/meya_profile_service.dart';
 import 'services/meya_group_service.dart';
 import 'services/meya_sound_settings.dart';
@@ -662,6 +670,7 @@ class _SpacePageState extends State<SpacePage>
     MeyaConnectionService.instance.configure(
       database: widget.database,
       onIncomingRequest: _showIncomingRequestNotification,
+      onConnectedByLink: _showConnectedByLink,
       onSecurityWarning: _showSecurityWarning,
       onChat: messages.handleIncoming,
       onBlob: messages.handleBlobChunk,
@@ -675,17 +684,203 @@ class _SpacePageState extends State<SpacePage>
     _subscriptions
       ..add(MeyaCalendarService.instance.changes.listen((_) => _loadOverview()))
       ..add(MeyaStatusService.instance.changes.listen((_) => _loadOverview()))
-      ..add(messages.received.listen((conversationId) async {
+      ..add(messages.incoming.listen((message) async {
         if (MeyaCallService.instance.inCall) return;
-        if (conversationId == messages.activeConversationId) return;
-        if (await messages.isMuted(conversationId)) return;
-        MeyaSoundSettings.instance.playNotification();
+        final onScreen = WidgetsBinding.instance.lifecycleState ==
+            AppLifecycleState.resumed;
+        if (onScreen && message.conversationId == messages.activeConversationId) {
+          return;
+        }
+        if (await messages.isMuted(message.conversationId)) return;
+        final notifications = MeyaNotifications.instance;
+        if (await notifications.enabled()) {
+          // The phone plays the chosen sound and vibrates.
+          await notifications.showMessage(
+            conversationId: message.conversationId,
+            title: message.title,
+            body: message.body,
+          );
+        } else {
+          // Notifications are switched off for MEYA: sound and buzz here.
+          MeyaSoundSettings.instance.playNotification();
+          unawaited(HapticFeedback.vibrate());
+        }
       }));
+    _subscriptions.add(
+      MeyaStatusService.instance.posted.listen((contact) async {
+        if (MeyaCallService.instance.inCall) return;
+        final conversationId = 'direct_${contact.contactId}';
+        if (await messages.isMuted(conversationId)) return;
+        await MeyaNotifications.instance.showStatus(contact.displayName);
+      }),
+    );
+    calls.addListener(_onCallChanged);
 
+    unawaited(_startNotifications());
+    unawaited(MeyaPushService.instance.start(
+      // A push while this screen is up: reconnect and fetch as usual.
+      onWake: () => unawaited(_relaySession.wake().catchError(
+        (Object error) => debugPrint('MEYA push: reconnect failed ($error).'),
+      )),
+    ));
+    unawaited(_startInviteLinks());
     unawaited(_startRelaySession());
     unawaited(MeyaMediaSettings.instance.applyKeepMedia());
     _loadOverview();
     WidgetsBinding.instance.addPostFrameCallback((_) => _offerRecoveryCode());
+  }
+
+  /// Invite links already handled in this run (the launch link is offered
+  /// again whenever this screen is rebuilt, e.g. after the app lock).
+  static final Set<String> _handledInvites = {};
+
+  Future<void> _startInviteLinks() async {
+    final links = AppLinks();
+    _subscriptions.add(
+      links.uriLinkStream.listen((uri) => _openInvite(uri.toString())),
+    );
+    try {
+      final initial = await links.getInitialLink();
+      if (initial != null) await _openInvite(initial.toString());
+    } catch (error) {
+      debugPrint('MEYA invite: launch link unavailable ($error).');
+    }
+  }
+
+  /// Connects with the person who sent an invite link, after asking.
+  Future<void> _openInvite(String link) async {
+    final invite = MeyaInviteService.parse(link);
+    if (invite == null || !mounted) return;
+    if (!_handledInvites.add(invite.token)) return;
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(dialogContext.tr('Connect on MEYA?')),
+        content: Text(dialogContext.tr(
+          'You opened an invite link. Connect with the person who sent it? Your encrypted chat opens as soon as their phone receives your request.',
+        )),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: Text(dialogContext.tr('Cancel')),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(dialogContext, true),
+            child: Text(dialogContext.tr('Connect')),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+
+    final messenger = meyaScaffoldMessengerKey.currentState;
+    try {
+      await MeyaPairingService.instance.startConnection(
+        database: widget.database,
+        recipientIdentityId: invite.identityId,
+        recipientIdentityPublicKey: invite.identityPublicKey,
+        recipientDeviceId: invite.deviceId,
+        inviteToken: invite.token,
+      );
+      await MeyaInviteService.instance.markConnectedByLink(invite.identityId);
+      messenger?.showSnackBar(SnackBar(
+        content: Text(tr('Request sent. Your chat appears as soon as their phone receives it.')),
+      ));
+    } on PairingException catch (error) {
+      messenger?.showSnackBar(SnackBar(
+        content: Text(tr(error.message, [?error.detail])),
+      ));
+    }
+  }
+
+  void _showConnectedByLink() {
+    unawaited(MeyaNotifications.instance.showConnectedByLink());
+    meyaScaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
+      content: Text(tr('Someone connected with your invite link. Compare safety numbers to verify them.')),
+    ));
+  }
+
+  Future<void> _startNotifications() async {
+    final notifications = MeyaNotifications.instance
+      ..onOpen = _openFromNotification;
+    final launchedWith = await notifications.init();
+    await notifications.requestPermission();
+    if (launchedWith != null) _openFromNotification(launchedWith);
+    await _askToStayAwake();
+  }
+
+  static const _battery = MethodChannel('meya/battery');
+  static const _batteryAskedKey = 'meya_battery_asked_at';
+
+  /// Android puts apps to sleep to save battery, which cuts MEYA's
+  /// connection: messages and calls then wait until MEYA is opened. Asks
+  /// (at most every 3 days) to be left out, through Android's own dialog.
+  Future<void> _askToStayAwake() async {
+    if (!Platform.isAndroid) return;
+    try {
+      if (await _battery.invokeMethod<bool>('isExempt') == true) return;
+      final preferences = await SharedPreferences.getInstance();
+      final askedAt = preferences.getInt(_batteryAskedKey) ?? 0;
+      final now = DateTime.now().millisecondsSinceEpoch;
+      if (now - askedAt < const Duration(days: 3).inMilliseconds) return;
+      await preferences.setInt(_batteryAskedKey, now);
+      if (!mounted) return;
+      final allow = await showDialog<bool>(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: Text(dialogContext.tr('Keep messages coming')),
+          content: Text(dialogContext.tr(
+            'So that messages and calls reach you while MEYA is in the background or your phone is locked, allow MEYA to run without battery restrictions.',
+          )),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext, false),
+              child: Text(dialogContext.tr('Not now')),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(dialogContext, true),
+              child: Text(dialogContext.tr('Allow')),
+            ),
+          ],
+        ),
+      );
+      if (allow == true) await _battery.invokeMethod<bool>('requestExemption');
+    } catch (error) {
+      debugPrint('MEYA battery: could not ask ($error).');
+    }
+  }
+
+  /// Opens what a tapped notification is about.
+  Future<void> _openFromNotification(String payload) async {
+    final navigator = meyaNavigatorKey.currentState;
+    if (navigator == null) return;
+    if (payload == MeyaNotifications.invitationsPayload) {
+      navigator.push(MaterialPageRoute<void>(
+        builder: (_) => InvitationsPage(database: widget.database),
+      ));
+      return;
+    }
+    const prefix = 'conversation:';
+    if (!payload.startsWith(prefix)) return;
+    final conversationId = payload.substring(prefix.length);
+    if (conversationId.startsWith('group_')) {
+      navigator.push(MaterialPageRoute<void>(
+        builder: (_) => GroupChatPage(
+          database: widget.database,
+          groupId: conversationId.substring('group_'.length),
+        ),
+      ));
+      return;
+    }
+    if (conversationId.startsWith('direct_')) {
+      final contact = await ContactRepository(widget.database)
+          .getContactById(conversationId.substring('direct_'.length));
+      if (contact == null) return;
+      navigator.push(MaterialPageRoute<void>(
+        builder: (_) => ChatPage(database: widget.database, contact: contact),
+      ));
+    }
   }
 
   /// The person who scanned the QR code starts the session, then shares
@@ -765,6 +960,7 @@ class _SpacePageState extends State<SpacePage>
         ?..hideCurrentSnackBar()
         ..showSnackBar(SnackBar(content: Text(tr('Back online.'))));
     }
+    unawaited(MeyaPushService.instance.registerToken());
     unawaited(MeyaMessageService.instance.retryPending());
     // A photo or name changed while offline, or sharing it failed.
     unawaited(
@@ -785,8 +981,16 @@ class _SpacePageState extends State<SpacePage>
       AccountSecurityService.isAppLockEnabled().then((on) => _appLockOn = on);
     }
     if (state == AppLifecycleState.resumed) {
+      // After a longer time away the connection may have died unnoticed:
+      // renew it and fetch what is waiting.
+      final away = _leftAt == null
+          ? Duration.zero
+          : DateTime.now().difference(_leftAt!);
+      final reconnect = away > const Duration(seconds: 20)
+          ? _relaySession.wake()
+          : _relaySession.keepConnected();
       unawaited(
-        _relaySession.keepConnected().catchError((Object error) {
+        reconnect.catchError((Object error) {
           debugPrint('MEYA relay: reconnect on resume failed ($error).');
         }),
       );
@@ -891,6 +1095,7 @@ class _SpacePageState extends State<SpacePage>
   }
 
   void _showMissedCall(Contact contact) {
+    unawaited(MeyaNotifications.instance.showMissedCall(contact.displayName));
     meyaScaffoldMessengerKey.currentState?.showSnackBar(
       SnackBar(
         content: Text(tr('Missed call from {0}', [contact.displayName])),
@@ -907,10 +1112,11 @@ class _SpacePageState extends State<SpacePage>
     );
   }
 
-  void _showIncomingRequestNotification(String senderName) {
+  void _showIncomingRequestNotification() {
+    unawaited(MeyaNotifications.instance.showInvitation());
     meyaScaffoldMessengerKey.currentState?.showSnackBar(
       SnackBar(
-        content: Text(context.tr('{0} wants to connect with you on MEYA.', [senderName])),
+        content: Text(context.tr('Someone who scanned your QR code wants to connect with you on MEYA.')),
         action: SnackBarAction(
           label: context.tr('Open'),
           onPressed: () {
@@ -933,8 +1139,23 @@ class _SpacePageState extends State<SpacePage>
     _relaySession.removeMessageListener(_handleRelayMessage);
     _relaySession.removeErrorListener(_handleRelayError);
     _relaySession.removeConnectedListener(_onRelayConnected);
+    MeyaCallService.instance.removeListener(_onCallChanged);
+    MeyaPushService.instance.stop();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
+  }
+
+  /// Keeps the incoming-call notification in step with the call: shown
+  /// while it rings, gone once it is answered, declined or ends.
+  void _onCallChanged() {
+    final calls = MeyaCallService.instance;
+    final contact = calls.contact;
+    if (calls.phase == CallPhase.incoming && contact != null) {
+      unawaited(MeyaNotifications.instance
+          .showIncomingCall(contact.displayName, video: calls.video));
+    } else {
+      unawaited(MeyaNotifications.instance.cancelCall());
+    }
   }
 
   Future<void> _open(Widget page) async {
@@ -1427,6 +1648,12 @@ class _NewChatPageState extends State<NewChatPage> {
               subtitle: context.tr('Scan their MEYA QR code in person'),
               onTap: _scan,
             ),
+            const SizedBox(height: 8),
+            _ContactRow(
+              icon: Icons.share_outlined,
+              title: context.tr('Share an invite link'),
+              onTap: () => shareInviteLink(context, widget.database),
+            ),
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.fromLTRB(4, 0, 4, 8),
@@ -1483,14 +1710,14 @@ class _ContactRow extends StatelessWidget {
   final Contact? contact;
   final IconData? icon;
   final String? title;
-  final String subtitle;
+  final String? subtitle;
   final VoidCallback onTap;
 
   const _ContactRow({
     this.contact,
     this.icon,
     this.title,
-    required this.subtitle,
+    this.subtitle,
     required this.onTap,
   });
 
@@ -1531,11 +1758,13 @@ class _ContactRow extends StatelessWidget {
             name,
             style: const TextStyle(fontWeight: FontWeight.w700),
           ),
-          subtitle: Text(
-            subtitle,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
+          subtitle: subtitle == null
+              ? null
+              : Text(
+                  subtitle!,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
           trailing: const Icon(Icons.chevron_right),
           onTap: onTap,
         ),

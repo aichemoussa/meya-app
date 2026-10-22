@@ -699,3 +699,29 @@ Bu telefondaki mesajlar sende kalır.
 Yönetici sen olacaksın: grubu yalnızca sen yeniden adlandırabilir, kişi ekleyip çıkarabilirsin. Birbirine bağlı olmayan üyeler senin aracılığınla tanıştırılır.
 {0} seçildi · değiştir
 {0} üye
+Yeni kişi
+QR kodunuzu tarayan biri
+QR kodunuzu tarayan biri MEYA'da sizinle bağlantı kurmak istiyor.
+Bağlandı. Profil gelir gelmez adı görünecek.
+Mesajlar ve davetler
+Yeni mesaj
+Biri MEYA'da sizinle bağlantı kurmak istiyor. Devam etmek için MEYA'yı açın.
+Biri davet bağlantınızla bağlandı. Doğrulamak için güvenlik numaralarını karşılaştırın.
+Gelen görüntülü arama
+MEYA'yı açmak için dokunun.
+Planlanmış arama
+Davet bağlantısı paylaş
+Özel bir mesajlaşma uygulaması olan MEYA'da benimle bağlantı kur. Bu bağlantıyı telefonunda aç. Yalnızca bir kez çalışır ve 7 gün içinde geçerliliğini yitirir: {0}
+Bağlantı paylaşılamadı: {0}
+MEYA'da bağlantı kurulsun mu?
+Bir davet bağlantısı açtınız. Bunu gönderen kişiyle bağlantı kurulsun mu? Telefonu isteğinizi alır almaz şifreli sohbetiniz açılır.
+Bağlan
+İstek gönderildi. Telefonu isteği alır almaz sohbetiniz görünür.
+Bağlantıyla bağlandı. Henüz yüz yüze doğrulanmadı.
+Mesajınıza {0} ile tepki verdi
+Yeni bir durum paylaştı
+Yeni etkinlik
+Mesajlar gelmeye devam etsin
+MEYA arka plandayken veya telefonunuz kilitliyken mesajların ve aramaların size ulaşması için MEYA'nın pil kısıtlaması olmadan çalışmasına izin verin.
+Şimdi değil
+İzin ver

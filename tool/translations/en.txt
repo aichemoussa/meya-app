@@ -699,3 +699,29 @@ You keep the messages already on this phone.
 You will be the admin: only you can rename the group and add or remove people. Members who are not connected with each other are introduced through you.
 {0} chosen · change
 {0} members
+New contact
+Someone who scanned your QR code
+Someone who scanned your QR code wants to connect with you on MEYA.
+Connected. Their name appears as soon as their profile arrives.
+Messages and invitations
+New message
+Someone wants to connect with you on MEYA. Open MEYA to continue.
+Someone connected with your invite link. Compare safety numbers to verify them.
+Incoming video call
+Tap to open MEYA.
+Planned call
+Share an invite link
+Connect with me on MEYA, a private messenger. Open this link on your phone. It works once and expires in 7 days: {0}
+Could not share the link: {0}
+Connect on MEYA?
+You opened an invite link. Connect with the person who sent it? Your encrypted chat opens as soon as their phone receives your request.
+Connect
+Request sent. Your chat appears as soon as their phone receives it.
+Connected by link. Not verified in person yet.
+Reacted {0} to your message
+Posted a new status
+New activity
+Keep messages coming
+So that messages and calls reach you while MEYA is in the background or your phone is locked, allow MEYA to run without battery restrictions.
+Not now
+Allow

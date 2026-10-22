@@ -699,3 +699,29 @@ Je houdt de berichten die al op deze telefoon staan.
 Jij wordt de beheerder: alleen jij kunt de groep hernoemen en mensen toevoegen of verwijderen. Leden die niet met elkaar verbonden zijn, worden via jou voorgesteld.
 {0} gekozen · wijzigen
 {0} leden
+Nieuw contact
+Iemand die je QR-code heeft gescand
+Iemand die je QR-code heeft gescand, wil contact met je maken op MEYA.
+Verbonden. De naam verschijnt zodra het profiel binnenkomt.
+Berichten en uitnodigingen
+Nieuw bericht
+Iemand wil contact met je maken op MEYA. Open MEYA om verder te gaan.
+Iemand heeft verbinding gemaakt met je uitnodigingslink. Vergelijk de veiligheidsnummers om diegene te verifiëren.
+Inkomend videogesprek
+Tik om MEYA te openen.
+Gepland gesprek
+Uitnodigingslink delen
+Maak contact met mij op MEYA, een privémessenger. Open deze link op je telefoon. Hij werkt één keer en verloopt over 7 dagen: {0}
+Kan de link niet delen: {0}
+Verbinden op MEYA?
+Je hebt een uitnodigingslink geopend. Verbinden met degene die hem stuurde? Je versleutelde chat opent zodra hun telefoon je verzoek ontvangt.
+Verbinden
+Verzoek verzonden. Je chat verschijnt zodra hun telefoon het ontvangt.
+Verbonden via link. Nog niet persoonlijk geverifieerd.
+Reageerde met {0} op je bericht
+Heeft een nieuwe status geplaatst
+Nieuwe activiteit
+Berichten blijven ontvangen
+Zodat berichten en gesprekken je bereiken terwijl MEYA op de achtergrond draait of je telefoon vergrendeld is, sta MEYA toe zonder batterijbeperkingen te werken.
+Niet nu
+Toestaan

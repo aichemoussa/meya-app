@@ -29,6 +29,13 @@ class MeyaDatabaseEncryption {
     return key;
   }
 
+  /// The existing database key, or null. Never creates one (for code that
+  /// only reads, such as the push handler).
+  static Future<String?> readExistingKey() async {
+    final stored = await meyaSecureStorage.read(key: _storageKey);
+    return stored != null && _hex.hasMatch(stored) ? stored : null;
+  }
+
   static Future<void> forgetKey() => meyaSecureStorage.delete(key: _storageKey);
 
   /// SQL that unlocks an encrypted connection. Must run before anything else.
