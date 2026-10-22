@@ -21,7 +21,7 @@ free software under the **GNU Affero General Public License v3.0**
 
 | Area | What works |
 |---|---|
-| **Connecting** | In-person QR pairing; safety numbers to verify a contact's encryption; a warning if a contact's key changes |
+| **Connecting** | In-person QR pairing or a one-time invite link; safety numbers to verify a contact's encryption; a warning if a contact's key changes |
 | **Messages** | Text, voice messages, photos, videos (recorded in the app, with preview thumbnails) and files up to 100 MB |
 | **Conversations** | Replies, reactions, forwarding, pinning, favourites, editing, delete for everyone, search, mute, archive, unread counts |
 | **Delivery** | Sent, delivered and read ticks (read receipts can be switched off); offline queue with retries; no duplicates |
@@ -29,9 +29,10 @@ free software under the **GNU Affero General Public License v3.0**
 | **Status and profile** | Profile and status shared only with chosen people; statuses expire |
 | **Safety** | Block and report |
 | **Accessibility and language** | Light, dark and high-contrast themes, text scaling, reduced motion, screen-reader labels, 20 languages including right-to-left |
+| **Notifications** | Messages, invitations, calls, reactions and statuses, with sound and vibration, also when MEYA is closed (an empty wake-up push through Firebase Cloud Messaging) |
+| **Groups** | Private groups, each message sent to every member over their own encrypted session |
 
-Not available yet: groups, push notifications while the app is closed, and
-iPhone builds.
+Not available yet: iPhone builds.
 
 ## How it is built
 
